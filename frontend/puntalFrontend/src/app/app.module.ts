@@ -4,11 +4,19 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PlantillasComponent } from './plantillas/plantillas.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { CardComponent } from './card/card.component';
+import { CardConChartComponent } from './card-con-chart/card-con-chart.component';
+import { BotonComponent } from './boton/boton.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    PlantillasComponent
+    PlantillasComponent,
+    DashboardComponent,
+    CardComponent,
+    CardConChartComponent,
+    BotonComponent
   ],
   imports: [
     BrowserModule,

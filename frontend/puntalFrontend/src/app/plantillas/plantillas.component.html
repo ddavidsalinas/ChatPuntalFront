@@ -14,6 +14,10 @@
 			<button type="button" class="btn  mt-5 botonNavB">
 				Button
 			</button>
+
+
+			<app-boton (buttonClick)="handleButtonClick('A')">Botón A</app-boton>
+  <app-boton (buttonClick)="handleButtonClick('B')">Botón B</app-boton>
 		</div>
 		<div class="col-md">
 			<div class="row ">
@@ -25,7 +29,7 @@
 			</div>
 			<div class="row">
 				<div class="contenido col-md-12">
-					
+					<ng-content></ng-content>
 				</div>
 			</div>
 		</div>
