@@ -1,0 +1,31 @@
+#formulario
+{
+    margin:20px;
+    
+     
+      
+}
+
+h2 {
+    background-color: #1d2834;
+    color: white;
+}
+.icono-input {
+    position: relative;
+  }
+
+  .icono-input img {
+    position: absolute;
+    width: 4%;
+    top: 70%;
+    right: 0px; /* Ajusta la posición según sea necesario */
+    transform: translateY(-50%);
+  }
+ 
+  .container {
+    display: flex;
+    justify-content: space-between;
+    max-width: 800px; /* Ajusta según sea necesario */
+    width: 100%;
+  }
+  

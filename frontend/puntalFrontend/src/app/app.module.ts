@@ -3,20 +3,22 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-<<<<<<< HEAD
+
 import { BootstrapComponent } from './bootstrap/bootstrap.component';
-=======
+
 import { PlantillasComponent } from './plantillas/plantillas.component';
->>>>>>> main
+import { FormularioComponent } from './formulario/formulario.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
-<<<<<<< HEAD
-    BootstrapComponent
-=======
-    PlantillasComponent
->>>>>>> main
+
+    BootstrapComponent,
+
+    PlantillasComponent,
+     FormularioComponent
+
   ],
   imports: [
     BrowserModule,

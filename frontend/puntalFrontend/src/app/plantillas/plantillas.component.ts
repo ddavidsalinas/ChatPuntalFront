@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-plantillas',
@@ -6,5 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./plantillas.component.css']
 })
 export class PlantillasComponent {
-
+  
+  @Input() nombre: string ="";
+  
 }
