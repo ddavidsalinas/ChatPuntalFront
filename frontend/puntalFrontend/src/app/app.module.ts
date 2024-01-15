@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PlantillasComponent } from './plantillas/plantillas.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { ChartComponent } from './chart/chart.component';
 import { CardComponent } from './card/card.component';
 import { CardConChartComponent } from './card-con-chart/card-con-chart.component';
 import { BotonComponent } from './boton/boton.component';
@@ -16,7 +17,8 @@ import { BotonComponent } from './boton/boton.component';
     DashboardComponent,
     CardComponent,
     CardConChartComponent,
-    BotonComponent
+    BotonComponent,
+    ChartComponent
   ],
   imports: [
     BrowserModule,
