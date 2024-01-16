@@ -9,21 +9,21 @@
 </head>
 <body>
   
-    <form action="" [id]="input">
-      <div *ngFor="let input of inputs">
-        <label [for]="input.label">{{input.label}}:</label>
+     <form action="" [id]="input">
+      <div *ngFor="let inputs of input">
+        <label [for]="inputs.label">{{input.label}}:</label>
         <input
-          [id]="input.label"
-          [name]="input.label"
-          [type]="input.type"
-          [placeholder]="input.label"
-          [(ngModel)]="formData[input.label]" required
+          [id]="inputs.label"
+          [name]="inputs.label"
+          [type]="inputs.type"
+          [placeholder]="inputs.label"
+          [(ngModel)]="formData[inputs.label]" required
         >
       </div>
       <textarea [name]="texto" [id]="texto" cols="30" rows="10"></textarea>
       <button type="submit">Cancelar</button>
       <button type="submit">{{boton}}</button>
-    </form>
+    </form> 
 
 </body>
 </html>

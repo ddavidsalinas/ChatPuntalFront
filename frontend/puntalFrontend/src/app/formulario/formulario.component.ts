@@ -9,6 +9,7 @@ import { NgModule } from '@angular/core';
 })
 export class FormularioComponent 
 {
+  
   @Input() input:any[]=[];
   @Input() boton:string="";
   @Input() texto:string="";
