@@ -1,10 +1,30 @@
 <div class="card">
     <div class="card-header">
-      Título de la Card
+      Título de la Card {{titulo}}
     </div>
     <div class="card-body">
       <div class="chart-container">
-        <app-chart id="prueba"></app-chart>
+        <ng-container [ngSwitch]="chartType">
+          <div *ngSwitchCase="'bar'">
+            <app-chart [chartType]="'bar'"></app-chart>
+          </div>
+          <div *ngSwitchCase="'line'">
+            <app-chart [chartType]="'line'"></app-chart>
+          </div>
+          <div *ngSwitchCase="'pie'">
+            <app-chart [chartType]="'pie'"></app-chart>
+          </div>
+          <div *ngSwitchCase="'radar'">
+            <app-chart [chartType]="'radar'"></app-chart>
+          </div>
+          <div *ngSwitchCase="'polarArea'">
+            <app-chart [chartType]="'polarArea'"></app-chart>
+          </div>
+          <div *ngSwitchCase="'bubble'">
+            <app-chart [chartType]="'bubble'"></app-chart>
+          </div>
+        
+        </ng-container>
       </div>
     </div>
   </div>

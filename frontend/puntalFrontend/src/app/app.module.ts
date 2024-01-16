@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DashboardModule } from './dashboard/dashboard.module';
-//import { PlantillasComponent } from './plantillas/plantillas.component';
+import { PlantillasComponent } from './plantillas/plantillas.component';
 
 
 import { BotonComponent } from './boton/boton.component';
@@ -13,7 +13,7 @@ import { BotonComponent } from './boton/boton.component';
     AppComponent,
    // PlantillasComponent,
     BotonComponent,
-
+    
   ],
   imports: [
     BrowserModule,

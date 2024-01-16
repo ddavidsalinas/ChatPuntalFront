@@ -6,6 +6,7 @@ import { CardconchartComponent } from './cardconchart/cardconchart.component';
 import { ChartComponent } from './chart/chart.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { PlantillasComponent } from '../plantillas/plantillas.component';
+import { Chart2Component } from './chart2/chart2.component';
 
 
 
@@ -13,9 +14,11 @@ import { PlantillasComponent } from '../plantillas/plantillas.component';
   declarations: [
     CardComponent,
     CardconchartComponent,
+
     ChartComponent,
     PlantillasComponent,
-    DashboardComponent
+    DashboardComponent,
+    Chart2Component
   ],
   imports: [
     CommonModule

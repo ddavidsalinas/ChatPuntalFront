@@ -1,19 +1,19 @@
-import { Component,Input, OnInit } from '@angular/core';
-import { Chart, ChartType } from 'chart.js/auto';
+import { Component, OnInit } from '@angular/core';
+import { Chart } from 'chart.js/auto';
+
 @Component({
-  selector: 'app-chart',
-  templateUrl: './chart.component.html',
-  styleUrls: ['./chart.component.css']
+  selector: 'app-chart2',
+  templateUrl: './chart2.component.html',
+  styleUrls: ['./chart2.component.css']
 })
-export class ChartComponent implements OnInit  {
-  @Input() chartType:  ChartType = 'bar'; 
+export class Chart2Component implements OnInit  {
   ngOnInit(){
 
-  //  const ctx = document.getElementById('myChart2');
+    const ctx = document.getElementById('myChart');
   //"ctx" hace referencia al id del componente canvas
   
     const myChart = new Chart("ctx", {
-      type:  this.chartType,
+        type: 'line',
         data: {
             labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange','prueba','prueba2'],
             datasets: [{
