@@ -1,11 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Chart } from 'chart.js/auto';
-
-
 @Component({
   selector: 'app-chart',
   templateUrl: './chart.component.html',
-  styleUrls: ['./chart.component.css'],
+  styleUrls: ['./chart.component.css']
 })
 export class ChartComponent implements OnInit  {
   ngOnInit(){
@@ -53,11 +51,5 @@ export class ChartComponent implements OnInit  {
     });
   }
   
+
 }
-
-    
-  
- 
-
-
-
