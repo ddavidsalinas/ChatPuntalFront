@@ -11,7 +11,7 @@ th {
 
 }
 
-.filaImpar {
+ .table-striped>tbody>tr:nth-child(odd)>td {
     background-color: var(--wedgewood200);
 
 }
