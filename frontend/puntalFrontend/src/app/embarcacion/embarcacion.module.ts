@@ -10,6 +10,9 @@ import { TablaComponent } from './tabla/tabla.component';
   ],
   imports: [
     CommonModule
+  ],
+  exports: [
+    TablaComponent
   ]
 })
 export class EmbarcacionModule { }

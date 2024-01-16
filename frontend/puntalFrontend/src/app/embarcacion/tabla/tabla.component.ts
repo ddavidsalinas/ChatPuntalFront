@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { datos } from 'src/resources/datos';
 
 @Component({
   selector: 'app-tabla',
@@ -6,5 +7,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./tabla.component.css']
 })
 export class TablaComponent {
+  datos = datos.embarcaciones;
+  constructor() { 
+    console.log(this.datos);
+  }
 
 }
