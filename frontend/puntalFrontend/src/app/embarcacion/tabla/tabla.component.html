@@ -2,6 +2,11 @@
  <table datatable [dtOptions]="dtOptions" class="table table-hover table-custom-hover rounded-3 overflow-hidden">
 <thead>
     <tr>
+        <th [attr.colspan]="12">
+            EMBARCACIONES
+        </th>
+    </tr>
+    <tr class="cabeceraDatos text-center">
         <th>Matrícula</th>
         <th>Manga</th>
         <th>Eslora</th>
@@ -16,7 +21,7 @@
     </tr>
 </thead>
 <tbody>
-    <tr *ngFor="let item of datos">
+    <tr *ngFor="let item of datos;let i=index">
         <td>{{item.matricula}}</td>
         <td>{{item.manga}}</td>
         <td>{{item.eslora}}</td>
