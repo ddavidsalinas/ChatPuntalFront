@@ -328,7 +328,139 @@ export const datos = {
           TipoUsuario: "Guardacivil",
         },
       ],
-      
+      instalaciones: [
+        {
+            InstalacionID: 1,
+            CodigoInstalacion: "PT001",
+            Ubicacion: "Puerto A",
+            Dimensiones: "500m x 200m",
+            Descripcion: "Terminal de carga y descarga para barcos pequeños",
+            Estado: "Operativo",
+            FechaCreacion: "2022-01-01"
+        },
+        {
+            InstalacionID: 2,
+            CodigoInstalacion: "PT002",
+            Ubicacion: "Puerto B",
+            Dimensiones: "800m x 300m",
+            Descripcion: "Terminal especializada en cruceros turísticos",
+            Estado: "En mantenimiento",
+            FechaCreacion: "2022-02-01"
+        },
+        {
+            InstalacionID: 3,
+            CodigoInstalacion: "PT003",
+            Ubicacion: "Puerto C",
+            Dimensiones: "600m x 250m",
+            Descripcion: "Puerto de pesca con modernas instalaciones de procesamiento",
+            Estado: "Operativo",
+            FechaCreacion: "2022-03-01"
+        },
+        {
+            InstalacionID: 4,
+            CodigoInstalacion: "PT004",
+            Ubicacion: "Puerto D",
+            Dimensiones: "700m x 400m",
+            Descripcion: "Terminal de carga para contenedores",
+            Estado: "En mantenimiento",
+            FechaCreacion: "2022-04-01"
+        },
+        {
+            InstalacionID: 5,
+            CodigoInstalacion: "PT005",
+            Ubicacion: "Puerto E",
+            Dimensiones: "550m x 220m",
+            Descripcion: "Puerto deportivo con servicios exclusivos",
+            Estado: "Operativo",
+            FechaCreacion: "2022-05-01"
+        }
+    ],
+    pantalanes: [
+        {
+            PantalanID: 1,
+            NombrePantalan: "Pantalan A",
+            Ubicacion: "Muelle 1",
+            Descripcion: "Pantalan para barcos de carga",
+            InstalacionID: 1,
+            Capacidad: 10
+        },
+        {
+            PantalanID: 2,
+            NombrePantalan: "Pantalan B",
+            Ubicacion: "Muelle 2",
+            Descripcion: "Pantalan para embarcaciones de recreo",
+            InstalacionID: 2,
+            Capacidad: 15
+        },
+        {
+            PantalanID: 3,
+            NombrePantalan: "Pantalan C",
+            Ubicacion: "Muelle 3",
+            Descripcion: "Pantalan especializado en pesca comercial",
+            InstalacionID: 3,
+            Capacidad: 20
+        },
+        {
+            PantalanID: 4,
+            NombrePantalan: "Pantalan D",
+            Ubicacion: "Muelle 4",
+            Descripcion: "Pantalan para barcos de carga y descarga de contenedores",
+            InstalacionID: 4,
+            Capacidad: 25
+        },
+        {
+            PantalanID: 5,
+            NombrePantalan: "Pantalan E",
+            Ubicacion: "Muelle 5",
+            Descripcion: "Pantalan exclusivo para yates de lujo",
+            InstalacionID: 5,
+            Capacidad: 30
+        }
+    ],
+    incidencias:
+        [
+            {
+                IncidenciaID: 1,
+                Titulo: "Problema en grúas de carga",
+                GuardamuellesID: 1,
+                Foto: "problema_gruas.jpg",
+                Descripcion: "Se detectó un mal funcionamiento en las grúas de carga del muelle 1.",
+                AdministrativoID: 1
+            },
+            {
+                IncidenciaID: 2,
+                Titulo: "Fuga de combustible",
+                GuardamuellesID: 2,
+                Foto: "fuga_combustible.jpg",
+                Descripcion: "Se reportó una fuga de combustible en el área del muelle 2.",
+                AdministrativoID: 2
+            },
+            {
+                IncidenciaID: 3,
+                Titulo: "Equipamiento dañado",
+                GuardamuellesID: 3,
+                Foto: "equipamiento_danado.jpg",
+                Descripcion: "Se identificó equipamiento dañado en el pantalán del muelle 3.",
+                AdministrativoID: 3
+            },
+            {
+                IncidenciaID: 4,
+                Titulo: "Accidente en el muelle 4",
+                GuardamuellesID: 4,
+                Foto: "accidente_muelle.jpg",
+                Descripcion: "Ocurrió un accidente durante las operaciones en el muelle 4.",
+                AdministrativoID: 4
+            },
+            {
+                IncidenciaID: 5,
+                Titulo: "Robo de equipos",
+                GuardamuellesID: 5,
+                Foto: "robo_equipos.jpg",
+                Descripcion: "Se denunció el robo de equipos en el área del muelle 5.",
+                AdministrativoID: 5
+            }
+        ]
+
     
 
 
