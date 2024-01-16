@@ -8,16 +8,19 @@ import { BootstrapComponent } from './bootstrap/bootstrap.component';
 
 import { PlantillasComponent } from './plantillas/plantillas.component';
 import { FormularioComponent } from './formulario/formulario.component';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
+  
   declarations: [
     AppComponent,
-
+    FormsModule,
+    
     BootstrapComponent,
 
     PlantillasComponent,
-     FormularioComponent
+    FormularioComponent,
 
   ],
   imports: [
