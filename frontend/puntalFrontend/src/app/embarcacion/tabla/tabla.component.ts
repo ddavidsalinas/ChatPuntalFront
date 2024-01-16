@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { datos } from 'src/resources/datos';
 // import { DataTableDirective } from 'angular-datatables';
 
@@ -8,6 +8,11 @@ import { datos } from 'src/resources/datos';
   styleUrls: ['./tabla.component.css']
 })
 export class TablaComponent implements OnInit {
+  @Output() mostrarFormulario = new EventEmitter();
+  navegarAFormulario() {
+    console.log("navegarAFormulario");
+    this.mostrarFormulario.emit();
+  }
   dtOptions: DataTables.Settings = {};
   datos = datos.embarcaciones;
   constructor() { 

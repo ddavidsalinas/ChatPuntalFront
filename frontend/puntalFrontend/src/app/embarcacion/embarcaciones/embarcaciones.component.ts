@@ -6,5 +6,13 @@ import { Component } from '@angular/core';
   styleUrls: ['./embarcaciones.component.css']
 })
 export class EmbarcacionesComponent {
+mostrarTabla = true;
+
+  constructor() { }
+
+  mostrarFormulario() {
+    this.mostrarTabla = false;
+  }
+
 
 }

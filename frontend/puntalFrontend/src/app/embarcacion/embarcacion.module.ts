@@ -4,6 +4,7 @@ import { TablaComponent } from './tabla/tabla.component';
 import { DataTablesModule } from 'angular-datatables';
 import { EmbarcacionesComponent } from './embarcaciones/embarcaciones.component';
 import { FormularioEmbarcacionComponent } from './formulario-embarcacion/formulario-embarcacion.component';
+import { AppRoutingModule } from '../app-routing.module';
 
 
 
@@ -15,7 +16,8 @@ import { FormularioEmbarcacionComponent } from './formulario-embarcacion/formula
   ],
   imports: [
     CommonModule,
-    DataTablesModule
+    DataTablesModule,
+    AppRoutingModule
   ],
   exports: [
     EmbarcacionesComponent
