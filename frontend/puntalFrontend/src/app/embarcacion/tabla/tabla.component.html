@@ -1,1 +1,35 @@
-<p>tabla works!</p>
+
+ <table datatable [dtOptions]="dtOptions" class="row-border hover">
+<thead>
+    <tr>
+        <th>Matrícula</th>
+        <th>Manga</th>
+        <th>Eslora</th>
+        <th>Origen</th>
+        <th>Titular</th>
+        <th>Imagen</th>
+        <th>Nº De registro</th>
+        <th>Datos técnicos</th>
+        <th>Modelo</th>
+        <th>Nombre</th>
+        <th>Tipo</th>
+    </tr>
+</thead>
+<tbody>
+    <tr *ngFor="let item of datos">
+        <td>{{item.matricula}}</td>
+        <td>{{item.manga}}</td>
+        <td>{{item.eslora}}</td>
+        <td>{{item.origen}}</td>
+        <td>{{item.titular}}</td>
+        <td>{{item.imagen}}</td>
+        <td>{{item.numero_registro}}</td>
+        <td>{{item.datos_tecnicos}}</td>
+        <td>{{item.modelo}}</td>
+        <td>{{item.nombre}}</td>
+        <td>{{item.tipo}}</td>
+
+    </tr>
+</tbody>
+
+ </table>

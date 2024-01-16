@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TablaComponent } from './tabla/tabla.component';
+import { DataTablesModule } from 'angular-datatables';
 
 
 
@@ -9,7 +10,8 @@ import { TablaComponent } from './tabla/tabla.component';
     TablaComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    DataTablesModule
   ],
   exports: [
     TablaComponent
