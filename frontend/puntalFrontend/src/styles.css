@@ -1,2 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~bootstrap/dist/css/bootstrap.css";
+:root {
+    --wedgewood50: #f5f7fa;
+    --wedgewood100: #eaeff4;
+    --wedgewood200: #d0dce7;
+    --wedgewood300: #a6bed3;
+    --wedgewood600: #426787;
+    --regentStBlue300: #8ab6d6;
+    --regentStBlue950: #162f3b;
+    --gold500: #ffd700;
+    --gold950: #162f3b;
+}
