@@ -1,10 +1,9 @@
-
 .logo {
     width: 90%;
-height: 95.909px;
-flex-shrink: 0;
- margin: 1vh; 
-margin-top: 5vh;
+    height: 95.909px;
+    flex-shrink: 0;
+    margin: 1vh;
+    margin-top: 5vh;
 
 }
 
@@ -19,14 +18,14 @@ margin-top: 5vh;
 .azul500 {
 
     width: 13%;
-height: 100vh;
+    height: 100vh;
 
     background-color: #4f7796;
 
 }
 
 .contenido {
-
+    height: 93vh;
     background-color: #eaeff4;
 
 }
