@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { PlantillaGuardamuellesComponent } from './plantilla-guardamuelles/plantilla-guardamuelles.component';
 import { CardTransitoComponent } from './card-transito/card-transito.component';
 import { CardConfirmacionTransitoComponent } from './card-confirmacion-transito/card-confirmacion-transito.component';
+import { CardIncidenciaComponent } from './card-incidencia/card-incidencia.component';
 
 
 
@@ -10,7 +11,8 @@ import { CardConfirmacionTransitoComponent } from './card-confirmacion-transito/
   declarations: [
     PlantillaGuardamuellesComponent,
     CardTransitoComponent,
-    CardConfirmacionTransitoComponent
+    CardConfirmacionTransitoComponent,
+    CardIncidenciaComponent
   ],
   imports: [
     CommonModule
