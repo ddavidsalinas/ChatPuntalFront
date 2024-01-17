@@ -1,5 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { datos } from 'src/resources/datos';
+import { Router, ActivatedRoute } from '@angular/router';
 // import { DataTableDirective } from 'angular-datatables';
 
 @Component({
@@ -9,13 +10,15 @@ import { datos } from 'src/resources/datos';
 })
 export class TablaComponent implements OnInit {
   @Output() mostrarFormulario = new EventEmitter();
+
   navegarAFormulario() {
-    console.log("navegarAFormulario");
-    this.mostrarFormulario.emit();
+    // console.log("navegarAFormulario");
+    // this.mostrarFormulario.emit();
+    this.router.navigate(['../formulario'], {relativeTo: this.activatedRoute})
   }
   dtOptions: DataTables.Settings = {};
   datos = datos.embarcaciones;
-  constructor() { 
+  constructor(private router: Router, private activatedRoute: ActivatedRoute) { 
     console.log(this.datos);
   }
 

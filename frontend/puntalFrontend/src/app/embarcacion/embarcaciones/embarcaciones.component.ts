@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-embarcaciones',
@@ -6,13 +7,13 @@ import { Component } from '@angular/core';
   styleUrls: ['./embarcaciones.component.css']
 })
 export class EmbarcacionesComponent {
-mostrarTabla = true;
+// mostrarTabla = true;
 
-  constructor() { }
+  constructor(private route: ActivatedRoute) {}
 
-  mostrarFormulario() {
-    this.mostrarTabla = false;
-  }
+  // mostrarFormulario() {
+  //   this.mostrarTabla = false;
+  // }
 
 
 }

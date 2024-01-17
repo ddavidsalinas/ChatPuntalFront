@@ -5,19 +5,30 @@ import { DataTablesModule } from 'angular-datatables';
 import { EmbarcacionesComponent } from './embarcaciones/embarcaciones.component';
 import { FormularioEmbarcacionComponent } from './formulario-embarcacion/formulario-embarcacion.component';
 import { AppRoutingModule } from '../app-routing.module';
-
-
+import { RouterModule, Routes } from '@angular/router';
+const routes: Routes = [
+  {
+    path: 'embarcaciones',
+    component: EmbarcacionesComponent,
+    children: [
+      { path: 'tabla', component: TablaComponent },
+      { path: 'formulario', component: FormularioEmbarcacionComponent },
+      // Puedes agregar más rutas según tus necesidades
+    ]
+  },
+];
 
 @NgModule({
   declarations: [
     TablaComponent,
     EmbarcacionesComponent,
-    FormularioEmbarcacionComponent
+    FormularioEmbarcacionComponent,
   ],
   imports: [
     CommonModule,
     DataTablesModule,
-    AppRoutingModule
+    AppRoutingModule,
+    RouterModule.forChild(routes)
   ],
   exports: [
     EmbarcacionesComponent
