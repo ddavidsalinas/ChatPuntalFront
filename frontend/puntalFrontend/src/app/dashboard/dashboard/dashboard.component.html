@@ -1,61 +1,62 @@
-<app-plantillas>
-    <div class="row" ngx-scrollbar>
+<app-con>
+  <div class="row" >
       
-        <div class="col-md-3">
-          <app-card [titulo]="titulo" [texto]="texto1"  [textoo]="comprueba"  [textooo]="prueba"></app-card>
-          
-        </div>
-        <div class="col-md-3">
-          <app-card [texto]="texto2"></app-card>
-        </div>
-        <div class="col-md-6">
-            <app-cardconchart [texto]="texto5"></app-cardconchart>
-          </div>
+    <div class="col-md-3">
+      <app-card [titulo]="titulo" [texto]="texto1"  [textoo]="comprueba"  [textooo]="prueba"></app-card>
+      
+    </div>
+    <div class="col-md-3">
+      <app-card [texto]="texto2"></app-card>
+    </div>
+    <div class="col-md-6">
+        <app-cardconchart [texto]="texto5"></app-cardconchart>
       </div>
-      
-      <div class="row">
-       
-        <div class="col-md-3">
-          <app-card [texto]="texto3"></app-card>
-        </div>
-        <div class="col-md-3">
-          <app-card [texto]="texto4"></app-card>
-        </div>
-        <div class="col-md-6">
-            <app-cardconchart [chartType]="'bar'"></app-cardconchart>
-            
-          </div>
-      </div>
-      
-      <div class="row">
-        
-        <div class="col-md-3">
-          <app-card [texto]="texto5"></app-card>
-         
-        </div>
-        <div class="col-md-3">
-          <app-card [texto]="texto6"></app-card>
-         
-        </div>
-        <div class="col-md-6">
-        <!--  <app-cardconchart  [texto]="texto5"></app-cardconchart>-->
+  </div>
+  
+  <div class="row">
+   
+    <div class="col-md-3">
+      <app-card [texto]="texto3"></app-card>
+    </div>
+    <div class="col-md-3">
+      <app-card [texto]="texto4"></app-card>
+    </div>
+    <div class="col-md-6">
         <app-cardconchart [chartType]="'bar'"></app-cardconchart>
-
-        </div>
-        <div class="col-md-3">
-       
-        </div>
+        
       </div>
-      
-      <div class="row">
-       
-        <div class="col-md-6">
-         <!-- <app-cardconchart [titulo]="titulo1" [texto]="texto5"></app-cardconchart>-->
-          <app-cardconchart [chartType]="'line'"></app-cardconchart>
-        </div>
-        <div class="col-md-6">
-          
-        </div>
-      </div>
+  </div>
+  
+  <div class="row">
     
-  </app-plantillas>
+    <div class="col-md-3">
+      <app-card [texto]="texto5"></app-card>
+     
+    </div>
+    <div class="col-md-3">
+      <app-card [texto]="texto6"></app-card>
+     
+    </div>
+    <div class="col-md-6">
+    <!--  <app-cardconchart  [texto]="texto5"></app-cardconchart>-->
+    <app-cardconchart [chartType]="'bar'"></app-cardconchart>
+
+    </div>
+    <div class="col-md-3">
+   
+    </div>
+  </div>
+  
+  <div class="row">
+   
+    <div class="col-md-6">
+     <!-- <app-cardconchart [titulo]="titulo1" [texto]="texto5"></app-cardconchart>-->
+      <app-cardconchart [chartType]="'line'"></app-cardconchart>
+    </div>
+    <div class="col-md-6">
+      
+    </div>
+  </div>
+
+    
+  </app-con>

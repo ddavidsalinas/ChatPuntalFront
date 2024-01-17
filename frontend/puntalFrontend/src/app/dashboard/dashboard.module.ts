@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
+import { PlantillaModule } from '../plantilla/plantilla.module';
 import { CommonModule } from '@angular/common';
-
 import { CardComponent } from './card/card.component';
 import { CardconchartComponent } from './cardconchart/cardconchart.component';
 import { ChartComponent } from './chart/chart.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { PlantillasComponent } from '../plantillas/plantillas.component';
+//import { PlantillasComponent } from '../plantillas/plantillas.component';
 import { Chart2Component } from './chart2/chart2.component';
 
 
@@ -14,9 +14,9 @@ import { Chart2Component } from './chart2/chart2.component';
   declarations: [
     CardComponent,
     CardconchartComponent,
-
     ChartComponent,
-    PlantillasComponent,
+    PlantillaModule,
+    //PlantillasComponent,
     DashboardComponent,
     Chart2Component
   ],

@@ -9,10 +9,10 @@ import { Chart } from 'chart.js/auto';
 export class Chart2Component implements OnInit  {
   ngOnInit(){
 
-    const ctx = document.getElementById('myChart');
+   // const ctx = document.getElementById('myChart2');
   //"ctx" hace referencia al id del componente canvas
   
-    const myChart = new Chart("ctx", {
+    const myChart2 = new Chart("ctx2", {
         type: 'line',
         data: {
             labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange','prueba','prueba2'],
