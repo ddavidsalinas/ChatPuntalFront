@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Questrial&display=swap');
+
 form {
     background-color: #FFFFFF;
     padding: 50px;
@@ -87,4 +87,15 @@ label{
     color: #ffffff;
     background-color: var(--wedgewood950);
     border-radius: 5px 5px 0px 0px;
+}
+
+.linkForm{
+    text-decoration: none;
+    background-color: var(--goldenTainoi300);
+    color: var(--goldenTainoi900);
+}
+.btnAdd{
+    background-color: var(--titanWhite900);
+    color:var(--titanWhite50);
+    margin-left: 10px;
 }
