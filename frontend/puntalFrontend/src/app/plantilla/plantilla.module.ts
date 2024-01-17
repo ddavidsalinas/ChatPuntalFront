@@ -4,14 +4,13 @@ import { BotonComponent } from './boton/boton.component';
 import { NavlateralComponent } from './navlateral/navlateral.component';
 import { NavheaderComponent } from './navheader/navheader.component';
 import { ContenidoComponent } from './contenido/contenido.component';
-import { DashboardComponent } from '../dashboard/dashboard/dashboard.component';
+
 
 
 @NgModule({
   declarations: [
     BotonComponent,
     NavlateralComponent,
-    
     NavheaderComponent,
     ContenidoComponent
   ],
@@ -19,7 +18,7 @@ import { DashboardComponent } from '../dashboard/dashboard/dashboard.component';
     CommonModule
   ]
   ,
-  exports:[//NavlateralComponent,NavheaderComponent,BotonComponent,ContenidoComponent
+  exports:[NavlateralComponent,NavheaderComponent,BotonComponent,ContenidoComponent
 
   ]
 

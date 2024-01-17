@@ -11,13 +11,13 @@ import { BotonComponent } from './boton/boton.component';
 @NgModule({
   declarations: [
     AppComponent,
-
+    
     BotonComponent,
     
   ],
   imports: [
     BrowserModule,
-   // DashboardModule,
+    DashboardModule,
     AppRoutingModule,
    // PlantillaModule
   ],

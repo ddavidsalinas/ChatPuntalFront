@@ -15,7 +15,7 @@ import { Chart2Component } from './chart2/chart2.component';
     CardComponent,
     CardconchartComponent,
     ChartComponent,
-    PlantillaModule,
+ 
     //PlantillasComponent,
     DashboardComponent,
     Chart2Component
