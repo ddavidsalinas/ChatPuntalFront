@@ -7,6 +7,7 @@ import { PlantillasComponent } from './plantillas/plantillas.component';
 import { CardMovilComponent } from './card-movil/card-movil.component';
 import { PlantillaMovilComponent } from './plantilla-movil/plantilla-movil.component';
 import { CardVistaTransitoComponent } from './card-vista-transito/card-vista-transito.component';
+import { MovilModule } from './movil/movil.module';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { CardVistaTransitoComponent } from './card-vista-transito/card-vista-tra
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    MovilModule
   ],
   providers: [],
   bootstrap: [AppComponent]
