@@ -1,17 +1,41 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter&family=Questrial&display=swap');
 th {
     background-color: var(--wedgewood600);
     color: var(--wedgewood50);
     /* font-weight: bold; */
 }
 
-.cabeceraDatos > th {
+.cabeceraDatos>th {
     background-color: var(--wedgewood300);
     color: black;
     font-weight: bold;
 
 }
 
- .table-striped>tbody>tr:nth-child(odd)>td {
+.table-striped>tbody>tr:nth-child(odd)>td {
     background-color: var(--wedgewood200);
 
+}
+
+a {
+    display: flex;
+    width: 202px;
+    height: 48px;
+    flex-direction: column;
+    justify-content: center;
+    flex-shrink: 0;
+    color: #FFF;
+    font-family: Inter;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    text-decoration: none;
+    background-color: var(--wedgewood600);
+    text-align: center;
+    font-family: 'Inter', sans-serif;
+    border-radius: 5px;
+    background-image: url(/assets/add_solid.svg);
+    background-size: cover;
+    background-repeat: no-repeat;
 }
