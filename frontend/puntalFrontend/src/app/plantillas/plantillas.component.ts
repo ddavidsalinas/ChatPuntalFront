@@ -54,8 +54,8 @@ export class PlantillasComponent {
   nombrePaginaEmbarcacion :string ="ALTA EMBARCACIÓN";
   nombrePaginaTransito :string ="ALTA TRANSITOS";
   nombrePaginaPlaza :string ="ALTA PLAZA BASE";
-
-  datostecnicos: string = "ads";
+//En funcion de lo que se ponga cambia el text area
+  datostecnicos: string = "Datos técnicos";
 //modificar el boton en funcion del parametro
   anyadir: string = "AÑADIR";
   modificar: string = "MODIFICAR";

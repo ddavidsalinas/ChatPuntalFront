@@ -8,15 +8,17 @@
 </head>
 <body>
 
-<div class="container-fluid">
+
   <h2>{{nombre}}</h2>
+  <div  class="container-fluid">
   <div class="row" >
     
-    <div class="col-md-6">
+    <div class="col-md-6" >
       <form action="" id="Formulario">
-        <div *ngFor="let inputs of input" class="form-group icono-input">
+        <div *ngFor="let inputs of input" class="">
           <label [for]="inputs.label">{{inputs.label}}:</label>
           <input
+          class="form-control"
             [id]="inputs.label"
             [name]="inputs.label"
             [type]="inputs.type"
@@ -29,11 +31,13 @@
     <div class="col-md-6">
       <form action="" id="Formulario" class="der">
         <div class="form-group">
-          <label for="texto">Texto:</label>
-          <textarea name="texto" id="texto" cols="30" rows="10"></textarea>
+          <label for="texto">{{texto}}:</label>
+          <textarea  placeholder="{{texto}}" name="texto" id="texto" cols="30" rows="10"></textarea>
         </div>
-        <button type="submit" class="btn btn-warning cancel">CANCELAR</button>
-        <button type="submit" class="btn btn-primary accept ">{{boton}}</button>
+        <div class="  d-flex justify-content-end mt-6">
+        <button type="submit" class="btn btn-warning cancel mr-4">CANCELAR</button>
+        <button type="submit" class="btn btn-primary accept  ml-4">{{boton}}</button>
+      </div>
       </form>
     </div>
   </div>
