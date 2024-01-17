@@ -6,13 +6,15 @@ import { AppComponent } from './app.component';
 import { PlantillasComponent } from './plantillas/plantillas.component';
 import { CardMovilComponent } from './card-movil/card-movil.component';
 import { PlantillaMovilComponent } from './plantilla-movil/plantilla-movil.component';
+import { CardVistaTransitoComponent } from './card-vista-transito/card-vista-transito.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     PlantillasComponent,
     CardMovilComponent,
-    PlantillaMovilComponent
+    PlantillaMovilComponent,
+    CardVistaTransitoComponent
   ],
   imports: [
     BrowserModule,
