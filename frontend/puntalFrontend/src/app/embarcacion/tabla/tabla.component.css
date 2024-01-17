@@ -17,7 +17,7 @@ th {
 
 }
 
-a {
+.enlaceCreateEmb {
     display: flex;
     width: 202px;
     height: 48px;
@@ -35,7 +35,8 @@ a {
     text-align: center;
     font-family: 'Inter', sans-serif;
     border-radius: 5px;
-    background-image: url(/assets/add_solid.svg);
-    background-size: cover;
+    background-image: url(/assets/img/add_solid.svg);
+    background-size: 30px;
     background-repeat: no-repeat;
+    background-position: left 10px center;
 }
