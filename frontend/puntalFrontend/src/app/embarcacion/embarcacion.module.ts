@@ -13,6 +13,7 @@ const routes: Routes = [
     children: [
       { path: 'tabla', component: TablaComponent },
       { path: 'formulario', component: FormularioEmbarcacionComponent },
+      { path: '', redirectTo: 'tabla', pathMatch: 'full' },
       // Puedes agregar más rutas según tus necesidades
     ]
   },

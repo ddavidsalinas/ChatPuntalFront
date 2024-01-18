@@ -1,6 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { datos } from 'src/resources/datos';
 import { Router, ActivatedRoute } from '@angular/router';
+import { SharedDataService } from 'src/app/services/shared-data.service';
 // import { DataTableDirective } from 'angular-datatables';
 
 @Component({
@@ -9,19 +10,34 @@ import { Router, ActivatedRoute } from '@angular/router';
   styleUrls: ['./tabla.component.css']
 })
 export class TablaComponent implements OnInit {
-  @Output() mostrarFormulario = new EventEmitter();
+  // @Output() mostrarFormulario = new EventEmitter();
+message = ''; 
 
+  dtOptions: DataTables.Settings = {};
+  datos = datos.embarcaciones;
+  constructor(private router: Router, private activatedRoute: ActivatedRoute, private sharedDataService: SharedDataService) {
+    console.log(this.datos);
+  }
   navegarAFormulario() {
     // console.log("navegarAFormulario");
     // this.mostrarFormulario.emit();
-    this.router.navigate(['../formulario'], {relativeTo: this.activatedRoute})
-  }
-  dtOptions: DataTables.Settings = {};
-  datos = datos.embarcaciones;
-  constructor(private router: Router, private activatedRoute: ActivatedRoute) { 
-    console.log(this.datos);
+    this.router.navigate(['../formulario'], { relativeTo: this.activatedRoute })
   }
 
+  // someClickHandler(row: Node, index:number): void {
+  //   const rowData = this.datos[index]; // Acceder a los datos utilizando el índice
+  //   this.message = `${rowData.matricula}`
+  // };
+  // someClickHandler(data: any) {
+  //   this.sharedDataService.setData("embarcacionSeleccionada", data);
+  //   this.router.navigate(['../formulario'], { relativeTo: this.activatedRoute });
+  // }
+  someClickHandler(index: number): void {
+    const rowData = this.datos[index];
+    this.sharedDataService.setData("embarcacionSeleccionada", rowData);
+    this.router.navigate(['/embarcaciones/formulario']);
+    // this.router.navigate(['../formulario'], { relativeTo: this.activatedRoute.parent });
+  }
   ngOnInit(): void {
     this.dtOptions = {
       pagingType: 'full_numbers',
@@ -29,6 +45,15 @@ export class TablaComponent implements OnInit {
       processing: true,
       language: {
         url: '//cdn.datatables.net/plug-ins/1.10.25/i18n/Spanish.json'
+      },
+      rowCallback: (row: Node, data: any[] | Object, index: number) => {
+        const self = this;
+        
+        $('td', row).off('click');
+        $('td', row).on('click', () => {
+          self.someClickHandler(index);
+        });
+        return row;
       }
     }
   }
