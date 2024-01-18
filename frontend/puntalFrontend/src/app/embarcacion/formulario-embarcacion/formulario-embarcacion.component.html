@@ -61,3 +61,11 @@
 
 </form>
 
+<div *ngIf="mostrarVacio">
+  <!-- Aquí colocas los campos y lógica para el formulario vacío -->
+  <h2>Formulario Vacío</h2>
+</div>
+<div *ngIf="mostrarVacio === false">
+  <!-- Aquí colocas los campos y lógica para el otro formulario -->
+  <h2>Otro Formulario</h2>
+</div>
