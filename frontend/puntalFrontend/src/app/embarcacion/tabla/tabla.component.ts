@@ -11,7 +11,7 @@ import { SharedDataService } from 'src/app/services/shared-data.service';
 })
 export class TablaComponent implements OnInit {
   // @Output() mostrarFormulario = new EventEmitter();
-message = ''; 
+
 
   dtOptions: DataTables.Settings = {};
   datos = datos.embarcaciones;
@@ -35,7 +35,7 @@ message = '';
   someClickHandler(index: number): void {
     const rowData = this.datos[index];
     this.sharedDataService.setData("embarcacionSeleccionada", rowData);
-    this.router.navigate(['/embarcaciones/formulario']);
+    this.router.navigate(['/embarcaciones/formulario']); // Si no es con ruta abosulta, no funciona
     // this.router.navigate(['../formulario'], { relativeTo: this.activatedRoute.parent });
   }
   ngOnInit(): void {
