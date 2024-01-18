@@ -6,5 +6,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./navlateral.component.css']
 })
 export class NavlateralComponent {
-
+  homeRoute: string = '/home';
+  aboutRoute: string = '/about';
 }

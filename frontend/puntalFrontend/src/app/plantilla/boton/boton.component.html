@@ -1,1 +1,4 @@
-<p>boton works!</p>
+<button (click)="navigate()">
+    <img *ngIf="imageUrl" [src]="imageUrl" alt="Icon">
+    {{ label }}
+  </button>
