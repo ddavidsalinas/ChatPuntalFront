@@ -119,7 +119,8 @@
       <img src="/assets/img/embarcaciones/image-outline.svg" alt="">
     </div>
     <div class="d-flex justify-content-end mt-5">
-      <a class="linkForm btn" routerLink="../tabla">CANCELAR</a>
+      <button *ngIf="!modoEdicion" class="btnDelete btn" routerLink="../tabla">ELIMINAR</button>
+      <button *ngIf="modoEdicion" class="btn btnCancelar" routerLink="../tabla">CANCELAR</button>
       <button *ngIf="!modoEdicion" class="btn  btnVista" (click)="activarModoEdicion()">MODIFICAR</button>
       <button *ngIf="modoEdicion" class="btn  btnAdd">MODIFICAR</button>
     </div>
