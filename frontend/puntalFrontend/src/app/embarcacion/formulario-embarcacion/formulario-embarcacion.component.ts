@@ -9,7 +9,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class FormularioEmbarcacionComponent implements OnInit {
   mostrarVacio: boolean = false;
-  embarcacionSeleccionada: any;
+  embarcacionSeleccionada: any = {datos_tecnicos: ''};
   data: any;
   constructor(private sharedDataService: SharedDataService, private activatedRoute: ActivatedRoute) { }
   onMostrarFormulario(tipo: string) {
@@ -33,6 +33,7 @@ export class FormularioEmbarcacionComponent implements OnInit {
       console.log("Datos obtenidos del servicio:", data);
       if (data) {
         this.embarcacionSeleccionada = data;
+        console.log("Información de la embarcación seleccionada:", this.embarcacionSeleccionada.matricula);
         this.mostrarInformacion();
       }else{
         console.warn("No se obtuvieron datos del servicio");

@@ -6,6 +6,7 @@ import { EmbarcacionesComponent } from './embarcaciones/embarcaciones.component'
 import { FormularioEmbarcacionComponent } from './formulario-embarcacion/formulario-embarcacion.component';
 import { AppRoutingModule } from '../app-routing.module';
 import { RouterModule, Routes } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 const routes: Routes = [
   {
     path: 'embarcaciones',
@@ -29,7 +30,8 @@ const routes: Routes = [
     CommonModule,
     DataTablesModule,
     AppRoutingModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    FormsModule
   ],
   exports: [
     EmbarcacionesComponent
