@@ -17,8 +17,7 @@ const routes: Routes = [
     CardComponent,
     CardconchartComponent,
     ChartComponent,
-   
-      //PlantillasComponent,
+    //PlantillasComponent,
     DashboardComponent,
     Chart2Component
   ],

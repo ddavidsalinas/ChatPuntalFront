@@ -10,12 +10,12 @@ export class CardconchartComponent {
   @Input() titulo: string = '';
   @Input() chartType: string=''; 
   get esBarChart(): boolean {
-    console.log('Chart Type:', this.chartType);
+  
     return this.chartType === 'bar';
   }
  
   get esLineChart(): boolean {
-    console.log('Chart Type:', this.chartType);
+ 
     return this.chartType === 'line';
   }
 }
