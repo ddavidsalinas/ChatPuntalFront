@@ -1,130 +1,261 @@
-
-
 <div *ngIf="mostrarVacio">
-<div class="formHeader">
-  <h5>ALTA EMBARCACIÓN</h5>
-</div>
-<form action="" class="d-flex">
-  <div class="formLeft">
-    <div class="mb-3 d-flex">
-      <label for="nombre" class="form-label">Nombre:</label>
-      <input name="nombre" type="text" class="form-control mt-4" placeholder="Nombre" />
-    </div>
-    <div class="mb-3 d-flex">
-      <label for="matricula" class="form-label">Matrícula:</label>
-      <input name="matricula" type="text" class="form-control mt-4" placeholder="Matrícula" />
-    </div>
-    <div class="mb-3 d-flex">
-      <label for="modelo" class="form-label">Modelo:</label>
-      <input name="modelo" type="text" class="form-control mt-4" placeholder="Modelo" />
-    </div>
-    <div class="mb-3 d-flex">
-      <label for="bandera" class="form-label">Bandera:</label>
-      <input name="bandera" type="text" class="form-control mt-4" placeholder="Bandera" />
-    </div>
-    <div class="mb-3 d-flex">
-      <label for="titular" class="form-label">Titular:</label>
-      <input name="titular" type="text" class="form-control mt-4" placeholder="Titular" />
-    </div>
-    <div class="mb-3 d-flex">
-      <label for="eslora" class="form-label">Eslora:</label>
-      <input name="eslora" type="text" class="form-control mt-4" placeholder="Eslora" />
-    </div>
-    <div class="mb-3 d-flex">
-      <label for="manga" class="form-label">Manga:</label>
-      <input name="manga" type="text" class="form-control mt-4" placeholder="Manga" />
-    </div>
-    <div class="mb-3 d-flex">
-      <label for="registro" class="form-label">Nº Registro:</label>
-      <input name="registro" type="text" class="form-control mt-4" placeholder="Nº Registro" />
-    </div>
+  <div class="formHeader">
+    <h5>ALTA EMBARCACIÓN</h5>
   </div>
-  <div class="formRight">
-    <div class="mb-3 d-flex">
-      <label for="tipo" class="form-label">Tipo:</label>
-      <input name="tipo" type="text" class="form-control mt-4" placeholder="Tipo" />
+  <form action="" class="d-flex">
+    <div class="formLeft">
+      <div class="mb-3 d-flex">
+        <label for="nombre" class="form-label">Nombre:</label>
+        <input
+          name="nombre"
+          type="text"
+          class="form-control mt-4"
+          placeholder="Nombre"
+        />
+      </div>
+      <div class="mb-3 d-flex">
+        <label for="matricula" class="form-label">Matrícula:</label>
+        <input
+          name="matricula"
+          type="text"
+          class="form-control mt-4"
+          placeholder="Matrícula"
+        />
+      </div>
+      <div class="mb-3 d-flex">
+        <label for="modelo" class="form-label">Modelo:</label>
+        <input
+          name="modelo"
+          type="text"
+          class="form-control mt-4"
+          placeholder="Modelo"
+        />
+      </div>
+      <div class="mb-3 d-flex">
+        <label for="bandera" class="form-label">Bandera:</label>
+        <input
+          name="bandera"
+          type="text"
+          class="form-control mt-4"
+          placeholder="Bandera"
+        />
+      </div>
+      <div class="mb-3 d-flex">
+        <label for="titular" class="form-label">Titular:</label>
+        <input
+          name="titular"
+          type="text"
+          class="form-control mt-4"
+          placeholder="Titular"
+        />
+      </div>
+      <div class="mb-3 d-flex">
+        <label for="eslora" class="form-label">Eslora:</label>
+        <input
+          name="eslora"
+          type="text"
+          class="form-control mt-4"
+          placeholder="Eslora"
+        />
+      </div>
+      <div class="mb-3 d-flex">
+        <label for="manga" class="form-label">Manga:</label>
+        <input
+          name="manga"
+          type="text"
+          class="form-control mt-4"
+          placeholder="Manga"
+        />
+      </div>
+      <div class="mb-3 d-flex">
+        <label for="registro" class="form-label">Nº Registro:</label>
+        <input
+          name="registro"
+          type="text"
+          class="form-control mt-4"
+          placeholder="Nº Registro"
+        />
+      </div>
     </div>
-    <div class="mb-3 d-flex">
-      <label for="datosTecnicos" class="form-label">Datos técnicos:</label>
-      <textarea class="form-control mt-4" placeholder="Datos técnicos"></textarea>
+    <div class="formRight">
+      <div class="mb-3 d-flex">
+        <label for="tipo" class="form-label">Tipo:</label>
+        <input
+          name="tipo"
+          type="text"
+          class="form-control mt-4"
+          placeholder="Tipo"
+        />
+      </div>
+      <div class="mb-3 d-flex">
+        <label for="datosTecnicos" class="form-label">Datos técnicos:</label>
+        <textarea
+          class="form-control mt-4"
+          placeholder="Datos técnicos"
+        ></textarea>
+      </div>
+      <div class="mb-3 d-flex">
+        <label for="imagen" class="form-label">Imagen:</label>
+        <input name="imgE" type="file" class="form-control mt-4" />
+      </div>
+      <div class="d-flex justify-content-center">
+        <img src="/assets/img/embarcaciones/image-outline.svg" alt="" />
+      </div>
+      <div class="d-flex justify-content-end mt-5">
+        <button class="btn btnCancelar" routerLink="../tabla">CANCELAR</button>
+        <button class="btn btnAdd">AÑADIR</button>
+      </div>
     </div>
-    <div class="mb-3 d-flex">
-      <label for="imagen" class="form-label">Imagen:</label>
-      <input name="imgE" type="file" class="form-control mt-4" />
-    </div>
-    <div class="d-flex justify-content-center">
-      <img src="/assets/img/embarcaciones/image-outline.svg" alt="">
-    </div>
-    <div class="d-flex justify-content-end mt-5">
-      <a class="linkForm btn" routerLink="../tabla">CANCELAR</a>
-      <button class="btn  btnAdd">AÑADIR</button>
-    </div>
-  </div>
-
-</form>
+  </form>
 </div>
 <div *ngIf="mostrarVacio === false">
-<div class="formHeader">
-  <h5>VISTA EMBARCACIÓN</h5>
-</div>
-<form action="" class="d-flex">
-  <div class="formLeft">
-    <div class="mb-3 d-flex">
-      <label for="nombre" class="form-label">Nombre:</label>
-      <input name="nombre" type="text" class="form-control mt-4" placeholder="Nombre" [(ngModel)]="embarcacionSeleccionada.nombre" [readOnly]="!modoEdicion"/>
-    </div>
-    <div class="mb-3 d-flex">
-      <label for="matricula" class="form-label">Matrícula:</label>
-      <input name="matricula" type="text" class="form-control mt-4" placeholder="Matrícula" [(ngModel)]="embarcacionSeleccionada.matricula" [readOnly]="!modoEdicion"/>
-    </div>
-    <div class="mb-3 d-flex">
-      <label for="modelo" class="form-label">Modelo:</label>
-      <input name="modelo" type="text" class="form-control mt-4" placeholder="Modelo" [(ngModel)]="embarcacionSeleccionada.modelo" [readOnly]="!modoEdicion"/>
-    </div>
-    <div class="mb-3 d-flex">
-      <label for="bandera" class="form-label">Bandera:</label>
-      <input name="bandera" type="text" class="form-control mt-4" placeholder="Bandera" [(ngModel)]="embarcacionSeleccionada.origen" [readOnly]="!modoEdicion"/>
-    </div>
-    <div class="mb-3 d-flex">
-      <label for="titular" class="form-label">Titular:</label>
-      <input name="titular" type="text" class="form-control mt-4" placeholder="Titular" [(ngModel)]="embarcacionSeleccionada.titular" [readOnly]="!modoEdicion"/>
-    </div>
-    <div class="mb-3 d-flex">
-      <label for="eslora" class="form-label">Eslora:</label>
-      <input name="eslora" type="text" class="form-control mt-4" placeholder="Eslora" [(ngModel)]="embarcacionSeleccionada.eslora" [readOnly]="!modoEdicion"/>
-    </div>
-    <div class="mb-3 d-flex">
-      <label for="manga" class="form-label">Manga:</label>
-      <input name="manga" type="text" class="form-control mt-4" placeholder="Manga" [(ngModel)]="embarcacionSeleccionada.manga" [readOnly]="!modoEdicion"/>
-    </div>
-    <div class="mb-3 d-flex">
-      <label for="registro" class="form-label">Nº Registro:</label>
-      <input name="registro" type="text" class="form-control mt-4" placeholder="Nº Registro" [(ngModel)]="embarcacionSeleccionada.numero_registro" [readOnly]="!modoEdicion"/>
-    </div>
+  <div class="formHeader">
+    <h5>VISTA EMBARCACIÓN</h5>
   </div>
-  <div class="formRight">
-    <div class="mb-3 d-flex">
-      <label for="tipo" class="form-label">Tipo:</label>
-      <input name="tipo" type="text" class="form-control mt-4" placeholder="Tipo" [(ngModel)]="embarcacionSeleccionada.tipo" [readOnly]="!modoEdicion"/>
+  <form action="" class="d-flex">
+    <div class="formLeft">
+      <div class="mb-3 d-flex">
+        <label for="nombre" class="form-label">Nombre:</label>
+        <input
+          name="nombre"
+          type="text"
+          class="form-control mt-4"
+          placeholder="Nombre"
+          [(ngModel)]="embarcacionSeleccionada.nombre"
+          [readOnly]="!modoEdicion"
+        />
+      </div>
+      <div class="mb-3 d-flex">
+        <label for="matricula" class="form-label">Matrícula:</label>
+        <input
+          name="matricula"
+          type="text"
+          class="form-control mt-4"
+          placeholder="Matrícula"
+          [(ngModel)]="embarcacionSeleccionada.matricula"
+          [readOnly]="!modoEdicion"
+        />
+      </div>
+      <div class="mb-3 d-flex">
+        <label for="modelo" class="form-label">Modelo:</label>
+        <input
+          name="modelo"
+          type="text"
+          class="form-control mt-4"
+          placeholder="Modelo"
+          [(ngModel)]="embarcacionSeleccionada.modelo"
+          [readOnly]="!modoEdicion"
+        />
+      </div>
+      <div class="mb-3 d-flex">
+        <label for="bandera" class="form-label">Bandera:</label>
+        <input
+          name="bandera"
+          type="text"
+          class="form-control mt-4"
+          placeholder="Bandera"
+          [(ngModel)]="embarcacionSeleccionada.origen"
+          [readOnly]="!modoEdicion"
+        />
+      </div>
+      <div class="mb-3 d-flex">
+        <label for="titular" class="form-label">Titular:</label>
+        <input
+          name="titular"
+          type="text"
+          class="form-control mt-4"
+          placeholder="Titular"
+          [(ngModel)]="embarcacionSeleccionada.titular"
+          [readOnly]="!modoEdicion"
+        />
+      </div>
+      <div class="mb-3 d-flex">
+        <label for="eslora" class="form-label">Eslora:</label>
+        <input
+          name="eslora"
+          type="text"
+          class="form-control mt-4"
+          placeholder="Eslora"
+          [(ngModel)]="embarcacionSeleccionada.eslora"
+          [readOnly]="!modoEdicion"
+        />
+      </div>
+      <div class="mb-3 d-flex">
+        <label for="manga" class="form-label">Manga:</label>
+        <input
+          name="manga"
+          type="text"
+          class="form-control mt-4"
+          placeholder="Manga"
+          [(ngModel)]="embarcacionSeleccionada.manga"
+          [readOnly]="!modoEdicion"
+        />
+      </div>
+      <div class="mb-3 d-flex">
+        <label for="registro" class="form-label">Nº Registro:</label>
+        <input
+          name="registro"
+          type="text"
+          class="form-control mt-4"
+          placeholder="Nº Registro"
+          [(ngModel)]="embarcacionSeleccionada.numero_registro"
+          [readOnly]="!modoEdicion"
+        />
+      </div>
     </div>
-    <div class="mb-3 d-flex">
-      <label for="datosTecnicos" class="form-label">Datos técnicos:</label>
-      <textarea name="datos" class="form-control mt-4" placeholder="Datos técnicos" [(ngModel)]="embarcacionSeleccionada.datos_tecnicos" [readOnly]="!modoEdicion"></textarea>
+    <div class="formRight">
+      <div class="mb-3 d-flex">
+        <label for="tipo" class="form-label">Tipo:</label>
+        <input
+          name="tipo"
+          type="text"
+          class="form-control mt-4"
+          placeholder="Tipo"
+          [(ngModel)]="embarcacionSeleccionada.tipo"
+          [readOnly]="!modoEdicion"
+        />
+      </div>
+      <div class="mb-3 d-flex">
+        <label for="datosTecnicos" class="form-label">Datos técnicos:</label>
+        <textarea
+          name="datos"
+          class="form-control mt-4"
+          placeholder="Datos técnicos"
+          [(ngModel)]="embarcacionSeleccionada.datos_tecnicos"
+          [readOnly]="!modoEdicion"
+        ></textarea>
+      </div>
+      <div class="mb-3 d-flex">
+        <label for="imagen" class="form-label">Imagen:</label>
+        <input name="imgE" type="file" class="form-control mt-4" />
+      </div>
+      <div class="d-flex justify-content-center">
+        <img src="/assets/img/embarcaciones/image-outline.svg" alt="" />
+      </div>
+      <div class="d-flex justify-content-end mt-5">
+        <button
+          *ngIf="!modoEdicion"
+          class="btnDelete btn"
+          routerLink="../tabla"
+        >
+          ELIMINAR
+        </button>
+        <button
+          *ngIf="modoEdicion"
+          class="btn btnCancelar"
+          routerLink="../tabla"
+        >
+          CANCELAR
+        </button>
+        <button
+          *ngIf="!modoEdicion"
+          class="btn btnVista"
+          (click)="activarModoEdicion()"
+        >
+          MODIFICAR
+        </button>
+        <button *ngIf="modoEdicion" class="btn btnAdd">MODIFICAR</button>
+      </div>
     </div>
-    <div class="mb-3 d-flex">
-      <label for="imagen" class="form-label">Imagen:</label>
-      <input name="imgE" type="file" class="form-control mt-4" />
-    </div>
-    <div class="d-flex justify-content-center">
-      <img src="/assets/img/embarcaciones/image-outline.svg" alt="">
-    </div>
-    <div class="d-flex justify-content-end mt-5">
-      <button *ngIf="!modoEdicion" class="btnDelete btn" routerLink="../tabla">ELIMINAR</button>
-      <button *ngIf="modoEdicion" class="btn btnCancelar" routerLink="../tabla">CANCELAR</button>
-      <button *ngIf="!modoEdicion" class="btn  btnVista" (click)="activarModoEdicion()">MODIFICAR</button>
-      <button *ngIf="modoEdicion" class="btn  btnAdd">MODIFICAR</button>
-    </div>
-  </div>
-
-</form>
+  </form>
 </div>
