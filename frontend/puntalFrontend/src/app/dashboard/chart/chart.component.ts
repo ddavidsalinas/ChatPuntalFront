@@ -1,12 +1,12 @@
-import { Component, ElementRef, Input, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { Chart, ChartType } from 'chart.js/auto';
 @Component({
   selector: 'app-chart',
   templateUrl: './chart.component.html',
   styleUrls: ['./chart.component.css']
 })
-export class ChartComponent implements OnInit {
-  ngOnInit() {
+export class ChartComponent implements AfterViewInit {
+  ngAfterViewInit(){ 
 
     const ctx = document.getElementById('myChart');
     //"ctx" hace referencia al id del componente canvas
