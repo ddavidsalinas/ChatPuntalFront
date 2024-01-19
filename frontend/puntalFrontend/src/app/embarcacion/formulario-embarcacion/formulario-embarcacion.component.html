@@ -71,45 +71,45 @@
   <div class="formLeft">
     <div class="mb-3 d-flex">
       <label for="nombre" class="form-label">Nombre:</label>
-      <input name="nombre" type="text" class="form-control mt-4" placeholder="Nombre" [(ngModel)]="embarcacionSeleccionada.nombre"/>
+      <input name="nombre" type="text" class="form-control mt-4" placeholder="Nombre" [(ngModel)]="embarcacionSeleccionada.nombre" [readOnly]="!modoEdicion"/>
     </div>
     <div class="mb-3 d-flex">
       <label for="matricula" class="form-label">Matrícula:</label>
-      <input name="matricula" type="text" class="form-control mt-4" placeholder="Matrícula" [(ngModel)]="embarcacionSeleccionada.matricula"/>
+      <input name="matricula" type="text" class="form-control mt-4" placeholder="Matrícula" [(ngModel)]="embarcacionSeleccionada.matricula" [readOnly]="!modoEdicion"/>
     </div>
     <div class="mb-3 d-flex">
       <label for="modelo" class="form-label">Modelo:</label>
-      <input name="modelo" type="text" class="form-control mt-4" placeholder="Modelo" [(ngModel)]="embarcacionSeleccionada.modelo"/>
+      <input name="modelo" type="text" class="form-control mt-4" placeholder="Modelo" [(ngModel)]="embarcacionSeleccionada.modelo" [readOnly]="!modoEdicion"/>
     </div>
     <div class="mb-3 d-flex">
       <label for="bandera" class="form-label">Bandera:</label>
-      <input name="bandera" type="text" class="form-control mt-4" placeholder="Bandera" [(ngModel)]="embarcacionSeleccionada.origen"/>
+      <input name="bandera" type="text" class="form-control mt-4" placeholder="Bandera" [(ngModel)]="embarcacionSeleccionada.origen" [readOnly]="!modoEdicion"/>
     </div>
     <div class="mb-3 d-flex">
       <label for="titular" class="form-label">Titular:</label>
-      <input name="titular" type="text" class="form-control mt-4" placeholder="Titular" [(ngModel)]="embarcacionSeleccionada.titular"/>
+      <input name="titular" type="text" class="form-control mt-4" placeholder="Titular" [(ngModel)]="embarcacionSeleccionada.titular" [readOnly]="!modoEdicion"/>
     </div>
     <div class="mb-3 d-flex">
       <label for="eslora" class="form-label">Eslora:</label>
-      <input name="eslora" type="text" class="form-control mt-4" placeholder="Eslora" [(ngModel)]="embarcacionSeleccionada.eslora"/>
+      <input name="eslora" type="text" class="form-control mt-4" placeholder="Eslora" [(ngModel)]="embarcacionSeleccionada.eslora" [readOnly]="!modoEdicion"/>
     </div>
     <div class="mb-3 d-flex">
       <label for="manga" class="form-label">Manga:</label>
-      <input name="manga" type="text" class="form-control mt-4" placeholder="Manga" [(ngModel)]="embarcacionSeleccionada.manga"/>
+      <input name="manga" type="text" class="form-control mt-4" placeholder="Manga" [(ngModel)]="embarcacionSeleccionada.manga" [readOnly]="!modoEdicion"/>
     </div>
     <div class="mb-3 d-flex">
       <label for="registro" class="form-label">Nº Registro:</label>
-      <input name="registro" type="text" class="form-control mt-4" placeholder="Nº Registro" [(ngModel)]="embarcacionSeleccionada.numero_registro"/>
+      <input name="registro" type="text" class="form-control mt-4" placeholder="Nº Registro" [(ngModel)]="embarcacionSeleccionada.numero_registro" [readOnly]="!modoEdicion"/>
     </div>
   </div>
   <div class="formRight">
     <div class="mb-3 d-flex">
       <label for="tipo" class="form-label">Tipo:</label>
-      <input name="tipo" type="text" class="form-control mt-4" placeholder="Tipo" [(ngModel)]="embarcacionSeleccionada.tipo"/>
+      <input name="tipo" type="text" class="form-control mt-4" placeholder="Tipo" [(ngModel)]="embarcacionSeleccionada.tipo" [readOnly]="!modoEdicion"/>
     </div>
     <div class="mb-3 d-flex">
       <label for="datosTecnicos" class="form-label">Datos técnicos:</label>
-      <textarea name="datos" class="form-control mt-4" placeholder="Datos técnicos" [(ngModel)]="embarcacionSeleccionada.datos_tecnicos"></textarea>
+      <textarea name="datos" class="form-control mt-4" placeholder="Datos técnicos" [(ngModel)]="embarcacionSeleccionada.datos_tecnicos" [readOnly]="!modoEdicion"></textarea>
     </div>
     <div class="mb-3 d-flex">
       <label for="imagen" class="form-label">Imagen:</label>
@@ -120,7 +120,8 @@
     </div>
     <div class="d-flex justify-content-end mt-5">
       <a class="linkForm btn" routerLink="../tabla">CANCELAR</a>
-      <button class="btn  btnVista">MODIFICAR</button>
+      <button *ngIf="!modoEdicion" class="btn  btnVista" (click)="activarModoEdicion()">MODIFICAR</button>
+      <button *ngIf="modoEdicion" class="btn  btnAdd">MODIFICAR</button>
     </div>
   </div>
 
