@@ -4,10 +4,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { PlantillaModule } from './plantilla/plantilla.module';
-import { BotonComponent } from './boton/boton.component';
+
 
 @NgModule({
-  declarations: [AppComponent, BotonComponent],
+  declarations: [AppComponent],
   imports: [BrowserModule, DashboardModule, AppRoutingModule, PlantillaModule],
   providers: [],
   bootstrap: [AppComponent],
