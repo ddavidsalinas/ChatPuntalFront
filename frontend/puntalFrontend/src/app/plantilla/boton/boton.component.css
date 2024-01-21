@@ -50,3 +50,25 @@
   font-weight: 400;
   line-height: normal;
 }
+
+.btnCancelar{
+  text-decoration: none;
+  background-color: var(--goldenTainoi300);
+  color: var(--goldenTainoi900);
+}
+.btnAdd{
+  background-color: var(--titanWhite900);
+  color:var(--titanWhite50);
+  margin-left: 10px;
+}
+.btnVista{
+  background-color: var(--regentStBlue300);
+  color:var(--regentStBlue950);
+  margin-left: 10px;
+}
+
+.btnDelete{
+  background-color: var(--gold500);
+  color:var(--gold950);
+  margin-left: 10px;
+}
