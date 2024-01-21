@@ -4,7 +4,6 @@ import { CardComponent } from './card/card.component';
 import { CardconchartComponent } from './cardconchart/cardconchart.component';
 import { ChartComponent } from './chart/chart.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-//import { PlantillasComponent } from '../plantillas/plantillas.component';
 import { Chart2Component } from './chart2/chart2.component';
 import { RouterModule, Routes } from '@angular/router';
 
@@ -17,7 +16,6 @@ const routes: Routes = [
     CardComponent,
     CardconchartComponent,
     ChartComponent,
-    //PlantillasComponent,
     DashboardComponent,
     Chart2Component
   ],

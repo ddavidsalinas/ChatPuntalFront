@@ -7,8 +7,9 @@ import { Router } from '@angular/router';
   styleUrls: ['./boton.component.css']
 })
 export class BotonComponent {
-  @Input() label: string = 'Default Label';
+  @Input() label: string = ' ';
   @Input() route: string = '/';
+  @Input() clase: string = 'botonA';
   @Input() imageUrl: string | undefined;
 
   constructor(private router: Router) {}

@@ -1,6 +1,21 @@
-<div class="azul500 col-md-2 d-flex flex-column  ">
-    <img alt="Bootstrap Image Preview" src="/assets/img/Group.svg" class="logo" /> 
- 
-<app-boton label="Home" [route]="homeRoute" imageUrl="path/to/home-icon.png"></app-boton>
-<app-boton label="About" [route]="aboutRoute" imageUrl="path/to/about-icon.png"></app-boton>
+<div class="azul500 col-md-2 d-flex flex-column">
+  <img alt="Bootstrap Image Preview" src="/assets/img/Group.svg" class="logo" />
+  <app-boton
+    clase="botonA"
+    label="Panel de control"
+    [route]="dashboardRoute"
+    imageUrl="path/to/home-icon.png"
+  ></app-boton>
+  <app-boton
+    clase="botonA"
+    label="Gestion de transitos"
+    [route]="transitosRoute"
+    imageUrl="path/to/home-icon.png"
+  ></app-boton>
+  <app-boton
+    clase="botonA"
+    label="Gestion de embarcaciones"
+    [route]="embarcacionRoute"
+    imageUrl="path/to/about-icon.png"
+  ></app-boton>
 </div>

@@ -1,4 +1,11 @@
-button{
+:host {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.botonA {
+  /* estilo de la caja*/
   border-radius: 2px;
   border: 1px solid var(--Wedgewood-50, #f5f7fa);
   background: var(--Wedgewood-50, #f5f7fa);
@@ -10,9 +17,36 @@ button{
   margin-top: 40px;
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 
+  /* texto del boton*/
+  color: var(--Wedgewood-700, #36536e);
+  -webkit-text-stroke-width: 1;
+  -webkit-text-stroke-color: var(--Wedgewood-700, #36536e);
+  font-family: Questrial;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
 }
-:host {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+
+.botonB {
+    /* estilo de la caja*/
+  align-items: center;
+  border-radius: 2px;
+  border: 1px solid var(--Wedgewood-700, #36536e);
+  background: var(--Wedgewood-700, #36536e);
+  background-color: #36536e;
+  color: #eaeff4;
+  width: 160px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  margin-top: 40px;
+    /* texto del boton*/
+  color: var(--Wedgewood-50, #f5f7fa);
+  -webkit-text-stroke: 1px var(--Wedgewood-50, #f5f7fa);
+  font-family: Questrial;
+  font-size: 13px;
+   font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}

@@ -3,9 +3,10 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-navlateral',
   templateUrl: './navlateral.component.html',
-  styleUrls: ['./navlateral.component.css']
+  styleUrls: ['./navlateral.component.css'],
 })
 export class NavlateralComponent {
-  homeRoute: string = '/home';
-  aboutRoute: string = '/about';
+  dashboardRoute: string = '/dashboard/dashboard';
+  transitosRoute: string = '/transito/contenido-transito';
+  embarcacionRoute: string = '/embarcacion/embarcaciones';
 }
