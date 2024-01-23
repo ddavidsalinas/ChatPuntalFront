@@ -1,31 +1,15 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-
-import { BootstrapComponent } from './bootstrap/bootstrap.component';
-
-import { PlantillasComponent } from './plantillas/plantillas.component';
-import { FormularioComponent } from './formulario/formulario.component';
+import { DashboardModule } from './dashboard/dashboard.module';
+import { PlantillaModule } from './plantilla/plantilla.module';
 
 
 @NgModule({
-  
-  declarations: [
-    AppComponent,
-   
-    BootstrapComponent,
-
-    PlantillasComponent,
-    FormularioComponent,
-
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule
-  ],
+  declarations: [AppComponent],
+  imports: [BrowserModule, DashboardModule, AppRoutingModule, PlantillaModule],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
