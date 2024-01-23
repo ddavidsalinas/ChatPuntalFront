@@ -4,12 +4,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { PlantillaModule } from './plantilla/plantilla.module';
+import { EmbarcacionModule } from './embarcacion/embarcacion.module';
+
 
 
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, DashboardModule, AppRoutingModule, PlantillaModule],
+  imports: [BrowserModule, DashboardModule, AppRoutingModule, PlantillaModule, EmbarcacionModule],
   providers: [],
   bootstrap: [AppComponent],
 })
