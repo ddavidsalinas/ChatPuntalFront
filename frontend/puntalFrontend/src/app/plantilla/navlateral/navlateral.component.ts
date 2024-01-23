@@ -8,5 +8,5 @@ import { Component } from '@angular/core';
 export class NavlateralComponent {
   dashboardRoute: string = '/dashboard/dashboard';
   transitosRoute: string = '/transito/contenido-transito';
-  embarcacionRoute: string = '/embarcacion/embarcaciones';
+  embarcacionRoute: string = '/embarcaciones';
 }
