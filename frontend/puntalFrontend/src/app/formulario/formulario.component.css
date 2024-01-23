@@ -16,17 +16,7 @@ h2 {
   
 }
 
-.icono-input {
-  position: relative;
-}
 
-.icono-input img {
-  position: absolute;
-  width: 4%;
-  top: 70%;
-  right: 0px;
-  transform: translateY(-50%);
-}
 
 .cancel {
   background-color: #ffc745;
@@ -95,13 +85,3 @@ flex-shrink: 0;
 input[type="checkbox"]:checked {
 background-color: #3179c7;}
 /* --botones */
-.d-flex
-{
-  position:absolute;
-  bottom: 0;
-  right: 0;
-  
-  
-margin-right: 30%;
-
-}

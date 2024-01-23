@@ -6,6 +6,7 @@ import { DashboardModule } from './dashboard/dashboard.module';
 import { PlantillaModule } from './plantilla/plantilla.module';
 
 
+
 @NgModule({
   declarations: [AppComponent],
   imports: [BrowserModule, DashboardModule, AppRoutingModule, PlantillaModule],
