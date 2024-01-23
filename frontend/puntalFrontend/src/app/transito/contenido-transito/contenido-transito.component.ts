@@ -60,4 +60,5 @@ export class ContenidoTransitoComponent {
   anyadir: string = "AÑADIR";
   modificar: string = "MODIFICAR";
 
+  
 }

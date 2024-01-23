@@ -7,7 +7,10 @@ import { EmbarcacionesComponent } from './embarcacion/embarcaciones/embarcacione
 const routes: Routes = [
   { path: 'transito/contenido-transito', component: ContenidoTransitoComponent },
   { path: 'dashboard/dashboard', component: DashboardComponent},
-  { path: 'embarcacion/embarcaciones', component: EmbarcacionesComponent}
+  { path: 'embarcacion/embarcaciones', component: EmbarcacionesComponent},
+  { path: 'transito/contenido-transito', component: ContenidoTransitoComponent },
+ 
+  
 
   
 ];

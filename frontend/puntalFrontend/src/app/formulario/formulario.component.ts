@@ -15,6 +15,7 @@ export class FormularioComponent
   @Input() texto:string="";
   @Input() nombre:string="";
  
+ 
   
   
   
