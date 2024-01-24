@@ -5,12 +5,12 @@ import { AppComponent } from './app.component';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { PlantillaModule } from './plantilla/plantilla.module';
 import { EmbarcacionModule } from './embarcacion/embarcacion.module';
-
+import { NotificacionesModule } from './notificaciones/notificaciones.module';
 
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, DashboardModule, AppRoutingModule, PlantillaModule, EmbarcacionModule],
+  imports: [BrowserModule, DashboardModule, AppRoutingModule, PlantillaModule, EmbarcacionModule, NotificacionesModule],
   providers: [],
   bootstrap: [AppComponent],
 })
