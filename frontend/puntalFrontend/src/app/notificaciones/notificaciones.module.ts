@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { DataTablesModule } from 'angular-datatables';
 import { NotificacionesComponent } from './notificaciones/notificaciones.component';
 
 
@@ -9,7 +10,8 @@ import { NotificacionesComponent } from './notificaciones/notificaciones.compone
     NotificacionesComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    DataTablesModule
   ]
 })
 export class NotificacionesModule { }
