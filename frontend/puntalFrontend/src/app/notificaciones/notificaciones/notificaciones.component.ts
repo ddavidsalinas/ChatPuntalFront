@@ -14,8 +14,18 @@ constructor(){
 }
 
 someClickHandler(row: Node): void {
-  
+  const modal = document.getElementById('myModal');
+  if (modal) {
+    modal.style.display = 'block';
+  }
   console.log(row);
+}
+
+closeModal(): void {
+  const modal = document.getElementById('myModal');
+  if (modal) {
+    modal.style.display = 'none';
+  }
 }
 
 ngOnInit() : void {
