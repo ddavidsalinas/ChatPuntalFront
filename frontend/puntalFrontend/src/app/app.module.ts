@@ -6,9 +6,11 @@ import { MovilModule } from './movil/movil.module';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { PlantillaModule } from './plantilla/plantilla.module';
 
+
+
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, DashboardModule, AppRoutingModule, PlantillaModule],
+  imports: [BrowserModule, MovilModule, DashboardModule, AppRoutingModule, PlantillaModule],
   providers: [],
   bootstrap: [AppComponent],
 })
