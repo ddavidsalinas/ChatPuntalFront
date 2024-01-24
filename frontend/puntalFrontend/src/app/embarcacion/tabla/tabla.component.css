@@ -1,4 +1,7 @@
 
+.tablaEmbarcaciones{
+    padding: 50px;
+}
 th {
     background-color: var(--wedgewood600);
     color: var(--wedgewood50);
