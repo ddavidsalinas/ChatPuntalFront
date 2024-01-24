@@ -13,6 +13,11 @@ constructor(){
   console.log(this.datos);
 }
 
+someClickHandler(row: Node): void {
+  
+  console.log(row);
+}
+
 ngOnInit() : void {
 this.dtOptions = {
   pagingType: 'full_numbers',
@@ -20,6 +25,15 @@ this.dtOptions = {
   processing: true,
   language:{
     url: '//cdn.datatables.net/plug-ins/1.10.25/i18n/Spanish.json'
+  },
+  rowCallback: (row: Node) => {
+    const self = this;
+
+    $('td', row).off('click');
+    $('td', row).on('click', () => {
+      self.someClickHandler(row);
+    });
+    return row;
   },
   responsive: true,
 }
