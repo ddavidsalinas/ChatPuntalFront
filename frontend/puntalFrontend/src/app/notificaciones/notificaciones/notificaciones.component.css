@@ -47,6 +47,9 @@ td {
 .filaPersonalizada {
     height: 100px;
 }
+.modal-content{
+    width: 450px;
+}
 .modal-header {
     background-color: var(--wedgewood600);
     height: 10px;
