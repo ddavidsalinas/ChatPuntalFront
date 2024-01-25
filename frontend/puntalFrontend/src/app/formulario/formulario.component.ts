@@ -1,6 +1,7 @@
 import { Component, Input ,OnInit} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgModule } from '@angular/core';
+import { datos } from 'src/resources/datos';
 
 @Component({
   selector: 'app-formulario',

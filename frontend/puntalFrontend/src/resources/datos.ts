@@ -461,7 +461,7 @@ export const datos = {
                 AdministrativoID: 5
             }
         ],
-    transitos :[
+    transitos:[
         {
             fecha_entrada: "2024-01-14T12:00:00",
             fecha_salida: "2024-01-14T18:00:00",
@@ -509,8 +509,75 @@ export const datos = {
             patron: "Capitán Luis",
             proposito: "Pesca"
           },
+          {
+          
+            fecha_entrada: "2024-01-14T12:00:00",
+            fecha_salida: "2024-01-14T18:00:00",
+            embarcacion: "Lancha Deportiva",
+            instalacion: "Puerto B",
+            pantalan: "P-23",
+            amarre: "A-987",
+            patron: "Capitán Luis",
+            proposito: "Pesca"
+          },
+          {
+          
+            fecha_entrada: "2024-01-14T12:00:00",
+            fecha_salida: "2024-01-14T18:00:00",
+            embarcacion: "Lancha Deportiva",
+            instalacion: "Puerto B",
+            pantalan: "P-23",
+            amarre: "A-987",
+            patron: "Capitán Luis",
+            proposito: "Pesca"
+          },
+          {
+          
+            fecha_entrada: "2024-01-14T12:00:00",
+            fecha_salida: "2024-01-14T18:00:00",
+            embarcacion: "Lancha Deportiva",
+            instalacion: "Puerto B",
+            pantalan: "P-23",
+            amarre: "A-987",
+            patron: "Capitán Luis",
+            proposito: "Pesca"
+          },
+          {
+          
+            fecha_entrada: "2024-01-14T12:00:00",
+            fecha_salida: "2024-01-14T18:00:00",
+            embarcacion: "Lancha Deportiva",
+            instalacion: "Puerto B",
+            pantalan: "P-23",
+            amarre: "A-987",
+            patron: "Capitán Luis",
+            proposito: "Pesca"
+          },
+          {
+          
+            fecha_entrada: "2024-01-14T12:00:00",
+            fecha_salida: "2024-01-14T18:00:00",
+            embarcacion: "Lancha Deportiva",
+            instalacion: "Puerto B",
+            pantalan: "P-23",
+            amarre: "A-987",
+            patron: "Capitán Luis",
+            proposito: "Pesca"
+          },
+          {
+          
+            fecha_entrada: "2024-01-14T12:00:00",
+            fecha_salida: "2024-01-14T18:00:00",
+            embarcacion: "Lancha Deportiva",
+            instalacion: "Puerto B",
+            pantalan: "P-23",
+            amarre: "A-987",
+            patron: "Capitán Luis",
+            proposito: "Pesca"
+          },
     ],
-    plazaBase :[
+    plazaBase 
+ :[
         {
             fecha_entrada: "2024-01-14T12:00:00",
             embarcacion: "Barco Azul",
@@ -520,7 +587,7 @@ export const datos = {
             autorizaciones: "Permiso 123",
             titular: "Juan Pérez",
             datos_estancia: "A",
-              "inicio": "2024-01-14"
+              inicio: "2024-01-14"
             
           },
         
