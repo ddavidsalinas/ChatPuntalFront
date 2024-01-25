@@ -28,26 +28,31 @@
     </tbody>
   </table>
   <div class="modal" id="myModal">
-  <div class="modal-dialog  modal-dialog-centered">
-    <div class="modal-content">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Modal Heading</h4>
+        </div>
 
-    
-      <div class="modal-header">
-        <h4 class="modal-title">Modal Heading</h4>
-        <button type="button" (click)="closeModal()" class="btn-close" data-bs-dismiss="modal"></button>
+        <div class="modal-body">Modal body..</div>
+
+        <div class="modal-footer justify-content-between">
+          <button
+            type="button"
+            (click)="closeModal()"
+            class="btn btn-danger"
+            data-bs-dismiss="modal"
+          >
+            Close
+          </button>
+          <button
+            type="button"
+            (click)="closeModal()"
+            class="btn-close"
+            data-bs-dismiss="modal"
+          ></button>
+        </div>
       </div>
-
-     
-      <div class="modal-body">
-        Modal body..
-      </div>
-
-      
-      <div class="modal-footer">
-        <button type="button" (click)="closeModal()" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-      </div>
-
     </div>
   </div>
-</div>
 </div>

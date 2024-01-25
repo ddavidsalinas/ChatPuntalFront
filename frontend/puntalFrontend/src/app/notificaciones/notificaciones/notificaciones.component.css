@@ -47,3 +47,20 @@ td {
 .filaPersonalizada {
     height: 100px;
 }
+.modal-header {
+    background-color: var(--wedgewood600);
+    height: 10px;
+    color: var(--wedgewood50);
+    font-family: 'Questrial', sans-serif;
+    /* font-size: 30px; */
+    font-weight: lighter;
+}
+.modal-title {
+    font-family: 'Questrial', sans-serif;
+    font-size: 30px;
+    font-weight: lighter;
+}
+
+.modal-footer{
+    border:none;
+}
