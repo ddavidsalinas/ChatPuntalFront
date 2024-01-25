@@ -9,14 +9,24 @@ import { datos } from 'src/resources/datos';
 export class NotificacionesComponent implements OnInit {
 dtOptions: DataTables.Settings = {};
 datos= datos.incidencias;
+tituloModal: string = '';
+cuerpoModal: string = '';
+imagenModal: string = '';
+rowEstado: HTMLElement = {} as HTMLElement;
 constructor(){
   console.log(this.datos);
 }
 
-someClickHandler(row: Node): void {
+someClickHandler(row: Node,index: number): void {
+  const rowData = this.datos[index];
   const modal = document.getElementById('myModal');
   if (modal) {
     modal.style.display = 'block';
+    this.tituloModal = rowData.Titulo;
+    this.cuerpoModal = rowData.Descripcion;
+    this.imagenModal = rowData.Foto;
+    this.rowEstado = row as HTMLElement;
+    
   }
   console.log(row);
 }
@@ -25,6 +35,7 @@ closeModal(): void {
   const modal = document.getElementById('myModal');
   if (modal) {
     modal.style.display = 'none';
+    this.rowEstado.style.opacity = '0.5';
   }
 }
 
@@ -36,12 +47,12 @@ this.dtOptions = {
   language:{
     url: '//cdn.datatables.net/plug-ins/1.10.25/i18n/Spanish.json'
   },
-  rowCallback: (row: Node) => {
+  rowCallback: (row: Node, data:  any[] | Object, index:number) => {
     const self = this;
 
     $('td', row).off('click');
     $('td', row).on('click', () => {
-      self.someClickHandler(row);
+      self.someClickHandler(row, index);
     });
     return row;
   },

@@ -31,26 +31,28 @@
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
-          <h4 class="modal-title">Modal Heading</h4>
+          <h4 class="modal-title">{{tituloModal}}</h4>
         </div>
 
-        <div class="modal-body">Modal body..</div>
+        <div class="modal-body">{{cuerpoModal}}</div>
+        <img [src]="'assets/'+imagenModal" alt="">
+        
 
         <div class="modal-footer justify-content-between">
           <button
             type="button"
             (click)="closeModal()"
-            class="btn btn-danger"
+            class="btn"
             data-bs-dismiss="modal"
           >
-            Close
+            <img src="/assets/img/check.svg" alt="">
           </button>
           <button
             type="button"
             (click)="closeModal()"
-            class="btn-close"
+            class="btn"
             data-bs-dismiss="modal"
-          ></button>
+          >   <img src="/assets/img/closeNots.svg" alt=""></button>
         </div>
       </div>
     </div>
