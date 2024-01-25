@@ -1,4 +1,12 @@
-<button [ngClass]="[clase]" (click)="navigate()">
-  <img *ngIf="imageUrl" [src]="imageUrl" alt="Icon">
+<button *ngIf="!bloqueado; else botonBloqueado" [ngClass]="[claseDesbloqueado]" (click)="navigate()">
+  <img *ngIf="imageUrlDesbloqueado" [src]="imageUrlDesbloqueado" alt="Icon">
   {{ label }}
 </button>
+
+<ng-template #botonBloqueado>
+  <button [ngClass]="[claseBloqueado]">
+    <img *ngIf="imageUrlBloqueado" [src]="imageUrlBloqueado" alt="Icon">
+    {{ label }}
+    
+  </button>
+</ng-template>

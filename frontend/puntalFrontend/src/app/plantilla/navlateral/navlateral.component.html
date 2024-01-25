@@ -1,27 +1,36 @@
 <div class="azul500 col-md-2 d-flex flex-column">
   <img alt="Bootstrap Image Preview" src="/assets/img/Group.svg" class="logo" />
   <app-boton
-    clase="botonA"
-    label="Panel de control"
-    [route]="dashboardRoute"
-    imageUrl="assets/img/control.svg"
-  ></app-boton>
-  <app-boton
-    clase="botonA"
-    label="Gestion de transitos"
-    [route]="transitosRoute"
-    imageUrl="assets/img/tran.svg"
-  ></app-boton>
-  <app-boton
-  clase="botonA"
-  label="Gestion de pruebas de transito"
-  [route]="transitos2Route"
-  imageUrl="assets/img/tran.svg"
+  [claseDesbloqueado]="claseBotonDesbloqueado"
+  [claseBloqueado]="claseBotonBloqueado"
+  [imageUrlDesbloqueado]="imageUrlDashboardDesbloqueado"
+  [imageUrlBloqueado]="imageUrlDashboardBloqueado"
+  label="Panel de control"
+  [route]="dashboardRoute"
 ></app-boton>
-  <app-boton
-    clase="botonA"
-    label="Gestion de embarcaciones"
-    [route]="embarcacionRoute"
-    imageUrl="assets/img/embDark.svg"
-  ></app-boton>
+<app-boton
+  [claseDesbloqueado]="claseBotonDesbloqueado"
+  [claseBloqueado]="claseBotonBloqueado"
+  [imageUrlDesbloqueado]="imageUrlTransitosDesbloqueado"
+  [imageUrlBloqueado]="imageUrlTransitosBloqueado"
+  label="Gestion de transitos"
+  [route]="transitosRoute"
+></app-boton>
+<app-boton
+  [claseDesbloqueado]="claseBotonDesbloqueado"
+  [claseBloqueado]="claseBotonBloqueado"
+  [imageUrlDesbloqueado]="imageUrlEmbarcacionDesbloqueado"
+  [imageUrlBloqueado]="imageUrlEmbarcacionBloqueado"
+  label="Gestion de embarcaciones"
+  [route]="embarcacionRoute"
+></app-boton>
+<app-boton
+  [claseDesbloqueado]="claseBotonDesbloqueado"
+  [claseBloqueado]="claseBotonBloqueado"
+  [imageUrlDesbloqueado]="imageUrlEmbarcacionDesbloqueado"
+  [imageUrlBloqueado]="imageUrlEmbarcacionBloqueado"
+  label="Gestion de embarcaciones"
+  [route]="transitos2Route"
+></app-boton>
+
 </div>
