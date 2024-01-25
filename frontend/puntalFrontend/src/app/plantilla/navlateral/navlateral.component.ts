@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./navlateral.component.css'],
 })
 export class NavlateralComponent {
-  dashboardRoute: string = '/dashboard/dashboard';
-  transitosRoute: string = '/transito/contenido-transito';
+  dashboardRoute: string = '/dashboard';
+  transitosRoute: string = '/transitos';
   embarcacionRoute: string = '/embarcaciones';
 }
