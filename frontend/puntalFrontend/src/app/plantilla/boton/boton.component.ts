@@ -15,19 +15,16 @@ export class BotonComponent {
   @Input() imageUrlBloqueado: string | undefined;
 
   bloqueado = false;
-  constructor(private router: Router) {}
+  constructor(private router: Router) { }
 
   navigate(): void {
     if (!this.bloqueado) {
-      this.bloqueado = true; 
-      console.log( this.bloqueado);
-      console.log(this.route);
+      this.bloqueado = true;
       this.router.navigate([this.route]).then(() => {
-        this.bloqueado = false;    
-        console.log( this.bloqueado);
-        console.log(this.route);
-        });
+        this.bloqueado = false;
+
+      });
     }
-    
+
   }
 }

@@ -4,7 +4,7 @@
 </button>
 
 <ng-template #botonBloqueado>
-  <button [ngClass]="[claseBloqueado]">
+  <button [ngClass]="[claseBloqueado]"(click)="navigate()">
     <img *ngIf="imageUrlBloqueado" [src]="imageUrlBloqueado" alt="Icon">
     {{ label }}
     
