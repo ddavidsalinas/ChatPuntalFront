@@ -58,13 +58,13 @@ export class NavlateralComponent {
 
 
   imageUrlDashboardDesbloqueado = 'assets/img/control.svg';
-  imageUrlDashboardBloqueado = 'assets/img/boton-bloqueado.svg';
+  imageUrlDashboardBloqueado = 'assets/img/controlL.svg';
 
   imageUrlTransitosDesbloqueado = 'assets/img/tran.svg';
-  imageUrlTransitosBloqueado = 'assets/img/tran.svg';
+  imageUrlTransitosBloqueado = 'assets/img/tranL.svg';
 
   imageUrlEmbarcacionDesbloqueado = 'assets/img/embDark.svg';
-  imageUrlEmbarcacionBloqueado = 'assets/img/embDark.svg';
+  imageUrlEmbarcacionBloqueado = 'assets/img/emb.svg';
 
 
 
