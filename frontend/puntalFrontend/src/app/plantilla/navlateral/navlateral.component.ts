@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 
 
@@ -7,17 +7,51 @@ import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
   templateUrl: './navlateral.component.html',
   styleUrls: ['./navlateral.component.css'],
 })
-export class NavlateralComponent implements OnInit {
+export class NavlateralComponent {
 
   claseBotonBloqueado: string = 'botonB';
   claseBotonDesbloqueado: string = 'botonA';
-  constructor(private router: Router, private route: ActivatedRoute) {}
+  bloqueadoPanelControl = false;
+  bloqueadoGestionTransitos = false;
+  bloqueadoGestionEmbarcaciones = false;
+  bloqueadoGestionEmbarcaciones2 = false;
 
-  ngOnInit() {
+  activarPanelControl(): void {
+
+    this.bloqueadoPanelControl = true;
+    this.bloqueadoGestionTransitos = false;
+    this.bloqueadoGestionEmbarcaciones = false;
+    this.bloqueadoGestionEmbarcaciones2 = false;
   }
 
+  activarGestionTransitos(): void {
+
+    this.bloqueadoPanelControl = false;
+    this.bloqueadoGestionTransitos = true;
+    this.bloqueadoGestionEmbarcaciones = false;
+    this.bloqueadoGestionEmbarcaciones2 = false;
+  }
+
+  activarGestionEmbarcaciones(): void {
+
+    this.bloqueadoPanelControl = false;
+    this.bloqueadoGestionTransitos = false;
+    this.bloqueadoGestionEmbarcaciones = true;
+    this.bloqueadoGestionEmbarcaciones2 = false;
+  }
+
+  activarGestionEmbarcaciones2(): void {
+
+    this.bloqueadoPanelControl = false;
+    this.bloqueadoGestionTransitos = false;
+    this.bloqueadoGestionEmbarcaciones = false;
+    this.bloqueadoGestionEmbarcaciones2 = true;
+  }
+  constructor(private router: Router, private route: ActivatedRoute) { }
+
+
   dashboardRoute: string = '/dashboard';
-  transitosRoute: string = '/transitos';
+  transitosRoute: string = '/transito';
   embarcacionRoute: string = '/embarcaciones';
   transitos2Route: string = '/transito/tabla-transito';
 
