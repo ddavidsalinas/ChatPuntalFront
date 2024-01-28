@@ -1,6 +1,5 @@
-import { Component, Input} from '@angular/core';
-import { Router} from '@angular/router';
-
+import { Component, Input } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-boton',
@@ -16,11 +15,7 @@ export class BotonComponent {
   @Input() imageUrlBloqueado: string | undefined;
   @Input() bloqueado: boolean = false;
 
-  // bloqueado = false;
-  
-
   constructor(private router: Router) {}
-
 
   navigate(): void {
     if (!this.bloqueado) {

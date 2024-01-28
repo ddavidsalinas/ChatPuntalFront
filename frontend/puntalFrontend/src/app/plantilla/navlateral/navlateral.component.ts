@@ -1,14 +1,12 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 
-
 @Component({
   selector: 'app-navlateral',
   templateUrl: './navlateral.component.html',
   styleUrls: ['./navlateral.component.css'],
 })
 export class NavlateralComponent {
-
   claseBotonBloqueado: string = 'botonB';
   claseBotonDesbloqueado: string = 'botonA';
   bloqueadoPanelControl = false;
@@ -17,7 +15,6 @@ export class NavlateralComponent {
   bloqueadoGestionEmbarcaciones2 = false;
 
   activarPanelControl(): void {
-
     this.bloqueadoPanelControl = true;
     this.bloqueadoGestionTransitos = false;
     this.bloqueadoGestionEmbarcaciones = false;
@@ -25,7 +22,6 @@ export class NavlateralComponent {
   }
 
   activarGestionTransitos(): void {
-
     this.bloqueadoPanelControl = false;
     this.bloqueadoGestionTransitos = true;
     this.bloqueadoGestionEmbarcaciones = false;
@@ -33,7 +29,6 @@ export class NavlateralComponent {
   }
 
   activarGestionEmbarcaciones(): void {
-
     this.bloqueadoPanelControl = false;
     this.bloqueadoGestionTransitos = false;
     this.bloqueadoGestionEmbarcaciones = true;
@@ -41,21 +36,17 @@ export class NavlateralComponent {
   }
 
   activarGestionEmbarcaciones2(): void {
-
     this.bloqueadoPanelControl = false;
     this.bloqueadoGestionTransitos = false;
     this.bloqueadoGestionEmbarcaciones = false;
     this.bloqueadoGestionEmbarcaciones2 = true;
   }
-  constructor(private router: Router, private route: ActivatedRoute) { }
-
+  constructor(private router: Router, private route: ActivatedRoute) {}
 
   dashboardRoute: string = '/dashboard';
   transitosRoute: string = '/transito';
   embarcacionRoute: string = '/embarcaciones';
   transitos2Route: string = '/transito/tabla-transito';
-
-
 
   imageUrlDashboardDesbloqueado = 'assets/img/control.svg';
   imageUrlDashboardBloqueado = 'assets/img/controlL.svg';
@@ -65,7 +56,4 @@ export class NavlateralComponent {
 
   imageUrlEmbarcacionDesbloqueado = 'assets/img/embDark.svg';
   imageUrlEmbarcacionBloqueado = 'assets/img/emb.svg';
-
-
-
 }
