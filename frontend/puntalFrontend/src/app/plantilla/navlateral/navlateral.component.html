@@ -7,6 +7,8 @@
   [imageUrlBloqueado]="imageUrlDashboardBloqueado"
   label="Panel de control"
   [route]="dashboardRoute"
+  [bloqueado]="bloqueadoPanelControl"
+  (click)="activarPanelControl()"
 ></app-boton>
 <app-boton
   [claseDesbloqueado]="claseBotonDesbloqueado"
@@ -15,6 +17,8 @@
   [imageUrlBloqueado]="imageUrlTransitosBloqueado"
   label="Gestion de transitos"
   [route]="transitosRoute"
+  [bloqueado]="bloqueadoGestionTransitos"
+  (click)="activarGestionTransitos()"
 ></app-boton>
 <app-boton
   [claseDesbloqueado]="claseBotonDesbloqueado"
@@ -23,6 +27,8 @@
   [imageUrlBloqueado]="imageUrlEmbarcacionBloqueado"
   label="Gestion de embarcaciones"
   [route]="embarcacionRoute"
+  [bloqueado]="bloqueadoGestionEmbarcaciones"
+  (click)="activarGestionEmbarcaciones()"
 ></app-boton>
 <app-boton
   [claseDesbloqueado]="claseBotonDesbloqueado"
@@ -31,6 +37,8 @@
   [imageUrlBloqueado]="imageUrlEmbarcacionBloqueado"
   label="Gestion de embarcaciones"
   [route]="transitos2Route"
+  [bloqueado]="bloqueadoGestionEmbarcaciones2"
+  (click)="activarGestionEmbarcaciones2()"
 ></app-boton>
 
 </div>
