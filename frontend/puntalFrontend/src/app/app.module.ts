@@ -6,11 +6,15 @@ import { DashboardModule } from './dashboard/dashboard.module';
 import { PlantillaModule } from './plantilla/plantilla.module';
 import { EmbarcacionModule } from './embarcacion/embarcacion.module';
 import { NotificacionesModule } from './notificaciones/notificaciones.module';
+import{GuardiaCivilModule} from './guardia-civil/guardia-civil.module'
+
+
 
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, DashboardModule, AppRoutingModule, PlantillaModule, EmbarcacionModule, NotificacionesModule],
+  imports: [BrowserModule, DashboardModule, AppRoutingModule, PlantillaModule, EmbarcacionModule, NotificacionesModule, GuardiaCivilModule],
+
   providers: [],
   bootstrap: [AppComponent],
 })

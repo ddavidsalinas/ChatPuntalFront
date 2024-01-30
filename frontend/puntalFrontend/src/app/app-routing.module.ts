@@ -4,14 +4,15 @@ import { ContenidoTransitoComponent } from './transito/contenido-transito/conten
 import { DashboardComponent } from './dashboard/dashboard/dashboard.component';
 import { EmbarcacionesComponent } from './embarcacion/embarcaciones/embarcaciones.component';
 import { NotificacionesComponent } from './notificaciones/notificaciones/notificaciones.component';
+import { TablaGuardiaComponent } from './guardia-civil/tabla-guardia/tabla-guardia.component';
 const routes: Routes = [
   { path: 'transitos', component: ContenidoTransitoComponent },
   { path: 'dashboard', component: DashboardComponent },
   // { path: 'embarcacion/embarcaciones', component: EmbarcacionesComponent },
   { path: 'notificaciones', component: NotificacionesComponent }
 
+]
 
-];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
