@@ -6,6 +6,7 @@ import { AppRoutingModule } from '../app-routing.module';
 import { RouterModule, Routes } from '@angular/router';
 import { FormularioComponent } from '../formulario/formulario.component';
 import { FormdialogoComponent } from './formdialogo/formdialogo.component';
+import { DataTablesModule } from 'angular-datatables';
 
 const routes: Routes = [
 {
@@ -24,6 +25,7 @@ const routes: Routes = [
  
   imports: [
     CommonModule,
+    DataTablesModule,
     AppRoutingModule,
     RouterModule.forChild(routes),
   ], exports: [ContenidoTransitoComponent,  TablaTransitoComponent]
