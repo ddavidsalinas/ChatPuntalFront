@@ -5,6 +5,7 @@ import { TablaTransitoComponent } from './tabla-transito/tabla-transito.componen
 import { AppRoutingModule } from '../app-routing.module';
 import { RouterModule, Routes } from '@angular/router';
 import { FormularioComponent } from '../formulario/formulario.component';
+import { FormdialogoComponent } from './formdialogo/formdialogo.component';
 
 const routes: Routes = [
 {
@@ -17,7 +18,8 @@ const routes: Routes = [
 @NgModule({
   declarations: [
     ContenidoTransitoComponent,
-    TablaTransitoComponent
+    TablaTransitoComponent,
+    FormdialogoComponent
   ],
  
   imports: [

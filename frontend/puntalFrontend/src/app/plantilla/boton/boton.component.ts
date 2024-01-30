@@ -13,18 +13,14 @@ export class BotonComponent {
   @Input() claseBloqueado: string = 'botonB';
   @Input() imageUrlDesbloqueado: string | undefined;
   @Input() imageUrlBloqueado: string | undefined;
+  @Input() bloqueado: boolean = false;
 
-  bloqueado = false;
-  constructor(private router: Router) { }
+  constructor(private router: Router) {}
 
   navigate(): void {
     if (!this.bloqueado) {
       this.bloqueado = true;
-      this.router.navigate([this.route]).then(() => {
-        this.bloqueado = false;
-
-      });
+      this.router.navigate([this.route]);
     }
-
   }
 }
