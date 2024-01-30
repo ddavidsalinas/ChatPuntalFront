@@ -10,14 +10,17 @@ import { datos } from 'src/resources/datos';
 })
 export class FormularioComponent 
 {
-  
+  dtOptions: DataTables.Settings = {};
+  datos = datos.transitos;
+
   @Input() input:any[]=[];
   @Input() boton:string="";
   @Input() texto:string="";
   @Input() nombre:string="";
- 
+  pepe:string="a";
  
   
   
   
 }
+
