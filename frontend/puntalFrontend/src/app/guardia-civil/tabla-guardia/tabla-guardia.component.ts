@@ -11,8 +11,6 @@ import { datos } from 'src/resources/datos';
 export class TablaGuardiaComponent implements OnInit {
   dtOptions: DataTables.Settings = {};
   datos = datos.transitos;
-
-
 constructor() { 
   console.log(this.datos);
 }
