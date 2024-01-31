@@ -7,15 +7,26 @@ import { DashboardModule } from './dashboard/dashboard.module';
 import { PlantillaModule } from './plantilla/plantilla.module';
 import { EmbarcacionModule } from './embarcacion/embarcacion.module';
 import { NotificacionesModule } from './notificaciones/notificaciones.module';
-import{GuardiaCivilModule} from './guardia-civil/guardia-civil.module'
+import { GuardiaCivilModule } from './guardia-civil/guardia-civil.module';
 
-
-
+import { TransitoModule } from './transito/transito.module';
 
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, MovilModule, DashboardModule, AppRoutingModule, PlantillaModule, EmbarcacionModule, NotificacionesModule, GuardiaCivilModule],
+ 
+  imports: [
+    BrowserModule,
+    MovilModule,
+    DashboardModule,
+    AppRoutingModule,
+    PlantillaModule,
+    EmbarcacionModule,
+    NotificacionesModule,
+    GuardiaCivilModule,
+    TransitoModule,
+   
+  ],
 
   providers: [],
   bootstrap: [AppComponent],
