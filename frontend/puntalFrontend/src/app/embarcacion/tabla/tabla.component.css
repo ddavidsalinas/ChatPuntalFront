@@ -1,10 +1,22 @@
+.tablaEmbarcaciones {
+    padding: 50px;
+}
+table {
+    box-shadow: 10px 5px 10px rgba(0, 0, 0, 0.5);
+
+}
 
 th {
     background-color: var(--wedgewood600);
     color: var(--wedgewood50);
+    font-family: 'Questrial', sans-serif;
     /* font-weight: bold; */
 }
 
+.cabeceraTabla{
+    font-size: 30px;
+    font-weight: lighter;
+}
 .cabeceraDatos>th {
     background-color: var(--wedgewood300);
     color: black;
@@ -17,6 +29,18 @@ th {
 
 }
 
+td {
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: normal;
+    line-height: normal;
+    text-decoration: none;
+    color: #000000;
+   
+
+}
+
 .enlaceCreateEmb {
     display: flex;
     width: 202px;
@@ -25,10 +49,10 @@ th {
     justify-content: center;
     flex-shrink: 0;
     color: #FFF;
-    font-family: Inter;
+    font-family: 'Inter', sans-serif;
     font-size: 14px;
     font-style: normal;
-    font-weight: 700;
+    font-weight: 500;
     line-height: normal;
     text-decoration: none;
     background-color: var(--wedgewood600);
