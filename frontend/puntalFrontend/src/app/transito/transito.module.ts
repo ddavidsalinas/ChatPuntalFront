@@ -12,7 +12,11 @@ const routes: Routes = [
 {
     path: 'transitos',
     component: ContenidoTransitoComponent,
-}
+    children: [
+      { path: 'tabla', component: TablaTransitoComponent },
+
+    ],
+  },
 ];
 
 
