@@ -460,10 +460,179 @@ export const datos = {
                 Descripcion: "Se denunció el robo de equipos en el área del muelle 5.",
                 AdministrativoID: 5
             }
-        ]
-
-
-
+        ],
+    transitos:[
+        {
+            fecha_entrada: "2024-01-14T12:00:00",
+            fecha_salida: "2024-01-14T18:00:00",
+            embarcacion: "Barco1",
+            instalacion: "Puerto A",
+            pantalan: "Pantalan-1",
+            amarre: "Amarre-123",
+            patron: "Capitán Juan",
+            proposito: "Turismo"
+          },
+        
+        
+        {
+   
+            fecha_entrada: "2024-01-14T12:00:00",
+            fecha_salida: "2024-01-14T18:00:00",
+            embarcacion: "Yate Elegante",
+            instalacion: "Marina XYZ",
+            pantalan: "P-42",
+            amarre: "A-789",
+            patron: "Capitán Maria",
+            proposito: "Recreativo"
+          },
+        
+        {
+          
+            fecha_entrada: "2024-01-14T12:00:00",
+            fecha_salida: "2024-01-14T18:00:00",
+            embarcacion: "Velero Rápido",
+            instalacion: "Club Náutico Z",
+            pantalan: "P-10",
+            amarre: "A-456",
+            patron: "Capitán Carlos",
+            proposito: "Competición"
+          },
+        
+        {
+          
+            fecha_entrada: "2024-01-14T12:00:00",
+            fecha_salida: "2024-01-14T18:00:00",
+            embarcacion: "Lancha Deportiva",
+            instalacion: "Puerto B",
+            pantalan: "P-23",
+            amarre: "A-987",
+            patron: "Capitán Luis",
+            proposito: "Pesca"
+          },
+          {
+          
+            fecha_entrada: "2024-01-14T12:00:00",
+            fecha_salida: "2024-01-14T18:00:00",
+            embarcacion: "Lancha Deportiva",
+            instalacion: "Puerto B",
+            pantalan: "P-23",
+            amarre: "A-987",
+            patron: "Capitán Luis",
+            proposito: "Pesca"
+          },
+          {
+          
+            fecha_entrada: "2024-01-14T12:00:00",
+            fecha_salida: "2024-01-14T18:00:00",
+            embarcacion: "Lancha Deportiva",
+            instalacion: "Puerto B",
+            pantalan: "P-23",
+            amarre: "A-987",
+            patron: "Capitán Luis",
+            proposito: "Pesca"
+          },
+          {
+          
+            fecha_entrada: "2024-01-14T12:00:00",
+            fecha_salida: "2024-01-14T18:00:00",
+            embarcacion: "Lancha Deportiva",
+            instalacion: "Puerto B",
+            pantalan: "P-23",
+            amarre: "A-987",
+            patron: "Capitán Luis",
+            proposito: "Pesca"
+          },
+          {
+          
+            fecha_entrada: "2024-01-14T12:00:00",
+            fecha_salida: "2024-01-14T18:00:00",
+            embarcacion: "Lancha Deportiva",
+            instalacion: "Puerto B",
+            pantalan: "P-23",
+            amarre: "A-987",
+            patron: "Capitán Luis",
+            proposito: "Pesca"
+          },
+          {
+          
+            fecha_entrada: "2024-01-14T12:00:00",
+            fecha_salida: "2024-01-14T18:00:00",
+            embarcacion: "Lancha Deportiva",
+            instalacion: "Puerto B",
+            pantalan: "P-23",
+            amarre: "A-987",
+            patron: "Capitán Luis",
+            proposito: "Pesca"
+          },
+          {
+          
+            fecha_entrada: "2024-01-14T12:00:00",
+            fecha_salida: "2024-01-14T18:00:00",
+            embarcacion: "Lancha Deportiva",
+            instalacion: "Puerto B",
+            pantalan: "P-23",
+            amarre: "A-987",
+            patron: "Capitán Luis",
+            proposito: "Pesca"
+          },
+    ],
+    plazaBase 
+ :[
+        {
+            fecha_entrada: "2024-01-14T12:00:00",
+            embarcacion: "Barco Azul",
+            instalacion: "Puerto Norte",
+            pantalan: "P-7",
+            amarre: "A-234",
+            autorizaciones: "Permiso 123",
+            titular: "Juan Pérez",
+            datos_estancia: "A",
+              inicio: "2024-01-14"
+            
+          },
+        
+        {
+          
+            fecha_entrada: "2024-01-14T12:00:00",
+            embarcacion: "Velero Rápido",
+            instalacion: "Marina XYZ",
+            pantalan: "P-10",
+            amarre: "A-456",
+            autorizaciones: "Autorización A",
+            titular: "María Rodríguez",
+            datos_estancia: "A",
+              inicio: "2024-01-14"
+        },
+          
+        
+        {
+          
+            fecha_entrada: "2024-01-14T12:00:00",
+            embarcacion: "Lancha Deportiva",
+            instalacion: "Puerto B",
+            pantalan: "P-23",
+            amarre: "A-987",
+            autorizaciones: "Permiso 789",
+            titular: "Luis González",
+            datos_estancia: "A",
+              inicio: "2024-01-14"
+            
+          
+        },
+        {
+         
+            fecha_entrada: "2024-01-14T12:00:00",
+            embarcacion: "Catamarán Explorer",
+            instalacion: "Marina Aventura",
+            pantalan: "P-5",
+            amarre: "A-654",
+            autorizaciones: "Autorización XYZ",
+            titular: "Ana Martínez",
+            datos_estancia: "A",
+            inicio: "2024-01-14",
+         }
+          
+    ]
 
 
 };

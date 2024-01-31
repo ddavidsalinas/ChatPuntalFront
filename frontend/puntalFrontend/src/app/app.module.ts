@@ -1,20 +1,21 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { PlantillasComponent } from './plantillas/plantillas.component';
+import { DashboardModule } from './dashboard/dashboard.module';
+import { PlantillaModule } from './plantilla/plantilla.module';
+import { EmbarcacionModule } from './embarcacion/embarcacion.module';
+import { NotificacionesModule } from './notificaciones/notificaciones.module';
+import{GuardiaCivilModule} from './guardia-civil/guardia-civil.module'
+
+
+
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    PlantillasComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule
-  ],
+  declarations: [AppComponent],
+  imports: [BrowserModule, DashboardModule, AppRoutingModule, PlantillaModule, EmbarcacionModule, NotificacionesModule, GuardiaCivilModule],
+
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
