@@ -11,7 +11,7 @@ const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent},
   { path: 'embarcacion/embarcaciones', component: EmbarcacionesComponent},
   { path: 'transito/tabla-transito', component: TablaTransitoComponent },
-  
+  { path: 'guardia-civil/tabla-guardia', component: TablaGuardiaComponent },
   { path: 'notificaciones', component: NotificacionesComponent }
   
 ];
