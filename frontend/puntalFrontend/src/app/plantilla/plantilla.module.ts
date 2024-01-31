@@ -13,8 +13,8 @@ const routes: Routes = [
     path: '',
     component: ContenidoComponent,
     children: [
-      { path: 'dashboard', loadChildren: () => import('../dashboard/dashboard.module').then(m => m.DashboardModule) },
-      { path: 'transito', loadChildren: () => import('../transito/transito.module').then(m=> m.TransitoModule) },
+     { path: 'dashboard', loadChildren: () => import('../dashboard/dashboard.module').then(m => m.DashboardModule) },
+  
     ],
   },
 ];

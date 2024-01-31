@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
+
 import { ContenidoTransitoComponent } from './contenido-transito.component';
 
 describe('ContenidoTransitoComponent', () => {

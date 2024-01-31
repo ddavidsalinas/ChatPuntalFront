@@ -1,3 +1,5 @@
+
+import { ActivatedRoute } from '@angular/router';
 import { Component,Input } from '@angular/core';
 
 
@@ -7,6 +9,7 @@ import { Component,Input } from '@angular/core';
   styleUrls: ['./contenido-transito.component.css']
 })
 export class ContenidoTransitoComponent {
+  constructor(private route: ActivatedRoute) { }
 
   @Input() nombre: string = "";
   

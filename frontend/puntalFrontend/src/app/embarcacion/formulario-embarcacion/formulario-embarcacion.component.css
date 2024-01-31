@@ -1,13 +1,19 @@
+.formularioEmbarcaciones {
+    padding: 50px;
+}
 
 form {
     background-color: #FFFFFF;
-    padding: 50px;
+    padding: 15px;
     border-radius: 0px 0px 5px 5px;
+    box-shadow: 10px 5px 10px rgba(0, 0, 0, 0.5);
 }
-.formLeft{
+
+.formLeft {
     margin-right: 100px;
 }
-input{
+
+input {
     width: 100%;
     height: 30px;
     border-radius: 5px;
@@ -18,69 +24,65 @@ input{
     font-family: 'Roboto', sans-serif;
     color: #555;
     box-sizing: border-box;
+    background-repeat: no-repeat;
+    background-position: right;
+    background-size: 30px;
 
-    
+
 }
-input[name='nombre']{
-        background-image: url(/assets/img/embarcaciones/formIcon_user.svg);
-            background-repeat: no-repeat;
-            background-position: right;
-            background-size: 30px;
+
+input[name='nombre'] {
+    background-image: url(/assets/img/embarcaciones/formIcon_user.svg);
+
 }
+
 input[name='matricula'] {
     background-image: url(/assets/img/embarcaciones/formIcon_mat.svg);
-    background-repeat: no-repeat;
-    background-position: right;
-    background-size: 30px;
+
 }
+
 input[name='modelo'] {
     background-image: url(/assets/img/embarcaciones/formIcon_modelo.svg);
-    background-repeat: no-repeat;
-    background-position: right;
-    background-size: 30px;
+
 }
+
 input[name='bandera'] {
     background-image: url(/assets/img/embarcaciones/formIcon_band.svg);
-    background-repeat: no-repeat;
-    background-position: right;
-    background-size: 30px;
+
 }
+
 input[name='titular'] {
     background-image: url(/assets/img/embarcaciones/formIcon_tit.svg);
-    background-repeat: no-repeat;
-    background-position: right;
-    background-size: 30px;
+
 }
+
 input[name='registro'] {
     background-image: url(/assets/img/embarcaciones/formIcon_reg.svg);
-    background-repeat: no-repeat;
-    background-position: right;
-    background-size: 30px;
+
 }
-input[name='eslora'], input[name="manga"] {
+
+input[name='eslora'],
+input[name="manga"] {
     background-image: url(/assets/img/embarcaciones/formIcon_es.svg);
-    background-repeat: no-repeat;
-    background-position: right;
-    background-size: 30px;
+
 }
+
 input[name='tipo'] {
     background-image: url(/assets/img/embarcaciones/formIcon_tip.svg);
-    background-repeat: no-repeat;
-    background-position: right;
-    background-size: 30px;
+
 }
+
 input[name='imgE'] {
     background-image: url(/assets/img/embarcaciones/formIcon_img.svg);
-    background-repeat: no-repeat;
-    background-position: right;
-    background-size: 30px;
+
 }
-label{
+
+label {
     width: 200px;
     font-weight: bold;
 }
 
-.formHeader{
+.formHeader {
     padding: 6px;
     font-weight: bold;
     font-family: 'Questrial', sans-serif;
@@ -112,5 +114,3 @@ label{
     color: var(--gold950);
     margin-left: 10px;
 }
-
-

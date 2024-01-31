@@ -1,26 +1,24 @@
-<!-- <button (click)="navegarAFormulario()">FORM</button> -->
-<!-- <div class="d-flex flex-row-reverse mb-2"><button (click)="navegarAFormulario()">EMBARCACIÓN</button></div> -->
-
-<div class="d-flex flex-row-reverse mb-2"><a class="enlaceCreateEmb" routerLink="../formulario" [queryParams]="{ tipo: 'vacio' }">EMBARCACIÓN</a></div>
+<div class="tablaEmbarcaciones">
+    <div class="d-flex flex-row-reverse mb-2"><a class="enlaceCreateEmb" routerLink="../formulario" [queryParams]="{ tipo: 'vacio' }">EMBARCACIÓN</a></div>
  <table datatable [dtOptions]="dtOptions" class="table table-hover table-custom-hover rounded-3 overflow-hidden table-striped">
 <thead>
     <tr>
-        <th [attr.colspan]="12">
+        <th [attr.colspan]="12" class="cabeceraTabla">
             EMBARCACIONES
         </th>
     </tr>
-    <tr class="cabeceraDatos text-center">
-        <th>Matrícula</th>
-        <th>Manga</th>
-        <th>Eslora</th>
-        <th>Origen</th>
-        <th>Titular</th>
-        <th>Imagen</th>
-        <th>Nº De registro</th>
-        <th>Datos técnicos</th>
-        <th>Modelo</th>
-        <th>Nombre</th>
-        <th>Tipo</th>
+    <tr class="cabeceraDatos">
+        <th class="text-center">Matrícula</th>
+        <th class="text-center">Manga</th>
+        <th class="text-center">Eslora</th>
+        <th class="text-center">Origen</th>
+        <th class="text-center">Titular</th>
+        <th class="text-center">Imagen</th>
+        <th class="text-center">Nº De registro</th>
+        <th class="text-center">Datos técnicos</th>
+        <th class="text-center">Modelo</th>
+        <th class="text-center">Nombre</th>
+        <th class="text-center">Tipo</th>
     </tr>
 </thead>
 <tbody>
@@ -41,3 +39,4 @@
 </tbody>
 
  </table>
+
