@@ -17,7 +17,7 @@ const routes: Routes = [
   { path: 'embarcacion/embarcaciones', component: EmbarcacionesComponent},
   { path: 'transito/tabla-transito', component: TablaTransitoComponent },
   
-  { path: 'notificaciones', component: NotificacionesComponent }
+  { path: 'notificaciones', component: NotificacionesComponent },
   { path: 'movil/card-incidencia', component: CardIncidenciaComponent},
   { path: 'movil/card-confirmacion-transito', component: CardConfirmacionTransitoComponent}
   
