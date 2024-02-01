@@ -50,10 +50,10 @@
           </div>
           <div class="mb-3 d-flex">
             <label for="imagen" class="form-label">Imagen:</label>
-            <input name="imgE" type="file" class="form-control mt-4" />
+            <input name="imgEmb" type="file" class="form-control mt-4" (change)="onFileSelected($event)"/>
           </div>
           <div class="d-flex justify-content-center">
-            <img src="/assets/img/embarcaciones/image-outline.svg" alt="" />
+            <img class="imgEmb" [src]="imagenSeleccionada  || '/assets/img/embarcaciones/image-outline.svg'"  alt="" />
           </div>
           <div class="d-flex justify-content-end mt-5">
             <button class="btn btnCancelar" routerLink="../tabla">
@@ -122,10 +122,10 @@
           </div>
           <div class="mb-3 d-flex">
             <label for="imagen" class="form-label">Imagen:</label>
-            <input name="imgE" type="file" class="form-control mt-4" />
+            <input name="imgEmb" type="file" class="form-control mt-4" (change)="onFileSelected($event)"/>
           </div>
           <div class="d-flex justify-content-center">
-            <img src="/assets/img/embarcaciones/image-outline.svg" alt="" />
+            <img class="imgEmb" [src]="imagenSeleccionada || '/assets/img/embarcaciones/image-outline.svg'" alt="" />
           </div>
           <div class="d-flex justify-content-end mt-5">
             <button class="btn btnBack" routerLink="../tabla">VOLVER</button>

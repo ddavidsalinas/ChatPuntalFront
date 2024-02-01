@@ -11,8 +11,8 @@ export class FormularioEmbarcacionComponent implements OnInit {
   mostrarVacio: boolean = false;
   modoVista: boolean = true;
   modoEdicion: boolean = false;
-  // esNuevo: boolean = false;
   embarcacionSeleccionada: any = { datos_tecnicos: '' };
+  imagenSeleccionada: string | ArrayBuffer | null = null;
   // embarcacionVacia: any = { datos_tecnicos: '' };
 
   constructor(private sharedDataService: SharedDataService, private activatedRoute: ActivatedRoute, private cdr: ChangeDetectorRef, private ngZone: NgZone) { }
@@ -66,6 +66,18 @@ export class FormularioEmbarcacionComponent implements OnInit {
     });
 
     // this.embarcacionVacia = { datos_tecnicos: '' };
+  }
+
+  onFileSelected(event: any) :void {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload =  () =>{
+        this.imagenSeleccionada = reader.result;
+        console.log("Imagen seleccionada:", this.imagenSeleccionada);
+      };
+      reader.readAsDataURL(file);
+    }
   }
 
   activarModoEdicion() {
