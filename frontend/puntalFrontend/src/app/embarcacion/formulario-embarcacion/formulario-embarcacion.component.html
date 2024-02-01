@@ -128,8 +128,8 @@
             <img class="imgEmb" [src]="imagenSeleccionada || '/assets/img/embarcaciones/image-outline.svg'" alt="" />
           </div>
           <div class="d-flex justify-content-end mt-5">
-            <button class="btn btnBack" routerLink="../tabla">VOLVER</button>
-            <button class="btnDelete btn" routerLink="../tabla">ELIMINAR</button>
+            <button *ngIf="modoVista" class="btn btnBack" routerLink="../tabla">VOLVER</button>
+            <button *ngIf="!modoVista" class="btnDelete btn" routerLink="../tabla">ELIMINAR</button>
             <button [ngClass]="{'btn': true, 'btnVista': modoVista, 'btnAdd': !modoVista}"
               (click)="activarModoEdicion()">
               MODIFICAR
