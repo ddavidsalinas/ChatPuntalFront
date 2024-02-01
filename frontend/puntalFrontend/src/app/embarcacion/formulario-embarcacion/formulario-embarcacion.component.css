@@ -46,7 +46,7 @@ input[name='modelo'] {
 
 }
 
-input[name='bandera'] {
+input[name='origen'] {
     background-image: url(/assets/img/embarcaciones/formIcon_band.svg);
 
 }
@@ -113,4 +113,10 @@ label {
     background-color: var(--gold500);
     color: var(--gold950);
     margin-left: 10px;
+}
+
+.btnBack {
+    background-color: var(--wedgewood500);
+    color: var(--wedgewood50);
+    border-color: var(--wedgewood700);
 }

@@ -2,12 +2,15 @@
 @import "~bootstrap/dist/css/bootstrap.css";
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Questrial&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Inter&family=Questrial&display=swap');
+
 :root {
     --wedgewood50: #f5f7fa;
     --wedgewood100: #eaeff4;
     --wedgewood200: #d0dce7;
     --wedgewood300: #a6bed3;
+    --wedgewood500: #4f7796;
     --wedgewood600: #426787;
+    --wedgewood700: #36536e;
     --wedgewood950: #1d2834;
     --regentStBlue300: #8ab6d6;
     --regentStBlue950: #162f3b;

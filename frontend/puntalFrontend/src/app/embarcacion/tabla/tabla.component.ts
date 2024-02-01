@@ -48,15 +48,15 @@ export class TablaComponent implements OnInit {
       language: {
         url: '//cdn.datatables.net/plug-ins/1.10.25/i18n/Spanish.json'
       },
-      rowCallback: (row: Node, data: any[] | Object, index: number) => {
-        const self = this;
-        
-        $('td', row).off('click');
-        $('td', row).on('click', () => {
-          self.someClickHandler(index);
-        });
-        return row;
-      }
+      // rowCallback: (row: Node, data: any[] | Object, index: number) => {
+      //   const self = this;
+
+      //   $('td', row).off('click');
+      //   $('td', row).on('click', () => {
+      //     self.someClickHandler(index);
+      //   });
+      //   return row;
+      // }
     }
   }
 
