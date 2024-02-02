@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { BootstrapComponent } from './bootstrap.component';
+import { TablaPbComponent } from './tabla-pb.component';
 
-describe('BootstrapComponent', () => {
-  let component: BootstrapComponent;
-  let fixture: ComponentFixture<BootstrapComponent>;
+describe('TablaPbComponent', () => {
+  let component: TablaPbComponent;
+  let fixture: ComponentFixture<TablaPbComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [BootstrapComponent]
+      declarations: [TablaPbComponent]
     });
-    fixture = TestBed.createComponent(BootstrapComponent);
+    fixture = TestBed.createComponent(TablaPbComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
