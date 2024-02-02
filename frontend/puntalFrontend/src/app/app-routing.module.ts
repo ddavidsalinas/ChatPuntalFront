@@ -15,10 +15,12 @@ const routes: Routes = [
   
   { path: 'dashboard', component: DashboardComponent},
   { path: 'embarcacion/embarcaciones', component: EmbarcacionesComponent},
+ // { path: 'embarcaciones', redirectTo: 'embarcacion/embarcaciones', pathMatch: 'full' },
   { path: 'transito/tabla-transito', component: TablaTransitoComponent },
   { path: 'notificaciones', component: NotificacionesComponent },
   { path: 'movil/card-incidencia', component: CardIncidenciaComponent},
-  { path: 'guardacivil', component: TablaGuardiaComponent},
+  { path: 'guardacivil', component: TablaGuardiaComponent },
+  { path: 'guardacivil', redirectTo: 'guardia-civil/tabla-guardia', pathMatch: 'full' },
   { path: 'plazabase', component: ContenidoPbComponent},
   { path: 'movil/card-confirmacion-transito', component: CardConfirmacionTransitoComponent}
   
