@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { MovilModule } from './movil/movil.module';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { PlantillaModule } from './plantilla/plantilla.module';
 import { EmbarcacionModule } from './embarcacion/embarcacion.module';
@@ -11,9 +12,10 @@ import{GuardiaCivilModule} from './guardia-civil/guardia-civil.module'
 
 
 
+
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, DashboardModule, AppRoutingModule, PlantillaModule, EmbarcacionModule, NotificacionesModule, GuardiaCivilModule],
+  imports: [BrowserModule, MovilModule, DashboardModule, AppRoutingModule, PlantillaModule, EmbarcacionModule, NotificacionesModule, GuardiaCivilModule],
 
   providers: [],
   bootstrap: [AppComponent],
