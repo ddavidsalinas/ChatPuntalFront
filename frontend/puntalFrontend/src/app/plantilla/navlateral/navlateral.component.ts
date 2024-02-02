@@ -14,14 +14,14 @@ export class NavlateralComponent {
   bloqueadoPanelControl = false;
   bloqueadoGestionTransitos = false;
   bloqueadoGestionEmbarcaciones = false;
-  bloqueadoGestionEmbarcaciones2 = false;
+  bloqueadoGestionPlazaBase = false;
 
   activarPanelControl(): void {
 
     this.bloqueadoPanelControl = true;
     this.bloqueadoGestionTransitos = false;
     this.bloqueadoGestionEmbarcaciones = false;
-    this.bloqueadoGestionEmbarcaciones2 = false;
+    this.bloqueadoGestionPlazaBase = false;
   }
 
   activarGestionTransitos(): void {
@@ -29,7 +29,7 @@ export class NavlateralComponent {
     this.bloqueadoPanelControl = false;
     this.bloqueadoGestionTransitos = true;
     this.bloqueadoGestionEmbarcaciones = false;
-    this.bloqueadoGestionEmbarcaciones2 = false;
+    this.bloqueadoGestionPlazaBase = false;
   }
 
   activarGestionEmbarcaciones(): void {
@@ -37,24 +37,24 @@ export class NavlateralComponent {
     this.bloqueadoPanelControl = false;
     this.bloqueadoGestionTransitos = false;
     this.bloqueadoGestionEmbarcaciones = true;
-    this.bloqueadoGestionEmbarcaciones2 = false;
+    this.bloqueadoGestionPlazaBase = false;
   }
 
-  activarGestionEmbarcaciones2(): void {
+  activarGestionPlazaBase(): void {
 
     this.bloqueadoPanelControl = false;
     this.bloqueadoGestionTransitos = false;
     this.bloqueadoGestionEmbarcaciones = false;
-    this.bloqueadoGestionEmbarcaciones2 = true;
+    this.bloqueadoGestionPlazaBase = true;
   }
   constructor(private router: Router, private route: ActivatedRoute) { }
 
 
   dashboardRoute: string = '/dashboard';
-  transitosRoute: string = '/transito';
+  transitosRoute: string = '/transito/tabla-transito';
   embarcacionRoute: string = '/embarcaciones';
   transitos2Route: string = '/transito/tabla-transito';
-
+  plazasBaseRoute:string = '/plazabase';
 
 
   imageUrlDashboardDesbloqueado = 'assets/img/control.svg';
@@ -65,6 +65,8 @@ export class NavlateralComponent {
 
   imageUrlEmbarcacionDesbloqueado = 'assets/img/embDark.svg';
   imageUrlEmbarcacionBloqueado = 'assets/img/emb.svg';
+  imageUrlPbDesbloqueado = 'assets/img/plaza.svg';
+  imageUrlPbBloqueado = 'assets/img/plazaL.svg';
 
 
 

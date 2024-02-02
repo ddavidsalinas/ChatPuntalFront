@@ -8,16 +8,20 @@ import { CardIncidenciaComponent } from './movil/card-incidencia/card-incidencia
 import { CardConfirmacionTransitoComponent } from './movil/card-confirmacion-transito/card-confirmacion-transito.component';
 import { NotificacionesComponent } from './notificaciones/notificaciones/notificaciones.component';
 import { TablaGuardiaComponent } from './guardia-civil/tabla-guardia/tabla-guardia.component';
-
+import { ContenidoPbComponent } from './plaza-base/contenido-pb/contenido-pb.component';
 
 
 const routes: Routes = [
-  { path: 'transito', component: ContenidoTransitoComponent },
+  
   { path: 'dashboard', component: DashboardComponent},
   { path: 'embarcacion/embarcaciones', component: EmbarcacionesComponent},
   { path: 'transito/tabla-transito', component: TablaTransitoComponent },
   { path: 'guardia-civil/tabla-guardia', component: TablaGuardiaComponent },
-  { path: 'notificaciones', component: NotificacionesComponent }
+  { path: 'notificaciones', component: NotificacionesComponent },
+  { path: 'movil/card-incidencia', component: CardIncidenciaComponent},
+  { path: 'guardacivil', component: TablaGuardiaComponent},
+  { path: 'plazabase', component: ContenidoPbComponent},
+  { path: 'movil/card-confirmacion-transito', component: CardConfirmacionTransitoComponent}
   
 ];
 

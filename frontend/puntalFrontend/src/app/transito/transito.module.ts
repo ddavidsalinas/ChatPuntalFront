@@ -36,6 +36,7 @@ const routes: Routes = [
  
   imports: [
     CommonModule,
+    DataTablesModule,
     AppRoutingModule,
     DataTablesModule,
     FormsModule,
