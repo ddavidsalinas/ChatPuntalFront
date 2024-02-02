@@ -6,5 +6,5 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./navheader.component.css']
 })
 export class NavheaderComponent {
-@Input name="x"
+ name: string = 'x';
 }

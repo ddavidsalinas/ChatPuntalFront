@@ -24,7 +24,7 @@ export class DashboardComponent implements OnInit{
   ngOnInit() {
     this.route.url.subscribe(urlSegment => {
       this.rutaActual = urlSegment.join('/');
-      console.log(this.rutaActual);
+     
     });
   }
 }

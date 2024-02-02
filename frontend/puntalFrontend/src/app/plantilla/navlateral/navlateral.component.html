@@ -13,16 +13,6 @@
 <app-boton
   [claseDesbloqueado]="claseBotonDesbloqueado"
   [claseBloqueado]="claseBotonBloqueado"
-  [imageUrlDesbloqueado]="imageUrlTransitosDesbloqueado"
-  [imageUrlBloqueado]="imageUrlTransitosBloqueado"
-  label="Gestion de transitos"
-  [route]="transitosRoute"
-  [bloqueado]="bloqueadoGestionTransitos"
-  (click)="activarGestionTransitos()"
-></app-boton>
-<app-boton
-  [claseDesbloqueado]="claseBotonDesbloqueado"
-  [claseBloqueado]="claseBotonBloqueado"
   [imageUrlDesbloqueado]="imageUrlEmbarcacionDesbloqueado"
   [imageUrlBloqueado]="imageUrlEmbarcacionBloqueado"
   label="Gestion de embarcaciones"
@@ -33,12 +23,23 @@
 <app-boton
   [claseDesbloqueado]="claseBotonDesbloqueado"
   [claseBloqueado]="claseBotonBloqueado"
-  [imageUrlDesbloqueado]="imageUrlEmbarcacionDesbloqueado"
-  [imageUrlBloqueado]="imageUrlEmbarcacionBloqueado"
-  label="Gestion de embarcaciones"
-  [route]="transitos2Route"
-  [bloqueado]="bloqueadoGestionEmbarcaciones2"
-  (click)="activarGestionEmbarcaciones2()"
+  [imageUrlDesbloqueado]="imageUrlTransitosDesbloqueado"
+  [imageUrlBloqueado]="imageUrlTransitosBloqueado"
+  label="Gestion de transitos"
+  [route]="transitosRoute"
+  [bloqueado]="bloqueadoGestionTransitos"
+  (click)="activarGestionTransitos()"
+></app-boton>
+
+<app-boton
+  [claseDesbloqueado]="claseBotonDesbloqueado"
+  [claseBloqueado]="claseBotonBloqueado"
+  [imageUrlDesbloqueado]="imageUrlPbDesbloqueado"
+  [imageUrlBloqueado]="imageUrlPbBloqueado"
+  label="Gestion de plazas base"
+  [route]="plazasBaseRoute"
+  [bloqueado]="bloqueadoGestionPlazaBase"
+  (click)="activarGestionPlazaBase()"
 ></app-boton>
 
 </div>
