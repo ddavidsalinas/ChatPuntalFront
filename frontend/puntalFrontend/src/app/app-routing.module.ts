@@ -16,15 +16,8 @@ const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent},
   { path: 'embarcacion/embarcaciones', component: EmbarcacionesComponent},
   { path: 'transito/tabla-transito', component: TablaTransitoComponent },
-<<<<<<< HEAD
   { path: 'guardia-civil/tabla-guardia', component: TablaGuardiaComponent },
   { path: 'notificaciones', component: NotificacionesComponent }
-=======
-  
-  { path: 'notificaciones', component: NotificacionesComponent },
-  { path: 'movil/card-incidencia', component: CardIncidenciaComponent},
-  { path: 'movil/card-confirmacion-transito', component: CardConfirmacionTransitoComponent}
->>>>>>> 89dabe4cb8692763a1e3027ad6ef158982a3250b
   
 ];
 
