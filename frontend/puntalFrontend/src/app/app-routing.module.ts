@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+
 import { ContenidoTransitoComponent } from './transito/contenido-transito/contenido-transito.component';
 import { TablaTransitoComponent } from './transito/tabla-transito/tabla-transito.component';
 import { DashboardComponent } from './dashboard/dashboard/dashboard.component';
@@ -9,13 +10,12 @@ import { CardConfirmacionTransitoComponent } from './movil/card-confirmacion-tra
 import { NotificacionesComponent } from './notificaciones/notificaciones/notificaciones.component';
 import { TablaGuardiaComponent } from './guardia-civil/tabla-guardia/tabla-guardia.component';
 import { ContenidoPbComponent } from './plaza-base/contenido-pb/contenido-pb.component';
-
+import { FormularioPbComponent } from './plaza-base/formulario-pb/formulario-pb.component';
 
 const routes: Routes = [
   
   { path: 'dashboard', component: DashboardComponent},
   { path: 'embarcacion/embarcaciones', component: EmbarcacionesComponent},
- // { path: 'embarcaciones', redirectTo: 'embarcacion/embarcaciones', pathMatch: 'full' },
   { path: 'transito/tabla-transito', component: TablaTransitoComponent },
   { path: 'guardia-civil/tabla-guardia', component: TablaGuardiaComponent },
   { path: 'notificaciones', component: NotificacionesComponent },
@@ -23,7 +23,8 @@ const routes: Routes = [
   { path: 'guardacivil', component: TablaGuardiaComponent },
   { path: 'guardacivil', redirectTo: 'guardia-civil/tabla-guardia', pathMatch: 'full' },
   { path: 'plazabase', component: ContenidoPbComponent},
-  { path: 'movil/card-confirmacion-transito', component: CardConfirmacionTransitoComponent}
+  { path: 'plazabase/formulario', component: FormularioPbComponent},
+  { path: 'movil/card-confirmacion-transito', component: CardConfirmacionTransitoComponent},
   
 ];
 

@@ -19,10 +19,9 @@ const routes: Routes = [
       { path: 'formulario', component: FormularioTransitoComponent },
       { path: '', redirectTo: 'tabla', pathMatch: 'full' },
       // Puedes agregar más rutas según tus necesidades
-    ]
+    ],
   },
 ];
-
 
 @NgModule({
   declarations: [
@@ -31,17 +30,16 @@ const routes: Routes = [
     TablaTransitoComponent,
     FormdialogoComponent,
     TablaTripulanteComponent,
-    FormularioTransitoComponent
+    FormularioTransitoComponent,
   ],
- 
+
   imports: [
     CommonModule,
-    DataTablesModule,
     AppRoutingModule,
     DataTablesModule,
     FormsModule,
-    
     RouterModule.forChild(routes),
-  ], exports: [ContenidoTransitoComponent,  TablaTransitoComponent]
+  ],
+  exports: [ContenidoTransitoComponent],
 })
-export class TransitoModule { }
+export class TransitoModule {}
