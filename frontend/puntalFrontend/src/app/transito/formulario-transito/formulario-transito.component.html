@@ -1,59 +1,54 @@
-<div class="formularioEmbarcaciones">
+<div class="formularioTransitos">
     <div class="formHeader">
-      <h5>{{ mostrarVacio ? "ALTA EMBARCACIÓN" : "VISTA EMBARCACIÓN" }}</h5>
+      <h5>{{ mostrarVacio ? "ALTA TRANSITO" : "VISTA TRANSITO" }}</h5>
     </div>
     <form action="">
       <div *ngIf="mostrarVacio">
         <div class="d-flex">
           <div class="formLeft">
             <div class="mb-3 d-flex">
-              <label for="nombre" class="form-label">Nombre:</label>
-              <input name="nombre" type="text" class="form-control mt-4" placeholder="Nombre" />
+              <label for="Fecha de entrada" class="form-label">Fecha de entrada:</label>
+              <input name="fecha_entrada" type="text" class="form-control mt-4" placeholder="Fecha de entrada" />
             </div>
             <div class="mb-3 d-flex">
-              <label for="matricula" class="form-label">Matrícula:</label>
-              <input name="matricula" type="text" class="form-control mt-4" placeholder="Matrícula" />
+              <label for="Fecha de salida" class="form-label">Fecha de salida:</label>
+              <input name="fecha_salida" type="text" class="form-control mt-4" placeholder="Fecha de salida" />
             </div>
             <div class="mb-3 d-flex">
-              <label for="modelo" class="form-label">Modelo:</label>
-              <input name="modelo" type="text" class="form-control mt-4" placeholder="Modelo" />
+              <label for="Embarcacion" class="form-label">Embarcación:</label>
+              <input name="embarcacion" type="text" class="form-control mt-4" placeholder="Embarcacion" />
             </div>
             <div class="mb-3 d-flex">
-              <label for="origen" class="form-label">Origen:</label>
-              <input name="origen" type="text" class="form-control mt-4" placeholder="Origen" />
+              <label for="Instalación" class="form-label">Instalación:</label>
+              <input name="instalacion" type="text" class="form-control mt-4" placeholder="Instalación" />
             </div>
             <div class="mb-3 d-flex">
-              <label for="titular" class="form-label">Titular:</label>
-              <input name="titular" type="text" class="form-control mt-4" placeholder="Titular" />
+              <label for="Pantalán" class="form-label">Pantalán:</label>
+              <input name="pantalan" type="text" class="form-control mt-4" placeholder="Pantalán" />
             </div>
             <div class="mb-3 d-flex">
-              <label for="eslora" class="form-label">Eslora:</label>
-              <input name="eslora" type="text" class="form-control mt-4" placeholder="Eslora" />
+              <label for="Amarre" class="form-label">Amarre:</label>
+              <input name="amarre" type="text" class="form-control mt-4" placeholder="Amarre" />
             </div>
-            <div class="mb-3 d-flex">
-              <label for="manga" class="form-label">Manga:</label>
-              <input name="manga" type="text" class="form-control mt-4" placeholder="Manga" />
-            </div>
-            <div class="mb-3 d-flex">
-              <label for="registro" class="form-label">Nº Registro:</label>
-              <input name="registro" type="text" class="form-control mt-4" placeholder="Nº Registro" />
-            </div>
+            
+            
           </div>
           <div class="formRight">
             <div class="mb-3 d-flex">
-              <label for="tipo" class="form-label">Tipo:</label>
-              <input name="tipo" type="text" class="form-control mt-4" placeholder="Tipo" />
+                <label for="Proposito" class="form-label">Proposito:</label>
+                <input name="proposito" type="text" class="form-control mt-4" placeholder="Proposito" />
+              </div>
+            <div class="mb-3 d-flex">
+                <label for="Autorizaciones" class="form-label">Autorizaciones:</label>
+                <input class=" autorizaciones" name="autorizaciones" type="checkbox"  />
+              </div>
+            <div class="mb-3 d-flex">
+              <label for="Patrón" class="form-label">Patrón:</label>
+              <input name="patron" type="text" class="form-control mt-4" placeholder="Patrón" />
             </div>
             <div class="mb-3 d-flex">
-              <label for="datosTecnicos" class="form-label">Datos técnicos:</label>
-              <textarea name="datos" class="form-control mt-4" placeholder="Datos técnicos"></textarea>
-            </div>
-            <div class="mb-3 d-flex">
-              <label for="imagen" class="form-label">Imagen:</label>
-              <input name="imgEmb" type="file" class="form-control mt-4" (change)="onFileSelected($event)"/>
-            </div>
-            <div class="d-flex justify-content-center">
-              <img class="imgEmb" [src]="imagenSeleccionada  || '/assets/img/embarcaciones/image-outline.svg'"  alt="" />
+              <label for="datosEstancia" class="form-label">Datos estancia:</label>
+              <textarea name="datos" class="form-control mt-4" placeholder="Datos estancia"></textarea>
             </div>
             <div class="d-flex justify-content-end mt-5">
               <button class="btn btnCancelar" routerLink="../tabla">
@@ -68,64 +63,57 @@
         <div class="d-flex">
           <div class="formLeft">
             <div class="mb-3 d-flex">
-              <label for="nombre" class="form-label">Nombre:</label>
-              <input name="nombre" type="text" class="form-control mt-4" placeholder="Nombre"
-                [(ngModel)]="transitoSeleccionada.nombre" [attr.readonly]="modoVista ? 'readonly' : null" />
+              <label for="fecha_entrada" class="form-label">Fecha de entrada:</label>
+              <input name="fecha_entrada" type="text" class="form-control mt-4" placeholder="Fecha de entrada"
+                [(ngModel)]="transitoSeleccionada.fecha_entrada" [attr.readonly]="modoVista ? 'readonly' : null" />
             </div>
             <div class="mb-3 d-flex">
-              <label for="matricula" class="form-label">Matrícula:</label>
-              <input name="matricula" type="text" class="form-control mt-4" placeholder="Matrícula"
-                [(ngModel)]="transitoSeleccionada.matricula" [attr.readonly]="modoVista ? 'readonly' : null" />
+              <label for="fecha_salida" class="form-label">Fecha de salida:</label>
+              <input name="fecha_salida" type="text" class="form-control mt-4" placeholder="Fecha de salida"
+                [(ngModel)]="transitoSeleccionada.fecha_salida" [attr.readonly]="modoVista ? 'readonly' : null" />
             </div>
             <div class="mb-3 d-flex">
-              <label for="modelo" class="form-label">Modelo:</label>
-              <input name="modelo" type="text" class="form-control mt-4" placeholder="Modelo"
-                [(ngModel)]="transitoSeleccionada.modelo" [attr.readonly]="modoVista ? 'readonly' : null" />
+              <label for="embarcacion" class="form-label">Embarcacion:</label>
+              <input name="embarcacion" type="text" class="form-control mt-4" placeholder="Embarcacion"
+                [(ngModel)]="transitoSeleccionada.embarcacion" [attr.readonly]="modoVista ? 'readonly' : null" />
             </div>
             <div class="mb-3 d-flex">
-              <label for="origen" class="form-label">Origen:</label>
-              <input name="origen" type="text" class="form-control mt-4" placeholder="Origen"
-                [(ngModel)]="transitoSeleccionada.origen" [attr.readonly]="modoVista ? 'readonly' : null" />
+              <label for="instalacion" class="form-label">Instalación:</label>
+              <input name="instalacion" type="text" class="form-control mt-4" placeholder="Instalación"
+                [(ngModel)]="transitoSeleccionada.instalacion" [attr.readonly]="modoVista ? 'readonly' : null" />
             </div>
             <div class="mb-3 d-flex">
-              <label for="titular" class="form-label">Titular:</label>
-              <input name="titular" type="text" class="form-control mt-4" placeholder="Titular"
-                [(ngModel)]="transitoSeleccionada.titular" [attr.readonly]="modoVista ? 'readonly' : null" />
+              <label for="pantalan" class="form-label">Pantalán:</label>
+              <input name="pantalan" type="text" class="form-control mt-4" placeholder="Pantalán"
+                [(ngModel)]="transitoSeleccionada.pantalan" [attr.readonly]="modoVista ? 'readonly' : null" />
             </div>
             <div class="mb-3 d-flex">
-              <label for="eslora" class="form-label">Eslora:</label>
-              <input name="eslora" type="text" class="form-control mt-4" placeholder="Eslora"
-                [(ngModel)]="transitoSeleccionada.eslora" [attr.readonly]="modoVista ? 'readonly' : null" />
+              <label for="amarre" class="form-label">Amarre:</label>
+              <input name="amarre" type="text" class="form-control mt-4" placeholder="Amarre"
+                [(ngModel)]="transitoSeleccionada.amarre" [attr.readonly]="modoVista ? 'readonly' : null" />
             </div>
-            <div class="mb-3 d-flex">
-              <label for="manga" class="form-label">Manga:</label>
-              <input name="origen" type="text" class="form-control mt-4" placeholder="Manga"
-                [(ngModel)]="transitoSeleccionada.manga" [attr.readonly]="modoVista ? 'readonly' : null" />
-            </div>
-            <div class="mb-3 d-flex">
-              <label for="registro" class="form-label">Nº Registro:</label>
-              <input name="registro" type="text" class="form-control mt-4" placeholder="Registro"
-                [(ngModel)]="transitoSeleccionada.numero_registro" [attr.readonly]="modoVista ? 'readonly' : null" />
-            </div>
+           
           </div>
           <div class="formRight">
             <div class="mb-3 d-flex">
-              <label for="tipo" class="form-label">Tipo:</label>
-              <input name="tipo" type="text" class="form-control mt-4" placeholder="Tipo"
-                [(ngModel)]="transitoSeleccionada.tipo" [attr.readonly]="modoVista ? 'readonly' : null" />
+              <label for="proposito" class="form-label">Proposito:</label>
+              <input name="proposito" type="text" class="form-control mt-4" placeholder="Proposito"
+                [(ngModel)]="transitoSeleccionada.patron" [attr.readonly]="modoVista ? 'readonly' : null" />
             </div>
             <div class="mb-3 d-flex">
-              <label for="datosTecnicos" class="form-label">Datos técnicos:</label>
-              <textarea name="datos" class="form-control mt-4" placeholder="Datos técnicos"
+                <label for="autorizaciones" class="form-label">Autorizaciones:</label>
+                <input name="autorizaciones" type="checkbox"   />
+              </div>
+              <div class="mb-3 d-flex">
+                <label for="patron" class="form-label">Patrón:</label>
+                <input name="patron" type="text" class="form-control mt-4" placeholder="Patrón"
+                  [(ngModel)]="transitoSeleccionada.proposito" [attr.readonly]="modoVista ? 'readonly' : null" />
+              </div>
+            <div class="mb-3 d-flex">
+              <label for="datosEstancia" class="form-label">Datos estancia:</label>
+              <textarea name="datos" class="form-control mt-4" placeholder="Datos estancia"
                 [(ngModel)]="transitoSeleccionada.datos_tecnicos"
                 [attr.readonly]="modoVista ? 'readonly' : null"></textarea>
-            </div>
-            <div class="mb-3 d-flex">
-              <label for="imagen" class="form-label">Imagen:</label>
-              <input name="imgEmb" type="file" class="form-control mt-4" (change)="onFileSelected($event)"/>
-            </div>
-            <div class="d-flex justify-content-center">
-              <img class="imgEmb" [src]="imagenSeleccionada || '/assets/img/embarcaciones/image-outline.svg'" alt="" />
             </div>
             <div class="d-flex justify-content-end mt-5">
               <button *ngIf="modoVista" class="btn btnBack" routerLink="../tabla">VOLVER</button>
