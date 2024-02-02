@@ -17,7 +17,7 @@ export class FormularioComponent
   @Input() boton:string="";
   @Input() texto:string="";
   @Input() nombre:string="";
-  pepe:string="a";
+  
  
   
   

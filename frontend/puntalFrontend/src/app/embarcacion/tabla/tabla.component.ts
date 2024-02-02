@@ -10,7 +10,7 @@ import { SharedDataService } from 'src/app/services/shared-data/shared-data.serv
   styleUrls: ['./tabla.component.css'],
 })
 export class TablaComponent implements OnInit {
-  // @Output() mostrarFormulario = new EventEmitter();
+
 
   dtOptions: DataTables.Settings = {};
   datos = datos.embarcaciones;
@@ -24,20 +24,12 @@ export class TablaComponent implements OnInit {
   navegarAFormulario() {
     // console.log("navegarAFormulario");
     // this.mostrarFormulario.emit();
-    this.router.navigate(['../formulario'], {
-      relativeTo: this.activatedRoute,
-      queryParams: { tipo: 'vacio' },
-    });
+  
+
+    this.router.navigate(['../formulario'], { relativeTo: this.activatedRoute, queryParams: { tipo: 'vacio' } })
   }
 
-  // someClickHandler(row: Node, index:number): void {
-  //   const rowData = this.datos[index]; // Acceder a los datos utilizando el índice
-  //   this.message = `${rowData.matricula}`
-  // };
-  // someClickHandler(data: any) {
-  //   this.sharedDataService.setData("embarcacionSeleccionada", data);
-  //   this.router.navigate(['../formulario'], { relativeTo: this.activatedRoute });
-  // }
+
   someClickHandler(index: number): void {
     const rowData = this.datos[index];
     this.sharedDataService.setData('embarcacionSeleccionada', rowData);
@@ -66,3 +58,6 @@ export class TablaComponent implements OnInit {
     };
   }
 }
+
+    
+

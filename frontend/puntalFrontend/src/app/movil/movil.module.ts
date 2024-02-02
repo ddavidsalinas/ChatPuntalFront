@@ -13,8 +13,8 @@ const routes: Routes = [
     path: '',
     component: ListaCardsComponent,
     children: [
-      { path: 'movil/card-incidencia', loadChildren: () => import('./card-incidencia/card-incidencia.component').then(m => m.CardIncidenciaComponent) },
-
+      //{ path: 'movil/card-incidencia', loadChildren: () => import('./card-incidencia/card-incidencia.component').then(m => m.CardIncidenciaComponent) },
+      // { path: 'transito', loadChildren: () => import('../transito/transito.module').then(m=> m.TransitoModule) },
     ],
   },
 ];
