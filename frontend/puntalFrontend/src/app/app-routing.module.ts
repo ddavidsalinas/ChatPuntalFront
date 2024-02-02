@@ -17,6 +17,7 @@ const routes: Routes = [
   { path: 'embarcacion/embarcaciones', component: EmbarcacionesComponent},
  // { path: 'embarcaciones', redirectTo: 'embarcacion/embarcaciones', pathMatch: 'full' },
   { path: 'transito/tabla-transito', component: TablaTransitoComponent },
+  { path: 'guardia-civil/tabla-guardia', component: TablaGuardiaComponent },
   { path: 'notificaciones', component: NotificacionesComponent },
   { path: 'movil/card-incidencia', component: CardIncidenciaComponent},
   { path: 'guardacivil', component: TablaGuardiaComponent },

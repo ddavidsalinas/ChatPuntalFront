@@ -6,31 +6,41 @@ import { AppRoutingModule } from '../app-routing.module';
 import { RouterModule, Routes } from '@angular/router';
 import { FormularioComponent } from '../formulario/formulario.component';
 import { FormdialogoComponent } from './formdialogo/formdialogo.component';
+import { TablaTripulanteComponent } from './tabla-tripulante/tabla-tripulante.component';
 import { DataTablesModule } from 'angular-datatables';
-
+import { FormularioTransitoComponent } from './formulario-transito/formulario-transito.component';
+import { FormsModule } from '@angular/forms';
 const routes: Routes = [
-{
-    path: 'transitos',
+  {
+    path: 'transito',
     component: ContenidoTransitoComponent,
     children: [
       { path: 'tabla', component: TablaTransitoComponent },
-
-    ],
+      { path: 'formulario', component: FormularioTransitoComponent },
+      { path: '', redirectTo: 'tabla', pathMatch: 'full' },
+      // Puedes agregar más rutas según tus necesidades
+    ]
   },
 ];
 
 
 @NgModule({
   declarations: [
+    FormularioComponent,
     ContenidoTransitoComponent,
     TablaTransitoComponent,
-    FormdialogoComponent
+    FormdialogoComponent,
+    TablaTripulanteComponent,
+    FormularioTransitoComponent
   ],
  
   imports: [
     CommonModule,
     DataTablesModule,
     AppRoutingModule,
+    DataTablesModule,
+    FormsModule,
+    
     RouterModule.forChild(routes),
   ], exports: [ContenidoTransitoComponent,  TablaTransitoComponent]
 })
