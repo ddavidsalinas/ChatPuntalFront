@@ -6,6 +6,8 @@ import { TablaPbComponent } from './tabla-pb/tabla-pb.component';
 import { FormdialogoPbComponent } from './formdialogo-pb/formdialogo-pb.component';
 import { ContenidoPbComponent } from './contenido-pb/contenido-pb.component';
 import { RouterModule, Routes } from '@angular/router';
+import { FormsModule } from '@angular/forms';
+import { DataTablesModule } from 'angular-datatables';
 
 const routes: Routes = [
   {
@@ -26,7 +28,13 @@ const routes: Routes = [
     FormdialogoPbComponent,
     ContenidoPbComponent,
   ],
-  imports: [AppRoutingModule, CommonModule, RouterModule.forChild(routes)],
+  imports: [
+    CommonModule,
+    AppRoutingModule,
+    FormsModule,
+    DataTablesModule,
+    RouterModule.forChild(routes),
+  ],
   exports: [ContenidoPbComponent, FormularioPbComponent],
 })
 export class PlazaBaseModule {}
