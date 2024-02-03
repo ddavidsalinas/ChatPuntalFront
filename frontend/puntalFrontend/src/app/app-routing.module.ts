@@ -17,13 +17,12 @@ const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent},
   { path: 'embarcacion/embarcaciones', component: EmbarcacionesComponent},
   { path: 'transito/tabla-transito', component: TablaTransitoComponent },
-  { path: 'guardia-civil/tabla-guardia', component: TablaGuardiaComponent },
+  { path: 'plazabase/formulario', component: FormularioPbComponent},
   { path: 'notificaciones', component: NotificacionesComponent },
   { path: 'movil/card-incidencia', component: CardIncidenciaComponent},
-  { path: 'guardacivil', component: TablaGuardiaComponent },
   { path: 'guardacivil', redirectTo: 'guardia-civil/tabla-guardia', pathMatch: 'full' },
   { path: 'plazabase', component: ContenidoPbComponent},
-  { path: 'plazabase/formulario', component: FormularioPbComponent},
+ 
   { path: 'movil/card-confirmacion-transito', component: CardConfirmacionTransitoComponent},
   
 ];
