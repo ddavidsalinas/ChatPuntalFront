@@ -10,6 +10,8 @@ import { TablaTripulanteComponent } from './tabla-tripulante/tabla-tripulante.co
 import { DataTablesModule } from 'angular-datatables';
 import { FormularioTransitoComponent } from './formulario-transito/formulario-transito.component';
 import { FormsModule } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 const routes: Routes = [
   {
     path: 'transito',
@@ -39,6 +41,8 @@ const routes: Routes = [
     DataTablesModule,
     FormsModule,
     RouterModule.forChild(routes),
+    MatFormFieldModule,
+    MatInputModule,
   ],
   exports: [ContenidoTransitoComponent],
 })
