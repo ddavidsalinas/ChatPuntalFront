@@ -1,4 +1,6 @@
+<img (click)="anyadirTripulante()" class="img" src="/assets/img/transitos/Vector.svg" alt="">
 <table      class="table table-hover table-custom-hover rounded-3 overflow-hidden table-striped">
+
     <thead class="cabeceraDatos text-center">
         <tr class="cabeceraDatos text-center">
             
@@ -17,6 +19,8 @@
         </tr>
 </thead>
     <tbody>
+    
+        
         <tr *ngFor="let item of datos;let i=index" class=" text-center">
             <ng-container *ngIf ="mostrarDatos">
             <td>{{item.nombre}}</td>
@@ -26,7 +30,7 @@
         </ng-container>
         
         </tr>
-        <ng-container *ngIf ="!mostrarDatos">
+        <ng-container *ngIf ="!mostrarDatos && crearTripulante===false">
             <tr style="width: 200px; height: 50px;" >
             <td></td>
             <td></td>
@@ -34,6 +38,17 @@
             <td></td>
         </tr>
         </ng-container>
+        
+        <ng-container *ngIf ="crearTripulante">
+            <tr style="width: 200px; height: 50px;" >
+            <td><input type="text"></td>
+            <td><input type="text"></td>
+            <td><input type="text"></td>
+            <td><input type="text"></td>
+            </tr>
+        </ng-container>
+        
+        
     </tbody>
     
 </table>

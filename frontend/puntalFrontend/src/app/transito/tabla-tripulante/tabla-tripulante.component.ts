@@ -19,7 +19,11 @@ constructor() {
 }
 mostrarDatos:boolean =true;
 @Input() mostrar:string='';
-
+crearTripulante :boolean=false;
+anyadirTripulante()
+{
+  this.crearTripulante=true;
+}
 ngOnInit(): void {
   if(this.mostrar=='si')
   {
