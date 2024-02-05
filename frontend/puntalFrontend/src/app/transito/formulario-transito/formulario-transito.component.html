@@ -50,7 +50,7 @@
               <label for="datosEstancia" class="form-label">Datos estancia:</label>
               <textarea name="datos" class="form-control mt-4" placeholder="Datos estancia"></textarea>
             </div>
-            <div class="tripulante" >              
+            <div class="tripulante mb-3 d-flex" >              
               <app-tabla-tripulante [mostrar]='mostrar'></app-tabla-tripulante>
             </div>
             <div class="d-flex justify-content-end mt-5">
@@ -119,7 +119,7 @@
                 [(ngModel)]="transitoSeleccionada.datos_tecnicos"
                 [attr.readonly]="modoVista ? 'readonly' : null"></textarea>
             </div>
-            <div class="tripulante">              
+            <div class="tripulante mb-3 d-flex">              
               <app-tabla-tripulante [mostrar]="noMostrar"></app-tabla-tripulante>
             </div>
             <div class="d-flex justify-content-end mt-5">
