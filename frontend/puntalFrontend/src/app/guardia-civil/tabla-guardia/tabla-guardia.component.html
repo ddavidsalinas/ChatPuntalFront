@@ -1,4 +1,4 @@
-<table   datatable [dtOptions]="dtOptions"  class="table table-hover table-custom-hover rounded-3 overflow-hidden table-striped">
+<table   datatable [dtOptions]="dtOptions"  class="table table-hover table-custom-hover rounded-3 overflow-hidden table-striped" >
     <thead>
         <tr>
             <th [attr.colspan]="12">
@@ -22,7 +22,7 @@
         </tr>
 </thead>
     <tbody>
-        <tr  *ngFor="let item of datos;let i=index" class=" text-center">
+        <tr  *ngFor="let item of datos;let i=index" class=" text-center" [ngClass]="{'color-translucido': seleccionado}">
             <td>{{item.instalacion}}</td>
             <td>{{item.fecha_entrada}}</td>
             <td>{{item.fecha_salida}}</td>

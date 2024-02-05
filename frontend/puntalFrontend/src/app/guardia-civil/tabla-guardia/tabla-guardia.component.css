@@ -49,12 +49,8 @@ table
    margin-top: 40px;
    
 }
-.check{
+.color-translucido{
     background-color: var(--wedgewood600);
     color: var(--wedgewood50);
 width: 25px;
 height: 25px;}
-.estados
-{
-    background-color: yellow;
-}
