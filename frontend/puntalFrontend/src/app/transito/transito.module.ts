@@ -12,6 +12,7 @@ import { FormularioTransitoComponent } from './formulario-transito/formulario-tr
 import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatDialogModule } from '@angular/material/dialog';
 const routes: Routes = [
   {
     path: 'transito',
@@ -41,6 +42,7 @@ const routes: Routes = [
     DataTablesModule,
     FormsModule,
     RouterModule.forChild(routes),
+    MatDialogModule,
     MatFormFieldModule,
     MatInputModule,
   ],
