@@ -1,4 +1,4 @@
-import { Component ,OnInit} from '@angular/core';
+import { Component ,Input,OnInit} from '@angular/core';
 import { datos } from 'src/resources/datos';
 
 import { NgModule } from '@angular/core';
@@ -17,9 +17,18 @@ constructor() {
   console.log(this.datos);
 
 }
-
+mostrarDatos:boolean =true;
+@Input() mostrar:string='';
 
 ngOnInit(): void {
+  if(this.mostrar=='si')
+  {
+    this.mostrarDatos=true;
+  }
+ else
+ {
+  this.mostrarDatos=false;
+ }
   this.dtOptions = {
     pagingType: 'full_numbers',
     pageLength: 10,

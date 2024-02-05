@@ -1,16 +1,16 @@
 <table      class="table table-hover table-custom-hover rounded-3 overflow-hidden table-striped">
-    <thead>
-        <tr>
-            
-                TRIPULANTES
-            
-        
+    <thead class="cabeceraDatos text-center">
         <tr class="cabeceraDatos text-center">
             
-        <th>NOMBRE COMPLETO</th>
-        <th>SEXO</th>
-        <th>N DOCUMENTO</th>
-        <th>NACIONALIDAD</th>
+            <th>NOMBRE COMPLETO</th>
+            <th>SEXO</th>
+            <th>N DOCUMENTO</th>
+            <th>NACIONALIDAD</th>
+            
+        
+        <tr >
+            
+        
         
 
        
@@ -18,14 +18,22 @@
 </thead>
     <tbody>
         <tr *ngFor="let item of datos;let i=index" class=" text-center">
-            
+            <ng-container *ngIf ="mostrarDatos">
             <td>{{item.nombre}}</td>
             <td>{{item.sexo}}</td>
             <td>{{item.numero_documento}}</td>
             <td>{{item.nacionalidad}}</td>
-    
+        </ng-container>
+        
         </tr>
-       
+        <ng-container *ngIf ="!mostrarDatos">
+            <tr style="width: 200px; height: 50px;" >
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        </ng-container>
     </tbody>
     
 </table>

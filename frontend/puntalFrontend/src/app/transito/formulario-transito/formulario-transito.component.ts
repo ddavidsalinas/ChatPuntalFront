@@ -39,6 +39,8 @@ export class FormularioTransitoComponent implements OnInit {
   //     this.cdr.detectChanges();
   //   });
   // }
+mostrar :string ='no';
+noMostrar :string='si';
 
 
   ngOnInit(): void {
