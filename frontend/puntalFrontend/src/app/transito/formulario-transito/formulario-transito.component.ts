@@ -1,11 +1,13 @@
 import { Component, OnInit, ChangeDetectorRef, NgZone } from '@angular/core';
 import { SharedDataService } from 'src/app/services/shared-data/shared-data.service';
 import { ActivatedRoute } from '@angular/router';
-
+import { MatDialog } from '@angular/material/dialog';
+import { FormdialogoComponent } from '../formdialogo/formdialogo.component';
+import { DilogoForm } from '../dilogo-form';
 @Component({
   selector: 'app-formulario-transito',
   templateUrl: './formulario-transito.component.html',
-  styleUrls: ['./formulario-transito.component.css']
+  styleUrls: ['./formulario-transito.component.css'],
 })
 export class FormularioTransitoComponent implements OnInit {
   mostrarVacio: boolean = false;
@@ -15,7 +17,13 @@ export class FormularioTransitoComponent implements OnInit {
   imagenSeleccionada: string | ArrayBuffer | null = null;
   // transitoVacia: any = { datos_tecnicos: '' };
 
-  constructor(private sharedDataService: SharedDataService, private activatedRoute: ActivatedRoute, private cdr: ChangeDetectorRef, private ngZone: NgZone) { }
+  constructor(
+    private sharedDataService: SharedDataService,
+    private activatedRoute: ActivatedRoute,
+    private cdr: ChangeDetectorRef,
+    private ngZone: NgZone,
+    public dialog: MatDialog 
+  ) {}
 
   // onMostrarFormulario(tipo: string) {
   //   console.log("onMostrarFormulario");
@@ -42,9 +50,8 @@ export class FormularioTransitoComponent implements OnInit {
 mostrar :string ='no';
 noMostrar :string='si';
 
-
   ngOnInit(): void {
-    this.activatedRoute.queryParams.subscribe(params => {
+    this.activatedRoute.queryParams.subscribe((params) => {
       const tipo = params['tipo'];
       this.mostrarVacio = tipo === 'vacio';
       // this.esNuevo = this.mostrarVacio;
@@ -52,31 +59,34 @@ noMostrar :string='si';
       this.modoEdicion = !this.mostrarVacio;
     });
 
-    console.log("Intentando obtener datos del servicio...");
+    console.log('Intentando obtener datos del servicio...');
 
-    this.sharedDataService.getData("transitoSeleccionada").subscribe(data => {
-      console.log("Datos obtenidos del servicio:", data);
+    this.sharedDataService.getData('transitoSeleccionada').subscribe((data) => {
+      console.log('Datos obtenidos del servicio:', data);
       if (data) {
         // Solo asigna a transitoSeleccionada si no es un formulario vacío
         if (!this.mostrarVacio) {
           this.transitoSeleccionada = data;
-          console.log("Información de la embarcación seleccionada:", this.transitoSeleccionada.matricula);
+          console.log(
+            'Información de la embarcación seleccionada:',
+            this.transitoSeleccionada.matricula
+          );
         }
       } else {
-        console.warn("No se obtuvieron datos del servicio");
+        console.warn('No se obtuvieron datos del servicio');
       }
     });
 
     // this.transitoVacia = { datos_tecnicos: '' };
   }
 
-  onFileSelected(event: any) :void {
+  onFileSelected(event: any): void {
     const file = event.target.files[0];
     if (file) {
       const reader = new FileReader();
-      reader.onload =  () =>{
+      reader.onload = () => {
         this.imagenSeleccionada = reader.result;
-        console.log("Imagen seleccionada:", this.imagenSeleccionada);
+        console.log('Imagen seleccionada:', this.imagenSeleccionada);
       };
       reader.readAsDataURL(file);
     }
@@ -86,6 +96,28 @@ noMostrar :string='si';
     // this.modoEdicion = true;
     this.modoVista = false;
   }
+  eliminar(): void {
+    const dialogRef = this.dialog.open(FormdialogoComponent, {
+      data: {
+        embarcacion: this.transitoSeleccionada.embarcacion,
+        patron: this.transitoSeleccionada.patron,
+        instalacion: this.transitoSeleccionada.instalacion,
+        pantalan: this.transitoSeleccionada.pantalan
+       
+      } as DilogoForm
+    });
+  
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+       
+        console.log('Eliminación confirmada. Causa de baja:', result.causa);
+      } else {
+        
+        console.log('Eliminación cancelada.');
+      }
+    });
 }
 
 
+
+}
