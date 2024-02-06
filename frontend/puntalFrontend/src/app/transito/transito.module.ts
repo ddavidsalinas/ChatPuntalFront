@@ -10,6 +10,9 @@ import { TablaTripulanteComponent } from './tabla-tripulante/tabla-tripulante.co
 import { DataTablesModule } from 'angular-datatables';
 import { FormularioTransitoComponent } from './formulario-transito/formulario-transito.component';
 import { FormsModule } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatDialogModule } from '@angular/material/dialog';
 const routes: Routes = [
   {
     path: 'transito',
@@ -19,10 +22,9 @@ const routes: Routes = [
       { path: 'formulario', component: FormularioTransitoComponent },
       { path: '', redirectTo: 'tabla', pathMatch: 'full' },
       // Puedes agregar más rutas según tus necesidades
-    ]
+    ],
   },
 ];
-
 
 @NgModule({
   declarations: [
@@ -31,17 +33,19 @@ const routes: Routes = [
     TablaTransitoComponent,
     FormdialogoComponent,
     TablaTripulanteComponent,
-    FormularioTransitoComponent
+    FormularioTransitoComponent,
   ],
- 
+
   imports: [
     CommonModule,
-    DataTablesModule,
     AppRoutingModule,
     DataTablesModule,
     FormsModule,
-    
     RouterModule.forChild(routes),
-  ], exports: [ContenidoTransitoComponent,  TablaTransitoComponent]
+    MatDialogModule,
+    MatFormFieldModule,
+    MatInputModule,
+  ],
+  exports: [ContenidoTransitoComponent],
 })
-export class TransitoModule { }
+export class TransitoModule {}
