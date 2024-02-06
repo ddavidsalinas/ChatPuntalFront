@@ -23,11 +23,7 @@ constructor() {
 mostrarDatos:boolean =true;
 @Input() mostrar:string='';
 crearTripulante :boolean=false;
-//este metodo se llama desde formulario para comunicar
-metodoTripulante()
-{
-  this.anyadirTripulante();
-}
+
 //activa edicion tabla tripulante
 anyadirTripulante()
 {

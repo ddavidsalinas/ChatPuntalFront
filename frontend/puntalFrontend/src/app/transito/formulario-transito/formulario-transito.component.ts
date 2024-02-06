@@ -29,7 +29,7 @@ export class FormularioTransitoComponent implements OnInit {
   //conecta en formulario para llmaar a la edicion del formulario y llamar a la edicion del componente de tripulante
   activarModoEdicionTripulante() {
     if (this.tripulante) {
-      this.tripulante.metodoTripulante();
+      this.tripulante.anyadirTripulante();
       this.activarModoEdicion();
     } else {
       console.error('Error: TablaTripulanteComponent no está disponible.');
