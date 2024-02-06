@@ -10,7 +10,7 @@ import { NotificacionesComponent } from './notificaciones/notificaciones/notific
 import { TablaGuardiaComponent } from './guardia-civil/tabla-guardia/tabla-guardia.component';
 import { ContenidoPbComponent } from './plaza-base/contenido-pb/contenido-pb.component';
 
-
+   
 const routes: Routes = [
   
   { path: 'dashboard', component: DashboardComponent},
