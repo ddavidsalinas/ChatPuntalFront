@@ -1,15 +1,17 @@
-import { Component, OnInit, ChangeDetectorRef, NgZone } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, NgZone, ViewChild } from '@angular/core';
 import { SharedDataService } from 'src/app/services/shared-data/shared-data.service';
 import { ActivatedRoute } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { FormdialogoComponent } from '../formdialogo/formdialogo.component';
 import { DilogoForm } from '../dilogo-form';
+import { TablaTripulanteComponent } from '../tabla-tripulante/tabla-tripulante.component';
 @Component({
   selector: 'app-formulario-transito',
   templateUrl: './formulario-transito.component.html',
   styleUrls: ['./formulario-transito.component.css'],
 })
 export class FormularioTransitoComponent implements OnInit {
+  @ViewChild(TablaTripulanteComponent) tripulante!:TablaTripulanteComponent;
   mostrarVacio: boolean = false;
   modoVista: boolean = true;
   modoEdicion: boolean = false;
@@ -24,7 +26,15 @@ export class FormularioTransitoComponent implements OnInit {
     private ngZone: NgZone,
     public dialog: MatDialog 
   ) {}
-  
+  //conecta en formulario para llmaar a la edicion del formulario y llamar a la edicion del componente de tripulante
+  activarModoEdicionTripulante() {
+    if (this.tripulante) {
+      this.tripulante.metodoTripulante();
+      this.activarModoEdicion();
+    } else {
+      console.error('Error: TablaTripulanteComponent no está disponible.');
+    }
+  }
   // onMostrarFormulario(tipo: string) {
   //   console.log("onMostrarFormulario");
   //   this.mostrarVacio = tipo === 'vacio';

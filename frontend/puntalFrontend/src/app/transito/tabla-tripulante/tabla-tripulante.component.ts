@@ -1,4 +1,4 @@
-import { Component ,Input,OnInit} from '@angular/core';
+import { Component ,Input,OnInit,EventEmitter, Output} from '@angular/core';
 import { datos } from 'src/resources/datos';
 import { SharedDataService } from 'src/app/services/shared-data/shared-data.service';
 import { NgModule } from '@angular/core';
@@ -17,9 +17,18 @@ constructor() {
   console.log(this.datos);
 
 }
+
+
+
 mostrarDatos:boolean =true;
 @Input() mostrar:string='';
 crearTripulante :boolean=false;
+//este metodo se llama desde formulario para comunicar
+metodoTripulante()
+{
+  this.anyadirTripulante();
+}
+//activa edicion tabla tripulante
 anyadirTripulante()
 {
   this.crearTripulante=true;
