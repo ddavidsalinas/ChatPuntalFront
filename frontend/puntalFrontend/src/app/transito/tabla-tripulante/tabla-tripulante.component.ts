@@ -1,6 +1,6 @@
 import { Component ,Input,OnInit} from '@angular/core';
 import { datos } from 'src/resources/datos';
-
+import { SharedDataService } from 'src/app/services/shared-data/shared-data.service';
 import { NgModule } from '@angular/core';
 
 

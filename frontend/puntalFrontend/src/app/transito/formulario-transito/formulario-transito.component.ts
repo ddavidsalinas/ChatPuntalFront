@@ -24,7 +24,7 @@ export class FormularioTransitoComponent implements OnInit {
     private ngZone: NgZone,
     public dialog: MatDialog 
   ) {}
-
+  
   // onMostrarFormulario(tipo: string) {
   //   console.log("onMostrarFormulario");
   //   this.mostrarVacio = tipo === 'vacio';
