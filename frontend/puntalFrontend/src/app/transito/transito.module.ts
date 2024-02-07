@@ -49,9 +49,6 @@ const routes: Routes = [
     MatInputModule,
   ],
   exports: [ContenidoTransitoComponent],
-<<<<<<< HEAD
-=======
   providers: [SharedDataService],
->>>>>>> 35b09bdd7c8a8c0a73c5f7a175d1d49f4174c398
 })
 export class TransitoModule {}
