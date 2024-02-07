@@ -13,11 +13,8 @@ import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatDialogModule } from '@angular/material/dialog';
-<<<<<<< HEAD
-=======
 import { SharedDataService } from 'src/app/services/shared-data/shared-data.service';
 
->>>>>>> 35b09bdd7c8a8c0a73c5f7a175d1d49f4174c398
 const routes: Routes = [
   {
     path: 'transito',

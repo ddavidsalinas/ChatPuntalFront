@@ -10,10 +10,7 @@ import { CardConfirmacionTransitoComponent } from './movil/card-confirmacion-tra
 import { NotificacionesComponent } from './notificaciones/notificaciones/notificaciones.component';
 import { TablaGuardiaComponent } from './guardia-civil/tabla-guardia/tabla-guardia.component';
 import { ContenidoPbComponent } from './plaza-base/contenido-pb/contenido-pb.component';
-<<<<<<< HEAD
-=======
 import { TablaTripulanteComponent } from './transito/tabla-tripulante/tabla-tripulante.component';
->>>>>>> 35b09bdd7c8a8c0a73c5f7a175d1d49f4174c398
 import { FormularioPbComponent } from './plaza-base/formulario-pb/formulario-pb.component';
 
 const routes: Routes = [
