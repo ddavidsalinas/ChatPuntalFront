@@ -51,7 +51,7 @@
               <textarea name="datos" class="form-control mt-4" placeholder="Datos estancia"></textarea>
             </div>
             <div class="tripulante mb-3 d-flex" >              
-              <app-tabla-tripulante [mostrar]='mostrar'></app-tabla-tripulante>
+              <app-tabla-tripulante [mostrar]='mostrar' [click]="click"></app-tabla-tripulante>
             </div>
             <div class="d-flex justify-content-end mt-5">
               <button class="btn btnCancelar" routerLink="../tabla">
@@ -120,7 +120,7 @@
                 [attr.readonly]="modoVista ? 'readonly' : null"></textarea>
             </div>
             <div class="tripulante mb-3 d-flex">              
-              <app-tabla-tripulante [mostrar]="noMostrar"></app-tabla-tripulante>
+              <app-tabla-tripulante [mostrar]="noMostrar" [click]="noClick"></app-tabla-tripulante>
             </div>
             <div class="d-flex justify-content-end mt-5">
               <button *ngIf="modoVista" class="btn btnBack" routerLink="../tabla">VOLVER</button>

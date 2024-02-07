@@ -16,9 +16,10 @@ export class FormularioTransitoComponent implements OnInit {
   modoVista: boolean = true;
   modoEdicion: boolean = false;
   transitoSeleccionada: any = { datos_tecnicos: '' };
-  imagenSeleccionada: string | ArrayBuffer | null = null;
-  // transitoVacia: any = { datos_tecnicos: '' };
-
+  mostrar :string ='no';
+  noMostrar :string='si';
+  click:boolean=true;
+  noClick:boolean=false;
   constructor(
     private sharedDataService: SharedDataService,
     private activatedRoute: ActivatedRoute,
@@ -57,8 +58,8 @@ export class FormularioTransitoComponent implements OnInit {
   //     this.cdr.detectChanges();
   //   });
   // }
-mostrar :string ='no';
-noMostrar :string='si';
+
+
 
   ngOnInit(): void {
     this.activatedRoute.queryParams.subscribe((params) => {
@@ -90,17 +91,7 @@ noMostrar :string='si';
     // this.transitoVacia = { datos_tecnicos: '' };
   }
 
-  onFileSelected(event: any): void {
-    const file = event.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = () => {
-        this.imagenSeleccionada = reader.result;
-        console.log('Imagen seleccionada:', this.imagenSeleccionada);
-      };
-      reader.readAsDataURL(file);
-    }
-  }
+  
 
   activarModoEdicion() {
     // this.modoEdicion = true;

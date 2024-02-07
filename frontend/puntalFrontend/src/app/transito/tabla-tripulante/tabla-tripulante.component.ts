@@ -17,11 +17,11 @@ constructor() {
   console.log(this.datos);
 
 }
-
-
-
+ 
+TripulanteSeleccionada: any = { datos_tecnicos: '' };
 mostrarDatos:boolean =true;
 @Input() mostrar:string='';
+@Input() click:boolean=false;
 crearTripulante :boolean=false;
 
 //activa edicion tabla tripulante
