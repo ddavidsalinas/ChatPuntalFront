@@ -9,7 +9,7 @@ import { datos } from 'src/resources/datos';
 
 export class TablaPbComponent implements OnInit {
   dtOptions: DataTables.Settings = {};
-  datos = datos.transitos;
+  datos = datos.plazaBase;
 
   
   ngOnInit(): void {
@@ -19,8 +19,7 @@ export class TablaPbComponent implements OnInit {
       pageLength: 10,
       processing: true,
       language: {
-        url: '//cdn.datatables.net/plug-ins/1.10.25/i18n/Spanish.json'
-       // url: '//cdn.datatables.net/plug-ins/1.13.7/i18n/ko.json',
+        url: '//cdn.datatables.net/plug-ins/1.10.25/i18n/Spanish.json',
       },
     };
   }

@@ -9,6 +9,7 @@ import { CardConfirmacionTransitoComponent } from './movil/card-confirmacion-tra
 import { NotificacionesComponent } from './notificaciones/notificaciones/notificaciones.component';
 import { TablaGuardiaComponent } from './guardia-civil/tabla-guardia/tabla-guardia.component';
 import { ContenidoPbComponent } from './plaza-base/contenido-pb/contenido-pb.component';
+import { TablaPbComponent } from './plaza-base/tabla-pb/tabla-pb.component';
 
    
 const routes: Routes = [
@@ -19,7 +20,7 @@ const routes: Routes = [
   { path: 'notificaciones', component: NotificacionesComponent },
   { path: 'movil/card-incidencia', component: CardIncidenciaComponent},
   { path: 'guardacivil', component: TablaGuardiaComponent},
-  { path: 'plazabase', component: ContenidoPbComponent},
+  { path: 'plazabase/tabla-pb', component: TablaPbComponent},
   { path: 'movil/card-confirmacion-transito', component: CardConfirmacionTransitoComponent}
   
 ];

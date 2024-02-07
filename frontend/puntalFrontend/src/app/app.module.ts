@@ -9,6 +9,7 @@ import { EmbarcacionModule } from './embarcacion/embarcacion.module';
 import { NotificacionesModule } from './notificaciones/notificaciones.module';
 import { GuardiaCivilModule } from './guardia-civil/guardia-civil.module';
 import { TransitoModule } from './transito/transito.module';
+import { PlazaBaseModule } from './plaza-base/plaza-base.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -23,6 +24,8 @@ import { TransitoModule } from './transito/transito.module';
     NotificacionesModule,
     GuardiaCivilModule,
     TransitoModule,
+    PlazaBaseModule,
+
 
   ],
 

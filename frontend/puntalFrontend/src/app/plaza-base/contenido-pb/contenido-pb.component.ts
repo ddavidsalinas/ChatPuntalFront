@@ -3,9 +3,9 @@ import { datos } from 'src/resources/datos';
 //import { TablaPbComponent } from '../tabla-pb/tabla-pb.component';
 
 @Component({
-  selector: 'app-tabla-pb',
-  templateUrl: './tabla-pb.component.html',
-  styleUrls: ['./tabla-pb.component.css']
+  selector: 'app-contenido-pb',
+  templateUrl: './contenido-pb.component.html',
+  styleUrls: ['./contenido-pb.component.css']
 })
 export class ContenidoPbComponent implements OnInit {
   dtOptions: DataTables.Settings = {};

@@ -54,7 +54,7 @@ export class NavlateralComponent {
   transitosRoute: string = '/transito/tabla-transito';
   embarcacionRoute: string = '/embarcaciones';
   transitos2Route: string = '/transito/tabla-transito';
-  plazasBaseRoute:string = '/plazabase';
+  plazasBaseRoute:string = 'plazabase/tabla-pb';
 
 
   imageUrlDashboardDesbloqueado = 'assets/img/control.svg';
