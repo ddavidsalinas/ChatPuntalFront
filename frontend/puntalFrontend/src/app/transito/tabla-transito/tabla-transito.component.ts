@@ -23,6 +23,8 @@ export class TablaTransitoComponent implements OnInit {
     this.router.navigate(['/transito/formulario'], {
       queryParams: { tipo: 'vista' }, // O 'vacio' según tus necesidades
     }); // Si no es con ruta abosulta, no funciona
+      
+    
     // this.router.navigate(['../formulario'], { relativeTo: this.activatedRoute.parent });
   }
   ngOnInit(): void {
