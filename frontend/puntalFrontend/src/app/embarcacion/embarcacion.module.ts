@@ -7,6 +7,9 @@ import { FormularioEmbarcacionComponent } from './formulario-embarcacion/formula
 import { AppRoutingModule } from '../app-routing.module';
 import { RouterModule, Routes } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatDialogModule } from '@angular/material/dialog';
 import { FormdialogoemComponent } from './formdialogoem/formdialogoem.component';
 const routes: Routes = [
   {
@@ -33,7 +36,10 @@ const routes: Routes = [
     DataTablesModule,
     AppRoutingModule,
     RouterModule.forChild(routes),
-    FormsModule
+    FormsModule,
+    MatDialogModule,
+    MatFormFieldModule,
+    MatInputModule,
   ],
   exports: [
     EmbarcacionesComponent

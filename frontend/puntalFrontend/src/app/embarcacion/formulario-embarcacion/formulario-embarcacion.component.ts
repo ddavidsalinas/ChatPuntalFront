@@ -1,6 +1,9 @@
 import { Component, OnInit, ChangeDetectorRef, NgZone } from '@angular/core';
 import { SharedDataService } from 'src/app/services/shared-data/shared-data.service';
 import { ActivatedRoute } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+import { FormdialogoemComponent } from '../formdialogoem/formdialogoem.component';
+import { DialogoFormem } from '../dialogo-formem'; 
 
 @Component({
   selector: 'app-formulario-embarcacion',
@@ -13,32 +16,10 @@ export class FormularioEmbarcacionComponent implements OnInit {
   modoEdicion: boolean = false;
   embarcacionSeleccionada: any = { datos_tecnicos: '' };
   imagenSeleccionada: string | ArrayBuffer | null = null;
-  // embarcacionVacia: any = { datos_tecnicos: '' };
+ 
 
-  constructor(private sharedDataService: SharedDataService, private activatedRoute: ActivatedRoute, private cdr: ChangeDetectorRef, private ngZone: NgZone) { }
+  constructor(public dialog: MatDialog ,private sharedDataService: SharedDataService, private activatedRoute: ActivatedRoute, private cdr: ChangeDetectorRef, private ngZone: NgZone) { }
 
-  // onMostrarFormulario(tipo: string) {
-  //   console.log("onMostrarFormulario");
-  //   this.mostrarVacio = tipo === 'vacio';
-  //   this.esNuevo = this.mostrarVacio;
-  //   this.modoEdicion = !this.mostrarVacio;
-  //   this.modoVista = !this.modoEdicion;
-  //   // Si es un formulario vacío, inicializa embarcacionSeleccionada con el objeto vacío
-  //   if (this.mostrarVacio) {
-  //     this.embarcacionSeleccionada = { datos_tecnicos: '' };
-  //   }
-
-  //   // Configura el modoVista en función del estado actual
-  //   this.modoVista = !this.mostrarVacio && !this.modoEdicion;
-
-  //   // Si es un formulario vacío, forzar modoVista a ser falso para que sea editable
-  //   if (this.mostrarVacio || this.modoEdicion) {
-  //     this.modoVista = false;
-  //   }
-  //   this.ngZone.run(() => {
-  //     this.cdr.detectChanges();
-  //   });
-  // }
 
 
   ngOnInit(): void {
@@ -84,6 +65,27 @@ export class FormularioEmbarcacionComponent implements OnInit {
     // this.modoEdicion = true;
     this.modoVista = false;
   }
+  eliminar(): void {
+    const dialogRef = this.dialog.open(FormdialogoemComponent, {
+      data: {
+        matricula: this.embarcacionSeleccionada.matricula,
+        origen: this.embarcacionSeleccionada.origen,
+        titular: this.embarcacionSeleccionada.titular,
+        nombre: this.embarcacionSeleccionada.nombre
+       
+      } as DialogoFormem
+    });
+  
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+       
+        console.log('Eliminación confirmada. Causa de baja:', result.causa);
+      } else {
+        
+        console.log('Eliminación cancelada.');
+      }
+    });
+}
 }
 
 
