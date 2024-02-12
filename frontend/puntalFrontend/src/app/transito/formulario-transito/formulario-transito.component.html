@@ -50,16 +50,22 @@
               <label for="datosEstancia" class="form-label">Datos estancia:</label>
               <textarea name="datos" class="form-control mt-4" placeholder="Datos estancia"></textarea>
             </div>
+<<<<<<< HEAD
+=======
             <div class="tripulante mb-3 d-flex" >              
-              <app-tabla-tripulante [mostrar]='mostrar'></app-tabla-tripulante>
+              <app-tabla-tripulante [mostrar]='mostrar' [click]="click"></app-tabla-tripulante>
             </div>
+>>>>>>> 35b09bdd7c8a8c0a73c5f7a175d1d49f4174c398
             <div class="d-flex justify-content-end mt-5">
               <button class="btn btnCancelar" routerLink="../tabla">
                 CANCELAR
               </button>
               <button class="btn btnAdd">AÑADIR</button>
             </div>
+<<<<<<< HEAD
+=======
            
+>>>>>>> 35b09bdd7c8a8c0a73c5f7a175d1d49f4174c398
           </div>
         </div>
       </div>
@@ -120,16 +126,22 @@
                 [attr.readonly]="modoVista ? 'readonly' : null"></textarea>
             </div>
             <div class="tripulante mb-3 d-flex">              
-              <app-tabla-tripulante [mostrar]="noMostrar"></app-tabla-tripulante>
+              <app-tabla-tripulante [mostrar]="noMostrar" [click]="noClick"></app-tabla-tripulante>
             </div>
             <div class="d-flex justify-content-end mt-5">
               <button *ngIf="modoVista" class="btn btnBack" routerLink="../tabla">VOLVER</button>
               <button *ngIf="!modoVista" class="btnDelete btn" (click)="eliminar()">ELIMINAR</button>
               <button [ngClass]="{'btn': true, 'btnVista': modoVista, 'btnAdd': !modoVista}"
+<<<<<<< HEAD
+                (click)="activarModoEdicion()">
+                MODIFICAR
+              </button>
+=======
                 (click)="activarModoEdicionTripulante()">
                 MODIFICAR
               </button>
              
+>>>>>>> 35b09bdd7c8a8c0a73c5f7a175d1d49f4174c398
             </div>
           </div>
         </div>

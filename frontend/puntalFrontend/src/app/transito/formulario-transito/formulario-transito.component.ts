@@ -1,3 +1,4 @@
+
 import { Component, OnInit, ChangeDetectorRef, NgZone, ViewChild } from '@angular/core';
 import { SharedDataService } from 'src/app/services/shared-data/shared-data.service';
 import { ActivatedRoute } from '@angular/router';
@@ -19,6 +20,10 @@ export class FormularioTransitoComponent implements OnInit {
   imagenSeleccionada: string | ArrayBuffer | null = null;
   // transitoVacia: any = { datos_tecnicos: '' };
 
+  mostrar :string ='no';
+  noMostrar :string='si';
+  click:boolean=true;
+  noClick:boolean=false;
   constructor(
     private sharedDataService: SharedDataService,
     private activatedRoute: ActivatedRoute,
@@ -26,6 +31,7 @@ export class FormularioTransitoComponent implements OnInit {
     private ngZone: NgZone,
     public dialog: MatDialog 
   ) {}
+
   //conecta en formulario para llmaar a la edicion del formulario y llamar a la edicion del componente de tripulante
   activarModoEdicionTripulante() {
     if (this.tripulante) {
@@ -57,8 +63,8 @@ export class FormularioTransitoComponent implements OnInit {
   //     this.cdr.detectChanges();
   //   });
   // }
-mostrar :string ='no';
-noMostrar :string='si';
+
+
 
   ngOnInit(): void {
     this.activatedRoute.queryParams.subscribe((params) => {
@@ -101,6 +107,7 @@ noMostrar :string='si';
       reader.readAsDataURL(file);
     }
   }
+  
 
   activarModoEdicion() {
     // this.modoEdicion = true;
