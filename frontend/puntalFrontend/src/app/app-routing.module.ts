@@ -12,7 +12,9 @@ import { TablaGuardiaComponent } from './guardia-civil/tabla-guardia/tabla-guard
 import { ContenidoPbComponent } from './plaza-base/contenido-pb/contenido-pb.component';
 import { TablaTripulanteComponent } from './transito/tabla-tripulante/tabla-tripulante.component';
 import { FormularioPbComponent } from './plaza-base/formulario-pb/formulario-pb.component';
+import { TablaPbComponent } from './plaza-base/tabla-pb/tabla-pb.component';
 
+   
 const routes: Routes = [
   
   { path: 'dashboard', component: DashboardComponent},
@@ -25,6 +27,9 @@ const routes: Routes = [
   { path: 'plazabase', component: ContenidoPbComponent},
  
   { path: 'movil/card-confirmacion-transito', component: CardConfirmacionTransitoComponent},
+  { path: 'guardacivil', component: TablaGuardiaComponent},
+  { path: 'plazabase/tabla-pb', component: TablaPbComponent},
+  { path: 'movil/card-confirmacion-transito', component: CardConfirmacionTransitoComponent}
   
 ];
 
