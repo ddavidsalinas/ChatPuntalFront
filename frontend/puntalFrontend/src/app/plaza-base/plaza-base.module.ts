@@ -8,6 +8,7 @@ import { FormdialogoPbComponent } from './formdialogo-pb/formdialogo-pb.componen
 import { ContenidoPbComponent } from './contenido-pb/contenido-pb.component';
 import { FormsModule } from '@angular/forms';
 import { DataTablesModule } from 'angular-datatables';
+import { SharedDataService } from 'src/app/services/shared-data/shared-data.service';
 
 const routes: Routes = [
   {
@@ -36,5 +37,6 @@ const routes: Routes = [
     RouterModule.forChild(routes),
   ],
   exports: [ContenidoPbComponent, FormularioPbComponent],
+  providers: [SharedDataService],
 })
 export class PlazaBaseModule {}
