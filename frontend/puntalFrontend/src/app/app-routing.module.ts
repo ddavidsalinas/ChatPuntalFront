@@ -95,6 +95,88 @@ import { FormularioTransitoComponent } from './transito/formulario-transito/form
 //   // Otras rutas principales si las hay
 //   { path: '**', redirectTo: '/login' } // Redirigir rutas no reconocidas a la página de inicio de sesión
 // ];
+// const routes: Routes = [
+//   {
+//     path: '',
+//     redirectTo: '/login',
+//     pathMatch: 'full'
+//   },
+//   {
+//     path: 'login',
+//     component: LoginComponent
+//   },
+//   {
+//     path: 'home',
+//     component: ContenidoComponent,
+//     children: [
+//       {
+//         path: 'dashboard',
+//         component: DashboardComponent
+//       },
+//       {
+//         path: 'embarcaciones',
+//         component: EmbarcacionesComponent,
+//         children: [
+//           {
+//             path: 'tabla',
+//             component: TablaComponent
+//           },
+//           {
+//             path: 'formulario',
+//             component: FormularioEmbarcacionComponent
+//           },
+//           {
+//             path: '',
+//             redirectTo: 'tabla',
+//             pathMatch: 'full'
+//           },
+//         ]
+//       },
+//       {
+//         path: 'plazabase',
+//         component: ContenidoPbComponent,
+//         children: [
+//           {
+//             path: 'tabla',
+//             component: TablaPbComponent
+//           },
+//           {
+//             path: 'formulario',
+//             component: FormularioPbComponent
+//           },
+//           {
+//             path: '',
+//             redirectTo: 'tabla',
+//             pathMatch: 'full'
+//           },
+//         ]
+//       },
+//       {
+//         path: 'transito',
+//         component: ContenidoTransitoComponent,
+//         children: [
+//           {
+//             path: 'tabla',
+//             component: TablaTransitoComponent
+//           },
+//           {
+//             path: 'formulario',
+//             component: FormularioTransitoComponent
+//           },
+//           {
+//             path: '',
+//             redirectTo: 'tabla',
+//             pathMatch: 'full'
+//           },
+//         ]
+//       }
+//     ]
+//   },
+//   {
+//     path: '**',
+//     redirectTo: '/login'
+//   }
+// ];
 const routes: Routes = [
   {
     path: '',
@@ -106,70 +188,70 @@ const routes: Routes = [
     component: LoginComponent
   },
   {
-    path: 'home',
+    path: 'dashboard',
     component: ContenidoComponent,
     children: [
       {
-        path: 'dashboard',
+        path: '',
         component: DashboardComponent
-      },
-      {
-        path: 'embarcaciones',
-        component: EmbarcacionesComponent,
-        children: [
-          {
-            path: 'tabla',
-            component: TablaComponent
-          },
-          {
-            path: 'formulario',
-            component: FormularioEmbarcacionComponent
-          },
-          {
-            path: '',
-            redirectTo: 'tabla',
-            pathMatch: 'full'
-          },
-        ]
-      },
-      {
-        path: 'plazabase',
-        component: ContenidoPbComponent,
-        children: [
-          {
-            path: 'tabla',
-            component: TablaPbComponent
-          },
-          {
-            path: 'formulario',
-            component: FormularioPbComponent
-          },
-          {
-            path: '',
-            redirectTo: 'tabla',
-            pathMatch: 'full'
-          },
-        ]
-      },
-      {
-        path: 'transito',
-        component: ContenidoTransitoComponent,
-        children: [
-          {
-            path: 'tabla',
-            component: TablaTransitoComponent
-          },
-          {
-            path: 'formulario',
-            component: FormularioTransitoComponent
-          },
-          {
-            path: '',
-            redirectTo: 'tabla',
-            pathMatch: 'full'
-          },
-        ]
       }
+    ]
+  },
+  {
+    path: 'embarcaciones',
+    component: ContenidoComponent,
+    children: [
+      {
+        path: 'tabla',
+        component: TablaComponent
+      },
+      {
+        path: 'formulario',
+        component: FormularioEmbarcacionComponent
+      },
+      {
+        path: '',
+        redirectTo: 'tabla',
+        pathMatch: 'full'
+      },
+    ]
+  },
+  {
+    path: 'plazabase',
+    component: ContenidoComponent,
+    children: [
+      {
+        path: 'tabla',
+        component: TablaPbComponent
+      },
+      {
+        path: 'formulario',
+        component: FormularioPbComponent
+      },
+      {
+        path: '',
+        redirectTo: 'tabla',
+        pathMatch: 'full'
+      },
+    ]
+  },
+  {
+    path: 'transito',
+    component: ContenidoComponent,
+    children: [
+      {
+        path: 'tabla',
+        component: TablaTransitoComponent
+      },
+      {
+        path: 'formulario',
+        component: FormularioTransitoComponent
+      },
+      {
+        path: '',
+        redirectTo: 'tabla',
+        pathMatch: 'full'
+      },
     ]
   },
   {
@@ -177,7 +259,6 @@ const routes: Routes = [
     redirectTo: '/login'
   }
 ];
-
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
