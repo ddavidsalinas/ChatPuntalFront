@@ -21,12 +21,7 @@ export class TablaTransitoComponent implements OnInit {
     const rowData = this.datos[index];
     this.sharedDataService.setData('transitoSeleccionada', rowData);
     this.router.navigate(['formulario'], { relativeTo: this.activatedRoute.parent, queryParams: { tipo: 'vista' } });
-    // this.router.navigate(['/transito/formulario'], {
-    //   queryParams: { tipo: 'vista' }, // O 'vacio' según tus necesidades
-    // }); // Si no es con ruta abosulta, no funciona
-      
-    
-    // this.router.navigate(['../formulario'], { relativeTo: this.activatedRoute.parent });
+
   }
   ngOnInit(): void {
     console.log(this.datos);
