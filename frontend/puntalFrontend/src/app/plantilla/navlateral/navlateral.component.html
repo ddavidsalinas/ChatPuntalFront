@@ -1,5 +1,6 @@
 <div class="azul500 col-md-2 d-flex flex-column">
   <img alt="Bootstrap Image Preview" src="/assets/img/Group.svg" class="logo" />
+<div *ngIf="admin">
   <app-boton
   [claseDesbloqueado]="claseBotonDesbloqueado"
   [claseBloqueado]="claseBotonBloqueado"
@@ -41,5 +42,6 @@
   [bloqueado]="bloqueadoGestionPlazaBase"
   (click)="activarGestionPlazaBase()"
 ></app-boton>
+</div>
 
 </div>

@@ -13,24 +13,25 @@ import { ContenidoPbComponent } from './plaza-base/contenido-pb/contenido-pb.com
 import { TablaTripulanteComponent } from './transito/tabla-tripulante/tabla-tripulante.component';
 import { FormularioPbComponent } from './plaza-base/formulario-pb/formulario-pb.component';
 import { TablaPbComponent } from './plaza-base/tabla-pb/tabla-pb.component';
+import { LoginComponent } from './login/login/login.component';
 
-   
+
 const routes: Routes = [
-  
-  { path: 'dashboard', component: DashboardComponent},
-  { path: 'embarcacion/embarcaciones', component: EmbarcacionesComponent},
+
+  { path: 'dashboard', component: DashboardComponent },
+  { path: 'embarcacion/embarcaciones', component: EmbarcacionesComponent },
   { path: 'transito/tabla-transito', component: TablaTransitoComponent },
-  { path: 'plazabase/formulario', component: FormularioPbComponent},
+  { path: 'plazabase/formulario', component: FormularioPbComponent },
   { path: 'notificaciones', component: NotificacionesComponent },
-  { path: 'movil/card-incidencia', component: CardIncidenciaComponent},
+  { path: 'movil/card-incidencia', component: CardIncidenciaComponent },
   { path: 'guardacivil', redirectTo: 'guardia-civil/tabla-guardia', pathMatch: 'full' },
-  { path: 'plazabase', component: ContenidoPbComponent},
- 
-  { path: 'movil/card-confirmacion-transito', component: CardConfirmacionTransitoComponent},
-  { path: 'guardacivil', component: TablaGuardiaComponent},
-  { path: 'plazabase/tabla-pb', component: TablaPbComponent},
-  { path: 'movil/card-confirmacion-transito', component: CardConfirmacionTransitoComponent}
-  
+  { path: 'plazabase', component: ContenidoPbComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'movil/card-confirmacion-transito', component: CardConfirmacionTransitoComponent },
+  { path: 'guardacivil', component: TablaGuardiaComponent },
+  { path: 'plazabase/tabla-pb', component: TablaPbComponent },
+  { path: 'movil/card-confirmacion-transito', component: CardConfirmacionTransitoComponent }
+
 ];
 
 
