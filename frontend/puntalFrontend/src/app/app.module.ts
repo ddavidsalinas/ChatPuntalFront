@@ -13,6 +13,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginModule } from './login/login.module';
 import { PlazaBaseModule } from './plaza-base/plaza-base.module';
 
+
 @NgModule({
   declarations: [AppComponent],
 

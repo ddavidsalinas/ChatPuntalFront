@@ -1,8 +1,6 @@
-import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
-// import { AuthService } from '../../services/auth/auth.service';
-// import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
-// import * as $ from 'jquery';
+import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/app//services/login/auth.service'; 
+import { StorageService } from 'src/app//services/login/storage.service';
 
 @Component({
   selector: 'app-login',
@@ -10,18 +8,45 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  username: string = '';
-  password: string = '';
+  form: any = {
+    username: null,
+    password: null
+  };
+  isLoggedIn = false;
+  isLoginFailed = false;
+  errorMessage = '';
+  roles: string[] = [];
 
-
-
-
-
-
-
-
+  constructor() { }
 
   ngOnInit(): void {
-
+    // if (this.storageService.isLoggedIn()) {
+    //   this.isLoggedIn = true;
+    //   this.roles = this.storageService.getUser().roles;
+    // }
+    console.log("login.component.ts ngOnInit");
   }
+
+  // onSubmit(): void {
+  //   const { username, password } = this.form;
+
+  //   this.authService.login(username, password).subscribe({
+  //     next: data => {
+  //       this.storageService.saveUser(data);
+
+  //       this.isLoginFailed = false;
+  //       this.isLoggedIn = true;
+  //       this.roles = this.storageService.getUser().roles;
+  //       this.reloadPage();
+  //     },
+  //     error: err => {
+  //       this.errorMessage = err.error.message;
+  //       this.isLoginFailed = true;
+  //     }
+  //   });
+  // }
+
+  // reloadPage(): void {
+  //   window.location.reload();
+  // }
 }
