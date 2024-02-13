@@ -5,9 +5,9 @@ import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from '../app-routing.module';
 import { Routes } from '@angular/router';
 
-const routes: Routes = [
-  { path: 'login', component: LoginComponent },
-];
+// const routes: Routes = [
+//   { path: 'login', component: LoginComponent },
+// ];
 
 @NgModule({
   declarations: [

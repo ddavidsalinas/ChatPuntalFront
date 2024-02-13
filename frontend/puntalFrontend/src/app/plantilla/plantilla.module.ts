@@ -10,7 +10,7 @@ import { TransitoModule } from '../transito/transito.module';
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'home',
     component: ContenidoComponent,
     children: [
      { path: 'dashboard', loadChildren: () => import('../dashboard/dashboard.module').then(m => m.DashboardModule) },

@@ -8,18 +8,18 @@ import { AppRoutingModule } from '../app-routing.module';
 import { RouterModule, Routes } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { FormdialogoemComponent } from './formdialogoem/formdialogoem.component';
-const routes: Routes = [
-  {
-    path: 'embarcaciones',
-    component: EmbarcacionesComponent,
-    children: [
-      { path: 'tabla', component: TablaComponent },
-      { path: 'formulario', component: FormularioEmbarcacionComponent },
-      { path: '', redirectTo: 'tabla', pathMatch: 'full' },
-      // Puedes agregar más rutas según tus necesidades
-    ]
-  },
-];
+// const routes: Routes = [
+//   {
+//     path: 'embarcaciones',
+//     component: EmbarcacionesComponent,
+//     children: [
+//       { path: 'tabla', component: TablaComponent },
+//       { path: 'formulario', component: FormularioEmbarcacionComponent },
+//       { path: '', redirectTo: 'tabla', pathMatch: 'full' },
+//       // Puedes agregar más rutas según tus necesidades
+//     ]
+//   },
+// ];
 
 @NgModule({
   declarations: [
@@ -32,7 +32,7 @@ const routes: Routes = [
     CommonModule,
     DataTablesModule,
     AppRoutingModule,
-    RouterModule.forChild(routes),
+    // RouterModule.forChild(routes),
     FormsModule
   ],
   exports: [
