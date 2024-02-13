@@ -11,6 +11,7 @@ import { GuardiaCivilModule } from './guardia-civil/guardia-civil.module';
 import { TransitoModule } from './transito/transito.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginModule } from './login/login.module';
+import { PlazaBaseModule } from './plaza-base/plaza-base.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -27,6 +28,8 @@ import { LoginModule } from './login/login.module';
     TransitoModule,
     BrowserAnimationsModule,
     LoginModule,
+    PlazaBaseModule,
+
 
   ],
 
