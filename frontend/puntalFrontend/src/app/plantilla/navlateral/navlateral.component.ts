@@ -15,6 +15,7 @@ export class NavlateralComponent {
   bloqueadoGestionTransitos = false;
   bloqueadoGestionEmbarcaciones = false;
   bloqueadoGestionPlazaBase = false;
+  admin = false;
 
   activarPanelControl(): void {
 
