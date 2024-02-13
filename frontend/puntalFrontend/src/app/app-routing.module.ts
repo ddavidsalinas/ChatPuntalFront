@@ -99,6 +99,16 @@ const routes: Routes = [
     ]
   },
   {
+    path: 'notificaciones',
+    component: ContenidoComponent, // O el componente que corresponda
+    children: [
+      {
+        path: '',
+        component: NotificacionesComponent
+      }
+    ]
+  },
+  {
     path: '**',
     redirectTo: '/login'
   }
