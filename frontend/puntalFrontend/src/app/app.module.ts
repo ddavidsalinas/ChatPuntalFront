@@ -10,6 +10,7 @@ import { NotificacionesModule } from './notificaciones/notificaciones.module';
 import { GuardiaCivilModule } from './guardia-civil/guardia-civil.module';
 import { TransitoModule } from './transito/transito.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { LoginModule } from './login/login.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -25,6 +26,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     GuardiaCivilModule,
     TransitoModule,
     BrowserAnimationsModule,
+    LoginModule,
 
   ],
 
