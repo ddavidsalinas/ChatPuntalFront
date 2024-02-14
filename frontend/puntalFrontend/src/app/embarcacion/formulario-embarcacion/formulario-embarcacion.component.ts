@@ -145,7 +145,7 @@ export class FormularioEmbarcacionComponent implements OnInit {
   }
   actualizarEmbarcacion() {
 
-    this.apiService.update(this.embarcacionSeleccionada.Matricula, 'embarcacion', this.embarcacionSeleccionada)
+    this.apiService.update(this.embarcacionSeleccionada.id, 'embarcacion', this.embarcacionSeleccionada)
       .pipe(
         catchError(error => {
           console.error('Error en la solicitud:', error);
