@@ -23,7 +23,7 @@ import { FormdialogoemComponent } from './formdialogoem/formdialogoem.component'
     CommonModule,
     DataTablesModule,
     AppRoutingModule,
-    RouterModule.forChild(routes),
+    // RouterModule.forChild(routes),
     FormsModule,
     MatDialogModule,
     MatFormFieldModule,

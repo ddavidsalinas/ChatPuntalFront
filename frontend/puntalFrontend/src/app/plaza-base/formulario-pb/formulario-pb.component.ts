@@ -1,6 +1,9 @@
 import { Component, OnInit, ChangeDetectorRef, NgZone } from '@angular/core';
 import { SharedDataService } from 'src/app/services/shared-data/shared-data.service';
 import { ActivatedRoute } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+import { FormdialogoPbComponent } from '../formdialogo-pb/formdialogo-pb.component';
+import { DialogoFormpb } from '../dialogo-formpb';
 
 @Component({
   selector: 'app-formulario-pb',
@@ -18,7 +21,10 @@ export class FormularioPbComponent implements OnInit {
     private sharedDataService: SharedDataService,
     private activatedRoute: ActivatedRoute,
     private cdr: ChangeDetectorRef,
-    private ngZone: NgZone
+    private ngZone: NgZone,
+    public dialog:MatDialog,
+    
+
   ) {}
 
   ngOnInit(): void {
@@ -62,4 +68,25 @@ export class FormularioPbComponent implements OnInit {
   activarModoEdicion() {
     this.modoVista = false;
   }
+  eliminar(): void {
+    const dialogRef = this.dialog.open(FormdialogoPbComponent, {
+      data: {
+        embarcacion: this.plazaBSeleccionada.embarcacion,
+        instalacion: this.plazaBSeleccionada.instalacion,
+        titular: this.plazaBSeleccionada.titular,
+        pantalan: this.plazaBSeleccionada.pantalan,
+        
+      } as DialogoFormpb
+    });
+  
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+       
+        console.log('Eliminación confirmada. Causa de baja:', result.causa);
+      } else {
+        
+        console.log('Eliminación cancelada.');
+      }
+    });
+}
 }
