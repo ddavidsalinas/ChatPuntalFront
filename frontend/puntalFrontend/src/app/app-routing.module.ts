@@ -18,18 +18,15 @@ import { TablaComponent } from './embarcacion/tabla/tabla.component';
 import { FormularioEmbarcacionComponent } from './embarcacion/formulario-embarcacion/formulario-embarcacion.component';
 import { FormularioTransitoComponent } from './transito/formulario-transito/formulario-transito.component';
 
-
-
-
 const routes: Routes = [
   {
     path: '',
     redirectTo: '/login',
-    pathMatch: 'full'
+    pathMatch: 'full',
   },
   {
     path: 'login',
-    component: LoginComponent
+    component: LoginComponent,
   },
   {
     path: 'dashboard',
@@ -37,9 +34,9 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        component: DashboardComponent
-      }
-    ]
+        component: DashboardComponent,
+      },
+    ],
   },
   {
     path: 'embarcaciones',
@@ -47,18 +44,18 @@ const routes: Routes = [
     children: [
       {
         path: 'tabla',
-        component: TablaComponent
+        component: TablaComponent,
       },
       {
         path: 'formulario',
-        component: FormularioEmbarcacionComponent
+        component: FormularioEmbarcacionComponent,
       },
       {
         path: '',
         redirectTo: 'tabla',
-        pathMatch: 'full'
+        pathMatch: 'full',
       },
-    ]
+    ],
   },
   {
     path: 'plazabase',
@@ -66,18 +63,18 @@ const routes: Routes = [
     children: [
       {
         path: 'tabla',
-        component: TablaPbComponent
+        component: TablaPbComponent,
       },
       {
         path: 'formulario',
-        component: FormularioPbComponent
+        component: FormularioPbComponent,
       },
       {
         path: '',
         redirectTo: 'tabla',
-        pathMatch: 'full'
+        pathMatch: 'full',
       },
-    ]
+    ],
   },
   {
     path: 'transito',
@@ -85,18 +82,18 @@ const routes: Routes = [
     children: [
       {
         path: 'tabla',
-        component: TablaTransitoComponent
+        component: TablaTransitoComponent,
       },
       {
         path: 'formulario',
-        component: FormularioTransitoComponent
+        component: FormularioTransitoComponent,
       },
       {
         path: '',
         redirectTo: 'tabla',
-        pathMatch: 'full'
+        pathMatch: 'full',
       },
-    ]
+    ],
   },
   {
     path: 'notificaciones',
@@ -104,17 +101,17 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        component: NotificacionesComponent
-      }
-    ]
+        component: NotificacionesComponent,
+      },
+    ],
   },
   {
     path: '**',
-    redirectTo: '/login'
-  }
+    redirectTo: '/login',
+  },
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
