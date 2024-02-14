@@ -165,7 +165,7 @@ export class FormularioEmbarcacionComponent implements OnInit {
       );
   }
   eliminarEmbarcacion() {
-    this.apiService.delete(this.embarcacionSeleccionada.Matricula, 'embarcacion')
+    this.apiService.delete(this.embarcacionSeleccionada.id, 'embarcacion')
       .pipe(
         catchError(error => {
           console.error('Error en la solicitud:', error);
