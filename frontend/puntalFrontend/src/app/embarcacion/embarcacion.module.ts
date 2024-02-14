@@ -7,7 +7,9 @@ import { FormularioEmbarcacionComponent } from './formulario-embarcacion/formula
 import { AppRoutingModule } from '../app-routing.module';
 import { FormsModule } from '@angular/forms';
 import { FormdialogoemComponent } from './formdialogoem/formdialogoem.component';
-
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,10 @@ import { FormdialogoemComponent } from './formdialogoem/formdialogoem.component'
     CommonModule,
     DataTablesModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    MatDialogModule,
+    MatFormFieldModule,
+    MatInputModule,
   ],
   exports: [
     EmbarcacionesComponent

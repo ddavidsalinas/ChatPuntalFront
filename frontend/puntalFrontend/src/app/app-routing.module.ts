@@ -96,6 +96,16 @@ const routes: Routes = [
     ],
   },
   {
+    path: 'guardiacivil',
+    component: ContenidoComponent, // O el componente que corresponda
+    children: [
+      {
+        path: '',
+        component: TablaGuardiaComponent
+      }
+    ]
+  },
+  {
     path: 'notificaciones',
     component: ContenidoComponent, // O el componente que corresponda
     children: [
