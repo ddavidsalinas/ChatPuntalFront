@@ -12,6 +12,7 @@ import { TransitoModule } from './transito/transito.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginModule } from './login/login.module';
 import { PlazaBaseModule } from './plaza-base/plaza-base.module';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -30,6 +31,7 @@ import { PlazaBaseModule } from './plaza-base/plaza-base.module';
     BrowserAnimationsModule,
     LoginModule,
     PlazaBaseModule,
+    HttpClientModule,
 
 
   ],
