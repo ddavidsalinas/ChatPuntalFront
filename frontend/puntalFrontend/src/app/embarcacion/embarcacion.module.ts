@@ -5,24 +5,12 @@ import { DataTablesModule } from 'angular-datatables';
 import { EmbarcacionesComponent } from './embarcaciones/embarcaciones.component';
 import { FormularioEmbarcacionComponent } from './formulario-embarcacion/formulario-embarcacion.component';
 import { AppRoutingModule } from '../app-routing.module';
-import { RouterModule, Routes } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatDialogModule } from '@angular/material/dialog';
 import { FormdialogoemComponent } from './formdialogoem/formdialogoem.component';
-const routes: Routes = [
-  {
-    path: 'embarcaciones',
-    component: EmbarcacionesComponent,
-    children: [
-      { path: 'tabla', component: TablaComponent },
-      { path: 'formulario', component: FormularioEmbarcacionComponent },
-      { path: '', redirectTo: 'tabla', pathMatch: 'full' },
-      // Puedes agregar más rutas según tus necesidades
-    ]
-  },
-];
+
 
 @NgModule({
   declarations: [
@@ -40,6 +28,7 @@ const routes: Routes = [
     MatDialogModule,
     MatFormFieldModule,
     MatInputModule,
+    FormsModule
   ],
   exports: [
     EmbarcacionesComponent
