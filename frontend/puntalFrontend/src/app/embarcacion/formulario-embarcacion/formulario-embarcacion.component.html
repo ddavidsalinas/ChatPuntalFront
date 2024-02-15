@@ -247,7 +247,7 @@
       </div>
       <div class="d-flex justify-content-end mt-5">
         <button class="btn btnCancelar" routerLink="../tabla">CANCELAR</button>
-        <button type="submit"  class="btn btnAdd">AÑADIR</button>
+        <button type="submit"  class="btn btnAdd"  >AÑADIR</button>
       </div>
     </div>
   </form>
@@ -266,7 +266,7 @@
           class="form-control mt-4"
           placeholder="Nombre"
           [(ngModel)]="embarcacionSeleccionada.Nombre"
-          [readOnly]="!modoEdicion"
+          [readOnly]="modoVista"
         />
       </div>
       <div class="mb-3 d-flex">
@@ -277,7 +277,7 @@
           class="form-control mt-4"
           placeholder="Matrícula"
           [(ngModel)]="embarcacionSeleccionada.Matricula"
-          [readOnly]="!modoEdicion"
+          [readOnly]="modoVista"
         />
       </div>
       <div class="mb-3 d-flex">
@@ -288,7 +288,7 @@
           class="form-control mt-4"
           placeholder="Modelo"
           [(ngModel)]="embarcacionSeleccionada.Modelo"
-          [readOnly]="!modoEdicion"
+          [readOnly]="modoVista"
         />
       </div>
       <div class="mb-3 d-flex">
@@ -299,7 +299,7 @@
           class="form-control mt-4"
           placeholder="Bandera"
           [(ngModel)]="embarcacionSeleccionada.Origen"
-          [readOnly]="!modoEdicion"
+          [readOnly]="modoVista"
         />
       </div>
       <div class="mb-3 d-flex">
@@ -310,7 +310,7 @@
           class="form-control mt-4"
           placeholder="Titular"
           [(ngModel)]="embarcacionSeleccionada.Titular"
-          [readOnly]="!modoEdicion"
+          [readOnly]="modoVista"
         />
       </div>
       <div class="mb-3 d-flex">
@@ -321,7 +321,7 @@
           class="form-control mt-4"
           placeholder="Eslora"
           [(ngModel)]="embarcacionSeleccionada.Eslora"
-          [readOnly]="!modoEdicion"
+          [readOnly]="modoVista"
         />
       </div>
       <div class="mb-3 d-flex">
@@ -332,7 +332,7 @@
           class="form-control mt-4"
           placeholder="Manga"
           [(ngModel)]="embarcacionSeleccionada.Manga"
-          [readOnly]="!modoEdicion"
+          [readOnly]="modoVista"
         />
       </div>
       <div class="mb-3 d-flex">
@@ -343,7 +343,7 @@
           class="form-control mt-4"
           placeholder="Nº Registro"
           [(ngModel)]="embarcacionSeleccionada.Numero_Registro"
-          [readOnly]="!modoEdicion"
+          [readOnly]="modoVista"
         />
       </div>
     </div>
@@ -356,7 +356,7 @@
           class="form-control mt-4"
           placeholder="Tipo"
           [(ngModel)]="embarcacionSeleccionada.Tipo"
-          [readOnly]="!modoEdicion"
+          [readOnly]="modoVista"
         />
       </div>
       <div class="mb-3 d-flex">
@@ -366,7 +366,7 @@
           class="form-control mt-4"
           placeholder="Datos técnicos"
           [(ngModel)]="embarcacionSeleccionada.Datos_Tecnicos"
-          [readOnly]="!modoEdicion"
+          [readOnly]="modoVista"
         ></textarea>
       </div>
       <div class="mb-3 d-flex">
@@ -381,16 +381,23 @@
           *ngIf="!modoVista"
           class="btnDelete btn"
           (click)="eliminarEmbarcacion()"
+          routerLink="../tabla"
         >
           ELIMINAR
         </button>
         <button
-          *ngIf="modoEdicion"
+          *ngIf="!modoEdicion"
           class="btn btnCancelar"
           routerLink="../tabla"
         >
           CANCELAR
         </button>
+
+        <button
+      
+        *ngIf="modoVista" class="btn btnCancelar" routerLink="../tabla">VOLVER
+       </button>
+
         <button
           *ngIf="modoVista"
           class="btn btnVista"
@@ -398,7 +405,9 @@
         >
           MODIFICAR
         </button>
-        <button (click)="actualizarEmbarcacion()" *ngIf="modoEdicion" class="btn btnAdd">MODIFICAR</button>
+       
+        <button (click)="actualizarEmbarcacion()" *ngIf="!modoVista" class="btn btnAdd"
+        routerLink="../tabla">MODIFICAR</button>
       </div>
     </div>
   </form>

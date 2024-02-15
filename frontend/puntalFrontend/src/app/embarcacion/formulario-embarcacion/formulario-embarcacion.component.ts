@@ -94,7 +94,7 @@ export class FormularioEmbarcacionComponent implements OnInit {
   }
 
   activarModoEdicion() {
-    // this.modoEdicion = true;
+    this.modoEdicion = true;
     this.modoVista = false;
   }
 
@@ -187,25 +187,6 @@ export class FormularioEmbarcacionComponent implements OnInit {
     const dialogRef = this.dialog.open(FormdialogoemComponent, {
       data: {
         matricula: this.embarcacionSeleccionada.matricula,
-<<<<<<< HEAD
-        origen: this.embarcacionSeleccionada.origen,
-        titular: this.embarcacionSeleccionada.titular,
-        nombre: this.embarcacionSeleccionada.nombre
-       
-      } as DialogoFormem
-    });
-  
-    dialogRef.afterClosed().subscribe(result => {
-      if (result) {
-       
-        console.log('Eliminación confirmada. Causa de baja:', result.causa);
-      } else {
-        
-        console.log('Eliminación cancelada.');
-      }
-    });
-}
-=======
 
 
 
@@ -223,7 +204,6 @@ export class FormularioEmbarcacionComponent implements OnInit {
     });
   }
 
->>>>>>> b486fbd90dba14003ac6ee1f43bea615a2eb834c
 }
 
 

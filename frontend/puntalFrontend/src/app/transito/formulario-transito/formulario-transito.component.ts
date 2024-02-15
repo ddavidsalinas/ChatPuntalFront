@@ -6,6 +6,9 @@ import { MatDialog } from '@angular/material/dialog';
 import { FormdialogoComponent } from '../formdialogo/formdialogo.component';
 import { DilogoForm } from '../dilogo-form';
 import { TablaTripulanteComponent } from '../tabla-tripulante/tabla-tripulante.component';
+import { ApiService } from 'src/app/services/api/api.service';
+import { catchError } from 'rxjs';
+import { error } from 'jquery';
 @Component({
   selector: 'app-formulario-transito',
   templateUrl: './formulario-transito.component.html',
@@ -29,7 +32,8 @@ export class FormularioTransitoComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private cdr: ChangeDetectorRef,
     private ngZone: NgZone,
-    public dialog: MatDialog 
+    public dialog: MatDialog,
+    private apiService: ApiService 
   ) {}
 
   //conecta en formulario para llmaar a la edicion del formulario y llamar a la edicion del componente de tripulante
@@ -134,6 +138,92 @@ export class FormularioTransitoComponent implements OnInit {
       }
     });
 }
+
+
+guardarTransito() {
+  console.log('Guardando transito:', this.transitoSeleccionada);
+  const formulario = document.forms.namedItem("formTransito") as HTMLFormElement;
+  // Accede a los valores del formulario usando document.forms['nombreFormulario']['nombreCampo']
+  const FechaEntradaValue = formulario['fecha_entrada'].value as HTMLInputElement;
+  const FechaSalidaValue = formulario['fecha_salida'].value as HTMLInputElement;
+  const EmbarcacionValue = formulario['embarcacion'].value as HTMLInputElement;
+  const InstalacionValue = formulario['instalacion'].value as HTMLInputElement;
+  const PantalanValue = formulario['pantalan'].value as HTMLInputElement;
+  const AmarreValue = formulario['amarre'].value as HTMLInputElement;
+  const PropositoValue = formulario['proposito'].value as HTMLInputElement;
+  const AutorizacionesValue = formulario['autorizaciones'].value as HTMLInputElement;
+  const PatronValue = formulario['patron'].value as HTMLInputElement;
+  const DatosEstanciaValue = formulario['datosEstancia'].value as HTMLInputElement;
+  this.transitoSeleccionada = {
+    FechaEntrada: FechaEntradaValue,
+    FechaSalida: FechaSalidaValue,
+    Embarcacion: EmbarcacionValue,
+    Instalacion: InstalacionValue,
+    Pantalan: PantalanValue,
+    Amarre: AmarreValue,
+    Proposito: PropositoValue,
+    Autorizacion: AutorizacionesValue,
+    Patron: PatronValue,
+    DatosEstancia: DatosEstanciaValue,
+    
+  };
+  // ... y así sucesivamente para otros campos.
+
+  this.apiService.add('transito', this.transitoSeleccionada)
+    .pipe(
+      catchError(error => {
+        console.error('Error en la solicitud:', error);
+        console.log('Mensaje de error:', error.error);
+        throw error;
+      })
+    )
+    .subscribe(
+      response => {
+        console.log('Respuesta del servicio en el componente:', response);
+
+      }
+    );
+}
+actualizarTransito() {
+
+  this.apiService.update(this.transitoSeleccionada.id, 'transito', this.transitoSeleccionada)
+    .pipe(
+      catchError(error => {
+        console.error('Error en la solicitud:', error);
+        // Puedes manejar el error según tus necesidades
+        throw error; // Propagar el error después de manejarlo
+      })
+    )
+    .subscribe(
+      response => {
+        console.log('Respuesta del servicio en el componente:', response);
+        // this.formulario.reset();
+        this.transitoSeleccionada = {};
+      },
+      error => {
+        console.error('Error en la solicitud:', error);
+      }
+    );
+}
+eliminarTransito() {
+  this.apiService.delete(this.transitoSeleccionada.id, 'transito')
+    .pipe(
+      catchError(error => {
+        console.error('Error en la solicitud:', error);
+        throw error;
+      })
+    )
+    .subscribe(
+      response => {
+        console.log('Respuesta del servicio en el componente:', response);
+        this.transitoSeleccionada = {};
+      },
+      error => {
+        console.error('Error en la solicitud:', error);
+      }
+    );
+}
+
 
 
 

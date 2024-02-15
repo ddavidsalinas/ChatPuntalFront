@@ -87,7 +87,7 @@ export class TablaComponent implements OnInit {
     // Configuración de DataTables
     this.dtOptions = {
       pagingType: 'full_numbers',
-      pageLength: 10,
+      pageLength: 3,
       processing: true,
       language: {
         url: '//cdn.datatables.net/plug-ins/1.10.25/i18n/Spanish.json'
