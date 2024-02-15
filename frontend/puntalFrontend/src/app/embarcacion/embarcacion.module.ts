@@ -28,7 +28,6 @@ import { FormdialogoemComponent } from './formdialogoem/formdialogoem.component'
     MatDialogModule,
     MatFormFieldModule,
     MatInputModule,
-    FormsModule
   ],
   exports: [
     EmbarcacionesComponent
