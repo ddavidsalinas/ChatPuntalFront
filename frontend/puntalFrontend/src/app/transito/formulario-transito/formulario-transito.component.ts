@@ -9,6 +9,8 @@ import { TablaTripulanteComponent } from '../tabla-tripulante/tabla-tripulante.c
 import { ApiService } from 'src/app/services/api/api.service';
 import { catchError } from 'rxjs';
 import { error } from 'jquery';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+
 @Component({
   selector: 'app-formulario-transito',
   templateUrl: './formulario-transito.component.html',
@@ -27,14 +29,33 @@ export class FormularioTransitoComponent implements OnInit {
   noMostrar :string='si';
   click:boolean=true;
   noClick:boolean=false;
+  formulario!: FormGroup;
   constructor(
     private sharedDataService: SharedDataService,
     private activatedRoute: ActivatedRoute,
     private cdr: ChangeDetectorRef,
     private ngZone: NgZone,
     public dialog: MatDialog,
-    private apiService: ApiService 
-  ) {}
+    private apiService: ApiService ,
+    private formBuilder: FormBuilder
+  ) {
+    this.formulario = this.formBuilder.group({
+      // Define tus campos aquí, por ejemplo:
+      Matricula: ['', Validators.required],
+      Manga: [''],
+      Eslora: [''],
+      Origen: [''],
+      Titular: [''],
+      Imagen: [''],
+      Numero_Registro: [''],
+      Datos_Tecnicos: [''],
+      Modelo: [''],
+      Nombre: [''],
+      Tipo: [''],
+      // Otros campos...
+    });
+  }
+  
 
   //conecta en formulario para llmaar a la edicion del formulario y llamar a la edicion del componente de tripulante
   activarModoEdicionTripulante() {
