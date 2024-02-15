@@ -124,7 +124,7 @@
               <button *ngIf="modoVista" class="btn btnBack" routerLink="../tabla">VOLVER</button>
               <button *ngIf="!modoVista" class="btnDelete btn" (click)="eliminar()">ELIMINAR</button>
               <button [ngClass]="{'btn': true, 'btnVista': modoVista, 'btnAdd': !modoVista}"
-                (click)="activarModoEdicion()">
+                (click)="activarModoEdicionTripulante()">
                 MODIFICAR
               </button>
              
