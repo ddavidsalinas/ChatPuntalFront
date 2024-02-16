@@ -28,7 +28,7 @@ export class TablaTransitoComponent implements OnInit {
   ){}
 
   someClickHandler(index: number): void {
-    const rowData = this.datos[index];
+    const rowData = this.datos.transits[index];
     this.sharedDataService.setData('transitoSeleccionada', rowData);
     console.log(' wed transitoSeleccionada:', this.sharedDataService.getData('transitoSeleccionada'));
     this.router.navigate(['formulario'], { relativeTo: this.activatedRoute.parent, queryParams: { tipo: 'vista' } });
