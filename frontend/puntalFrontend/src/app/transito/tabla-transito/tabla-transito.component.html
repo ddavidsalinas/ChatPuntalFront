@@ -20,15 +20,19 @@
         </tr>
       </thead>
       <tbody>
-        <tr (click)="someClickHandler(i)"*ngFor="let item of datos;let i=index" class=" text-center">
-            <td>{{item.FechaEntrada}}</td>
-            <td>{{item.FechaSalida}}</td>
-            <!-- <td>{{item.embarcacion}}</td>
-            <td>{{item.instalacion}}</td>
-            <td>{{item.pantalan}}</td>
-            <td>{{item.amarre}}</td>
-            <td>{{item.patron}}</td> -->
-            <td>{{item.Proposito}}</td>    
+        
+        
+        <tr (click)="someClickHandler(i)"*ngFor="let transit of datos.transits; let i = index">
+          <td>{{ transit.FechaEntrada }}</td>
+          <td>{{ transit.FechaSalida }}</td>
+          <td>{{ datos.transit_details[i].nombre }}</td>
+          <td>{{ datos.transit_details[i].ubicacion }}</td>
+          <td>{{ datos.transit_details[i].Numero }}</td>
+          <td>a</td>
+          <td>a</td>
+          <td>{{ transit.Proposito }}</td>
+          
+         
         </tr>
       </tbody>
     </table>

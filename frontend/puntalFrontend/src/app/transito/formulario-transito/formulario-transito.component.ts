@@ -41,17 +41,16 @@ export class FormularioTransitoComponent implements OnInit {
   ) {
     this.formulario = this.formBuilder.group({
       // Define tus campos aquí, por ejemplo:
-      Matricula: ['', Validators.required],
-      Manga: [''],
-      Eslora: [''],
-      Origen: [''],
-      Titular: [''],
-      Imagen: [''],
-      Numero_Registro: [''],
-      Datos_Tecnicos: [''],
-      Modelo: [''],
-      Nombre: [''],
-      Tipo: [''],
+      fecha_entrada: ['', Validators.required],
+      fecha_salida: [''],
+      embarcacion: [''],
+      instalacion: [''],
+      pantalan: [''],
+      amarre: [''],
+      patron: [''],
+      autorizaciones: [''],
+      proposito: [''],
+     
       // Otros campos...
     });
   }
