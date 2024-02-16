@@ -1,11 +1,12 @@
 import { Component ,Input,OnInit,EventEmitter, Output} from '@angular/core';
 import { datos } from 'src/resources/datos';
-import { SharedDataService } from 'src/app/services/shared-data/shared-data.service';
 import { NgModule } from '@angular/core';
-import { ApiService } from 'src/app/services/api/api.service';
 import { HttpClient } from '@angular/common/http';
 import { Observable, Subject } from 'rxjs';
+import { SharedDataService } from 'src/app/services/shared-data/shared-data.service';
 
+
+import { ApiTripulantesService } from 'src/app/services/api/api-tripulantes.service';
 
 @Component({
   selector: 'app-tabla-tripulante',
@@ -15,12 +16,13 @@ import { Observable, Subject } from 'rxjs';
 })
 export class TablaTripulanteComponent implements OnInit{
   dtOptions: DataTables.Settings = {};
-  datos : any=[];
+  datos: any = [];
   dtTrigger: Subject<any> = new Subject<any>();
-constructor(
-  private apiService: ApiService,
-    private http: HttpClient
-) { 
+
+
+  constructor( private apiService: ApiTripulantesService,
+    private http: HttpClient,    private sharedDataService: SharedDataService,
+    ) { 
   console.log(this.datos);
 
 }
@@ -30,6 +32,8 @@ mostrarDatos:boolean =true;
 @Input() mostrar:string='';
 @Input() click:boolean=false;
 crearTripulante :boolean=false;
+embarcacionSeleccionada: any = { datos_tecnicos: '' };
+
 
 //activa edicion tabla tripulante
 anyadirTripulante()
@@ -37,9 +41,13 @@ anyadirTripulante()
   this.crearTripulante=true;
 }
 ngOnInit(): void {
-  this.apiService.getAll('tripulante').subscribe((data: any) => {
-    this.datos = data;
+  this.sharedDataService.getData("transitoSeleccionada").subscribe(data => {
+    console.log("Datos obtenidos del servicio:", data);
     
+  });
+  this.apiService.getAll('').subscribe((data: any) => {
+    this.datos = data;
+
     console.log('Después de la llamada a la API:', this.datos);
     // Notificar a DataTables después de obtener los datos
     // this.dtTrigger.next(data);

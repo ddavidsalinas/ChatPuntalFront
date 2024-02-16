@@ -5,7 +5,7 @@ import { Observable, tap } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class ApiService {
+export class ApiTripulantesService {
   private apiUrl = 'http://127.0.0.1:8000/api/v1/tripulante';
   constructor(private http: HttpClient) { }
   getAll(entity: string): Observable<any> {
