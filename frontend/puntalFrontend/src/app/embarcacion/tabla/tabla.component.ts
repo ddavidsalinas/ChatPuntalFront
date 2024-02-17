@@ -81,6 +81,7 @@ export class TablaComponent implements OnInit {
       this.datos = data;
 
       console.log('Después de la llamada a la API:', this.datos);
+      this.dtTrigger.next(data); 
       // Notificar a DataTables después de obtener los datos
       // this.dtTrigger.next(data);
     });
@@ -107,6 +108,10 @@ export class TablaComponent implements OnInit {
 
 
 
+  }
+  ngOnDestroy(): void {
+    // Limpia el dtTrigger para evitar problemas de memoria
+    this.dtTrigger.unsubscribe();
   }
 }
 
