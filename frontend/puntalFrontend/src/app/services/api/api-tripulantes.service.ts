@@ -1,15 +1,25 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, tap } from 'rxjs';
+import { SharedDataService } from '../shared-data/shared-data.service';
 
 @Injectable({
   providedIn: 'root'
 })
+//llamada a la api con el id de transito seleccionado
 export class ApiTripulantesService {
-  private apiUrl = 'http://127.0.0.1:8000/api/v1/tripulante';
-  constructor(private http: HttpClient) { }
-  getAll(entity: string): Observable<any> {
-    const url = `${this.apiUrl}${entity}`;
+  transitoId :any;
+  private apiUrl = 'http://127.0.0.1:8000/api/v1/tripulante/';
+  constructor(private http: HttpClient,     private sharedDataService: SharedDataService,
+    ) { }
+  getAll(): Observable<any> {
+    this.sharedDataService.getData("transitoSeleccionada").subscribe(data => {
+      this.transitoId=data.Amarre_id;
+      
+    });
+     
+  
+    const url = `${this.apiUrl}${this.transitoId}`;
     return this.http.get(url);
   }
   add(entity: string, data: any): Observable<any> {

@@ -32,7 +32,6 @@ mostrarDatos:boolean =true;
 @Input() mostrar:string='';
 @Input() click:boolean=false;
 crearTripulante :boolean=false;
-embarcacionSeleccionada: any = { datos_tecnicos: '' };
 
 
 //activa edicion tabla tripulante
@@ -45,7 +44,7 @@ ngOnInit(): void {
     console.log("Datos obtenidos del servicio:", data);
     
   });
-  this.apiService.getAll('').subscribe((data: any) => {
+  this.apiService.getAll().subscribe((data: any) => {
     this.datos = data;
 
     console.log('Después de la llamada a la API:', this.datos);
