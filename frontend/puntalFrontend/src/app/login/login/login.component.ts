@@ -1,23 +1,37 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from 'src/app//services/login/auth.service'; 
+import { AuthService } from 'src/app/shared/auth.service';
 import { StorageService } from 'src/app//services/login/storage.service';
-
+import {FormBuilder, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
+import { TokenService } from 'src/app/shared/token.service';
+import { AuthStateService } from 'src/app/shared/auth-state.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  form: any = {
-    username: null,
-    password: null
-  };
-  isLoggedIn = false;
-  isLoginFailed = false;
+  // form: any = {
+  //   username: null,
+  //   password: null
+  // };
+  // isLoggedIn = false;
+  // isLoginFailed = false;
   errorMessage = '';
-  roles: string[] = [];
+  loginForm: FormGroup;
+  errors: any = null;
+  // roles: string[] = [];
 
-  constructor() { }
+  constructor(  public router: Router,
+    public fb: FormBuilder,
+    public authService: AuthService,
+    private token: TokenService,
+    private authState: AuthStateService) { 
+      this.loginForm = this.fb.group({
+        email: [],
+        password: [],
+      });
+    }
 
   ngOnInit(): void {
     // if (this.storageService.isLoggedIn()) {
@@ -26,7 +40,24 @@ export class LoginComponent implements OnInit {
     // }
     console.log("login.component.ts ngOnInit");
   }
-
+  onSubmit() {
+    this.authService.signin(this.loginForm.value).subscribe(
+      (result) =>  {
+        this.responseHandler(result);
+      },
+      (error) => {
+        this.errors = error.error;
+      },
+      () => {
+        this.authState.setAuthState(true);
+        this.loginForm.reset();
+        this.router.navigate(['dashboard']);
+      }
+    );
+  }
+  responseHandler(data:any) {
+    this.token.handleData(data.access_token);
+  }
   // onSubmit(): void {
   //   const { username, password } = this.form;
 
