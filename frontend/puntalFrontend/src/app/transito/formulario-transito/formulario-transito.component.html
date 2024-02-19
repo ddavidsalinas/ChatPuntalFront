@@ -99,26 +99,7 @@
            
           </div>
           <div class="formRight">
-            <div class="mb-3 d-flex">
-              <label for="proposito" class="form-label">Proposito:</label>
-              <input name="proposito" type="text" class="form-control mt-4" placeholder="Proposito"
-                [(ngModel)]="transitoSeleccionada.Patron" [attr.readonly]="modoVista ? 'readonly' : null" />
-            </div>
-            <div class="mb-3 d-flex">
-                <label for="autorizaciones" class="form-label">Autorizaciones:</label>
-                <input name="autorizaciones" type="checkbox"   />
-              </div>
-              <div class="mb-3 d-flex">
-                <label for="patron" class="form-label">Patrón:</label>
-                <input name="patron" type="text" class="form-control mt-4" placeholder="Patrón"
-                  [(ngModel)]="transitoSeleccionada.proposito" [attr.readonly]="modoVista ? 'readonly' : null" />
-              </div>
-            <div class="mb-3 d-flex">
-              <label for="datosEstancia" class="form-label">Datos estancia:</label>
-              <textarea name="datos" class="form-control mt-4" placeholder="Datos estancia"
-                [(ngModel)]="transitoSeleccionada.datos_tecnicos"
-                [attr.readonly]="modoVista ? 'readonly' : null"></textarea>
-            </div>
+           
             <div class="tripulante mb-3 d-flex">              
               <app-tabla-tripulante [mostrar]="noMostrar" [click]="noClick"></app-tabla-tripulante>
             </div>
