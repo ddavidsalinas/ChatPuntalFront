@@ -170,30 +170,30 @@ export class FormularioEmbarcacionComponent implements OnInit {
         }
       );
   }
-  eliminarEmbarcacion() {
-    this.apiService.delete(this.embarcacionSeleccionada.id, 'embarcacion')
-      .pipe(
-        catchError(error => {
-          console.error('Error en la solicitud:', error);
-          throw error;
-        })
-      )
-      .subscribe(
-        response => {
-          console.log('Respuesta del servicio en el componente:', response);
-          this.embarcacionSeleccionada = {};
+  // eliminarEmbarcacion() {
+  //   this.apiService.delete(this.embarcacionSeleccionada.id, 'embarcacion')
+  //     .pipe(
+  //       catchError(error => {
+  //         console.error('Error en la solicitud:', error);
+  //         throw error;
+  //       })
+  //     )
+  //     .subscribe(
+  //       response => {
+  //         console.log('Respuesta del servicio en el componente:', response);
+  //         this.embarcacionSeleccionada = {};
           
-        },
-        error => {
-          console.error('Error en la solicitud:', error);
-        }
-      );
-  }
+  //       },
+  //       error => {
+  //         console.error('Error en la solicitud:', error);
+  //       }
+  //     );
+  // }
 
   eliminar(): void {
     const dialogRef = this.dialog.open(FormdialogoemComponent, {
       data: {
-        matricula: this.embarcacionSeleccionada.matricula,
+        matricula: this.embarcacionSeleccionada.Matricula,
 
 
 
@@ -202,7 +202,24 @@ export class FormularioEmbarcacionComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
+        this.apiService.delete(this.embarcacionSeleccionada.id, 'embarcacion')
+          .pipe(
+            catchError(error => {
+              console.error('Error en la solicitud:', error);
+              throw error;
+            })
+          )
+          .subscribe(
+            response => {
+              console.log('Respuesta del servicio en el componente:', response);
+              this.embarcacionSeleccionada = {};
+              this.router.navigate(['/embarcaciones']);
 
+            },
+            error => {
+              console.error('Error en la solicitud:', error);
+            }
+          );
         console.log('Eliminación confirmada. Causa de baja:', result.causa);
       } else {
 
