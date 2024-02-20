@@ -44,6 +44,8 @@ export class LoginComponent implements OnInit {
     this.authService.signin(this.loginForm.value).subscribe(
       (result) =>  {
         console.log('Resultado del login:', result);
+        localStorage.setItem('user', JSON.stringify(result.user));
+        localStorage.setItem('role', result.user.Rol_id);
         console.log('Resultado del usuario:', result.user.Rol_id);
         this.responseHandler(result);
       },

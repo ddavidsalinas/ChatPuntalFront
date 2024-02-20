@@ -20,6 +20,11 @@ import { FormularioEmbarcacionComponent } from './embarcacion/formulario-embarca
 import { FormularioTransitoComponent } from './transito/formulario-transito/formulario-transito.component';
 
 
+const isRole = (role: string) => {
+  const roleLogged = localStorage.getItem('role')
+
+  return roleLogged === role
+}
 
 
 const routes: Routes = [
@@ -38,12 +43,14 @@ const routes: Routes = [
     children: [
       {
         path: '',
+        canMatch: [() => isRole('1')],
         component: DashboardComponent
       }
     ]
   },
   {
     path: 'embarcaciones',
+    canMatch: [() => isRole('2')],
     component: ContenidoComponent,
     children: [
       {
