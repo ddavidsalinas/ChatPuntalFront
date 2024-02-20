@@ -29,9 +29,24 @@ export class TokenService {
       return false;
     }
   }
+  // payload(token: any) {
+  //   const jwtPayload = token.split('.')[1];
+  //   return JSON.parse(atob(jwtPayload));
+  // }
   payload(token: any) {
-    const jwtPayload = token.split('.')[1];
-    return JSON.parse(atob(jwtPayload));
+    if (!token) {
+      this.removeToken();
+      return null;
+    }
+  
+    try {
+      const jwtPayload = token.split('.')[1];
+      return JSON.parse(atob(jwtPayload));
+    } catch (error) {
+      console.log('Token is not valid:', error);
+      this.removeToken();
+      return null;
+    }
   }
   // User state based on valid token
   isLoggedIn() {
