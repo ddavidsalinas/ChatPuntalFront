@@ -44,7 +44,7 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        canMatch: [() => isRole('1')],
+        canMatch: [() => isRole('2')],
         component: DashboardComponent
       }
     ]
@@ -71,6 +71,7 @@ const routes: Routes = [
   },
   {
     path: 'plazabase',
+    canMatch: [() => isRole('2')],
     component: ContenidoComponent,
     children: [
       {
@@ -90,6 +91,7 @@ const routes: Routes = [
   },
   {
     path: 'transito',
+    canMatch: [() => isRole('2')],
     component: ContenidoComponent,
     children: [
       {
@@ -119,6 +121,7 @@ const routes: Routes = [
   },
   {
     path: 'notificaciones',
+    canMatch: [() => isRole('2')],
     component: ContenidoComponent, // O el componente que corresponda
     children: [
       {
@@ -129,11 +132,12 @@ const routes: Routes = [
   },
   {
     path: 'movil',
+    canMatch: [() => isRole('3')],
     component: PlantillaGuardamuellesComponent, // O el componente que corresponda
     children: [
       {
         path: '',
-        canMatch: [() => isRole('3')],
+       
         component: CardIncidenciaComponent
       }
     ]
