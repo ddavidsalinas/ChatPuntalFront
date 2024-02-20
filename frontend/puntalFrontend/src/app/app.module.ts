@@ -12,9 +12,9 @@ import { TransitoModule } from './transito/transito.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginModule } from './login/login.module';
 import { PlazaBaseModule } from './plaza-base/plaza-base.module';
-import { HttpClientModule } from '@angular/common/http';
-
-
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { AuthInterceptor } from './shared/auth.interceptor';
 @NgModule({
   declarations: [AppComponent],
 
@@ -32,11 +32,16 @@ import { HttpClientModule } from '@angular/common/http';
     LoginModule,
     PlazaBaseModule,
     HttpClientModule,
-
+    ReactiveFormsModule,
+    FormsModule,
 
   ],
 
-  providers: [],
+  providers: [ {
+    provide: HTTP_INTERCEPTORS,
+    useClass: AuthInterceptor,
+    multi: true
+  }],
   bootstrap: [AppComponent],
 })
 export class AppModule { }
