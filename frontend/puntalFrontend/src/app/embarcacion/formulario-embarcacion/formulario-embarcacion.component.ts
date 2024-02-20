@@ -8,6 +8,8 @@ import { FormdialogoemComponent } from '../formdialogoem/formdialogoem.component
 import { ApiService } from 'src/app/services/api/api.service';
 import { catchError } from 'rxjs';
 import { error } from 'jquery';
+import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-formulario-embarcacion',
   templateUrl: './formulario-embarcacion.component.html',
@@ -23,7 +25,7 @@ export class FormularioEmbarcacionComponent implements OnInit {
   imagenSeleccionada: string | ArrayBuffer | null = null;
   // embarcacionVacia: any = { datos_tecnicos: '' };
 
-  constructor(private sharedDataService: SharedDataService, private activatedRoute: ActivatedRoute, private apiService: ApiService, private formBuilder: FormBuilder, public dialog: MatDialog) {
+  constructor(private sharedDataService: SharedDataService, private activatedRoute: ActivatedRoute, private apiService: ApiService, private formBuilder: FormBuilder, public dialog: MatDialog, private router: Router) {
     this.formulario = this.formBuilder.group({
       // Define tus campos aquí, por ejemplo:
       Matricula: ['', Validators.required],
@@ -138,6 +140,7 @@ export class FormularioEmbarcacionComponent implements OnInit {
       )
       .subscribe(
         response => {
+          this.router.navigate(['/embarcaciones']);
           console.log('Respuesta del servicio en el componente:', response);
 
         }
@@ -156,8 +159,10 @@ export class FormularioEmbarcacionComponent implements OnInit {
       .subscribe(
         response => {
           console.log('Respuesta del servicio en el componente:', response);
+         
           // this.formulario.reset();
           this.embarcacionSeleccionada = {};
+          this.router.navigate(['/embarcaciones']);
         },
         error => {
           console.error('Error en la solicitud:', error);
@@ -176,6 +181,7 @@ export class FormularioEmbarcacionComponent implements OnInit {
         response => {
           console.log('Respuesta del servicio en el componente:', response);
           this.embarcacionSeleccionada = {};
+          
         },
         error => {
           console.error('Error en la solicitud:', error);
