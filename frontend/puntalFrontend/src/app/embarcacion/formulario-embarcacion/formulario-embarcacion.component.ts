@@ -62,7 +62,7 @@ export class FormularioEmbarcacionComponent implements OnInit {
       this.mostrarVacio = tipo === 'vacio';
       // this.esNuevo = this.mostrarVacio;
 
-      this.modoEdicion = !this.mostrarVacio;
+      // this.modoEdicion = !this.mostrarVacio;
     });
 
     console.log("Intentando obtener datos del servicio...");
@@ -96,8 +96,9 @@ export class FormularioEmbarcacionComponent implements OnInit {
   }
 
   activarModoEdicion() {
-    // this.modoEdicion = true;
+    
     this.modoVista = false;
+     this.modoEdicion = true;
   }
 
   guardarEmbarcacion() {
