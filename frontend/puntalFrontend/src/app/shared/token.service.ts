@@ -57,5 +57,6 @@ export class TokenService {
     localStorage.removeItem('auth_token');
     localStorage.removeItem('user');
     localStorage.removeItem('role');
+    localStorage.removeItem('name');
   }
 }

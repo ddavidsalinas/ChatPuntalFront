@@ -9,7 +9,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./navheader.component.css']
 })
 export class NavheaderComponent {
- name: string = 'x';
+ name: string = localStorage.getItem('name') || 'Usuario';
+ role = localStorage.getItem('role') || null;
   constructor(private authService: AuthService, private router: Router, private tokenService: TokenService) { }
 
   logout() {
