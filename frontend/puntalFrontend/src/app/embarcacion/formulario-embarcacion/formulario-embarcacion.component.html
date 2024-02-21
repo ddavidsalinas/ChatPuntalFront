@@ -8,6 +8,7 @@
       action=""
       class="d-flex"
       (submit)="guardarEmbarcacion()"
+      enctype="multipart/form-data"
     >
       <div class="formLeft">
         <div class="mb-3 d-flex">
@@ -133,7 +134,7 @@
     <div class="formHeader">
       <h5>VISTA EMBARCACIÓN</h5>
     </div>
-    <form id="formEmbarcacionModificar" action="" class="d-flex">
+    <form id="formEmbarcacionModificar" action="" class="d-flex"   enctype="multipart/form-data">
       <div class="formLeft">
         <div class="mb-3 d-flex">
           <label for="nombre" class="form-label">Nombre:</label>
@@ -267,7 +268,6 @@
           >
             {{ modoVista ? "MODIFICAR" : "ACTUALIZAR" }}
           </button>
-         
         </div>
       </div>
     </form>
