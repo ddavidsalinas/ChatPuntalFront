@@ -116,6 +116,12 @@ export class FormularioEmbarcacionComponent implements OnInit {
     const datosTecnicosValue = formulario['Datos_Tecnicos'].value as HTMLInputElement;
     const modeloValue = formulario['Modelo'].value as HTMLInputElement;
     const tipoValue = formulario['Tipo'].value as HTMLInputElement;
+    const formData = new FormData();
+    const imagenInput = formulario['Imagen'] as HTMLInputElement;
+    if (imagenInput && imagenInput.files && imagenInput.files.length > 0) {
+      // formData.append('Imagen', imagenInput.files[0]);
+      console.log('Imagen seleccionada:', imagenInput.files[0]);
+    }
     this.embarcacionSeleccionada = {
       Nombre: nombreValue,
       Matricula: matriculaValue,
@@ -124,6 +130,7 @@ export class FormularioEmbarcacionComponent implements OnInit {
       Origen: origenValue,
       Titular: titularValue,
       Imagen: imagenValue,
+      // Imagen: formData.get('Imagen'),
       Numero_Registro: numeroRegistroValue,
       Datos_Tecnicos: datosTecnicosValue,
       Modelo: modeloValue,
