@@ -57,30 +57,13 @@ export class TablaComponent implements OnInit {
     }); // Si no es con ruta abosulta, no funciona
 
   }
-  // ngOnInit(): void {
-  //   this.dtOptions = {
-  //     pagingType: 'full_numbers',
-  //     pageLength: 10,
-  //     processing: true,
-  //     language: {
-  //       url: '//cdn.datatables.net/plug-ins/1.10.25/i18n/Spanish.json',
-  //     },
-  //     rowCallback: (row: Node, data: any[] | Object, index: number) => {
-  //       const self = this;
 
-  //       $('td', row).off('click');
-  //       $('td', row).on('click', () => {
-  //         self.someClickHandler(index);
-  //       });
-  //       return row;
-  //     },
-  //   };
-  // }
   ngOnInit(): void {
     this.apiService.getAll('embarcacion').subscribe((data: any) => {
       this.datos = data;
 
       console.log('Después de la llamada a la API:', this.datos);
+      this.dtTrigger.next(data); 
       // Notificar a DataTables después de obtener los datos
       // this.dtTrigger.next(data);
     });
@@ -92,21 +75,15 @@ export class TablaComponent implements OnInit {
       language: {
         url: '//cdn.datatables.net/plug-ins/1.10.25/i18n/Spanish.json'
       },
-      // rowCallback: (row: Node, data: any[] | Object, index: number) => {
-      //   const self = this;
-      //   // row.addEventListener('click', () => {
-      //   //   self.someClickHandler(index);
-      //   // });
-      //   $('td', row).off('click');
-      //   $('td', row).on('click', () => {
-      //     self.someClickHandler(index);
-      //   });
-      //   return row;
-      // }
+ 
     };
 
 
 
+  }
+  ngOnDestroy(): void {
+    // Limpia el dtTrigger para evitar problemas de memoria
+    this.dtTrigger.unsubscribe();
   }
 }
 

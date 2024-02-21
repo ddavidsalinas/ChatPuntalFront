@@ -8,6 +8,8 @@ import { FormdialogoemComponent } from '../formdialogoem/formdialogoem.component
 import { ApiService } from 'src/app/services/api/api.service';
 import { catchError } from 'rxjs';
 import { error } from 'jquery';
+import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-formulario-embarcacion',
   templateUrl: './formulario-embarcacion.component.html',
@@ -23,7 +25,7 @@ export class FormularioEmbarcacionComponent implements OnInit {
   imagenSeleccionada: string | ArrayBuffer | null = null;
  
 
-  constructor(private sharedDataService: SharedDataService, private activatedRoute: ActivatedRoute, private apiService: ApiService, private formBuilder: FormBuilder, public dialog: MatDialog) {
+  constructor(private sharedDataService: SharedDataService, private activatedRoute: ActivatedRoute, private apiService: ApiService, private formBuilder: FormBuilder, public dialog: MatDialog, private router: Router) {
     this.formulario = this.formBuilder.group({
       // Define tus campos aquí, por ejemplo:
       Matricula: ['', Validators.required],
@@ -60,7 +62,7 @@ export class FormularioEmbarcacionComponent implements OnInit {
       this.mostrarVacio = tipo === 'vacio';
       // this.esNuevo = this.mostrarVacio;
 
-      this.modoEdicion = !this.mostrarVacio;
+      // this.modoEdicion = !this.mostrarVacio;
     });
 
     console.log("Intentando obtener datos del servicio...");
@@ -94,8 +96,9 @@ export class FormularioEmbarcacionComponent implements OnInit {
   }
 
   activarModoEdicion() {
-    this.modoEdicion = true;
+    
     this.modoVista = false;
+     this.modoEdicion = true;
   }
 
   guardarEmbarcacion() {
@@ -138,6 +141,7 @@ export class FormularioEmbarcacionComponent implements OnInit {
       )
       .subscribe(
         response => {
+          this.router.navigate(['/embarcaciones']);
           console.log('Respuesta del servicio en el componente:', response);
 
         }
@@ -156,37 +160,40 @@ export class FormularioEmbarcacionComponent implements OnInit {
       .subscribe(
         response => {
           console.log('Respuesta del servicio en el componente:', response);
+         
           // this.formulario.reset();
           this.embarcacionSeleccionada = {};
+          this.router.navigate(['/embarcaciones']);
         },
         error => {
           console.error('Error en la solicitud:', error);
         }
       );
   }
-  eliminarEmbarcacion() {
-    this.apiService.delete(this.embarcacionSeleccionada.id, 'embarcacion')
-      .pipe(
-        catchError(error => {
-          console.error('Error en la solicitud:', error);
-          throw error;
-        })
-      )
-      .subscribe(
-        response => {
-          console.log('Respuesta del servicio en el componente:', response);
-          this.embarcacionSeleccionada = {};
-        },
-        error => {
-          console.error('Error en la solicitud:', error);
-        }
-      );
-  }
+  // eliminarEmbarcacion() {
+  //   this.apiService.delete(this.embarcacionSeleccionada.id, 'embarcacion')
+  //     .pipe(
+  //       catchError(error => {
+  //         console.error('Error en la solicitud:', error);
+  //         throw error;
+  //       })
+  //     )
+  //     .subscribe(
+  //       response => {
+  //         console.log('Respuesta del servicio en el componente:', response);
+  //         this.embarcacionSeleccionada = {};
+          
+  //       },
+  //       error => {
+  //         console.error('Error en la solicitud:', error);
+  //       }
+  //     );
+  // }
 
   eliminar(): void {
     const dialogRef = this.dialog.open(FormdialogoemComponent, {
       data: {
-        matricula: this.embarcacionSeleccionada.matricula,
+        matricula: this.embarcacionSeleccionada.Matricula,
 
 
 
@@ -195,7 +202,24 @@ export class FormularioEmbarcacionComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
+        this.apiService.delete(this.embarcacionSeleccionada.id, 'embarcacion')
+          .pipe(
+            catchError(error => {
+              console.error('Error en la solicitud:', error);
+              throw error;
+            })
+          )
+          .subscribe(
+            response => {
+              console.log('Respuesta del servicio en el componente:', response);
+              this.embarcacionSeleccionada = {};
+              this.router.navigate(['/embarcaciones']);
 
+            },
+            error => {
+              console.error('Error en la solicitud:', error);
+            }
+          );
         console.log('Eliminación confirmada. Causa de baja:', result.causa);
       } else {
 
