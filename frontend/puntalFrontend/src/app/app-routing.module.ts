@@ -17,6 +17,15 @@ import { ContenidoComponent } from './plantilla/contenido/contenido.component';
 import { TablaComponent } from './embarcacion/tabla/tabla.component';
 import { FormularioEmbarcacionComponent } from './embarcacion/formulario-embarcacion/formulario-embarcacion.component';
 import { FormularioTransitoComponent } from './transito/formulario-transito/formulario-transito.component';
+import { PlantillaGuardamuellesComponent } from './movil/plantilla-guardamuelles/plantilla-guardamuelles.component';
+
+
+const isRole = (role: string) => {
+  const roleLogged = localStorage.getItem('role')
+
+  return roleLogged === role
+}
+
 
 const routes: Routes = [
   {
@@ -34,12 +43,14 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        component: DashboardComponent,
-      },
-    ],
+        canMatch: [() => isRole('1')],
+        component: DashboardComponent
+      }
+    ]
   },
   {
     path: 'embarcaciones',
+    canMatch: [() => isRole('2')],
     component: ContenidoComponent,
     children: [
       {
@@ -114,6 +125,17 @@ const routes: Routes = [
         component: NotificacionesComponent,
       },
     ],
+  },
+  {
+    path: 'movil',
+    component: PlantillaGuardamuellesComponent, // O el componente que corresponda
+    children: [
+      {
+        path: '',
+        canMatch: [() => isRole('3')],
+        component: CardIncidenciaComponent
+      }
+    ]
   },
   {
     path: '**',
