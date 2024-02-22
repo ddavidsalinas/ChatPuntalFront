@@ -110,10 +110,12 @@ const routes: Routes = [
   },
   {
     path: 'guardiacivil',
+    canMatch: [() => isRole('4')],
     component: ContenidoComponent, // O el componente que corresponda
     children: [
       {
         path: '',
+        
         component: TablaGuardiaComponent
       }
     ]
