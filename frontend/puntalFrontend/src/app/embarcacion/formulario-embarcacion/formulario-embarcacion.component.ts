@@ -22,7 +22,7 @@ export class FormularioEmbarcacionComponent implements OnInit {
   embarcacionSeleccionada: any = { datos_tecnicos: '' };
   data: any;
   formulario!: FormGroup;
-  imagenSeleccionada: string | ArrayBuffer | null = null;
+  imagenSeleccionada: string | File | ArrayBuffer | null = null;
   // embarcacionVacia: any = { datos_tecnicos: '' };
 
   constructor(private sharedDataService: SharedDataService, private activatedRoute: ActivatedRoute, private apiService: ApiService, private formBuilder: FormBuilder, public dialog: MatDialog, private router: Router) {
@@ -120,8 +120,8 @@ export class FormularioEmbarcacionComponent implements OnInit {
     const imagenInput = formulario['Imagen'] as HTMLInputElement;
     if (imagenInput && imagenInput.files && imagenInput.files.length > 0) {
       const file = imagenInput.files[0];
-      const reader = new FileReader();
-      console.log('Imagen seleccionada:', imagenInput.files[0]);
+      this.imagenSeleccionada = file;
+      // formData.append('Imagen', file);
     }
     console.log('Registro de la embarcación:', numeroRegistroValue);
     this.embarcacionSeleccionada = {
@@ -131,7 +131,7 @@ export class FormularioEmbarcacionComponent implements OnInit {
       Eslora: esloraValue,
       Origen: origenValue,
       Titular: titularValue,
-      Imagen: imagenValue,
+      Imagen: this.imagenSeleccionada,
       // Imagen: formData.get('Imagen'),
       Numero_registro: numeroRegistroValue,
       Datos_Tecnicos: datosTecnicosValue,
