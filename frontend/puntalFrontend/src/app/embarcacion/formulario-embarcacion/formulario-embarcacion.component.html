@@ -249,7 +249,7 @@
         </div>
         <div class="mb-3 d-flex">
           <label for="imagen" class="form-label">Imagen:</label>
-          <input name="Imagen" type="file" class="form-control mt-4" />
+          <input name="Imagen" type="file" class="form-control mt-4" (change)="onFileUpdated($event)" />
         </div>
         <div class="d-flex justify-content-center">
          <img [src]="'http://127.0.0.1:8000' + embarcacionSeleccionada.Imagen" alt="" />

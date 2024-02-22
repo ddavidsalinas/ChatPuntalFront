@@ -94,6 +94,9 @@ export class FormularioEmbarcacionComponent implements OnInit {
       reader.readAsDataURL(file);
     }
   }
+  onFileUpdated(event: any) {
+    this.imagenSeleccionada = event.target.files[0];
+  }
 
   activarModoEdicion() {
 
@@ -199,6 +202,13 @@ export class FormularioEmbarcacionComponent implements OnInit {
   }
 
   actualizarEmbarcacion() {
+    const formData = new FormData();
+    formData.append('Nombre', this.embarcacionSeleccionada.Nombre);
+    formData.append('Matricula', this.embarcacionSeleccionada.Matricula);
+    // Agrega otros campos según sea necesario
+    if (this.imagenSeleccionada) {
+      formData.append('Imagen', this.imagenSeleccionada as File);
+    }
 
     this.apiService.update(this.embarcacionSeleccionada.id, 'embarcacion', this.embarcacionSeleccionada)
       .pipe(
