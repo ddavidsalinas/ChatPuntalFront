@@ -15,7 +15,6 @@ export class ApiTripulantesService {
   getAll(): Observable<any> {
     this.sharedDataService.getData("transitoSeleccionada").subscribe(data => {
       this.transitoId=data.Amarre_id;
-      
     });
      
   

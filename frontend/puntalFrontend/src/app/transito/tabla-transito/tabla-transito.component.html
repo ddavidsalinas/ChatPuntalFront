@@ -24,9 +24,9 @@
         <tr (click)="someClickHandler(i)"*ngFor="let transit of datos.transits; let i = index">
           <td>{{ transit.FechaEntrada }}</td>
           <td>{{ transit.FechaSalida }}</td>
-          <td>matricula</td>
-          <td>{{ datos.transit_details[i].Numero }}</td>
+          <td>{{ datos.transit_details[i].Matricula }}</td>
           <td>{{ datos.transit_details[i].ubicacion }}</td>
+          <td>{{ datos.transit_details[i].Numero }}</td>
           <td>{{ datos.transit_details[i].nombre }}</td>
           
          

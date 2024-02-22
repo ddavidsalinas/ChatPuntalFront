@@ -1,5 +1,6 @@
 import { Component,OnInit, Output,EventEmitter } from '@angular/core';
-import { datos } from 'src/resources/datos';
+import { ApiService } from 'src/app/services/api/api.service';
+import { Observable, Subject } from 'rxjs';
 
 
 @Component({
@@ -9,7 +10,9 @@ import { datos } from 'src/resources/datos';
 })
 export class TablaGuardiaComponent implements OnInit {
   dtOptions: DataTables.Settings = {};
-  datos = datos.transitos;
+  datos: any = [];
+   totalRegistros:any;
+
   seleccionados: boolean[] = Array(this.datos.length).fill(false);
   selectAll: boolean = false;
   marcar(index: number)
@@ -21,13 +24,21 @@ export class TablaGuardiaComponent implements OnInit {
   this.selectAll = !this.selectAll;
   this.seleccionados.fill(this.selectAll);
 }
-constructor() { 
+dtTrigger: Subject<any> = new Subject<any>();
+
+constructor(private apiService:ApiService ) { 
   console.log(this.datos);
 }
 
 ngOnInit(): void {
+  this.apiService.getAll('transito').subscribe((data: any) => {
+    this.datos = data;
+
+    console.log('Después de la llamada a la API:', this.datos);
+
+     });
+     
   this.dtOptions = {
-   
     pageLength: 10,
     processing: true,
     language: {

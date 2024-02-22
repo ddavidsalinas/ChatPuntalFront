@@ -111,6 +111,7 @@ const routes: Routes = [
   },
   {
     path: 'guardiacivil',
+    // canMatch: [() => isRole('2')],
     component: ContenidoComponent, // O el componente que corresponda
     children: [
       {
