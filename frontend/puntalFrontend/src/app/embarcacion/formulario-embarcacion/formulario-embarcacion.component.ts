@@ -119,7 +119,8 @@ export class FormularioEmbarcacionComponent implements OnInit {
     const formData = new FormData();
     const imagenInput = formulario['Imagen'] as HTMLInputElement;
     if (imagenInput && imagenInput.files && imagenInput.files.length > 0) {
-      // formData.append('Imagen', imagenInput.files[0]);
+      const file = imagenInput.files[0];
+      const reader = new FileReader();
       console.log('Imagen seleccionada:', imagenInput.files[0]);
     }
     console.log('Registro de la embarcación:', numeroRegistroValue);
