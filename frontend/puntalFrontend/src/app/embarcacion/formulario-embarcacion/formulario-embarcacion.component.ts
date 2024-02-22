@@ -96,9 +96,9 @@ export class FormularioEmbarcacionComponent implements OnInit {
   }
 
   activarModoEdicion() {
-    
+
     this.modoVista = false;
-     this.modoEdicion = true;
+    this.modoEdicion = true;
   }
 
   guardarEmbarcacion() {
@@ -168,7 +168,7 @@ export class FormularioEmbarcacionComponent implements OnInit {
       .subscribe(
         response => {
           console.log('Respuesta del servicio en el componente:', response);
-         
+
           // this.formulario.reset();
           this.embarcacionSeleccionada = {};
           this.router.navigate(['/embarcaciones']);
@@ -190,7 +190,7 @@ export class FormularioEmbarcacionComponent implements OnInit {
   //       response => {
   //         console.log('Respuesta del servicio en el componente:', response);
   //         this.embarcacionSeleccionada = {};
-          
+
   //       },
   //       error => {
   //         console.error('Error en la solicitud:', error);
@@ -207,9 +207,10 @@ export class FormularioEmbarcacionComponent implements OnInit {
 
       } as DialogoFormem
     });
-
+   
     dialogRef.afterClosed().subscribe(result => {
-      if (result) {
+      console.log('El diálogo se cerró:', result);
+      if (result.causa) {
         this.apiService.delete(this.embarcacionSeleccionada.id, 'embarcacion')
           .pipe(
             catchError(error => {
