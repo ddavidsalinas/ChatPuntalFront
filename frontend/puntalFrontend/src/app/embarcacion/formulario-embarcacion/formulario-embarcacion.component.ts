@@ -101,47 +101,88 @@ export class FormularioEmbarcacionComponent implements OnInit {
     this.modoEdicion = true;
   }
 
+  // guardarEmbarcacion() {
+  //   console.log('Guardando embarcación:', this.embarcacionSeleccionada);
+  //   const formulario = document.forms.namedItem("formEmbarcacion") as HTMLFormElement;
+  //   // Accede a los valores del formulario usando document.forms['nombreFormulario']['nombreCampo']
+  //   const nombreValue = formulario['Nombre'].value as HTMLInputElement;
+  //   const matriculaValue = formulario['Matricula'].value as HTMLInputElement;
+  //   const mangaValue = formulario['Manga'].value as HTMLInputElement;
+  //   const esloraValue = formulario['Eslora'].value as HTMLInputElement;
+  //   const origenValue = formulario['Origen'].value as HTMLInputElement;
+  //   const titularValue = formulario['Titular'].value as HTMLInputElement;
+  //   const imagenValue = formulario['Imagen'].value as HTMLInputElement;
+  //   const numeroRegistroValue = formulario['Numero_registro'].value as HTMLInputElement;
+  //   const datosTecnicosValue = formulario['Datos_Tecnicos'].value as HTMLInputElement;
+  //   const modeloValue = formulario['Modelo'].value as HTMLInputElement;
+  //   const tipoValue = formulario['Tipo'].value as HTMLInputElement;
+  //   const formData = new FormData();
+  //   const imagenInput = formulario['Imagen'] as HTMLInputElement;
+  //   if (imagenInput && imagenInput.files && imagenInput.files.length > 0) {
+  //     const file = imagenInput.files[0];
+  //     this.imagenSeleccionada = file;
+      
+  //     // formData.append('Imagen', file);
+  //   }
+  //   console.log('Registro de la embarcación:', numeroRegistroValue);
+  //   this.embarcacionSeleccionada = {
+  //     Nombre: nombreValue,
+  //     Matricula: matriculaValue,
+  //     Manga: mangaValue,
+  //     Eslora: esloraValue,
+  //     Origen: origenValue,
+  //     Titular: titularValue,
+  //     Imagen: imagenValue,
+  //     // Imagen: formData.get('Imagen'),
+  //     Numero_registro: numeroRegistroValue,
+  //     Datos_Tecnicos: datosTecnicosValue,
+  //     Modelo: modeloValue,
+  //     Tipo: tipoValue
+  //   };
+  //   // ... y así sucesivamente para otros campos.
+
+  //   this.apiService.add('embarcacion', this.embarcacionSeleccionada)
+  //     .pipe(
+  //       catchError(error => {
+  //         console.error('Error en la solicitud:', error);
+  //         console.log('Mensaje de error:', error.error);
+  //         throw error;
+  //       })
+  //     )
+  //     .subscribe(
+  //       response => {
+  //         this.router.navigate(['/embarcaciones']);
+  //         console.log('Respuesta del servicio en el componente:', response);
+
+  //       }
+  //     );
+  // }
   guardarEmbarcacion() {
     console.log('Guardando embarcación:', this.embarcacionSeleccionada);
     const formulario = document.forms.namedItem("formEmbarcacion") as HTMLFormElement;
-    // Accede a los valores del formulario usando document.forms['nombreFormulario']['nombreCampo']
-    const nombreValue = formulario['Nombre'].value as HTMLInputElement;
-    const matriculaValue = formulario['Matricula'].value as HTMLInputElement;
-    const mangaValue = formulario['Manga'].value as HTMLInputElement;
-    const esloraValue = formulario['Eslora'].value as HTMLInputElement;
-    const origenValue = formulario['Origen'].value as HTMLInputElement;
-    const titularValue = formulario['Titular'].value as HTMLInputElement;
-    const imagenValue = formulario['Imagen'].value as HTMLInputElement;
-    const numeroRegistroValue = formulario['Numero_registro'].value as HTMLInputElement;
-    const datosTecnicosValue = formulario['Datos_Tecnicos'].value as HTMLInputElement;
-    const modeloValue = formulario['Modelo'].value as HTMLInputElement;
-    const tipoValue = formulario['Tipo'].value as HTMLInputElement;
-    const formData = new FormData();
+    const formData = new FormData(); // Crea un objeto FormData para enviar los datos al servidor
+
+    // Accede a los valores del formulario y agrégalos al objeto FormData
+    formData.append('Nombre', formulario['Nombre'].value);
+    formData.append('Matricula', formulario['Matricula'].value);
+    formData.append('Manga', formulario['Manga'].value);
+    formData.append('Eslora', formulario['Eslora'].value);
+    formData.append('Origen', formulario['Origen'].value);
+    formData.append('Titular', formulario['Titular'].value);
+    formData.append('Numero_registro', formulario['Numero_registro'].value);
+    formData.append('Datos_Tecnicos', formulario['Datos_Tecnicos'].value);
+    formData.append('Modelo', formulario['Modelo'].value);
+    formData.append('Tipo', formulario['Tipo'].value);
+
+    // Agrega la imagen seleccionada al objeto FormData
     const imagenInput = formulario['Imagen'] as HTMLInputElement;
     if (imagenInput && imagenInput.files && imagenInput.files.length > 0) {
       const file = imagenInput.files[0];
-      this.imagenSeleccionada = file;
-      
-      // formData.append('Imagen', file);
+      formData.append('Imagen', file);
     }
-    console.log('Registro de la embarcación:', numeroRegistroValue);
-    this.embarcacionSeleccionada = {
-      Nombre: nombreValue,
-      Matricula: matriculaValue,
-      Manga: mangaValue,
-      Eslora: esloraValue,
-      Origen: origenValue,
-      Titular: titularValue,
-      Imagen: this.imagenSeleccionada,
-      // Imagen: formData.get('Imagen'),
-      Numero_registro: numeroRegistroValue,
-      Datos_Tecnicos: datosTecnicosValue,
-      Modelo: modeloValue,
-      Tipo: tipoValue
-    };
-    // ... y así sucesivamente para otros campos.
 
-    this.apiService.add('embarcacion', this.embarcacionSeleccionada)
+    // Envía los datos al servidor utilizando el servicio API
+    this.apiService.add('embarcacion', formData)
       .pipe(
         catchError(error => {
           console.error('Error en la solicitud:', error);
@@ -153,10 +194,10 @@ export class FormularioEmbarcacionComponent implements OnInit {
         response => {
           this.router.navigate(['/embarcaciones']);
           console.log('Respuesta del servicio en el componente:', response);
-
         }
       );
   }
+
   actualizarEmbarcacion() {
 
     this.apiService.update(this.embarcacionSeleccionada.id, 'embarcacion', this.embarcacionSeleccionada)
