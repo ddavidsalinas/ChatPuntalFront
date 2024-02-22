@@ -121,6 +121,7 @@ export class FormularioEmbarcacionComponent implements OnInit {
     if (imagenInput && imagenInput.files && imagenInput.files.length > 0) {
       const file = imagenInput.files[0];
       this.imagenSeleccionada = file;
+      
       // formData.append('Imagen', file);
     }
     console.log('Registro de la embarcación:', numeroRegistroValue);
