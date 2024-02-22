@@ -1,5 +1,4 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { datos } from 'src/resources/datos';
 import { Router, ActivatedRoute } from '@angular/router';
 import { SharedDataService } from 'src/app/services/shared-data/shared-data.service';
 import { HttpClient } from '@angular/common/http';

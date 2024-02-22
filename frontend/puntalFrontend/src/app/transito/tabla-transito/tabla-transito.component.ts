@@ -28,7 +28,7 @@ export class TablaTransitoComponent implements OnInit {
   ){}
 
   someClickHandler(index: number): void {
-    const rowData = this.datos.transits[index];
+    const rowData = this.datos[index];
     this.sharedDataService.setData('transitoSeleccionada', rowData);
     console.log(' wed transitoSeleccionada:', this.sharedDataService.getData('transitoSeleccionada'));
     this.router.navigate(['formulario'], { relativeTo: this.activatedRoute.parent, queryParams: { tipo: 'vista' } });
@@ -39,6 +39,8 @@ export class TablaTransitoComponent implements OnInit {
       this.datos = data;
 
       console.log('Después de la llamada a la API:', this.datos);
+      this.dtTrigger.next(data); 
+
       // Notificar a DataTables después de obtener los datos
       // this.dtTrigger.next(data);
     });

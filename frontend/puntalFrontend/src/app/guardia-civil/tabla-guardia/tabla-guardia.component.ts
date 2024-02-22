@@ -33,17 +33,19 @@ constructor(private apiService:ApiService ) {
 ngOnInit(): void {
   this.apiService.getAll('transito').subscribe((data: any) => {
     this.datos = data;
-
     console.log('Después de la llamada a la API:', this.datos);
+    this.dtTrigger.next(data); 
+
 
      });
-     
-  this.dtOptions = {
-    pageLength: 10,
-    processing: true,
-    language: {
-      url: '//cdn.datatables.net/plug-ins/1.10.25/i18n/Spanish.json'
-    },
+     this.dtOptions = {
+      pagingType: 'full_numbers',
+      pageLength: 3,
+      processing: true,
+      language: {
+        url: '//cdn.datatables.net/plug-ins/1.10.25/i18n/Spanish.json'
+      },
+ 
   };
 }
 }
