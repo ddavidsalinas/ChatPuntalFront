@@ -15,15 +15,18 @@ export class TablaGuardiaComponent implements OnInit {
 
   seleccionados: boolean[] = Array(this.datos.length).fill(false);
   selectAll: boolean = false;
-  marcar(index: number)
-  {
-    this.seleccionados[index] = !this.seleccionados[index];
+  seleccionarTodas(): void {
+    this.selectAll = !this.selectAll;
+    this.seleccionados.fill(this.selectAll);
   }
-
- seleccionarTodas(): void {
-  this.selectAll = !this.selectAll;
-  this.seleccionados.fill(this.selectAll);
-}
+  
+  marcar(index: number): void {
+    this.seleccionados[index] = !this.seleccionados[index];
+    
+    // Verificar si todas las filas están marcadas para actualizar el estado de "Seleccionar Todas"
+    this.selectAll = this.seleccionados.every((isSelected) => isSelected);
+  }
+  
 dtTrigger: Subject<any> = new Subject<any>();
 
 constructor(private apiService:ApiService ) { 

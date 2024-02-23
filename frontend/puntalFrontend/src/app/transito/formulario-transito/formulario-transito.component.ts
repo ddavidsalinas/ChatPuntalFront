@@ -23,6 +23,7 @@ export class FormularioTransitoComponent implements OnInit {
   modoEdicion: boolean = false;
   transitoSeleccionada: any = { datos_tecnicos: '' };
   imagenSeleccionada: string | ArrayBuffer | null = null;
+  datos:any ; amarre:any; pantalan:any;instalacion:any;
   // transitoVacia: any = { datos_tecnicos: '' };
 
   mostrar :string ='no';
@@ -91,6 +92,30 @@ export class FormularioTransitoComponent implements OnInit {
 
 
   ngOnInit(): void {
+    this.apiService.getAll('embarcacion').subscribe((data: any) => {
+      this.datos = data;
+      console.log('Después de la llamada a la API:', this.datos);
+  
+  
+       });
+       this.apiService.getPlazas().subscribe((data: any) => {
+        this.amarre = data;
+        console.log('Después de la llamada a la API:', this.amarre);
+    
+    
+         });
+         this.apiService.getAll('pantalan').subscribe((data: any) => {
+          this.pantalan = data;
+          console.log('Después de la llamada a la API:', this.pantalan);
+      
+      
+           });
+           this.apiService.getAll('instalacion').subscribe((data: any) => {
+            this.instalacion = data;
+            console.log('Después de la llamada a la API:', this.instalacion);
+        
+        
+             });
     this.activatedRoute.queryParams.subscribe((params) => {
       const tipo = params['tipo'];
       this.mostrarVacio = tipo === 'vacio';

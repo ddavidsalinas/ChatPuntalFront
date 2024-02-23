@@ -39,7 +39,8 @@
       </tr>
     </ng-container>
     <!-- muestra inputs cuando se crea un nuevo tripulante -->
-    <ng-container *ngIf="crearTripulante && !mostrarDatos">
+    <ng-container *ngIf="crearTripulante && !mostrarDatos" >
+      <ng-container  *ngFor="let index of getInputsArray()" >
       <tr style="width: 200px; height: 50px">
         <td>
           <input
@@ -71,6 +72,7 @@
         </td>
       </tr>
     </ng-container>
+    </ng-container>
     <!-- muestra datos y permite modificacion  -->
     <ng-container *ngIf="crearTripulante && mostrarDatos">
       <tr *ngFor="let item of datos; let i = index" class="text-center">
@@ -78,7 +80,8 @@
           <input
             type="text"
             name="nombre"
-            placeholder="{{ item.nombre }}"
+            placeholder="{{ item.Nombre }}"
+            value="datos.Nombre"
             [(ngModel)]="TripulanteSeleccionada.nombre"
           />
         </td>
@@ -86,7 +89,8 @@
           <input
             type="text"
             name="sexo"
-            placeholder="{{ item.sexo }}"
+            placeholder="{{ item.Sexo }}"
+            value="datos.Sexo"
             [(ngModel)]="TripulanteSeleccionada.sexo"
           />
         </td>
@@ -94,7 +98,8 @@
           <input
             type="text"
             name="documento"
-            placeholder="{{ item.numero_documento }}"
+            placeholder="{{ item.NumeroDeDocumento }}"
+            value="datos.NumeroDeDocumento"
             [(ngModel)]="TripulanteSeleccionada.numero_documento"
           />
         </td>
@@ -102,7 +107,8 @@
           <input
             type="text"
             name="nacionalidad"
-            placeholder="{{ item.nacionalidad }}"
+            value="datos.Nacionalidad"
+            placeholder="{{ item.Nacionalidad }}"
             [(ngModel)]="TripulanteSeleccionada.nacionalidad"
           />
         </td>

@@ -22,7 +22,7 @@
 </thead>
     <tbody>
         
-        <tr  *ngFor="let transit of datos;let i=index" class=" text-center" [ngClass]="{'color-translucido': seleccionados[i]}" >
+        <tr  *ngFor="let transit of datos;let i=index" class=" text-center" [ngClass]="{'color-translucido': seleccionados[i]}" class="estados" >
             <td>{{ transit.ubicacion }}</td>
             <td>{{ transit.FechaEntrada }}</td>
             <td>{{ transit.FechaSalida }}</td>
@@ -30,9 +30,7 @@
             <td>{{ transit.Titular }}</td>
             <td>{{ transit.Tipo }}</td>
             <td>{{ transit.Origen }}</td>
-            <td>{{ transit.Estatus }}</td>
-            
-            <td  [ngClass]="{'color-translucido': seleccionados[i], 'fondo-amarillo': transit.Estatus === 'salida', 'fondo-azul': transit.Estatus === 'entrada'}" class="estados" ></td>
+            <td [ngClass]="{'fondo-amarillo': transit.Estatus === 'Salida', 'fondo-azul': transit.Estatus === 'Entrada'}" class="estatus" >{{ transit.Estatus }}</td>
             <td><input (click)="marcar(i)" class="eliminar" type="checkbox" [checked]="seleccionados[i]" ></td>
             
             

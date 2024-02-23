@@ -32,11 +32,15 @@ mostrarDatos:boolean =true;
 @Input() mostrar:string='';
 @Input() click:boolean=false;
 crearTripulante :boolean=false;
-
+inputs :number=0;
+getInputsArray(): number[] {
+  return Array(this.inputs).fill(0).map((x, i) => i);
+}
 
 //activa edicion tabla tripulante
 anyadirTripulante()
 {
+  this.inputs++;
   this.crearTripulante=true;
 }
 ngOnInit(): void {

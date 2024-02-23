@@ -4,11 +4,11 @@
 }
   
 .fondo-amarillo {
-    background-color: yellow;
+    background-color: yellow !important;
 }
 
 .fondo-azul {
-    background-color: blue;
+    background-color: rgb(255, 0, 0) !important;
 }
 th{
     

@@ -8,6 +8,13 @@ import { Observable, tap } from 'rxjs';
 export class ApiService {
   private apiUrl = 'http://127.0.0.1:8000/api/v1/';
   constructor(private http: HttpClient) { }
+
+  getPlazas():Observable<any>
+  {
+    const url = `${this.apiUrl}${"plaza/disponibles"}`;
+    return this.http.get(url)
+  }
+ 
   getAll(entity: string): Observable<any> {
     const url = `${this.apiUrl}${entity}`;
     return this.http.get(url);
