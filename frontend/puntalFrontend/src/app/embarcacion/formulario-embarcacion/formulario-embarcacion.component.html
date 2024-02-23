@@ -8,6 +8,7 @@
       action=""
       class="d-flex"
       (submit)="guardarEmbarcacion()"
+      enctype="multipart/form-data"
     >
       <div class="formLeft">
         <div class="mb-3 d-flex">
@@ -76,7 +77,7 @@
         <div class="mb-3 d-flex">
           <label for="registro" class="form-label">Nº Registro:</label>
           <input
-            name="Registro"
+            name="Numero_registro"
             type="text"
             class="form-control mt-4"
             placeholder="Nº Registro"
@@ -133,7 +134,7 @@
     <div class="formHeader">
       <h5>VISTA EMBARCACIÓN</h5>
     </div>
-    <form id="formEmbarcacionModificar" action="" class="d-flex">
+    <form id="formEmbarcacionModificar" action="" class="d-flex"   enctype="multipart/form-data">
       <div class="formLeft">
         <div class="mb-3 d-flex">
           <label for="nombre" class="form-label">Nombre:</label>
@@ -219,7 +220,7 @@
             type="text"
             class="form-control mt-4"
             placeholder="Nº Registro"
-            [(ngModel)]="embarcacionSeleccionada.Numero_Registro"
+            [(ngModel)]="embarcacionSeleccionada.Numero_registro"
             [readOnly]="!modoEdicion"
           />
         </div>
@@ -248,17 +249,17 @@
         </div>
         <div class="mb-3 d-flex">
           <label for="imagen" class="form-label">Imagen:</label>
-          <input name="Imagen" type="file" class="form-control mt-4" />
+          <input name="Imagen" type="file" class="form-control mt-4" (change)="onFileUpdated($event)" />
         </div>
         <div class="d-flex justify-content-center">
-          <img src="/assets/img/embarcaciones/image-outline.svg" alt="" />
+         <img [src]="'http://127.0.0.1:8000' + embarcacionSeleccionada.Imagen" alt="" />
         </div>
 
         <div class="d-flex justify-content-end mt-5">
           <button *ngIf="modoVista" class="btn btnBack" routerLink="../tabla">
             VOLVER
           </button>
-          <button *ngIf="!modoVista" class="btnDelete btn" (click)="eliminar()">
+          <button *ngIf="!modoVista" type="button" class="btnDelete btn" (click)="eliminar()">
             ELIMINAR
           </button>
           <button
@@ -267,7 +268,6 @@
           >
             {{ modoVista ? "MODIFICAR" : "ACTUALIZAR" }}
           </button>
-         
         </div>
       </div>
     </form>

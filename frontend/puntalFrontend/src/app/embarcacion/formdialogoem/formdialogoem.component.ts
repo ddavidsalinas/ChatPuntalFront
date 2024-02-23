@@ -14,7 +14,7 @@ export class FormdialogoemComponent {
     public dialogRef: MatDialogRef<FormdialogoemComponent>,
     @Inject(MAT_DIALOG_DATA) public data: DialogoFormem
   ) {
-    this.formData = { ...data }; 
+    this.formData = { ...data };
   }
 
   onNoClick(): void {
@@ -22,6 +22,11 @@ export class FormdialogoemComponent {
   }
 
   onSubmit(): void {
+    if (!this.formData.causa) {
+      alert("Debe ingresar una causa");
+      return;
+    }
+
     this.dialogRef.close(this.formData);
   }
 }
