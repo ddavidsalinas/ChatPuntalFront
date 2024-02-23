@@ -19,20 +19,45 @@ export class ApiService {
         tap(response => console.log('Respuesta del servicio:', response))
       );
   }
+  // update(id: any, entity: string, data: any): Observable<any> {
+  //   // if (!data.Imagen) {
+  //   //   data.Imagen = []; // Establecer como un array vacío si no hay imagen seleccionada
+  //   // }
+    
+    
+  //   const url = `${this.apiUrl}${entity}/${id}`;
+  //   console.log('URL:', url);
+  //   console.log('Datos de la embarcación a enviar desde service:', data);
+  //   console.log('Img:', data.Imagen);
+   
+  //   console.log('Img type:', typeof data.Imagen);
+
+  //   return this.http.put(url, data, { headers: new HttpHeaders({ 'Content-Type': 'multipart/form-data' }) });
+  // }
   update(id: any, entity: string, data: any): Observable<any> {
     // if (!data.Imagen) {
     //   data.Imagen = []; // Establecer como un array vacío si no hay imagen seleccionada
     // }
-    
-    
+    // const formData = new FormData();
+    // // Agregar los datos al FormData
+    // Object.keys(data).forEach(key => {
+    //   formData.append(key, data[key]);
+    // });
+    const boundary = '----WebKitFormBoundaryCPvD7XF6kal2o4y9'; // Usar el mismo boundary que en el segundo encabezado
+
+    const headers = new HttpHeaders({
+      'Content-Type': `multipart/form-data; boundary=${boundary}`,
+      'enctype': 'multipart/form-data'
+    });
+
     const url = `${this.apiUrl}${entity}/${id}`;
     console.log('URL:', url);
     console.log('Datos de la embarcación a enviar desde service:', data);
     console.log('Img:', data.Imagen);
-   
-    console.log('Img type:', typeof data.Imagen);
 
-    return this.http.put(url, data, { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) });
+    console.log('Img type:', typeof data.Imagen);
+    return this.http.put(url, data);
+    // return this.http.put(url, formData, { headers: headers});
   }
   
   // update(id: number, entity: string, data: any, imagen?: File) {
