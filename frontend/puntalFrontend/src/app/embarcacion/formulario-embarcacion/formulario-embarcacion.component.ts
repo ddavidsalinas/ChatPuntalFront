@@ -96,6 +96,7 @@ export class FormularioEmbarcacionComponent implements OnInit {
   }
   onFileUpdated(event: any) {
     this.imagenSeleccionada = event.target.files[0];
+    console.log("Imagen actualizada:", this.imagenSeleccionada);
   }
 
   activarModoEdicion() {
@@ -124,7 +125,7 @@ export class FormularioEmbarcacionComponent implements OnInit {
   //   if (imagenInput && imagenInput.files && imagenInput.files.length > 0) {
   //     const file = imagenInput.files[0];
   //     this.imagenSeleccionada = file;
-      
+
   //     // formData.append('Imagen', file);
   //   }
   //   console.log('Registro de la embarcación:', numeroRegistroValue);
@@ -202,14 +203,16 @@ export class FormularioEmbarcacionComponent implements OnInit {
   }
 
   actualizarEmbarcacion() {
-    const formData = new FormData();
-    formData.append('Nombre', this.embarcacionSeleccionada.Nombre);
-    formData.append('Matricula', this.embarcacionSeleccionada.Matricula);
+    // const formData = new FormData();
+    // formData.append('Nombre', this.embarcacionSeleccionada.Nombre);
+    // formData.append('Matricula', this.embarcacionSeleccionada.Matricula);
     // Agrega otros campos según sea necesario
     if (this.imagenSeleccionada) {
-      formData.append('Imagen', this.imagenSeleccionada as File);
+      // formData.append('Imagen', this.imagenSeleccionada as File);
+      console.log('Imagen seleccionada desde actualizar:', this.imagenSeleccionada);
+      this.embarcacionSeleccionada.Imagen = this.imagenSeleccionada;
     }
-
+    console.log('Actualizando embarcación:', this.embarcacionSeleccionada);
     this.apiService.update(this.embarcacionSeleccionada.id, 'embarcacion', this.embarcacionSeleccionada)
       .pipe(
         catchError(error => {
@@ -231,6 +234,8 @@ export class FormularioEmbarcacionComponent implements OnInit {
         }
       );
   }
+
+
   // eliminarEmbarcacion() {
   //   this.apiService.delete(this.embarcacionSeleccionada.id, 'embarcacion')
   //     .pipe(
@@ -260,7 +265,7 @@ export class FormularioEmbarcacionComponent implements OnInit {
 
       } as DialogoFormem
     });
-   
+
     dialogRef.afterClosed().subscribe(result => {
       console.log('El diálogo se cerró:', result);
       if (result.causa) {
