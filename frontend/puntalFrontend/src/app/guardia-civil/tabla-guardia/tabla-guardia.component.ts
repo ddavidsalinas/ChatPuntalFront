@@ -20,8 +20,12 @@ export class TablaGuardiaComponent implements OnInit {
     this.seleccionados.fill(this.selectAll);
   }
   
-  marcar(index: number): void {
+  marcar(index: number,transit:any): void {
     this.seleccionados[index] = !this.seleccionados[index];
+    
+    this.apiService.leidoCreate(transit);
+
+
     
     // Verificar si todas las filas están marcadas para actualizar el estado de "Seleccionar Todas"
     this.selectAll = this.seleccionados.every((isSelected) => isSelected);
