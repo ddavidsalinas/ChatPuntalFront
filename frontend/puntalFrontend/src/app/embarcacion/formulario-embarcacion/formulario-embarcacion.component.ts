@@ -23,7 +23,7 @@ export class FormularioEmbarcacionComponent implements OnInit {
   data: any;
   formulario!: FormGroup;
   imagenSeleccionada: string | ArrayBuffer | null = null;
-  // embarcacionVacia: any = { datos_tecnicos: '' };
+ 
 
   constructor(private sharedDataService: SharedDataService, private activatedRoute: ActivatedRoute, private apiService: ApiService, private formBuilder: FormBuilder, public dialog: MatDialog, private router: Router) {
     this.formulario = this.formBuilder.group({

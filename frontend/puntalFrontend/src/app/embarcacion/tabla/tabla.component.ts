@@ -1,5 +1,4 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { datos } from 'src/resources/datos';
 import { Router, ActivatedRoute } from '@angular/router';
 import { SharedDataService } from 'src/app/services/shared-data/shared-data.service';
 import { HttpClient } from '@angular/common/http';
@@ -70,7 +69,7 @@ export class TablaComponent implements OnInit {
     // Configuración de DataTables
     this.dtOptions = {
       pagingType: 'full_numbers',
-      pageLength: 10,
+      pageLength: 3,
       processing: true,
       language: {
         url: '//cdn.datatables.net/plug-ins/1.10.25/i18n/Spanish.json'
