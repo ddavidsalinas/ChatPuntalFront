@@ -21,11 +21,11 @@ import { FormularioTransitoComponent } from './transito/formulario-transito/form
 import { PlantillaGuardamuellesComponent } from './movil/plantilla-guardamuelles/plantilla-guardamuelles.component';
 
 
-const isRole = (role: string) => {
-  const roleLogged = localStorage.getItem('role')
+// const isRole = (role: string) => {
+//   const roleLogged = localStorage.getItem('role')
 
-  return roleLogged === role
-}
+//   return roleLogged === role
+// }
 
 
 const routes: Routes = [
@@ -44,14 +44,14 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        canMatch: [() => isRole('2')],
+        // canMatch: [() => isRole('2')],
         component: DashboardComponent
       }
     ]
   },
   {
     path: 'embarcaciones',
-    canMatch: [() => isRole('2')],
+    // canMatch: [() => isRole('2')],
     component: ContenidoComponent,
     children: [
       {
@@ -71,7 +71,7 @@ const routes: Routes = [
   },
   {
     path: 'plazabase',
-    canMatch: [() => isRole('2')],
+    // canMatch: [() => isRole('2')],
     component: ContenidoComponent,
     children: [
       {
@@ -91,7 +91,7 @@ const routes: Routes = [
   },
   {
     path: 'transito',
-    canMatch: [() => isRole('2')],
+    // canMatch: [() => isRole('2')],
     component: ContenidoComponent,
     children: [
       {
@@ -111,7 +111,7 @@ const routes: Routes = [
   },
   {
     path: 'guardiacivil',
-    canMatch: [() => isRole('4')],
+    // canMatch: [() => isRole('4')],
     component: ContenidoComponent, // O el componente que corresponda
    
     children: [
@@ -124,7 +124,7 @@ const routes: Routes = [
   },
   {
     path: 'notificaciones',
-    canMatch: [() => isRole('2')],
+    // canMatch: [() => isRole('2')],
     component: ContenidoComponent, // O el componente que corresponda
     children: [
       {
@@ -135,7 +135,7 @@ const routes: Routes = [
   },
   {
     path: 'movil',
-    canMatch: [() => isRole('3')],
+    // canMatch: [() => isRole('3')],
     component: PlantillaGuardamuellesComponent, // O el componente que corresponda
     children: [
       {
