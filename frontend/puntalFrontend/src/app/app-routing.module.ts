@@ -20,6 +20,7 @@ import { FormularioEmbarcacionComponent } from './embarcacion/formulario-embarca
 import { FormularioTransitoComponent } from './transito/formulario-transito/formulario-transito.component';
 import { PlantillaGuardamuellesComponent } from './movil/plantilla-guardamuelles/plantilla-guardamuelles.component';
 import { roleGuard } from './role.guard';
+import { ErrorHandlerComponent } from './error-handler/error-handler.component';
 
 // const isRole = (role: string) => {
 //   const roleLogged = localStorage.getItem('role')
@@ -161,7 +162,8 @@ const routes: Routes = [
   },
   {
     path: '**',
-    redirectTo: '/login'
+    component: ErrorHandlerComponent
+    // redirectTo: '/login' Por eso redirigia al login. Doble asterisco es para cualquier ruta que no exista.
   }
 ];
 @NgModule({

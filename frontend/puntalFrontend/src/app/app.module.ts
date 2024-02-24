@@ -35,6 +35,7 @@ import { ErrorHandlerComponent } from './error-handler/error-handler.component';
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
+    
 
   ],
 
@@ -42,7 +43,8 @@ import { ErrorHandlerComponent } from './error-handler/error-handler.component';
     provide: HTTP_INTERCEPTORS,
     useClass: AuthInterceptor,
     multi: true
-  }],
+  },
+],
   bootstrap: [AppComponent],
 })
 export class AppModule { }
