@@ -28,8 +28,8 @@ export class LoginComponent implements OnInit {
     private token: TokenService,
     private authState: AuthStateService) { 
       this.loginForm = this.fb.group({
-        email: [],
-        password: [],
+        email: [''],
+        password: [''],
       });
     }
 
@@ -50,6 +50,9 @@ export class LoginComponent implements OnInit {
         console.log('Resultado del usuario:', result.user.Rol_id);
         console.log('Resultado del nombre:', result.user.NombreUsuario);
         this.responseHandler(result);
+
+        const token = this.token.getToken();
+        console.log('Valor del token:', token);
       },
       (error) => {
         this.errors = error.error;

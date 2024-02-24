@@ -19,7 +19,7 @@ import { TablaComponent } from './embarcacion/tabla/tabla.component';
 import { FormularioEmbarcacionComponent } from './embarcacion/formulario-embarcacion/formulario-embarcacion.component';
 import { FormularioTransitoComponent } from './transito/formulario-transito/formulario-transito.component';
 import { PlantillaGuardamuellesComponent } from './movil/plantilla-guardamuelles/plantilla-guardamuelles.component';
-
+import { roleGuard } from './role.guard';
 
 // const isRole = (role: string) => {
 //   const roleLogged = localStorage.getItem('role')
@@ -44,13 +44,17 @@ const routes: Routes = [
     children: [
       {
         path: '',
+        canActivate: [roleGuard],
         // canMatch: [() => isRole('2')],
-        component: DashboardComponent
+        component: DashboardComponent,
+        data: { role: '2' }
       }
     ]
   },
   {
     path: 'embarcaciones',
+    canActivate: [roleGuard],
+    data: { role: '2' },
     // canMatch: [() => isRole('2')],
     component: ContenidoComponent,
     children: [
@@ -71,6 +75,8 @@ const routes: Routes = [
   },
   {
     path: 'plazabase',
+    canActivate: [roleGuard],
+    data: { role: '2' },
     // canMatch: [() => isRole('2')],
     component: ContenidoComponent,
     children: [
@@ -91,6 +97,8 @@ const routes: Routes = [
   },
   {
     path: 'transito',
+    canActivate: [roleGuard],
+    data: { role: '2' },
     // canMatch: [() => isRole('2')],
     component: ContenidoComponent,
     children: [
@@ -111,6 +119,8 @@ const routes: Routes = [
   },
   {
     path: 'guardiacivil',
+    canActivate: [roleGuard],
+    data: { role: '4' },
     // canMatch: [() => isRole('4')],
     component: ContenidoComponent, // O el componente que corresponda
    
@@ -124,6 +134,8 @@ const routes: Routes = [
   },
   {
     path: 'notificaciones',
+    canActivate: [roleGuard],
+    data: { role: '2' },
     // canMatch: [() => isRole('2')],
     component: ContenidoComponent, // O el componente que corresponda
     children: [
@@ -135,6 +147,8 @@ const routes: Routes = [
   },
   {
     path: 'movil',
+    canActivate: [roleGuard],
+    data: { role: '3' },
     // canMatch: [() => isRole('3')],
     component: PlantillaGuardamuellesComponent, // O el componente que corresponda
     children: [
