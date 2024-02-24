@@ -9,7 +9,7 @@ import { Location } from '@angular/common';
 })
 export class ErrorHandlerComponent {
   errorCode: number | null = null;
-  errorMessage: string | null = null;
+  errorMessage: string = "La página no existe";
 
   constructor(private location: Location) { }
 

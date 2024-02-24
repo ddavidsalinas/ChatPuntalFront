@@ -1,27 +1,11 @@
-<!-- <div *ngIf="errorCode === 404" class="error-message">
-  <p>Página no encontrada</p>
-   <a (click)="goBack()">Volver</a>
-</div>
-<div *ngIf="errorCode === 401 || errorCode === 403" class="error-message">
-  <p>No estás autorizado para acceder a esta página</p>
-  <p>Página no encontrada</p>
-   <a (click)="goBack()">Volver</a>
-</div>
-<div *ngIf="errorCode === 500" class="error-message">
-  <p>Ha ocurrido un error en el servidor</p>
-  <p>Página no encontrada</p>
-   <a (click)="goBack()">Volver</a>
-</div>
-<div *ngIf="errorCode === 0" class="error-message">
-  <p>Ha ocurrido un error inesperado</p>
-  <p>Página no encontrada</p>
-   <a (click)="goBack()">Volver</a>
-</div> -->
 
 
-<div>
-  <h1>ERROR</h1>
-  <p>{{errorCode}}</p>
+
+<div class="d-flex align-items-center justify-content-center errorContainer">
+  <div class="errorPage">
+      <h1>ERROR</h1>
+ 
   <p>{{errorMessage}}</p>
-   <a  (click)="goBack()">Volver</a>
+   <button class="btn btn-warning"  (click)="goBack()">Volver</button>
+  </div>
 </div>
