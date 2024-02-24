@@ -33,12 +33,33 @@ export class TokenService {
   //   const jwtPayload = token.split('.')[1];
   //   return JSON.parse(atob(jwtPayload));
   // }
+  // payload(token: any) {
+  //   if (!token) {
+  //     this.removeToken();
+  //     return null;
+  //   }
+  
+  //   try {
+  //     const jwtPayload = token.split('.')[1];
+  //     return JSON.parse(atob(jwtPayload));
+  //   } catch (error) {
+  //     console.log('Token is not valid:', error);
+  //     this.removeToken();
+  //     return null;
+  //   }
+  // }
   payload(token: any) {
+    console.log('Valor del token:', typeof token)
+    console.log('Valor del token 2:', token)
+    if (token === 'true') {
+      return { authenticated: token };
+    }
+
     if (!token) {
       this.removeToken();
       return null;
     }
-  
+
     try {
       const jwtPayload = token.split('.')[1];
       return JSON.parse(atob(jwtPayload));
@@ -48,6 +69,7 @@ export class TokenService {
       return null;
     }
   }
+
   // User state based on valid token
   isLoggedIn() {
     return this.isValidToken();
@@ -57,5 +79,6 @@ export class TokenService {
     localStorage.removeItem('auth_token');
     localStorage.removeItem('user');
     localStorage.removeItem('role');
+    localStorage.removeItem('name');
   }
 }

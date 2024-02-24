@@ -18,13 +18,13 @@ import { TablaComponent } from './embarcacion/tabla/tabla.component';
 import { FormularioEmbarcacionComponent } from './embarcacion/formulario-embarcacion/formulario-embarcacion.component';
 import { FormularioTransitoComponent } from './transito/formulario-transito/formulario-transito.component';
 import { PlantillaGuardamuellesComponent } from './movil/plantilla-guardamuelles/plantilla-guardamuelles.component';
+import { roleGuard } from './role.guard';
 
+// const isRole = (role: string) => {
+//   const roleLogged = localStorage.getItem('role')
 
-const isRole = (role: string) => {
-  const roleLogged = localStorage.getItem('role')
-
-  return roleLogged === role
-}
+//   return roleLogged === role
+// }
 
 
 const routes: Routes = [
@@ -43,14 +43,18 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        canMatch: [() => isRole('2')],
-        component: DashboardComponent
+        canActivate: [roleGuard],
+        // canMatch: [() => isRole('2')],
+        component: DashboardComponent,
+        data: { role: '2' }
       }
     ]
   },
   {
     path: 'embarcaciones',
-    canMatch: [() => isRole('2')],
+    canActivate: [roleGuard],
+    data: { role: '2' },
+    // canMatch: [() => isRole('2')],
     component: ContenidoComponent,
     children: [
       {
@@ -70,7 +74,9 @@ const routes: Routes = [
   },
   {
     path: 'plazabase',
-    canMatch: [() => isRole('2')],
+    canActivate: [roleGuard],
+    data: { role: '2' },
+    // canMatch: [() => isRole('2')],
     component: ContenidoComponent,
     children: [
       {
@@ -90,7 +96,9 @@ const routes: Routes = [
   },
   {
     path: 'transito',
-    canMatch: [() => isRole('2')],
+    canActivate: [roleGuard],
+    data: { role: '2' },
+    // canMatch: [() => isRole('2')],
     component: ContenidoComponent,
     children: [
       {
@@ -110,10 +118,14 @@ const routes: Routes = [
   },
   {
     path: 'guardiacivil',
-    // canMatch: [() => isRole('2')],
+    canActivate: [roleGuard],
+    data: { role: '4' },
+    // canMatch: [() => isRole('4')],
     component: ContenidoComponent, // O el componente que corresponda
+   
     children: [
       {
+      
         path: '',
         
         component: TablaGuardiaComponent
@@ -122,7 +134,9 @@ const routes: Routes = [
   },
   {
     path: 'notificaciones',
-    canMatch: [() => isRole('2')],
+    canActivate: [roleGuard],
+    data: { role: '2' },
+    // canMatch: [() => isRole('2')],
     component: ContenidoComponent, // O el componente que corresponda
     children: [
       {
@@ -133,7 +147,9 @@ const routes: Routes = [
   },
   {
     path: 'movil',
-    canMatch: [() => isRole('3')],
+    canActivate: [roleGuard],
+    data: { role: '3' },
+    // canMatch: [() => isRole('3')],
     component: PlantillaGuardamuellesComponent, // O el componente que corresponda
     children: [
       {
