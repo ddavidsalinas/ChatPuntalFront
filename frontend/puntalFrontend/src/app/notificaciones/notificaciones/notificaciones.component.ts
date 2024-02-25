@@ -60,14 +60,15 @@ export class NotificacionesComponent implements OnInit {
       .subscribe(
         () => {
           console.log('La incidencia se eliminó correctamente');
+          this.closeModal();
+          window.location.reload();
 
         },
         error => {
           console.error('Error al eliminar la incidencia:', error);
         }
       );
-    this.closeModal();
-    window.location.reload();
+    
   }
   ngOnInit(): void {
     this.apiService.getAll('incidencia').subscribe((data: any) => {
