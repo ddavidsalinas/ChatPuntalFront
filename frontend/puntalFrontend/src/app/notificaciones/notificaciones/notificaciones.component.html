@@ -14,18 +14,21 @@
         <th class="text-center">Título</th>
         <th class="text-center">Descripción</th>
         <th class="text-center">Foto</th>
+        <th class="text-center">Leído</th>
       </tr>
     </thead>
     <tbody>
       <tr
         *ngFor="let item of datos; let i = index"
         class="filaPersonalizada text-center"
+        [style.opacity]="item.Leido === 1 ? '0.5' : '1'"
        (click)="someClickHandler(i)"
       >
         <td class="p-4">{{ item.Guardamuelle_nombre }}</td>
         <td class="p-4">{{ item.Titulo }}</td>
         <td class="p-4">{{ item.Descripcion }}</td>
         <td class="p-4">{{ item.Imagen }}</td>
+        <td class="p-4">{{ item.Leido}}</td>
       </tr>
     </tbody>
   </table>
