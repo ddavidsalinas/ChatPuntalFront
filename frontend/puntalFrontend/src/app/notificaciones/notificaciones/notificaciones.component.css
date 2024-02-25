@@ -52,7 +52,7 @@ td {
 }
 .modal-header {
     background-color: var(--wedgewood600);
-    height: 10px;
+    height: 30px;
     color: var(--wedgewood50);
     font-family: 'Questrial', sans-serif;
     /* font-size: 30px; */
@@ -60,7 +60,7 @@ td {
 }
 .modal-title {
     font-family: 'Questrial', sans-serif;
-    font-size: 30px;
+    font-size: 20px;
     font-weight: lighter;
 }
 
