@@ -4,13 +4,14 @@
       </h5>
       
     </div>
+    <!-- CREACION TRANSITO -->
     <form  id="formTransito" action="" (submit)="guardarTransito()" >
       <div *ngIf="mostrarVacio">
         <div class="d-flex">
           <div class="formLeft">
             <div class="mb-3 d-flex">
               <label for="Fecha de entrada" class="form-label">Fecha de entrada:</label>
-              <input name="fecha_entrada" type="date" class="form-control mt-4" placeholder="Fecha de entrada" />
+              <input  name="fecha_entrada" type="date" class="form-control mt-4" placeholder="Fecha de entrada" />
             </div>
             <div class="mb-3 d-flex">
               <label for="Fecha de salida" class="form-label">Fecha de salida:</label>
@@ -67,12 +68,14 @@
           </div>
         </div>
       </div>
+
+      <!-- MODIFICAR TRANSITO -->
       <div *ngIf="!mostrarVacio">
         <div class="d-flex">
           <div class="formLeft">
             <div class="mb-3 d-flex">
               <label for="fecha_entrada" class="form-label">Fecha de entrada:</label>
-              <input name="fecha_entrada" type="text" class="form-control mt-4" placeholder="Fecha de entrada"
+              <input name="fecha_entrada"  type="text" class="form-control mt-4" placeholder="Fecha de entrada"
                 [(ngModel)]="transitoSeleccionada.FechaEntrada" [attr.readonly]="modoVista ? 'readonly' : null" />
             </div>
             <div class="mb-3 d-flex">
@@ -81,25 +84,30 @@
                 [(ngModel)]="transitoSeleccionada.FechaSalida" [attr.readonly]="modoVista ? 'readonly' : null" />
             </div>
             <div class="mb-3 d-flex">
-              <label for="embarcacion" class="form-label">Embarcacion:</label>
-              <input name="embarcacion" type="text" class="form-control mt-4" placeholder="Embarcacion"
-                [(ngModel)]="transitoSeleccionada.Embarcacion" [attr.readonly]="modoVista ? 'readonly' : null" />
+              <label for="Embarcacion" class="form-label">Embarcación:</label>
+              <select name="embarcacion" id="" [(ngModel)]="transitoSeleccionada.Embarcacion">
+                <option *ngFor="let item of datos" [value]="item.id">{{ item.Matricula }}</option>
+              </select>
             </div>
             <div class="mb-3 d-flex">
-              <label for="instalacion" class="form-label">Instalación:</label>
-              <input name="instalacion" type="text" class="form-control mt-4" placeholder="Instalación"
-                [(ngModel)]="transitoSeleccionada.Instalacion" [attr.readonly]="modoVista ? 'readonly' : null" />
+              <label for="Instalacion" class="form-label">Instalación:</label>
+              <select name="instalacion" id="" [(ngModel)]="transitoSeleccionada.Instalacion">
+                <option *ngFor="let item of instalacion" [value]="item.id">{{ item.Ubicacion }}</option>
+              </select>
             </div>
             <div class="mb-3 d-flex">
-              <label for="pantalan" class="form-label">Pantalán:</label>
-              <input name="pantalan" type="text" class="form-control mt-4" placeholder="Pantalán"
-                [(ngModel)]="transitoSeleccionada.Pantalan" [attr.readonly]="modoVista ? 'readonly' : null" />
+              <label for="Pantalán" class="form-label">Pantalán:</label>
+              <select name="pantalan" id="" [(ngModel)]="transitoSeleccionada.Pantalan">
+                <option *ngFor="let item of pantalan" [value]="item.id">{{ item.Nombre }}</option>
+              </select>
             </div>
             <div class="mb-3 d-flex">
-              <label for="amarre" class="form-label">Amarre:</label>
-              <input name="amarre" type="text" class="form-control mt-4" placeholder="Amarre"
-                [(ngModel)]="transitoSeleccionada.Amarre" [attr.readonly]="modoVista ? 'readonly' : null" />
+              <label for="Amarre" class="form-label">Amarre:</label>
+              <select name="amarre" id="" [(ngModel)]="transitoSeleccionada.Amarre">
+                <option *ngFor="let item of amarre" [value]="item.id">{{ item.Numero }}</option>
+              </select>
             </div>
+            
            
           </div>
           <div class="formRight">

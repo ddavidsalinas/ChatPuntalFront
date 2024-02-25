@@ -133,8 +133,8 @@ export class FormularioTransitoComponent implements OnInit {
         if (!this.mostrarVacio) {
           this.transitoSeleccionada = data;
           console.log(
-            'Información de la embarcación seleccionada:',
-            this.transitoSeleccionada.matricula
+            'Información del  transito seleccionado:',
+            this.transitoSeleccionada
           );
         }
       } else {
@@ -186,19 +186,27 @@ export class FormularioTransitoComponent implements OnInit {
 
 
 guardarTransito() {
-  console.log('Guardando transito:', this.transitoSeleccionada);
+  
+  
   const formulario = document.forms.namedItem("formTransito") as HTMLFormElement;
   // Accede a los valores del formulario usando document.forms['nombreFormulario']['nombreCampo']
   const FechaEntradaValue = formulario['fecha_entrada'].value as HTMLInputElement;
+  console.log('Fecha de entrada:', FechaEntradaValue);
+
   const FechaSalidaValue = formulario['fecha_salida'].value as HTMLInputElement;
+  console.log('Fecha de salida:', FechaSalidaValue);
+
   const EmbarcacionValue = formulario['embarcacion'].value as HTMLInputElement;
+  console.log('Embarcación:', EmbarcacionValue);
+
   const InstalacionValue = formulario['instalacion'].value as HTMLInputElement;
+  console.log('Instalación:', InstalacionValue);
+
   const PantalanValue = formulario['pantalan'].value as HTMLInputElement;
+  console.log('Pantalán:', PantalanValue);
+
   const AmarreValue = formulario['amarre'].value as HTMLInputElement;
-  const PropositoValue = formulario['proposito'].value as HTMLInputElement;
-  const AutorizacionesValue = formulario['autorizaciones'].value as HTMLInputElement;
-  const PatronValue = formulario['patron'].value as HTMLInputElement;
-  const DatosEstanciaValue = formulario['datosEstancia'].value as HTMLInputElement;
+  console.log('Amarre:', AmarreValue);
   this.transitoSeleccionada = {
     FechaEntrada: FechaEntradaValue,
     FechaSalida: FechaSalidaValue,
@@ -206,10 +214,7 @@ guardarTransito() {
     Instalacion: InstalacionValue,
     Pantalan: PantalanValue,
     Amarre: AmarreValue,
-    Proposito: PropositoValue,
-    Autorizacion: AutorizacionesValue,
-    Patron: PatronValue,
-    DatosEstancia: DatosEstanciaValue,
+   
     
   };
   // ... y así sucesivamente para otros campos.
