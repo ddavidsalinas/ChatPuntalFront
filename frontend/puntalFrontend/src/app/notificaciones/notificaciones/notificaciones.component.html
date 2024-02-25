@@ -49,6 +49,7 @@
         <div class="modal-footer justify-content-around">
           <button
             type="button"
+            *ngIf="!selectedItem?.Leido"
             (click)="marcarLeido(selectedItem.id)"
             class="btn"
             data-bs-dismiss="modal"

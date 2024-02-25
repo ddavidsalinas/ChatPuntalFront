@@ -10,101 +10,82 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./notificaciones.component.css']
 })
 export class NotificacionesComponent implements OnInit {
-dtOptions: DataTables.Settings = {};
-// datos= datos.incidencias;
-datos : any = [];
-dtTrigger: Subject<any> = new Subject<any>();
-tituloModal: string = '';
-cuerpoModal: string = '';
-imagenModal: string = '';
-rowEstado: HTMLElement = {} as HTMLElement;
-selectedItem: any;
-constructor(private apiService: ApiService, private http: HttpClient) {
-  console.log(this.datos);
-}
-
-someClickHandler(index: number): void {
-  const rowData = this.datos[index];
-  this.selectedItem = rowData;
-  const modal = document.getElementById('myModal');
-  if (modal) {
-    modal.style.display = 'block';
-    this.tituloModal = rowData.Titulo;
-    this.cuerpoModal = rowData.Descripcion;
-    this.imagenModal = rowData.Foto;
-    // this.rowEstado = row as HTMLElement;
+  dtOptions: DataTables.Settings = {};
+  // datos= datos.incidencias;
+  datos: any = [];
+  dtTrigger: Subject<any> = new Subject<any>();
+  tituloModal: string = '';
+  cuerpoModal: string = '';
+  imagenModal: string = '';
+  // rowEstado: HTMLElement = {} as HTMLElement;
+  selectedItem: any;
+  administrativoId:string | null = localStorage.getItem('id');
+  constructor(private apiService: ApiService, private http: HttpClient) {
     
   }
-  // console.log(row);
-}
 
-closeModal(): void {
-  const modal = document.getElementById('myModal');
-  if (modal) {
-    modal.style.display = 'none';
-    // this.rowEstado.style.opacity = '0.5';
+  someClickHandler(index: number): void {
+    const rowData = this.datos[index];
+    this.selectedItem = rowData;
+    const modal = document.getElementById('myModal');
+    if (modal) {
+      modal.style.display = 'block';
+      this.tituloModal = rowData.Titulo;
+      this.cuerpoModal = rowData.Descripcion;
+      this.imagenModal = rowData.Foto;
+      // this.rowEstado = row as HTMLElement;
+
+    }
+    // console.log(row);
   }
-}
-marcarLeido(id: string): void {
-  this.apiService.update(this.selectedItem.id,'incidencia', {Leido: 1}).subscribe((data: any) => {
-    this.apiService.getAll('incidencia').subscribe((data: any) => {
-      this.datos = data;
-      this.dtTrigger.next(data);
+
+  closeModal(): void {
+    const modal = document.getElementById('myModal');
+    if (modal) {
+      modal.style.display = 'none';
+      // this.rowEstado.style.opacity = '0.5';
+    }
+  }
+  marcarLeido(id: string): void {
+    this.apiService.update(this.selectedItem.id, 'incidencia', { Leido: 1, Administrativo_id: this.administrativoId }).subscribe((data: any) => {
+      console.log('La incidencia se actualizó correctamente');
+      this.closeModal();
     });
-  });
-  this.closeModal();
-}
-// eliminarIncidencia(id: string): void {
-//   this.apiService.delete(this.selectedItem.id, "incidencia").subscribe((data: any) => {
-//     this.apiService.getAll('incidencia').subscribe((data: any) => {
-//       this.datos = data;
-//       this.dtTrigger.next(data);
-//     });
-//   });
-// }
+    
+  }
+
   eliminarIncidencia(id: string): void {
     this.apiService.delete(this.selectedItem.id, 'incidencia')
       .subscribe(
         () => {
           console.log('La incidencia se eliminó correctamente');
-          this.apiService.getAll('incidencia').subscribe(
-            (data: any) => {
-              this.datos = data;
-              this.dtTrigger.next(data);
-            },
-            error => {
-              console.error('Error al obtener las incidencias después de eliminar:', error);
-            }
-          );
+     
         },
         error => {
           console.error('Error al eliminar la incidencia:', error);
         }
       );
-      
+        this.closeModal();
   }
-ngOnInit() : void {
-  this.apiService.getAll('incidencia').subscribe((data: any) => {
-    this.datos = data;
-    this.dtTrigger.next(data);
-  });
-this.dtOptions = {
-  pagingType: 'full_numbers',
-  pageLength: 10,
-  processing: true,
-  language:{
-    url: '//cdn.datatables.net/plug-ins/1.10.25/i18n/Spanish.json'
-  },
-  // rowCallback: (row: Node, data:  any[] | Object, index:number) => {
-  //   const self = this;
+  ngOnInit(): void {
+    this.apiService.getAll('incidencia').subscribe((data: any) => {
+      this.datos = data;
+      this.dtTrigger.next(data);
+    });
+    this.dtOptions = {
+      pagingType: 'full_numbers',
+      pageLength: 10,
+      processing: true,
+      language: {
+        url: '//cdn.datatables.net/plug-ins/1.10.25/i18n/Spanish.json'
+      },
 
-  //   $('td', row).off('click');
-  //   $('td', row).on('click', () => {
-  //     self.someClickHandler(row, index);
-  //   });
-  //   return row;
-  // },
-  responsive: true,
-}
-}
+      responsive: true,
+
+    }
+  }
+  ngOnDestroy(): void {
+    // Desuscribirse de dtTrigger para evitar problemas de memoria
+    this.dtTrigger.unsubscribe();
+  }
 }
