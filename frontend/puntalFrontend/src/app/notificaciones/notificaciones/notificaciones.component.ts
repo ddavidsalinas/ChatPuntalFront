@@ -19,9 +19,9 @@ export class NotificacionesComponent implements OnInit {
   imagenModal: string = '';
   // rowEstado: HTMLElement = {} as HTMLElement;
   selectedItem: any;
-  administrativoId:string | null = localStorage.getItem('id');
+  administrativoId: string | null = localStorage.getItem('id');
   constructor(private apiService: ApiService, private http: HttpClient) {
-    
+
   }
 
   someClickHandler(index: number): void {
@@ -50,8 +50,9 @@ export class NotificacionesComponent implements OnInit {
     this.apiService.update(this.selectedItem.id, 'incidencia', { Leido: 1, Administrativo_id: this.administrativoId }).subscribe((data: any) => {
       console.log('La incidencia se actualizó correctamente');
       this.closeModal();
+      window.location.reload();
     });
-    
+
   }
 
   eliminarIncidencia(id: string): void {
@@ -59,13 +60,14 @@ export class NotificacionesComponent implements OnInit {
       .subscribe(
         () => {
           console.log('La incidencia se eliminó correctamente');
-     
+
         },
         error => {
           console.error('Error al eliminar la incidencia:', error);
         }
       );
-        this.closeModal();
+    this.closeModal();
+    window.location.reload();
   }
   ngOnInit(): void {
     this.apiService.getAll('incidencia').subscribe((data: any) => {
