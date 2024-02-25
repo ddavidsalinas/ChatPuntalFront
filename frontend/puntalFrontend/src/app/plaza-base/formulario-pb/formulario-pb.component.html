@@ -1,7 +1,93 @@
 <div class="formularioPlazaBase">
     <div class="formHeader">
-      <h5>{{ mostrarVacio ? "ALTA PLAZA BASE" : "VISTA PLAZA BASE" }}</h5>
+      <h5>ALTA PLAZA BASE</h5>
     </div>
+
+    <form id="formPlazabase" action="" class="d-flex" (submit)="guardarPlazaBase()" enctype="multipart/form-data">
+      <div class="formLeft">
+        <div class="mb-3 d-flex">
+          <label for="instalacion" class="form-label">Instalaciones:</label>
+          <select [(ngModel)]="selectedInstalacion" name="instalacion" (change)="onChangeInstalacion()">
+            <option *ngFor="let instalacion of instalaciones" [value]="instalacion.id">{{ instalacion.Ubicacion }}</option>
+          </select>
+        </div>
+        <div class="mb-3 d-flex">
+          <label for="pantalan" class="form-label">Pantalanes:</label>
+          <select *ngIf="selectedInstalacion" [(ngModel)]="selectedPantalan" name="pantalan" (change)="onChangePantalan()">
+            <option *ngFor="let pantalan of pantalanes" [value]="pantalan.id">{{ pantalan.Nombre }}</option>
+          </select>
+        </div>
+        <div class="mb-3 d-flex">
+          <label for="amarre" class="form-label">Amarres disponibles:</label>
+          <select *ngIf="selectedPantalan" [(ngModel)]="selectedAmarre" name="amarre" >
+            <option *ngFor="let amarre of amarres" [value]="amarre.id">{{ amarre.Numero }}</option>
+          </select>
+        </div>
+        <div class="mb-3 d-flex">
+          <label for="embarcacion" class="form-label">Embarcacion:</label>
+          <select [(ngModel)]="selectedEmbarcacion" name="embarcacion">
+            <option *ngFor="let embarcacion of embarcaciones" [value]="embarcacion.id">{{ embarcacion.Matricula }}- {{ embarcacion.Titular }}</option>
+          </select>
+        </div>
+        <div class="mb-3 d-flex">
+        
+          <label>Feche Entrada:</label>
+          <input type="date"name="FechaInicio" [(ngModel)]="fechaInicio" (change)="validarFechaFinalizacion()" >
+        </div>
+        <div class="mb-3 d-flex">
+          <label>Fecha de finalización de contrato:</label>
+<input type="date" [(ngModel)]="fechaFinalizacion">
+        </div>
+        <div class="mb-3 d-flex">
+          <label for="manga" class="form-label">Manga:</label>
+          <input name="Manga" type="text" class="form-control mt-4" placeholder="Manga" />
+        </div>
+        <div class="mb-3 d-flex">
+          <label for="registro" class="form-label">Nº Registro:</label>
+          <input name="Numero_registro" type="text" class="form-control mt-4" placeholder="Nº Registro" />
+        </div>
+      </div>
+      <div class="formRight">
+        <!-- <div class="mb-3 d-flex">
+          <label for="tipo" class="form-label">Tipo:</label>
+          <input name="Tipo" type="text" class="form-control mt-4" placeholder="Tipo" />
+        </div> -->
+        <div class="mb-3 d-flex">
+  <label for="tipo" class="form-label">Tipo:</label>
+  <select name="Tipo" class="form-control mt-4">
+    <option value="Velero">Velero</option>
+    <option value="Yate">Yate</option>
+    <option value="Catamarán">Catamarán</option>
+    <option value="Lancha">Lancha</option>
+  </select>
+</div>
+        <div class="mb-3 d-flex">
+          <label for="datosTecnicos" class="form-label">Datos técnicos:</label>
+          <textarea class="form-control mt-4" placeholder="Datos técnicos" name="Datos_Tecnicos"></textarea>
+        </div>
+        <div class="mb-3 d-flex">
+          <label for="imagen" class="form-label">Imagen:</label>
+          <input name="Imagen" type="file" class="form-control mt-4" (change)="onFileSelected($event)" />
+        </div>
+        <div class="d-flex justify-content-center">
+          <img class="imgEmb" [src]="
+              imagenSeleccionada ||
+              '/assets/img/embarcaciones/image-outline.svg'
+            " alt="" />
+        </div>
+        <div class="d-flex justify-content-end mt-5">
+          <button class="btn btnCancelar" routerLink="../tabla">
+            CANCELAR
+          </button>
+          <button type="submit" class="btn btnAdd">AÑADIR</button>
+        </div>
+      </div>
+    </form>
+  </div>
+
+
+
+    <!--
     <form action="">
       <div *ngIf="mostrarVacio">
         <div class="d-flex">
@@ -136,3 +222,4 @@
       </div> 
     </form>
   </div>
+-->

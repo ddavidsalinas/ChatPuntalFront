@@ -94,10 +94,35 @@ export class ApiService {
   }
 
 
+//de la api cogemos los tipos de embarcaciones
+getTablaPB(): Observable<any> {
+  const urls = `${this.apiUrl}${'plazaBase/paratabla'}`;
+  return this.http.get(urls);
+}
+
+getEmbarcaciones(): Observable<any[]> {
+  return this.http.get<any[]>(`${this.apiUrl}embarcacion`);
+}
 
 
 
+getInstalaciones(): Observable<any[]> {
+  const url = `${this.apiUrl}instalacion`;
+  console.log(url);
+  return this.http.get<any[]>(url);
+}
 
+getPantalanes(instalacionId: number): Observable<any> {
+  const url = `${this.apiUrl}instalacion/${instalacionId}/pantalanes`;
+  console.log(url);
+  return this.http.get<any>(url);
+}
+
+getAmarres(pantalanId: number): Observable<any> {
+  const url = `${this.apiUrl}pantalan/${pantalanId}/amarres`;
+  console.log('GET request to:', url);
+  return this.http.get<any>(url);
+}
 
 
   getPlazas():Observable<any>
