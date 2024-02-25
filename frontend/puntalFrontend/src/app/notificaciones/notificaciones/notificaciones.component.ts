@@ -18,12 +18,14 @@ tituloModal: string = '';
 cuerpoModal: string = '';
 imagenModal: string = '';
 rowEstado: HTMLElement = {} as HTMLElement;
+selectedItem: any;
 constructor(private apiService: ApiService, private http: HttpClient) {
   console.log(this.datos);
 }
 
 someClickHandler(index: number): void {
   const rowData = this.datos[index];
+  this.selectedItem = rowData;
   const modal = document.getElementById('myModal');
   if (modal) {
     modal.style.display = 'block';
@@ -44,7 +46,7 @@ closeModal(): void {
   }
 }
 marcarLeido(id: string): void {
-  this.apiService.update('incidencia', id, {Leido: true}).subscribe((data: any) => {
+  this.apiService.update(this.selectedItem.id,'incidencia', {Leido: 1}).subscribe((data: any) => {
     this.apiService.getAll('incidencia').subscribe((data: any) => {
       this.datos = data;
       this.dtTrigger.next(data);
@@ -52,16 +54,35 @@ marcarLeido(id: string): void {
   });
   this.closeModal();
 }
-eliminarIncidencia(id: string): void {
-  this.apiService.delete('incidencia', id).subscribe((data: any) => {
-    this.apiService.getAll('incidencia').subscribe((data: any) => {
-      this.datos = data;
-      this.dtTrigger.next(data);
-    });
-  });
-  this.closeModal();
-}
-
+// eliminarIncidencia(id: string): void {
+//   this.apiService.delete(this.selectedItem.id, "incidencia").subscribe((data: any) => {
+//     this.apiService.getAll('incidencia').subscribe((data: any) => {
+//       this.datos = data;
+//       this.dtTrigger.next(data);
+//     });
+//   });
+// }
+  eliminarIncidencia(id: string): void {
+    this.apiService.delete(this.selectedItem.id, 'incidencia')
+      .subscribe(
+        () => {
+          console.log('La incidencia se eliminó correctamente');
+          this.apiService.getAll('incidencia').subscribe(
+            (data: any) => {
+              this.datos = data;
+              this.dtTrigger.next(data);
+            },
+            error => {
+              console.error('Error al obtener las incidencias después de eliminar:', error);
+            }
+          );
+        },
+        error => {
+          console.error('Error al eliminar la incidencia:', error);
+        }
+      );
+      
+  }
 ngOnInit() : void {
   this.apiService.getAll('incidencia').subscribe((data: any) => {
     this.datos = data;

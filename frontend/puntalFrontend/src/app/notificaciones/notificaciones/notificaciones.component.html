@@ -49,7 +49,7 @@
         <div class="modal-footer justify-content-around">
           <button
             type="button"
-            (click)="closeModal()"
+            (click)="marcarLeido(selectedItem.id)"
             class="btn"
             data-bs-dismiss="modal"
           >
@@ -57,7 +57,7 @@
           </button>
           <button
             type="button"
-            (click)="closeModal()"
+            (click)="eliminarIncidencia(selectedItem.id)"
             class="btn"
             data-bs-dismiss="modal"
           >   <img src="/assets/img/closeNots.svg" alt=""></button>
