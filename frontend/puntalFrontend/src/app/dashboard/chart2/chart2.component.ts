@@ -13,14 +13,14 @@ export class Chart2Component implements AfterViewInit  {
     
     ngAfterViewInit(): void {
       this.apiService.getEstancia2().subscribe(data => {
-        const ctx = document.getElementById('ctx');
-        new Chart('ctx', {
+        const ctx = document.getElementById('ctx2') as HTMLCanvasElement;
+        new Chart(ctx, {
           type: 'bar',
           data: {
-            labels: ['Años', 'Meses', 'Días'],
+            labels: ['Meses', 'Días'],
             datasets: [{
               label: 'Duración media de estancia',
-              data: [data.meses, data.días],
+              data: [data.meses, data.dias],
               backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
                 'rgba(54, 162, 235, 0.2)',

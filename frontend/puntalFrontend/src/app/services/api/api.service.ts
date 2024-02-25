@@ -88,6 +88,10 @@ export class ApiService {
 
 
 
+  getTiposEmbarcaciones(): Observable<any> {
+    const urls = `${this.apiUrl}${'embarcacion/tipos'}`;
+    return this.http.get(urls);
+  }
 
 
 

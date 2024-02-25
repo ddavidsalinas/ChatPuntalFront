@@ -11,8 +11,8 @@ import { ApiService } from 'src/app/services/api/api.service';
 
   ngAfterViewInit(): void {
     this.apiService.getDatosOcu().subscribe(data => {
-      const ctx = document.getElementById('ctx');
-      new Chart('ctx', {
+      const ctx = document.getElementById('ctx3')as HTMLCanvasElement;
+      new Chart(ctx, {
         type: 'line',
         data: {
           labels: ['P.B.Ocupadas', 'P.B. Disponibles', 'P.B. en Mantenimiento', 'Tránsitos Ocupados', 'Tránsitos Disponibles', 'Tránsitos en Mantenimiento'],

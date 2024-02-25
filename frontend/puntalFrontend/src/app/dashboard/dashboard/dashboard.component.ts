@@ -14,7 +14,9 @@ export class DashboardComponent implements OnInit{
 
   dura: string = 'Duracion media de las plazas base';
   dura2: string = 'Duracion media de los transitos';
-  
+  dura3: string = 'Datos de ocupacion de los amarres';
+  dura4: string = 'Valores de embarcacion';
+
   linea1c1: string = 'Número total de plazas base: ';  linea2c1: string = 'Número total de tránsitos: ';  linea3c1: string = 'Número porcentaje de ocupación: ';
 
   linea1c2: string = 'Número total de plazas base: ';  linea2c2: string = 'Número total plazas base disponibles: ';  linea3c2: string = 'Número total de plazas en mantenimiento: ';

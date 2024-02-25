@@ -10,15 +10,16 @@ export class ChartComponent implements AfterViewInit {
   constructor(private apiService: ApiService) {}
 
 ngAfterViewInit(): void {
-  this.apiService.getEstancia2().subscribe(data => {
-    const ctx = document.getElementById('myChart');
-    new Chart('ctx', {
+  this.apiService.getEstancia().subscribe(data => {
+    const ctx = document.getElementById('ctx')as HTMLCanvasElement;
+    console.log(ctx);
+    new Chart(ctx, {
       type: 'bar',
       data: {
         labels: ['Años', 'Meses', 'Días'],
         datasets: [{
           label: 'Duración media de estancia',
-          data: [data.anyos, data.meses, data.días],
+          data: [data.anyos, data.meses, data.dias],
           backgroundColor: [
             'rgba(255, 99, 132, 0.2)',
             'rgba(54, 162, 235, 0.2)',
