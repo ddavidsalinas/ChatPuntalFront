@@ -40,8 +40,26 @@ closeModal(): void {
   const modal = document.getElementById('myModal');
   if (modal) {
     modal.style.display = 'none';
-    this.rowEstado.style.opacity = '0.5';
+    // this.rowEstado.style.opacity = '0.5';
   }
+}
+marcarLeido(id: string): void {
+  this.apiService.update('incidencia', id, {Leido: true}).subscribe((data: any) => {
+    this.apiService.getAll('incidencia').subscribe((data: any) => {
+      this.datos = data;
+      this.dtTrigger.next(data);
+    });
+  });
+  this.closeModal();
+}
+eliminarIncidencia(id: string): void {
+  this.apiService.delete('incidencia', id).subscribe((data: any) => {
+    this.apiService.getAll('incidencia').subscribe((data: any) => {
+      this.datos = data;
+      this.dtTrigger.next(data);
+    });
+  });
+  this.closeModal();
 }
 
 ngOnInit() : void {
