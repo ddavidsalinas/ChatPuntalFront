@@ -39,10 +39,19 @@
         </div>
       </div>
       <div class="formRight">
-        <div class="mb-3 d-flex">
+        <!-- <div class="mb-3 d-flex">
           <label for="tipo" class="form-label">Tipo:</label>
           <input name="Tipo" type="text" class="form-control mt-4" placeholder="Tipo" />
-        </div>
+        </div> -->
+        <div class="mb-3 d-flex">
+  <label for="tipo" class="form-label">Tipo:</label>
+  <select name="Tipo" class="form-control mt-4">
+    <option value="Velero">Velero</option>
+    <option value="Yate">Yate</option>
+    <option value="Catamarán">Catamarán</option>
+    <option value="Lancha">Lancha</option>
+  </select>
+</div>
         <div class="mb-3 d-flex">
           <label for="datosTecnicos" class="form-label">Datos técnicos:</label>
           <textarea class="form-control mt-4" placeholder="Datos técnicos" name="Datos_Tecnicos"></textarea>
@@ -109,16 +118,25 @@
         </div>
         <div class="mb-3 d-flex">
           <label for="registro" class="form-label">Nº Registro:</label>
-          <input name="Registro" type="text" class="form-control mt-4" placeholder="Nº Registro"
+          <input name="Numero_registro" type="text" class="form-control mt-4" placeholder="Nº Registro"
             [(ngModel)]="embarcacionSeleccionada.Numero_registro" [readOnly]="!modoEdicion" />
         </div>
       </div>
       <div class="formRight">
-        <div class="mb-3 d-flex">
+        <!-- <div class="mb-3 d-flex">
           <label for="tipo" class="form-label">Tipo:</label>
           <input name="Tipo" type="text" class="form-control mt-4" placeholder="Tipo"
             [(ngModel)]="embarcacionSeleccionada.Tipo" [readOnly]="!modoEdicion" />
-        </div>
+        </div> -->
+        <div class="mb-3 d-flex">
+  <label for="tipo" class="form-label">Tipo:</label>
+  <select name="Tipo" class="form-control mt-4" [(ngModel)]="embarcacionSeleccionada.Tipo" [disabled]="!modoEdicion">
+    <option value="Velero">Velero</option>
+    <option value="Yate">Yate</option>
+    <option value="Catamarán">Catamarán</option>
+    <option value="Lancha">Lancha</option>
+  </select>
+</div>
         <div class="mb-3 d-flex">
           <label for="datosTecnicos" class="form-label">Datos técnicos:</label>
           <textarea name="Datos_Tecnicos" class="form-control mt-4" placeholder="Datos técnicos"
