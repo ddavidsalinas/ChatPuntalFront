@@ -21,7 +21,7 @@
 
             <div class="row justify-content-center">
                 <div class="col-12 mt-5">
-                    <form>
+                    <form id="formIncidencia" action=""  (submit)="guardarIncidencia()" enctype="multipart/form-data">
                         <div class="form-group mt-1">
                             <label for="titulo">Título:</label>
                             <input type="text" class="form-control" id="titulo" placeholder="Ingrese el título">
@@ -35,7 +35,7 @@
                         <div class="row justify-content-center mt-5">
 
                             <div class="col-6 text-center ">
-                                <a href="" class="btn cancelar"><b>CANCELAR</b></a>
+                                <a href="" class="btn cancelar" routerLink="/movil"><b>CANCELAR</b></a>
                             </div>
 
                             <div class="col-6 text-center ">
