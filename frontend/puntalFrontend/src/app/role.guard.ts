@@ -1,3 +1,4 @@
+import { inject } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivateFn, RouterStateSnapshot, Router } from '@angular/router';
 
 export const roleGuard: CanActivateFn = (route:ActivatedRouteSnapshot, state: RouterStateSnapshot) => {
@@ -10,16 +11,18 @@ export const roleGuard: CanActivateFn = (route:ActivatedRouteSnapshot, state: Ro
   if (role !== requiredRole) {
     switch (role) {
       case '2':
-      window.location.href = 'http://localhost:4200/dashboard';
+      
+      inject(Router).navigate(['dashboard']);
         break;
       case '3':
-        window.location.href = 'http://localhost:4200/movil';
+     
+        inject(Router).navigate(['movil']);
         break;
       case '4':
-        window.location.href = 'http://localhost:4200/guardiacivil';
+        inject(Router).navigate(['guardiacivil']);
         break;
       default:
-        window.location.href = 'http://localhost:4200/login';
+        inject(Router).navigate(['login']);
         break;
     }
     

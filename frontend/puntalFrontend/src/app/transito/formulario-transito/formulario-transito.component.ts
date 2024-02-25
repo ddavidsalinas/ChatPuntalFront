@@ -6,6 +6,11 @@ import { MatDialog } from '@angular/material/dialog';
 import { FormdialogoComponent } from '../formdialogo/formdialogo.component';
 import { DilogoForm } from '../dilogo-form';
 import { TablaTripulanteComponent } from '../tabla-tripulante/tabla-tripulante.component';
+import { ApiService } from 'src/app/services/api/api.service';
+import { catchError } from 'rxjs';
+import { error } from 'jquery';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+
 @Component({
   selector: 'app-formulario-transito',
   templateUrl: './formulario-transito.component.html',
@@ -18,19 +23,39 @@ export class FormularioTransitoComponent implements OnInit {
   modoEdicion: boolean = false;
   transitoSeleccionada: any = { datos_tecnicos: '' };
   imagenSeleccionada: string | ArrayBuffer | null = null;
+  datos:any ; amarre:any; pantalan:any;instalacion:any;
   // transitoVacia: any = { datos_tecnicos: '' };
 
   mostrar :string ='no';
   noMostrar :string='si';
   click:boolean=true;
   noClick:boolean=false;
+  formulario!: FormGroup;
   constructor(
     private sharedDataService: SharedDataService,
     private activatedRoute: ActivatedRoute,
     private cdr: ChangeDetectorRef,
     private ngZone: NgZone,
-    public dialog: MatDialog 
-  ) {}
+    public dialog: MatDialog,
+    private apiService: ApiService ,
+    private formBuilder: FormBuilder
+  ) {
+    this.formulario = this.formBuilder.group({
+      // Define tus campos aquí, por ejemplo:
+      fecha_entrada: ['', Validators.required],
+      fecha_salida: [''],
+      embarcacion: [''],
+      instalacion: [''],
+      pantalan: [''],
+      amarre: [''],
+      patron: [''],
+      autorizaciones: [''],
+      proposito: [''],
+     
+      // Otros campos...
+    });
+  }
+  
 
   //conecta en formulario para llmaar a la edicion del formulario y llamar a la edicion del componente de tripulante
   activarModoEdicionTripulante() {
@@ -67,6 +92,30 @@ export class FormularioTransitoComponent implements OnInit {
 
 
   ngOnInit(): void {
+    this.apiService.getAll('embarcacion').subscribe((data: any) => {
+      this.datos = data;
+      console.log('Después de la llamada a la API:', this.datos);
+  
+  
+       });
+       this.apiService.getPlazas().subscribe((data: any) => {
+        this.amarre = data;
+        console.log('Después de la llamada a la API:', this.amarre);
+    
+    
+         });
+         this.apiService.getAll('pantalan').subscribe((data: any) => {
+          this.pantalan = data;
+          console.log('Después de la llamada a la API:', this.pantalan);
+      
+      
+           });
+           this.apiService.getAll('instalacion').subscribe((data: any) => {
+            this.instalacion = data;
+            console.log('Después de la llamada a la API:', this.instalacion);
+        
+        
+             });
     this.activatedRoute.queryParams.subscribe((params) => {
       const tipo = params['tipo'];
       this.mostrarVacio = tipo === 'vacio';
@@ -134,6 +183,92 @@ export class FormularioTransitoComponent implements OnInit {
       }
     });
 }
+
+
+guardarTransito() {
+  console.log('Guardando transito:', this.transitoSeleccionada);
+  const formulario = document.forms.namedItem("formTransito") as HTMLFormElement;
+  // Accede a los valores del formulario usando document.forms['nombreFormulario']['nombreCampo']
+  const FechaEntradaValue = formulario['fecha_entrada'].value as HTMLInputElement;
+  const FechaSalidaValue = formulario['fecha_salida'].value as HTMLInputElement;
+  const EmbarcacionValue = formulario['embarcacion'].value as HTMLInputElement;
+  const InstalacionValue = formulario['instalacion'].value as HTMLInputElement;
+  const PantalanValue = formulario['pantalan'].value as HTMLInputElement;
+  const AmarreValue = formulario['amarre'].value as HTMLInputElement;
+  const PropositoValue = formulario['proposito'].value as HTMLInputElement;
+  const AutorizacionesValue = formulario['autorizaciones'].value as HTMLInputElement;
+  const PatronValue = formulario['patron'].value as HTMLInputElement;
+  const DatosEstanciaValue = formulario['datosEstancia'].value as HTMLInputElement;
+  this.transitoSeleccionada = {
+    FechaEntrada: FechaEntradaValue,
+    FechaSalida: FechaSalidaValue,
+    Embarcacion: EmbarcacionValue,
+    Instalacion: InstalacionValue,
+    Pantalan: PantalanValue,
+    Amarre: AmarreValue,
+    Proposito: PropositoValue,
+    Autorizacion: AutorizacionesValue,
+    Patron: PatronValue,
+    DatosEstancia: DatosEstanciaValue,
+    
+  };
+  // ... y así sucesivamente para otros campos.
+
+  this.apiService.add('transito', this.transitoSeleccionada)
+    .pipe(
+      catchError(error => {
+        console.error('Error en la solicitud:', error);
+        console.log('Mensaje de error:', error.error);
+        throw error;
+      })
+    )
+    .subscribe(
+      response => {
+        console.log('Respuesta del servicio en el componente:', response);
+
+      }
+    );
+}
+actualizarTransito() {
+
+  this.apiService.update(this.transitoSeleccionada.id, 'transito', this.transitoSeleccionada)
+    .pipe(
+      catchError(error => {
+        console.error('Error en la solicitud:', error);
+        // Puedes manejar el error según tus necesidades
+        throw error; // Propagar el error después de manejarlo
+      })
+    )
+    .subscribe(
+      response => {
+        console.log('Respuesta del servicio en el componente:', response);
+        // this.formulario.reset();
+        this.transitoSeleccionada = {};
+      },
+      error => {
+        console.error('Error en la solicitud:', error);
+      }
+    );
+}
+eliminarTransito() {
+  this.apiService.delete(this.transitoSeleccionada.id, 'transito')
+    .pipe(
+      catchError(error => {
+        console.error('Error en la solicitud:', error);
+        throw error;
+      })
+    )
+    .subscribe(
+      response => {
+        console.log('Respuesta del servicio en el componente:', response);
+        this.transitoSeleccionada = {};
+      },
+      error => {
+        console.error('Error en la solicitud:', error);
+      }
+    );
+}
+
 
 
 
