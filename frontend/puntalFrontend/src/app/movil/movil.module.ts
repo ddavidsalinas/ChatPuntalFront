@@ -27,8 +27,7 @@ const routes: Routes = [
     ListaCardsComponent
   ],
   imports: [
-    CommonModule,/* RouterModule.forChild(routes)*/
-  ],
+    CommonModule, RouterModule],
   exports:[PlantillaGuardamuellesComponent
 
   ]
