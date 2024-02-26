@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { datos } from 'src/resources/datos';
 import { ApiService } from 'src/app/services/api/api.service';
 import { Subject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
@@ -11,13 +10,13 @@ import { HttpClient } from '@angular/common/http';
 })
 export class NotificacionesComponent implements OnInit {
   dtOptions: DataTables.Settings = {};
-  // datos= datos.incidencias;
+ 
   datos: any = [];
   dtTrigger: Subject<any> = new Subject<any>();
   tituloModal: string = '';
   cuerpoModal: string = '';
   imagenModal: string = '';
-  // rowEstado: HTMLElement = {} as HTMLElement;
+  
   selectedItem: any;
   administrativoId: string | null = localStorage.getItem('id');
   constructor(private apiService: ApiService, private http: HttpClient) {
@@ -33,22 +32,22 @@ export class NotificacionesComponent implements OnInit {
       this.tituloModal = rowData.Titulo;
       this.cuerpoModal = rowData.Descripcion;
       this.imagenModal = rowData.Foto;
-      // this.rowEstado = row as HTMLElement;
+      
 
     }
-    // console.log(row);
+   
   }
 
   closeModal(): void {
     const modal = document.getElementById('myModal');
     if (modal) {
       modal.style.display = 'none';
-      // this.rowEstado.style.opacity = '0.5';
+      
     }
   }
   marcarLeido(id: string): void {
     this.apiService.update(this.selectedItem.id, 'incidencia', { Leido: 1, Administrativo_id: this.administrativoId }).subscribe((data: any) => {
-      console.log('La incidencia se actualizó correctamente');
+     
       this.closeModal();
       window.location.reload();
     });
@@ -59,7 +58,7 @@ export class NotificacionesComponent implements OnInit {
     this.apiService.delete(this.selectedItem.id, 'incidencia')
       .subscribe(
         () => {
-          console.log('La incidencia se eliminó correctamente');
+         
           this.closeModal();
           window.location.reload();
 

@@ -1,13 +1,12 @@
-import { Component, OnInit, ChangeDetectorRef, NgZone } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { SharedDataService } from 'src/app/services/shared-data/shared-data.service';
 import { ActivatedRoute } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogoFormem } from '../dialogo-formem';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
 import { FormdialogoemComponent } from '../formdialogoem/formdialogoem.component';
 import { ApiService } from 'src/app/services/api/api.service';
 import { catchError } from 'rxjs';
-import { error } from 'jquery';
 import { Router } from '@angular/router';
 
 @Component({
@@ -21,30 +20,14 @@ export class FormularioEmbarcacionComponent implements OnInit {
   modoEdicion: boolean = false;
   embarcacionSeleccionada: any = { datos_tecnicos: '' };
   data: any;
-  formulario!: FormGroup;
-  imagenSeleccionada: string | File | ArrayBuffer | null = null;
-  // embarcacionVacia: any = { datos_tecnicos: '' };
 
-  constructor(private sharedDataService: SharedDataService, private activatedRoute: ActivatedRoute, private apiService: ApiService, private formBuilder: FormBuilder, public dialog: MatDialog, private router: Router) {
-    this.formulario = this.formBuilder.group({
-      // Define tus campos aquí, por ejemplo:
-      Matricula: ['', Validators.required],
-      Manga: [''],
-      Eslora: [''],
-      Origen: [''],
-      Titular: [''],
-      Imagen: [''],
-      Numero_Registro: [''],
-      Datos_Tecnicos: [''],
-      Modelo: [''],
-      Nombre: [''],
-      Tipo: [''],
-      // Otros campos...
-    });
-  }
+  imagenSeleccionada: string | File | ArrayBuffer | null = null;
+
+
+  constructor(private sharedDataService: SharedDataService, private activatedRoute: ActivatedRoute, private apiService: ApiService, private formBuilder: FormBuilder, public dialog: MatDialog, private router: Router) {}
 
   onMostrarFormulario(tipo: string) {
-    console.log("onMostrarFormulario:", tipo);
+   
     if (tipo == 'vacio') {
       this.mostrarVacio = true;
     } else {
@@ -60,27 +43,25 @@ export class FormularioEmbarcacionComponent implements OnInit {
     this.activatedRoute.queryParams.subscribe(params => {
       const tipo = params['tipo'];
       this.mostrarVacio = tipo === 'vacio';
-      // this.esNuevo = this.mostrarVacio;
 
-      // this.modoEdicion = !this.mostrarVacio;
     });
 
-    console.log("Intentando obtener datos del servicio...");
+
 
     this.sharedDataService.getData("embarcacionSeleccionada").subscribe(data => {
-      console.log("Datos obtenidos del servicio:", data);
+     
       if (data) {
         // Solo asigna a embarcacionSeleccionada si no es un formulario vacío
         if (!this.mostrarVacio) {
           this.embarcacionSeleccionada = data;
-          console.log("Información de la embarcación seleccionada:", this.embarcacionSeleccionada.matricula);
+
         }
       } else {
         console.warn("No se obtuvieron datos del servicio");
       }
     });
 
-    // this.embarcacionVacia = { datos_tecnicos: '' };
+
   }
 
   onFileSelected(event: any): void {
@@ -89,14 +70,14 @@ export class FormularioEmbarcacionComponent implements OnInit {
       const reader = new FileReader();
       reader.onload = () => {
         this.imagenSeleccionada = reader.result;
-        console.log("Imagen seleccionada:", this.imagenSeleccionada);
+      
       };
       reader.readAsDataURL(file);
     }
   }
   onFileUpdated(event: any) {
     this.imagenSeleccionada = event.target.files[0];
-    console.log("Imagen actualizada:", this.imagenSeleccionada);
+  
   }
 
   activarModoEdicion() {
@@ -105,64 +86,9 @@ export class FormularioEmbarcacionComponent implements OnInit {
     this.modoEdicion = true;
   }
 
-  // guardarEmbarcacion() {
-  //   console.log('Guardando embarcación:', this.embarcacionSeleccionada);
-  //   const formulario = document.forms.namedItem("formEmbarcacion") as HTMLFormElement;
-  //   // Accede a los valores del formulario usando document.forms['nombreFormulario']['nombreCampo']
-  //   const nombreValue = formulario['Nombre'].value as HTMLInputElement;
-  //   const matriculaValue = formulario['Matricula'].value as HTMLInputElement;
-  //   const mangaValue = formulario['Manga'].value as HTMLInputElement;
-  //   const esloraValue = formulario['Eslora'].value as HTMLInputElement;
-  //   const origenValue = formulario['Origen'].value as HTMLInputElement;
-  //   const titularValue = formulario['Titular'].value as HTMLInputElement;
-  //   const imagenValue = formulario['Imagen'].value as HTMLInputElement;
-  //   const numeroRegistroValue = formulario['Numero_registro'].value as HTMLInputElement;
-  //   const datosTecnicosValue = formulario['Datos_Tecnicos'].value as HTMLInputElement;
-  //   const modeloValue = formulario['Modelo'].value as HTMLInputElement;
-  //   const tipoValue = formulario['Tipo'].value as HTMLInputElement;
-  //   const formData = new FormData();
-  //   const imagenInput = formulario['Imagen'] as HTMLInputElement;
-  //   if (imagenInput && imagenInput.files && imagenInput.files.length > 0) {
-  //     const file = imagenInput.files[0];
-  //     this.imagenSeleccionada = file;
 
-  //     // formData.append('Imagen', file);
-  //   }
-  //   console.log('Registro de la embarcación:', numeroRegistroValue);
-  //   this.embarcacionSeleccionada = {
-  //     Nombre: nombreValue,
-  //     Matricula: matriculaValue,
-  //     Manga: mangaValue,
-  //     Eslora: esloraValue,
-  //     Origen: origenValue,
-  //     Titular: titularValue,
-  //     Imagen: imagenValue,
-  //     // Imagen: formData.get('Imagen'),
-  //     Numero_registro: numeroRegistroValue,
-  //     Datos_Tecnicos: datosTecnicosValue,
-  //     Modelo: modeloValue,
-  //     Tipo: tipoValue
-  //   };
-  //   // ... y así sucesivamente para otros campos.
-
-  //   this.apiService.add('embarcacion', this.embarcacionSeleccionada)
-  //     .pipe(
-  //       catchError(error => {
-  //         console.error('Error en la solicitud:', error);
-  //         console.log('Mensaje de error:', error.error);
-  //         throw error;
-  //       })
-  //     )
-  //     .subscribe(
-  //       response => {
-  //         this.router.navigate(['/embarcaciones']);
-  //         console.log('Respuesta del servicio en el componente:', response);
-
-  //       }
-  //     );
-  // }
   guardarEmbarcacion() {
-    console.log('Guardando embarcación:', this.embarcacionSeleccionada);
+ 
     const formulario = document.forms.namedItem("formEmbarcacion") as HTMLFormElement;
     const formData = new FormData(); // Crea un objeto FormData para enviar los datos al servidor
 
@@ -197,61 +123,19 @@ export class FormularioEmbarcacionComponent implements OnInit {
       .subscribe(
         response => {
           this.router.navigate(['/embarcaciones']);
-          console.log('Respuesta del servicio en el componente:', response);
+          
         }
       );
   }
-  // actualizarEmbarcacion() {
-  //   console.log('Actualzando embarcación:', this.embarcacionSeleccionada);
-  //   const formulario = document.forms.namedItem("formEmbarcacion") as HTMLFormElement;
-  //   const formData = new FormData(); // Crea un objeto FormData para enviar los datos al servidor
 
-  //   // Accede a los valores del formulario y agrégalos al objeto FormData
-  //   formData.append('Nombre', this.embarcacionSeleccionada.Nombre);
-  //   formData.append('Matricula', this.embarcacionSeleccionada.Matricula);
-  //   formData.append('Manga', this.embarcacionSeleccionada.Manga);
-  //   formData.append('Eslora', this.embarcacionSeleccionada.Eslora);
-  //   formData.append('Origen', this.embarcacionSeleccionada.Origen);
-  //   formData.append('Titular', this.embarcacionSeleccionada.Titular);
-  //   formData.append('Numero_registro', this.embarcacionSeleccionada.Numero_registro);
-  //   formData.append('Datos_Tecnicos', this.embarcacionSeleccionada.Datos_Tecnicos);
-  //   formData.append('Modelo', this.embarcacionSeleccionada.Modelo);
-  //   formData.append('Tipo', this.embarcacionSeleccionada.Tipo);
-
-  //   // Agrega la imagen seleccionada al objeto FormData
-  //   // const imagenInput = formulario['Imagen'] as HTMLInputElement;
-  //   // if (imagenInput && imagenInput.files && imagenInput.files.length > 0) {
-  //   //   const file = imagenInput.files[0];
-  //   //   formData.append('Imagen', file);
-  //   // }
-  //   formData.append('Imagen', this.imagenSeleccionada as File);
-  //   // Envía los datos al servidor utilizando el servicio API
-  //   this.apiService.update(this.embarcacionSeleccionada.id,'embarcacion', formData)
-  //     .pipe(
-  //       catchError(error => {
-  //         console.error('Error en la solicitud:', error);
-  //         console.log('Mensaje de error:', error.error);
-  //         throw error;
-  //       })
-  //     )
-  //     .subscribe(
-  //       response => {
-  //         this.router.navigate(['/embarcaciones']);
-  //         console.log('Respuesta del servicio en el componente:', response);
-  //       }
-  //     );
-  // }
 
   actualizarEmbarcacion() {
-   
+
     if (this.imagenSeleccionada) {
-     
-      console.log('Imagen seleccionada desde actualizar:', this.imagenSeleccionada);
+
       this.embarcacionSeleccionada.Imagen = this.imagenSeleccionada;
     }
-    console.log('Actualizando embarcación:', this.embarcacionSeleccionada);
-    console.log('Nombre:', this.embarcacionSeleccionada.Nombre);
-    console.log('Imagen:', this.embarcacionSeleccionada.Imagen);
+  
     this.apiService.update(this.embarcacionSeleccionada.id, 'embarcacion', this.embarcacionSeleccionada)
       .pipe(
         catchError(error => {
@@ -262,11 +146,8 @@ export class FormularioEmbarcacionComponent implements OnInit {
       )
       .subscribe(
         response => {
-          console.log('Respuesta del servicio en el componente:', response.Imagen);
-          console.log('Respuesta del servicio en el componente:', response.Nombre);
-          console.log('Respuesta del servicio en el componente:', response);
-
-          // this.formulario.reset();
+       
+         
           this.embarcacionSeleccionada = {};
           this.router.navigate(['/embarcaciones']);
         },
@@ -277,25 +158,7 @@ export class FormularioEmbarcacionComponent implements OnInit {
   }
 
 
-  // eliminarEmbarcacion() {
-  //   this.apiService.delete(this.embarcacionSeleccionada.id, 'embarcacion')
-  //     .pipe(
-  //       catchError(error => {
-  //         console.error('Error en la solicitud:', error);
-  //         throw error;
-  //       })
-  //     )
-  //     .subscribe(
-  //       response => {
-  //         console.log('Respuesta del servicio en el componente:', response);
-  //         this.embarcacionSeleccionada = {};
 
-  //       },
-  //       error => {
-  //         console.error('Error en la solicitud:', error);
-  //       }
-  //     );
-  // }
 
   eliminar(): void {
     const dialogRef = this.dialog.open(FormdialogoemComponent, {
@@ -308,7 +171,7 @@ export class FormularioEmbarcacionComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('El diálogo se cerró:', result);
+    
       if (result.causa) {
         this.apiService.delete(this.embarcacionSeleccionada.id, 'embarcacion')
           .pipe(
@@ -319,7 +182,7 @@ export class FormularioEmbarcacionComponent implements OnInit {
           )
           .subscribe(
             response => {
-              console.log('Respuesta del servicio en el componente:', response);
+            
               this.embarcacionSeleccionada = {};
               this.router.navigate(['/embarcaciones']);
 

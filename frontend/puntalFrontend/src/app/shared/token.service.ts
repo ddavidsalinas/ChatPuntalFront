@@ -29,28 +29,9 @@ export class TokenService {
       return false;
     }
   }
-  // payload(token: any) {
-  //   const jwtPayload = token.split('.')[1];
-  //   return JSON.parse(atob(jwtPayload));
-  // }
-  // payload(token: any) {
-  //   if (!token) {
-  //     this.removeToken();
-  //     return null;
-  //   }
-  
-  //   try {
-  //     const jwtPayload = token.split('.')[1];
-  //     return JSON.parse(atob(jwtPayload));
-  //   } catch (error) {
-  //     console.log('Token is not valid:', error);
-  //     this.removeToken();
-  //     return null;
-  //   }
-  // }
+
   payload(token: any) {
-    console.log('Valor del token:', typeof token)
-    console.log('Valor del token 2:', token)
+    // Inevitable manejarlo así. Devuelve valor true o false, pero no token.
     if (token === 'true') {
       return { authenticated: token };
     }
