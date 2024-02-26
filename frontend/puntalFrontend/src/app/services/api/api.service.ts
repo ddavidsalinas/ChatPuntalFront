@@ -93,6 +93,12 @@ export class ApiService {
     return this.http.get(urls);
   }
 
+  getGuardiaCivil():Observable<any>
+  {
+    const urls = `${this.apiUrl}${'transito/guardia'}`;
+    return this.http.get(urls);
+  }
+
 
 //de la api cogemos los tipos de embarcaciones
 getTablaPB(): Observable<any> {
@@ -131,13 +137,30 @@ getAmarres(pantalanId: number): Observable<any> {
   return this.http.get<any>(url);
 }
 
+getAmarresTransito(pantalanId: number): Observable<any> {
+  const url = `${this.apiUrl}pantalan/${pantalanId}/amarrestr`;
+  console.log('GET request to:', url);
+  return this.http.get<any>(url);
+}
+
 
   getPlazas():Observable<any>
   {
     const url = `${this.apiUrl}${"plaza/disponibles"}`;
     return this.http.get(url)
   }
- 
+
+  leidoCreate(data:any):Observable<any>
+  {
+    const url = `${this.apiUrl}${"guardiaCivil/leido"}`;
+    console.log(data);
+    return this.http.get(url,data)
+    .pipe(
+      tap(response => console.log('Respuesta del servicio:', response))
+    );
+    
+  }
+
   getAll(entity: string): Observable<any> {
     const url = `${this.apiUrl}${entity}`;
     return this.http.get(url);

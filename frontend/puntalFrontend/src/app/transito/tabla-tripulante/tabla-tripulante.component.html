@@ -23,7 +23,7 @@
     <!-- muestra los datos que hay solo en vista -->
     <ng-container *ngIf="mostrarDatos && !crearTripulante">
       <tr *ngFor="let item of datos; let i = index" class="text-center">
-        <td>{{ item.Nombre }}a</td>
+        <td>{{ item.Nombre }}</td>
         <td>{{ item.Sexo }}</td>
         <td>{{ item.NumeroDeDocumento }}</td>
         <td>{{ item.Nacionalidad }}</td>
@@ -75,43 +75,13 @@
     </ng-container>
     <!-- muestra datos y permite modificacion  -->
     <ng-container *ngIf="crearTripulante && mostrarDatos">
+      
       <tr *ngFor="let item of datos; let i = index" class="text-center">
-        <td>
-          <input
-            type="text"
-            name="nombre"
-            placeholder="{{ item.Nombre }}"
-            value="datos.Nombre"
-            [(ngModel)]="TripulanteSeleccionada.nombre"
-          />
-        </td>
-        <td>
-          <input
-            type="text"
-            name="sexo"
-            placeholder="{{ item.Sexo }}"
-            value="datos.Sexo"
-            [(ngModel)]="TripulanteSeleccionada.sexo"
-          />
-        </td>
-        <td>
-          <input
-            type="text"
-            name="documento"
-            placeholder="{{ item.NumeroDeDocumento }}"
-            value="datos.NumeroDeDocumento"
-            [(ngModel)]="TripulanteSeleccionada.numero_documento"
-          />
-        </td>
-        <td>
-          <input
-            type="text"
-            name="nacionalidad"
-            value="datos.Nacionalidad"
-            placeholder="{{ item.Nacionalidad }}"
-            [(ngModel)]="TripulanteSeleccionada.nacionalidad"
-          />
-        </td>
+      
+        <td><input type="text" value="{{ item.Nombre }}"></td> 
+        <td> <input type="text" value="{{ item.Sexo }}" ></td> 
+        <td> <input type="text" value="{{ item.NumeroDeDocumento }}" ></td> 
+        <td><input type="text" value="{{ item.Nacionalidad }}" ></td>
       </tr>
     </ng-container>
   </tbody>

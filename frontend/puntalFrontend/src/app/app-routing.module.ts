@@ -120,7 +120,7 @@ const routes: Routes = [
   {
     path: 'guardiacivil',
     canActivate: [roleGuard],
-    data: { role: '4' },
+    data: { role: '2' },
     // canMatch: [() => isRole('4')],
     component: ContenidoComponent, // O el componente que corresponda
    
