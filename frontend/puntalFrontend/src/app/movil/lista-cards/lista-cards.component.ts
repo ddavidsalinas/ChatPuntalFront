@@ -26,7 +26,7 @@ export class ListaCardsComponent {
 
   ngOnInit(): void {
     this.apiService.getAll('transito').subscribe((data: any) => {
-      this.datos = data.transitodetalles;
+      this.datos = data;
 
       console.log('Después de la llamada a la API:', this.datos);
       this.dtTrigger.next(data); 
@@ -35,9 +35,16 @@ export class ListaCardsComponent {
     });
   }
 
+  // verTransito(transito: any) {
+  //   // Navegar a la ruta 'card-confirmacion-transito' con los datos del transito como parámetros de ruta
+  //   this.router.navigate(['movil/card-confirmacion-transito'], { state: { transito } });
+  // }
+
   verTransito(transito: any) {
-    // Navegar a la ruta 'card-confirmacion-transito' con los datos del transito como parámetros de ruta
-    this.router.navigate(['movil/card-confirmacion-transito'], { state: { transito } });
+    // Guardar los datos de tránsito en el local storage
+    localStorage.setItem('transito', JSON.stringify(transito));
+    // Navegar a la ruta 'card-confirmacion-transito'
+    this.router.navigate(['movil/card-confirmacion-transito']);
   }
 
 
