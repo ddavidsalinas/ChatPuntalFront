@@ -18,7 +18,7 @@ export class FormularioPbComponent implements OnInit {
   modoVista: boolean = true;
   modoEdicion: boolean = false;
   plazaBSeleccionada: any = { datos_estancia: '' };
-  imagenSeleccionada: string | ArrayBuffer | null = null;
+ 
   data: any;
   formulario!: FormGroup;
 
@@ -26,12 +26,13 @@ export class FormularioPbComponent implements OnInit {
   pantalanes: any[] = [];
   amarres: any[] = [];
   embarcaciones: any[] = [];
+
   selectedEmbarcacion: any;
   selectedInstalacion: any;
   selectedPantalan: any;
   selectedAmarre: any;
-  fechaInicio: Date;
-  fechaFinalizacion: Date;
+  FechaInicio: Date;
+  FechaFinalizacion: Date;
   titular: string= '';
   
   constructor(
@@ -41,29 +42,32 @@ export class FormularioPbComponent implements OnInit {
     private formBuilder: FormBuilder,
     public dialog: MatDialog,
     private router: Router
-
-
     
   ) {
-    
-     this.fechaInicio = new Date();
+    this.formulario = this.formBuilder.group({
+      FechaInicio: ['', Validators.required],
+      FechaFinalizacion: [''],
+      Instalacion: [''],
+      Pantalan: [''],
+      Amarre: [''],
+      Embarcacion: [''],
+      Titular: ['']
+    });
+     this.FechaInicio = new Date();
   
-     this.fechaFinalizacion = new Date();
-     this.fechaFinalizacion.setMonth(this.fechaInicio.getMonth() + 6);
+     this.FechaFinalizacion = new Date();
+     this.FechaFinalizacion.setMonth(this.FechaInicio.getMonth() + 6);
   }
-  validarFechaFinalizacion() {
-    // Calcular la fecha mínima permitida como 6 meses después de la fecha de inicio
-    const fechaMinima = new Date(this.fechaInicio);
-    console.log(fechaMinima);
-    fechaMinima.setMonth(fechaMinima.getMonth() + 6);
-
-    // Comparar la fecha de finalización con la fecha mínima permitida
-    if (this.fechaFinalizacion < fechaMinima) {
-      console.log(this.fechaFinalizacion);
-      // Si la fecha de finalización es anterior a la fecha mínima permitida, establecerla como la fecha mínima
-      this.fechaFinalizacion = new Date(fechaMinima);
-      console.log(this.fechaFinalizacion);
-    }
+  onChangeFechaInicio(): void {
+    // Obtener la fecha de inicio
+    const FechaInicio = new Date(this.FechaInicio);
+  
+    // Calcular la fecha de finalización sumando 6 meses a la fecha de inicio
+    const FechaFinalizacion = new Date(FechaInicio);
+    FechaFinalizacion.setMonth(FechaFinalizacion.getMonth() + 6);
+  
+    // Asignar la nueva fecha de finalización
+    this.FechaFinalizacion = FechaFinalizacion;
   }
 
   onChangeInstalacion() {
@@ -80,15 +84,7 @@ export class FormularioPbComponent implements OnInit {
 }  
 onChangeEmbarcacion() {
  
-  const embarcacionSeleccionada = this.embarcaciones.find(embarcacion => embarcacion.id === this.selectedEmbarcacion);
-  console.log(embarcacionSeleccionada);
-  console.log(this.embarcaciones);
-  console.log(this.selectedEmbarcacion.id);
-  console.log(this.selectedEmbarcacion);
-
-
-
-
+this.embarcaciones.find(embarcacion => embarcacion.id === this.selectedEmbarcacion);
 
   if (this.selectedEmbarcacion) {
   console.log(this.selectedEmbarcacion)
@@ -109,8 +105,70 @@ onChangeEmbarcacion() {
     this.titular = ''; // Establecer el titular como vacío si no se encuentra la embarcación seleccionada
   }
 }
+validarFechaFinalizacion() {
+  // Calcular la fecha mínima permitida como 6 meses después de la fecha de inicio
+  const fechaMinima = new Date(this.FechaInicio);
+  fechaMinima.setMonth(fechaMinima.getMonth() + 6);
 
-  guardarPlazaBase() {}
+  // Establecer la fecha de finalización como la fecha mínima calculada
+  this.FechaFinalizacion = fechaMinima;
+}
+  guardarPlazaBase() {
+    let administrativoId = localStorage.getItem('id');
+     // Obtener todos los valores del formulario
+     console.log(this.instalaciones);
+     console.log(this.titular);
+     console.log(this.embarcaciones);
+     console.log(this.amarres);
+  const formData = this.formulario.value;
+
+  // Acceder a cada campo individualmente
+  let fechaInicio = formData.FechaInicio.value;
+  let fechaFinalizacion = formData.FechaFinalizacion;
+  let instalacion = formData.Instalacion;
+  let pantalan = formData.Pantalan;
+  let amarre = formData.Amarre;
+  let embarcacion = formData.Embarcacion;
+  let titular = formData.Titular;
+
+  // También puedes acceder a todos los valores de una vez si lo necesitas
+  console.log('Datos del formulario:', formData);
+
+    /*
+// Llamar al método en el servicio API para guardar el administrativo amarre
+this.apiService.postAdministrativoAmarre(formData.id, formData).subscribe(
+  (response) => {
+    console.log('Administrativo amarre guardado:', response);
+    
+    // Llamar al método en el servicio API para guardar el alquiler
+    this.apiService.postAlquiler(formData.id, formData).subscribe(
+      (response) => {
+        console.log('Alquiler guardado:', response);
+
+        // Llamar al método en el servicio API para actualizar el estado a ocupado
+        this.apiService.putDisponibleOcupado(formData.id, formData).subscribe(
+          (response) => {
+            console.log('Estado actualizado a ocupado:', response);
+            // Redirigir a la página deseada después de guardar los datos
+            this.router.navigate(['/tabla']);
+          },
+          (error) => {
+            console.error('Error al actualizar el estado a ocupado:', error);
+          }
+        );
+      },
+      (error) => {
+        console.error('Error al guardar el alquiler:', error);
+      }
+    );
+  },
+  (error) => {
+    console.error('Error al guardar el administrativo amarre:', error);
+  }
+);
+*/
+
+  }
   ngOnInit(): void {
     
     this.apiService.getInstalaciones().subscribe(instalaciones => {
@@ -121,8 +179,8 @@ onChangeEmbarcacion() {
       this.embarcaciones = embarcaciones;
       console.log(embarcaciones);
     });
+    this.validarFechaFinalizacion();
 
-  
 
 
     this.activatedRoute.queryParams.subscribe((params) => {
@@ -150,18 +208,7 @@ onChangeEmbarcacion() {
     });
   }
 
-  onFileSelected(event: any): void {
-    const file = event.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = () => {
-        this.imagenSeleccionada = reader.result;
-        console.log('Imagen seleccionada:', this.imagenSeleccionada);
-      };
-      reader.readAsDataURL(file);
-    }
-  }
-
+ 
   activarModoEdicion() {
     this.modoVista = false;
   }

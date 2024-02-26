@@ -117,6 +117,37 @@ getTitularEmbarcacion(embarcacionId: number): Observable<any[]> {
 }
 
 
+postAdministrativoAmarre(id: any, data: any): Observable<any> {
+  const url = `${this.apiUrl}/plazaBase/${id}/administrativoyAmarre`;
+  console.log(url);
+  return this.http.post(url, data);
+}
+
+postAlquiler(id: any, data: any): Observable<any> {
+  const url = `${this.apiUrl}/plazaBase/alquiler/${id}`;
+  console.log(url);
+  return this.http.post(url, data);
+}
+
+
+putDisponibleOcupado(id: any, data: any): Observable<any> {
+  const url = `${this.apiUrl}/plaza/${id}/actualizaEstadoOcupado`;
+  console.log(url);
+  return this.http.put(url, data);
+}
+
+putOcupadoDisponible(id: any, data: any): Observable<any> {
+  const url = `${this.apiUrl}/plaza/${id}/actualizaEstadoDisponible`;
+  console.log(url);
+  return this.http.put(url, data);
+}
+
+putActuaFin(id: any, data: any): Observable<any> {
+  const url = `${this.apiUrl}/plazaBase/${id}/actuFin`;
+  console.log(url);
+  return this.http.put(url, data);
+}
+
 
 
 getInstalaciones(): Observable<any[]> {

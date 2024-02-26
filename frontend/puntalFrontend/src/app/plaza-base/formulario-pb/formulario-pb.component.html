@@ -3,21 +3,22 @@
     <h5>ALTA PLAZA BASE</h5>
   </div>
 
-  <form id="formPlazabase" action="" class="d-flex" (submit)="guardarPlazaBase()" enctype="multipart/form-data">
+  <form id="formPlazabase" action="" class="d-flex" (submit)="guardarPlazaBase()" >
     <div class="formLeft">
       <div class="mb-3 d-flex">
 
         <label>Feche Entrada:</label>
-        <input type="date" name="FechaInicio" [(ngModel)]="fechaInicio" (change)="validarFechaFinalizacion()">
+        <input type="date" name="FechaInicio" [(ngModel)]="FechaInicio" (change)="onChangeFechaInicio()">
       </div>
       <div class="mb-3 d-flex">
         <label>Fecha de finalización de contrato:</label>
-        <input type="date" name="FechaFinalizacion" [(ngModel)]="fechaFinalizacion">
+        <input type="date" name="FechaFinalizacion" [(ngModel)]="FechaFinalizacion">
+
       </div>
 
 
       <div class="mb-3 d-flex">
-        <label for="instalacion" class="form-label">Instalaciones:</label>
+        <label for="instalacion" class="form-label">Instalación:</label>
         <select [(ngModel)]="selectedInstalacion" name="instalacion" (change)="onChangeInstalacion()">
           <option *ngFor="let instalacion of instalaciones" [value]="instalacion.id">{{ instalacion.Ubicacion }}
           </option>
