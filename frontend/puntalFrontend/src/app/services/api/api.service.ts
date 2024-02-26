@@ -104,6 +104,13 @@ getEmbarcaciones(): Observable<any[]> {
   return this.http.get<any[]>(`${this.apiUrl}embarcacion`);
 }
 
+getTitularEmbarcacion(embarcacionId: number): Observable<any[]> {
+  const url = `${this.apiUrl}embarcacion/${embarcacionId}/titular`;
+  console.log(url);
+  return this.http.get<any>(url);
+}
+
+
 
 
 getInstalaciones(): Observable<any[]> {

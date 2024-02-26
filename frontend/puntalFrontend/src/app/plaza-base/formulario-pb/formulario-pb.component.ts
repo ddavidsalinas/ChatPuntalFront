@@ -32,6 +32,8 @@ export class FormularioPbComponent implements OnInit {
   selectedAmarre: any;
   fechaInicio: Date;
   fechaFinalizacion: Date;
+  titular: string= '';
+  
   constructor(
     private sharedDataService: SharedDataService,
     private activatedRoute: ActivatedRoute,
@@ -74,8 +76,39 @@ export class FormularioPbComponent implements OnInit {
     this.apiService.getAmarres(this.selectedPantalan).subscribe(amarres => {
       this.amarres = amarres;
     });
-  }
+  
+}  
+onChangeEmbarcacion() {
+ 
+  const embarcacionSeleccionada = this.embarcaciones.find(embarcacion => embarcacion.id === this.selectedEmbarcacion);
+  console.log(embarcacionSeleccionada);
+  console.log(this.embarcaciones);
+  console.log(this.selectedEmbarcacion.id);
+  console.log(this.selectedEmbarcacion);
 
+
+
+
+
+  if (this.selectedEmbarcacion) {
+  console.log(this.selectedEmbarcacion)
+    this.apiService.getTitularEmbarcacion(this.selectedEmbarcacion).subscribe(
+     
+      (response: any) => {
+        console.log(response)
+        console.log( this.selectedEmbarcacion)
+        this.titular = response.titular;
+        console.log( this.titular)
+      },
+      (error) => {
+        console.error('Error al obtener el titular de la embarcación:', error);
+        this.titular = ''; // Establecer el titular como vacío en caso de error
+      }
+    );
+  } else {
+    this.titular = ''; // Establecer el titular como vacío si no se encuentra la embarcación seleccionada
+  }
+}
 
   guardarPlazaBase() {}
   ngOnInit(): void {
@@ -86,9 +119,10 @@ export class FormularioPbComponent implements OnInit {
 
     this.apiService.getEmbarcaciones().subscribe(embarcaciones => {
       this.embarcaciones = embarcaciones;
+      console.log(embarcaciones);
     });
 
-
+  
 
 
     this.activatedRoute.queryParams.subscribe((params) => {
