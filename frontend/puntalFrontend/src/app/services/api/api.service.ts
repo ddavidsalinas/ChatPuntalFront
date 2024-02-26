@@ -93,6 +93,12 @@ export class ApiService {
     return this.http.get(urls);
   }
 
+  getGuardiaCivil():Observable<any>
+  {
+    const urls = `${this.apiUrl}${'transito/guardia'}`;
+    return this.http.get(urls);
+  }
+
 
 
 
