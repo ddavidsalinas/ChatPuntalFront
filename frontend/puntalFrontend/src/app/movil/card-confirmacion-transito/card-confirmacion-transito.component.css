@@ -63,3 +63,9 @@ margin-right: 7px;
     background: var(--Gold-500, #FFD700);
 
 }
+
+.imgEmb {
+    height: 20vh;
+    width: 20vh;
+
+}

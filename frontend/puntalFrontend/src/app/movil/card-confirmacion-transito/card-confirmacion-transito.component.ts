@@ -39,7 +39,9 @@ export class CardConfirmacionTransitoComponent implements OnInit {
     }
   }
 
-  guardarEmbarcacion() {
+  guardarImagen() {
+
+
     console.log('Guardando imagen de embarcación:', this.transito);
     const formData = new FormData();
 
@@ -51,8 +53,8 @@ export class CardConfirmacionTransitoComponent implements OnInit {
 
     // Envía los datos al servidor utilizando el servicio API
     
-    this.apiService.update('embarcacion/' + this.transito.id, formData.toString(), {})
-    // this.apiService.update(this.embarcacionSeleccionada.id, 'embarcacion', this.embarcacionSeleccionada) 
+   // this.apiService.update('embarcacion/' + this.transito.id, formData.toString(), {})
+    this.apiService.update(this.transito.embarcacion_id, 'embarcacion', this.imagenSeleccionada) 
     .pipe(
         catchError(error => {
           console.error('Error en la solicitud:', error);
