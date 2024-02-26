@@ -26,6 +26,14 @@ export class FormularioTransitoComponent implements OnInit {
   datos:any ; amarre:any; pantalan:any;instalacion:any;
   // transitoVacia: any = { datos_tecnicos: '' };
 
+   instalaciones: any[] = [];
+  pantalanes: any[] = [];
+  amarres: any[] = [];
+  embarcaciones: any[] = [];
+  selectedEmbarcacion: any;
+  selectedInstalacion: any;
+  selectedPantalan: any;
+  selectedAmarre: any;
   mostrar :string ='no';
   noMostrar :string='si';
   click:boolean=true;
@@ -92,7 +100,7 @@ export class FormularioTransitoComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.apiService.getAll('embarcacion').subscribe((data: any) => {
+    this.apiService.getEmbarcaciones().subscribe((data: any) => {
       this.datos = data;
       console.log('Después de la llamada a la API:', this.datos);
   
@@ -145,6 +153,17 @@ export class FormularioTransitoComponent implements OnInit {
     // this.transitoVacia = { datos_tecnicos: '' };
   }
 
+  onChangeInstalacion() {
+    this.apiService.getPantalanes(this.selectedInstalacion).subscribe(pantalanes => {
+      this.pantalan = pantalanes;
+    });
+  }
+  
+  onChangePantalan() {
+    this.apiService.getAmarresTransito(this.selectedPantalan).subscribe(amarres => {
+      this.amarre = amarres;
+    });
+  }
   onFileSelected(event: any): void {
     const file = event.target.files[0];
     if (file) {

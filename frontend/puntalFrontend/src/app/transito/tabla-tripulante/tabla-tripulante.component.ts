@@ -16,8 +16,9 @@ import { ApiTripulantesService } from 'src/app/services/api/api-tripulantes.serv
 })
 export class TablaTripulanteComponent implements OnInit{
   dtOptions: DataTables.Settings = {};
-  datos : any = [];
+  datos: any=[] ;
   arrayDatos:any;
+  id:any;
   dtTrigger: Subject<any> = new Subject<any>();
 
 
@@ -55,10 +56,8 @@ ngOnInit(): void {
   // });
   this.apiService.getAll().subscribe((data: any) => {
     this.datos = data;
-    const arrayDatos = Object.values(datos);
-
-
-    console.log('Después de la llamada a la API:', this.datos);
+  
+    console.log('Después de la llamada a la API adsdsada:',this.datos);
     // Notificar a DataTables después de obtener los datos
     // this.dtTrigger.next(data);
   });

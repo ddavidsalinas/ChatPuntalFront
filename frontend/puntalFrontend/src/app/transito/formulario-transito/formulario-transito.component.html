@@ -19,42 +19,44 @@
           </div>
           <div class="mb-3 d-flex">
             <label for="Embarcacion" class="form-label">Embarcación:</label>
-            <select name="embarcacion
-            " id=""
+            <select name="embarcacion"
             >
             <option *ngFor="let item of datos" [value]="item.id">{{ item.Matricula }}</option>
 
             </select>                  
           </div>
-          <div class="mb-3 d-flex">
-            <label for="Instalacion" class="form-label">Instalación:</label>
-            <select name="instalacion
-            " id=""
-            >
-            <option *ngFor="let item of instalacion" [value]="item.id">{{ item.Ubicacion }}</option>
-
-            </select>                  
+          <div>
+          <label for="instalacion" class="form-label">Instalaciones:</label>
+            <select [(ngModel)]="selectedInstalacion" name="instalacion" (change)="onChangeInstalacion()">
+              <option ></option>
+              <option *ngFor="let instalaciones of instalacion" [value]="instalaciones.id">{{ instalaciones.Ubicacion }}</option>
+            </select>
           </div>
           <div class="mb-3 d-flex">
-            <label for="Pantalán" class="form-label">Pantalán:</label>
-            <select name="pantalan
-            " id=""
-            >
-            <option *ngFor="let item of pantalan" [value]="item.id">{{ item.Nombre }}</option>
-
-            </select>     
+            <label for="pantalan" class="form-label">Pantalanes:</label>
+            <select  *ngIf="selectedInstalacion" [(ngModel)]="selectedPantalan" name="pantalan" (change)="onChangePantalan()">
+              <option ></option>
+              <option *ngFor="let pantalanes of pantalan" [value]="pantalanes.id">{{ pantalanes.Nombre }}</option>
+            </select>
           </div>
           <div class="mb-3 d-flex">
-            <label for="Amarre" class="form-label">Amarre:</label>
-            <select name="amarre
-            " id=""
-            >
-            <option *ngFor="let item of amarre" [value]="item.id">{{ item.Numero }}</option>
-
-            </select>     
+            <label for="amarre" class="form-label">Amarres disponibles:</label>
+            <select *ngIf="selectedPantalan" [(ngModel)]="selectedAmarre" name="amarre" >
+              <option ></option>
+              <option *ngFor="let amarres of amarre" [value]="amarres.id">{{ amarres.Numero }}</option>
+            </select>
           </div>
         </div>
         <div class="formRight">
+          <div class="mb-3 d-flex">
+            <label for="titular" class="form-label">Titular:</label>
+            <select name="titular
+            " id=""
+            >
+            <option *ngFor="let item of datos" [value]="item.id">{{ item.Titular }}</option>
+
+            </select> 
+          </div>
           <div class="tripulante mb-3 d-flex" >              
             <app-tabla-tripulante [mostrar]='mostrar' [click]="click"></app-tabla-tripulante>
           </div>
@@ -86,28 +88,28 @@
           <div class="mb-3 d-flex">
             <label for="Embarcacion" class="form-label">Embarcación:</label>
             
-            <select name="embarcacion" id="" [(ngModel)]="transitoSeleccionada.Embarcacion" >
+            <select name="embarcacion" id="" [disabled]="modoVista">
               
-              <option *ngFor="let item of datos" [value]="item.id" [selected]=" item.id == transitoSeleccionada.id">{{ item.Matricula }}
+              <option *ngFor="let item of datos" [value]="item.id" [selected]=" item.Matricula === transitoSeleccionada.Matricula">{{ item.Matricula }}
                  </option>
             
             </select>
           </div>
           <div class="mb-3 d-flex">
             <label for="Instalacion" class="form-label">Instalación:</label>
-            <select name="instalacion" id="" [(ngModel)]="transitoSeleccionada.Instalacion" >
+            <select name="instalacion" id="" [disabled]="modoVista" >
               <option *ngFor="let item of instalacion" [value]="item.id" [selected]="item.Ubicacion === transitoSeleccionada.Ubicacion">{{ item.Ubicacion }}</option>
             </select>
           </div>
           <div class="mb-3 d-flex">
-            <label for="Pantalán" class="form-label">Pantalán:</label>
-            <select name="pantalan" id="" [(ngModel)]="transitoSeleccionada.Pantalan" >
+            <label for="Pantalán" class="form-label">Pantalán:</label >
+            <select name="pantalan" id="" [disabled]="modoVista" >
               <option *ngFor="let item of pantalan" [value]="item.id"[selected]="item.Nombre === transitoSeleccionada.Nombre">{{ item.Nombre }}</option>
             </select>
           </div>
           <div class="mb-3 d-flex">
             <label for="Amarre" class="form-label">Amarre:</label>
-            <select name="amarre" id="" [(ngModel)]="transitoSeleccionada.Amarre" >
+            <select name="amarre" id=""  [disabled]="modoVista">
               <option *ngFor="let item of amarre" [value]="item.id" [selected]="item.Numero === transitoSeleccionada.Numero">{{ item.Numero }}</option>
             </select>
           </div>
@@ -115,7 +117,15 @@
          
         </div>
         <div class="formRight">
-         
+          <div class="mb-3 d-flex">
+            <label for="titular" class="form-label">Titular:</label>
+            <select name="titular
+            " id="" [disabled]="modoVista"
+            >
+            <option *ngFor="let item of datos" [value]="item.id" [selected]="item.Titular === transitoSeleccionada.Titular">{{ item.Titular }}</option>
+
+            </select> 
+          </div>
           <div class="tripulante mb-3 d-flex">              
             <app-tabla-tripulante [mostrar]="noMostrar" [click]="noClick"></app-tabla-tripulante>
           </div>
