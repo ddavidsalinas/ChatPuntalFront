@@ -26,7 +26,7 @@ export class TablaTransitoComponent implements OnInit {
 
     
   ){}
-
+//mete en el set data en funcion de la posicion el transito
   someClickHandler(index: number): void {
     const rowData = this.datos[index];
     this.sharedDataService.setData('transitoSeleccionada', rowData);

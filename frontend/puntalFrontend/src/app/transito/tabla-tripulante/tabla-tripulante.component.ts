@@ -39,7 +39,7 @@ getInputsArray(): number[] {
   return Array(this.inputs).fill(0).map((x, i) => i);
 }
 
-//activa edicion tabla tripulante
+//activa edicion tabla tripulante y agrega inputs para añadir tripulante
 anyadirTripulante()
 {
   if(this.inputs<=5)

@@ -93,6 +93,7 @@ export class ApiService {
     return this.http.get(urls);
   }
 
+  //obtiene los transitos para mostrar en guardia civil
   getGuardiaCivil():Observable<any>
   {
     const urls = `${this.apiUrl}${'transito/guardia'}`;
