@@ -9,12 +9,12 @@ export class ApiService {
   private apiUrl = 'http://127.0.0.1:8000/api/v1/';
   constructor(private http: HttpClient) { }
 
-
 //de la api cogemos la cantidad de plazas base hay
   getCantidadPB(): Observable<any> {
     const urls = `${this.apiUrl}${'plazaBase/cantidad'}`;
     return this.http.get(urls);
   }
+
 //de la api cogemos la cantidad de transito hay
   getCantidadTR(): Observable<any> {
     const urls = `${this.apiUrl}${'transito/cantidad'}`;
@@ -32,62 +32,62 @@ export class ApiService {
     const urls = `${this.apiUrl}${'plaza/pbdisponibles'}`;
     return this.http.get(urls);
   }
+
   //de la api cogemos la cantidad de plazas base hay en mantenimiento
   getPBmantenimiento(): Observable<any> {
     const urls = `${this.apiUrl}${'plaza/pbmantenimiento'}`;
     return this.http.get(urls);
   }
  
-
   //de la api cogemos la cantidad de transito hay disponibles
   getTRdisponibles(): Observable<any> {
     const urls = `${this.apiUrl}${'plaza/trdisponibles'}`;
     return this.http.get(urls);
   }
+
   //de la api cogemos la cantidad transito hay en mantenimiento
   getTRmantenimiento(): Observable<any> {
     const urls = `${this.apiUrl}${'plaza/trmantenimiento'}`;
     return this.http.get(urls);
   }
 
-
-
   //de la api cogemos la cantidad de embarcaciones hay
   getCantidadEmb(): Observable<any> {
     const urls = `${this.apiUrl}${'embarcacion/cantidad'}`;
     return this.http.get(urls);
   }
+
   //de la api cogemos el pais con mas embarcaciones 
   getPaisConMas(): Observable<any> {
     const urls = `${this.apiUrl}${'embarcacion/pais'}`;
     return this.http.get(urls);
   }
+
 //de la api cogemos el tipo comun de embarcaciones 
   getEmbcomun(): Observable<any> {
     const urls = `${this.apiUrl}${'embarcacion/tipocomun'}`;
     return this.http.get(urls);
   }
 
-
-
+//de la api cogemos la estancia media de plazas base
   getEstancia(): Observable<any> {
     const urls = `${this.apiUrl}${'plazaBase/estancia'}`;
     return this.http.get(urls);
   }
 
-
-
+//de la api cogemos la estancia media de transitos
   getEstancia2(): Observable<any> {
     const urls = `${this.apiUrl}${'transito/estancia'}`;
     return this.http.get(urls);
   }
+
+  //de la api cogemos la ocupacion de los amarres
   getDatosOcu(): Observable<any> {
     const urls = `${this.apiUrl}${'plaza/datosOcu'}`;
     return this.http.get(urls);
   }
 
-
-
+//de la api cogemos los tipos de embarcaciones
   getTiposEmbarcaciones(): Observable<any> {
     const urls = `${this.apiUrl}${'embarcacion/tipos'}`;
     return this.http.get(urls);
@@ -100,10 +100,35 @@ export class ApiService {
   }
 
 
+//de la api cogemos los tipos de embarcaciones
+getTablaPB(): Observable<any> {
+  const urls = `${this.apiUrl}${'plazaBase/paratabla'}`;
+  return this.http.get(urls);
+}
+
+getEmbarcaciones(): Observable<any[]> {
+  return this.http.get<any[]>(`${this.apiUrl}embarcacion`);
+}
 
 
 
+getInstalaciones(): Observable<any[]> {
+  const url = `${this.apiUrl}instalacion`;
+  console.log(url);
+  return this.http.get<any[]>(url);
+}
 
+getPantalanes(instalacionId: number): Observable<any> {
+  const url = `${this.apiUrl}instalacion/${instalacionId}/pantalanes`;
+  console.log(url);
+  return this.http.get<any>(url);
+}
+
+getAmarres(pantalanId: number): Observable<any> {
+  const url = `${this.apiUrl}pantalan/${pantalanId}/amarres`;
+  console.log('GET request to:', url);
+  return this.http.get<any>(url);
+}
 
 
   getPlazas():Observable<any>

@@ -4,6 +4,9 @@ import { ActivatedRoute } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { FormdialogoPbComponent } from '../formdialogo-pb/formdialogo-pb.component';
 import { DialogoFormpb } from '../dialogo-formpb';
+import { ApiService } from 'src/app/services/api/api.service';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-formulario-pb',
@@ -16,18 +19,78 @@ export class FormularioPbComponent implements OnInit {
   modoEdicion: boolean = false;
   plazaBSeleccionada: any = { datos_estancia: '' };
   imagenSeleccionada: string | ArrayBuffer | null = null;
+  data: any;
+  formulario!: FormGroup;
 
+  instalaciones: any[] = [];
+  pantalanes: any[] = [];
+  amarres: any[] = [];
+  embarcaciones: any[] = [];
+  selectedEmbarcacion: any;
+  selectedInstalacion: any;
+  selectedPantalan: any;
+  selectedAmarre: any;
+  fechaInicio: Date;
+  fechaFinalizacion: Date;
   constructor(
     private sharedDataService: SharedDataService,
     private activatedRoute: ActivatedRoute,
-    private cdr: ChangeDetectorRef,
-    private ngZone: NgZone,
-    public dialog:MatDialog,
+    private apiService: ApiService,
+    private formBuilder: FormBuilder,
+    public dialog: MatDialog,
+    private router: Router
+
+
     
+  ) {
+    
+     this.fechaInicio = new Date();
+  
+     this.fechaFinalizacion = new Date();
+     this.fechaFinalizacion.setMonth(this.fechaInicio.getMonth() + 6);
+  }
+  validarFechaFinalizacion() {
+    // Calcular la fecha mínima permitida como 6 meses después de la fecha de inicio
+    const fechaMinima = new Date(this.fechaInicio);
+    console.log(fechaMinima);
+    fechaMinima.setMonth(fechaMinima.getMonth() + 6);
 
-  ) {}
+    // Comparar la fecha de finalización con la fecha mínima permitida
+    if (this.fechaFinalizacion < fechaMinima) {
+      console.log(this.fechaFinalizacion);
+      // Si la fecha de finalización es anterior a la fecha mínima permitida, establecerla como la fecha mínima
+      this.fechaFinalizacion = new Date(fechaMinima);
+      console.log(this.fechaFinalizacion);
+    }
+  }
 
+  onChangeInstalacion() {
+    this.apiService.getPantalanes(this.selectedInstalacion).subscribe(pantalanes => {
+      this.pantalanes = pantalanes;
+    });
+  }
+  
+  onChangePantalan() {
+    this.apiService.getAmarres(this.selectedPantalan).subscribe(amarres => {
+      this.amarres = amarres;
+    });
+  }
+
+
+  guardarPlazaBase() {}
   ngOnInit(): void {
+    
+    this.apiService.getInstalaciones().subscribe(instalaciones => {
+      this.instalaciones = instalaciones;
+    });
+
+    this.apiService.getEmbarcaciones().subscribe(embarcaciones => {
+      this.embarcaciones = embarcaciones;
+    });
+
+
+
+
     this.activatedRoute.queryParams.subscribe((params) => {
       const tipo = params['tipo'];
       this.mostrarVacio = tipo === 'vacio';
@@ -75,18 +138,15 @@ export class FormularioPbComponent implements OnInit {
         instalacion: this.plazaBSeleccionada.instalacion,
         titular: this.plazaBSeleccionada.titular,
         pantalan: this.plazaBSeleccionada.pantalan,
-        
-      } as DialogoFormpb
+      } as DialogoFormpb,
     });
-  
-    dialogRef.afterClosed().subscribe(result => {
+
+    dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-       
         console.log('Eliminación confirmada. Causa de baja:', result.causa);
       } else {
-        
         console.log('Eliminación cancelada.');
       }
     });
-}
+  }
 }
