@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-
 import { ContenidoTransitoComponent } from './transito/contenido-transito/contenido-transito.component';
 import { TablaTransitoComponent } from './transito/tabla-transito/tabla-transito.component';
 import { DashboardComponent } from './dashboard/dashboard/dashboard.component';
@@ -19,24 +18,25 @@ import { TablaComponent } from './embarcacion/tabla/tabla.component';
 import { FormularioEmbarcacionComponent } from './embarcacion/formulario-embarcacion/formulario-embarcacion.component';
 import { FormularioTransitoComponent } from './transito/formulario-transito/formulario-transito.component';
 import { PlantillaGuardamuellesComponent } from './movil/plantilla-guardamuelles/plantilla-guardamuelles.component';
+import { roleGuard } from './role.guard';
+import { ErrorHandlerComponent } from './error-handler/error-handler.component';
 
+// const isRole = (role: string) => {
+//   const roleLogged = localStorage.getItem('role')
 
-const isRole = (role: string) => {
-  const roleLogged = localStorage.getItem('role')
-
-  return roleLogged === role
-}
+//   return roleLogged === role
+// }
 
 
 const routes: Routes = [
   {
     path: '',
     redirectTo: '/login',
-    pathMatch: 'full'
+    pathMatch: 'full',
   },
   {
     path: 'login',
-    component: LoginComponent
+    component: LoginComponent,
   },
   {
     path: 'dashboard',
@@ -44,96 +44,113 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        canMatch: [() => isRole('2')],
-        component: DashboardComponent
+        canActivate: [roleGuard],
+        // canMatch: [() => isRole('2')],
+        component: DashboardComponent,
+        data: { role: '2' }
       }
     ]
   },
   {
     path: 'embarcaciones',
-    canMatch: [() => isRole('2')],
+    canActivate: [roleGuard],
+    data: { role: '2' },
+    // canMatch: [() => isRole('2')],
     component: ContenidoComponent,
     children: [
       {
         path: 'tabla',
-        component: TablaComponent
+        component: TablaComponent,
       },
       {
         path: 'formulario',
-        component: FormularioEmbarcacionComponent
+        component: FormularioEmbarcacionComponent,
       },
       {
         path: '',
         redirectTo: 'tabla',
-        pathMatch: 'full'
+        pathMatch: 'full',
       },
-    ]
+    ],
   },
   {
     path: 'plazabase',
-    canMatch: [() => isRole('2')],
+    canActivate: [roleGuard],
+    data: { role: '2' },
+    // canMatch: [() => isRole('2')],
     component: ContenidoComponent,
     children: [
       {
         path: 'tabla',
-        component: TablaPbComponent
+        component: TablaPbComponent,
       },
       {
         path: 'formulario',
-        component: FormularioPbComponent
+        component: FormularioPbComponent,
       },
       {
         path: '',
         redirectTo: 'tabla',
-        pathMatch: 'full'
+        pathMatch: 'full',
       },
-    ]
+    ],
   },
   {
     path: 'transito',
-    canMatch: [() => isRole('2')],
+    canActivate: [roleGuard],
+    data: { role: '2' },
+    // canMatch: [() => isRole('2')],
     component: ContenidoComponent,
     children: [
       {
         path: 'tabla',
-        component: TablaTransitoComponent
+        component: TablaTransitoComponent,
       },
       {
         path: 'formulario',
-        component: FormularioTransitoComponent
+        component: FormularioTransitoComponent,
       },
       {
         path: '',
         redirectTo: 'tabla',
-        pathMatch: 'full'
+        pathMatch: 'full',
       },
-    ]
+    ],
   },
   {
     path: 'guardiacivil',
-    // canMatch: [() => isRole('2')],
+    canActivate: [roleGuard],
+    data: { role: '4' },
+    // canMatch: [() => isRole('4')],
     component: ContenidoComponent, // O el componente que corresponda
+   
     children: [
       {
+      
         path: '',
+        
         component: TablaGuardiaComponent
       }
     ]
   },
   {
     path: 'notificaciones',
-    canMatch: [() => isRole('2')],
+    canActivate: [roleGuard],
+    data: { role: '2' },
+    // canMatch: [() => isRole('2')],
     component: ContenidoComponent, // O el componente que corresponda
     children: [
       {
         path: '',
-        component: NotificacionesComponent
-      }
-    ]
+        component: NotificacionesComponent,
+      },
+    ],
   },
   {
     path: 'movil',
-    canMatch: [() => isRole('3')],
+    canActivate: [roleGuard],
+    data: { role: '3' },
+    // canMatch: [() => isRole('3')],
     component: PlantillaGuardamuellesComponent, // O el componente que corresponda
     children: [
       {
@@ -145,11 +162,12 @@ const routes: Routes = [
   },
   {
     path: '**',
-    redirectTo: '/login'
+    component: ErrorHandlerComponent
+    // redirectTo: '/login' Por eso redirigia al login. Doble asterisco es para cualquier ruta que no exista.
   }
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

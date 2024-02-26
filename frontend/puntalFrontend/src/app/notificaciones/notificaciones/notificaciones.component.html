@@ -1,5 +1,6 @@
 <div class="notificaciones">
   <table
+   [dtTrigger]="dtTrigger"
     datatable
     [dtOptions]="dtOptions"
     class="table table-hover table-custom-hover rounded-3 overflow-hidden table-striped"
@@ -19,11 +20,12 @@
       <tr
         *ngFor="let item of datos; let i = index"
         class="filaPersonalizada text-center"
+       (click)="someClickHandler(i)"
       >
-        <td class="p-4">{{ item.GuardamuellesID }}</td>
+        <td class="p-4">{{ item.Guardamuelle_nombre }}</td>
         <td class="p-4">{{ item.Titulo }}</td>
         <td class="p-4">{{ item.Descripcion }}</td>
-        <td class="p-4">{{ item.Foto }}</td>
+        <td class="p-4">{{ item.Imagen }}</td>
       </tr>
     </tbody>
   </table>
