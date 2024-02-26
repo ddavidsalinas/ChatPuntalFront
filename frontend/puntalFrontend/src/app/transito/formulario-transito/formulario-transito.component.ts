@@ -226,6 +226,9 @@ guardarTransito() {
 
   const AmarreValue = formulario['amarre'].value as HTMLInputElement;
   console.log('Amarre:', AmarreValue);
+
+  const TitularValue= formulario['amarre'].value as HTMLInputElement;
+  console.log('Amarre:', AmarreValue);
   this.transitoSeleccionada = {
     FechaEntrada: FechaEntradaValue,
     FechaSalida: FechaSalidaValue,
@@ -233,6 +236,7 @@ guardarTransito() {
     Instalacion: InstalacionValue,
     Pantalan: PantalanValue,
     Amarre: AmarreValue,
+    Titular  :TitularValue,
    
     
   };
