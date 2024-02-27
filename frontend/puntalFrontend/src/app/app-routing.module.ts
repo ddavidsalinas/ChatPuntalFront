@@ -22,13 +22,14 @@ import { roleGuard } from './role.guard';
 import { ListaCardsComponent } from './movil/lista-cards/lista-cards.component';
 import { ErrorHandlerComponent } from './error-handler/error-handler.component';
 
-// const isRole = (role: string) => {
-//   const roleLogged = localStorage.getItem('role')
-
-//   return roleLogged === role
-// }
 
 
+// Se importan los componentes que se van a utilizar en las rutas
+// Se definen las rutas de la aplicación
+// Se exporta la clase AppRoutingModule
+// CanActivate es un guard que se utiliza para verificar si el usuario tiene el rol necesario para acceder a la ruta
+// Se importa el guard roleGuard
+// De esta manera las rutas se protegen con el guard roleGuard y rediriigen al componente correspondiente
 const routes: Routes = [
   {
     path: '',
@@ -45,7 +46,7 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        canActivate: [roleGuard],
+        canActivate: [roleGuard], // Se utiliza el guard para verificar el rol del usuario
         // canMatch: [() => isRole('2')],
         component: DashboardComponent,
         data: { role: '2' }
