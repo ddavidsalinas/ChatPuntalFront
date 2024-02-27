@@ -7,6 +7,8 @@ import { CardIncidenciaComponent } from './card-incidencia/card-incidencia.compo
 import { RouterModule, Routes } from '@angular/router';
 import { ListaCardsComponent } from './lista-cards/lista-cards.component';
 
+
+
 const routes: Routes = [
   {
     path: '',

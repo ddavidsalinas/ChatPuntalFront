@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ApiService } from 'src/app/services/api/api.service';
+import { HttpClient } from '@angular/common/http'; // Importa HttpClient
 import { catchError } from 'rxjs';
 
 @Component({
@@ -20,7 +21,8 @@ export class CardConfirmacionTransitoComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private apiService: ApiService,
     private formBuilder: FormBuilder,
-    private router: Router
+    private router: Router,
+    private http: HttpClient // Agrega HttpClient aquí
   ) {
     this.formulario = this.formBuilder.group({
       Imagen: ['']
@@ -40,8 +42,6 @@ export class CardConfirmacionTransitoComponent implements OnInit {
   }
 
   guardarImagen() {
-
-
     console.log('Guardando imagen de embarcación:', this.transito);
     const formData = new FormData();
 
@@ -52,8 +52,6 @@ export class CardConfirmacionTransitoComponent implements OnInit {
     }
 
     // Envía los datos al servidor utilizando el servicio API
-    
-   // this.apiService.update('embarcacion/' + this.transito.id, formData.toString(), {})
     this.apiService.update(this.transito.embarcacion_id, 'embarcacion', this.imagenSeleccionada) 
     .pipe(
         catchError(error => {
@@ -78,9 +76,39 @@ export class CardConfirmacionTransitoComponent implements OnInit {
       );
   }
 
+  confirmarLlegada() {
+    console.log('Confirmando llegada del tránsito:', this.transito);
+
+    // Envía los datos al servidor utilizando HttpClient
+    this.http.put<any>('http://127.0.0.1:8000/api/v1/transito/' + this.transito.id + '/cambiar-estado', { estatus: 'salida' })
+      .pipe(
+        catchError(error => {
+          console.error('Error en la solicitud:', error);
+          throw error;
+        })
+      )
+      .subscribe(
+        response => {
+          console.log('Respuesta del servicio en el componente:', response);
+          // Actualiza el estado del tránsito en tu componente
+          this.transito.Estatus = 'salida';
+          // Cambia la apariencia del botón
+          const boton = document.querySelector('.botonLlegada');
+          if (boton) {
+            boton.textContent = 'CONFIRMAR SALIDA';
+            boton.classList.remove('botonLlegada');
+            boton.classList.add('botonSalida'); // Reemplaza 'otroColor' por la clase que quieras para el nuevo color del botón
+          }
+        },
+        error => {
+          console.error('Error al confirmar la llegada del tránsito:', error);
+          // En caso de error, podrías manejarlo aquí, mostrar un mensaje al usuario, etc.
+        }
+      );
+  }
+
   ngOnInit(): void {
     // Obtén los datos de tránsito del local storage al inicializar el componente
     this.transito = JSON.parse(localStorage.getItem('transito') || '{}');
   }
 }
-

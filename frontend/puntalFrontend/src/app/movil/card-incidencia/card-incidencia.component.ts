@@ -8,6 +8,7 @@ import { catchError } from 'rxjs';
 import { error } from 'jquery';
 import { Router } from '@angular/router';
 
+
 @Component({
   selector: 'app-card-incidencia',
   templateUrl: './card-incidencia.component.html',
@@ -18,6 +19,7 @@ export class CardIncidenciaComponent {
   incidencia: any = { datos_tecnicos: '' };
   formulario: FormGroup;  
 
+  imagenSeleccionada: string | File | ArrayBuffer | null = null;
 
   constructor(
     private sharedDataService: SharedDataService,
@@ -28,29 +30,45 @@ export class CardIncidenciaComponent {
     private router: Router
   ) {
     this.formulario = this.formBuilder.group({
-      Titulo: ['', Validators.required],
-      Descripcion: ['', Validators.required],
+      Titulo: [''],
+      Descripcion: [''],
       Imagen: ['']
     });
   }
+
+  onFileSelected(event: any): void {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.imagenSeleccionada = reader.result;
+        console.log("Imagen seleccionada:", this.imagenSeleccionada);
+      };
+      reader.readAsDataURL(file);
+    }
+  }
   
   guardarIncidencia() {
-    console.log('Guardando incidencia:', this.incidencia);
-
+    console.log('Guardando incidencia:', this.formulario.value);
+  
+    // Asigna los valores del formulario a this.incidencia
+    this.incidencia.Titulo = this.formulario.value.Titulo;
+    this.incidencia.Descripcion = this.formulario.value.Descripcion;
+  
     // Crear un nuevo objeto FormData para enviar los datos al servidor
     const formData = new FormData();
-
+  
     // Agregar título y descripción al objeto FormData
-    formData.append('Titulo', this.incidencia.Titulo);
-    formData.append('Descripcion', this.incidencia.Descripcion);
-
+    formData.append('Titulo', this.formulario.value.Titulo);
+    formData.append('Descripcion', this.formulario.value.Descripcion);
+  
     // Agregar la imagen seleccionada al objeto FormData
-    // const imagenInput = document.getElementById('imagenIncidencia') as HTMLInputElement;
-    // if (imagenInput && imagenInput.files && imagenInput.files.length > 0) {
-    //   const file = imagenInput.files[0];
-    //   formData.append('Imagen', file);
-    // }
-
+    const imagenInput = document.getElementById('imagenIncidencia') as HTMLInputElement;
+    if (imagenInput && imagenInput.files && imagenInput.files.length > 0) {
+      const file = imagenInput.files[0];
+      formData.append('Imagen', file);
+    }
+  
     // Envía los datos al servidor utilizando el servicio API
     this.apiService.add('incidencia', formData)
       .pipe(
