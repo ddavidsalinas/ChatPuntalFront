@@ -18,6 +18,8 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 })
 export class FormularioTransitoComponent implements OnInit {
   @ViewChild(TablaTripulanteComponent) tripulante!:TablaTripulanteComponent;
+
+
   mostrarVacio: boolean = false;
   modoVista: boolean = true;
   modoEdicion: boolean = false;
@@ -41,8 +43,8 @@ export class FormularioTransitoComponent implements OnInit {
   click:boolean=true;
   noClick:boolean=false;
   formulario!: FormGroup;
- 
-  
+
+
   constructor(
     private sharedDataService: SharedDataService,
     private activatedRoute: ActivatedRoute,
@@ -52,11 +54,11 @@ export class FormularioTransitoComponent implements OnInit {
     private apiService: ApiService,
     private formBuilder: FormBuilder
   ) {
-    
+
 
     // Additional initialization can be done here if needed
-   
-  
+
+
     this.formulario = this.formBuilder.group({
       // Define tus campos aquí, por ejemplo:
       fecha_entrada: ['', Validators.required],
@@ -68,11 +70,11 @@ export class FormularioTransitoComponent implements OnInit {
       patron: [''],
       autorizaciones: [''],
       proposito: [''],
-     
+
       // Otros campos...
     });
   }
-  
+
 
   //conecta en formulario para llamaar a la edicion del formulario y llamar a la edicion del componente de tripulante
   activarModoEdicionTripulante() {
@@ -109,31 +111,31 @@ export class FormularioTransitoComponent implements OnInit {
 
 //hace todas las llamadas a las apis y lo carga en unas variables
   ngOnInit(): void {
-    
+
 
     this.apiService.getEmbarcaciones().subscribe((data: any) => {
       this.datos = data;
       console.log('Después de la llamada a la API:', this.datos);
-  
-  
+
+
        });
        this.apiService.getPlazas().subscribe((data: any) => {
         this.amarre = data;
         console.log('Después de la llamada a la API:', this.amarre);
-    
-    
+
+
          });
          this.apiService.getAll('pantalan').subscribe((data: any) => {
           this.pantalan = data;
           console.log('Después de la llamada a la API:', this.pantalan);
-      
-      
+
+
            });
            this.apiService.getAll('instalacion').subscribe((data: any) => {
             this.instalacion = data;
             console.log('Después de la llamada a la API:', this.instalacion);
-        
-        
+
+
              });
     this.activatedRoute.queryParams.subscribe((params) => {
       const tipo = params['tipo'];
@@ -193,7 +195,7 @@ export class FormularioTransitoComponent implements OnInit {
   //     reader.readAsDataURL(file);
   //   }
   // }
-  
+
 //pone el modo vista en falso y permite modificar
   activarModoEdicion() {
     this.modoVista = false;
@@ -207,16 +209,16 @@ export class FormularioTransitoComponent implements OnInit {
         patron: this.transitoSeleccionada.patron,
         instalacion: this.transitoSeleccionada.instalacion,
         pantalan: this.transitoSeleccionada.pantalan
-       
+
       } as DilogoForm
     });
-  
+
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-       
+
         console.log('Eliminación confirmada. Causa de baja:', result.causa);
       } else {
-        
+
         console.log('Eliminación cancelada.');
       }
     });
@@ -243,6 +245,7 @@ verificarFechas(): boolean {
 guardarTransito() {
   if(this.verificarFechas())
   {
+  this.tripulante.guardarTripulante();
   const formulario = document.forms.namedItem("formTransito") as HTMLFormElement;
   // Accede a los valores del formulario usando document.forms['nombreFormulario']['nombreCampo']
   const FechaEntradaValue = formulario['fecha_entrada'].value as HTMLInputElement;
@@ -263,17 +266,18 @@ guardarTransito() {
   const AmarreValue = formulario['amarre'].value as HTMLInputElement;
   console.log('Amarre:', AmarreValue);
 
-  // const TitularValue= formulario['amarre'].value as HTMLInputElement;
-  console.log('Amarre:', AmarreValue);
+  const TitularValue= formulario['titular'].value as HTMLInputElement;
+  console.log('titular:', TitularValue);
   this.transitoSeleccionada = {
     FechaEntrada: FechaEntradaValue,
     FechaSalida: FechaSalidaValue,
     Embarcacion: EmbarcacionValue,
     Instalacion: InstalacionValue,
     Pantalan: PantalanValue,
-    // Amarre: AmarreValue,
-   
+    Amarre: AmarreValue,
     
+
+
   };
 
   this.apiService.add('transito', this.transitoSeleccionada)
@@ -319,8 +323,8 @@ actualizarTransito() {
 }
 //hace un cambio del estado de plaza a ocupado
 eliminarTransito() {
-  this.eliminar();
-  this.apiService.delete(this.transitoSeleccionada.id, 'transito')
+  // this.eliminar();
+  this.apiService.cambiarOcupado(this.transitoSeleccionada.id)
     .pipe(
       catchError(error => {
         console.error('Error en la solicitud:', error);

@@ -4,10 +4,11 @@ import { NgModule } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, Subject } from 'rxjs';
 import { SharedDataService } from 'src/app/services/shared-data/shared-data.service';
+import {FormBuilder, FormGroup } from '@angular/forms';
+import { catchError } from 'rxjs';
 
 
-import { ApiTripulantesService } from 'src/app/services/api/api-tripulantes.service';
-
+import { ApiService } from 'src/app/services/api/api.service';
 @Component({
   selector: 'app-tabla-tripulante',
   templateUrl: './tabla-tripulante.component.html',
@@ -20,15 +21,44 @@ export class TablaTripulanteComponent implements OnInit{
   arrayDatos:any;
   id:any;
   dtTrigger: Subject<any> = new Subject<any>();
+ 
 
 
-  constructor( private apiService: ApiTripulantesService,
+  constructor(   public fb: FormBuilder,private apiService: ApiService,
     private http: HttpClient,    private sharedDataService: SharedDataService,
-    ) { 
+    ) 
+    { 
+      
   console.log(this.datos);
 
 }
- 
+tripulantes: any[] = [
+  {
+    NumeroDeDocumento: '',
+    Nombre: '',
+    Sexo: '',
+    Nacionalidad: ''
+  },
+  {
+    NumeroDeDocumento: '',
+    Nombre: '',
+    Sexo: '',
+    Nacionalidad: ''
+  },
+  {
+    NumeroDeDocumento: '',
+    Nombre: '',
+    Sexo: '',
+    Nacionalidad: ''
+  },
+  {
+    NumeroDeDocumento: '',
+    Nombre: '',
+    Sexo: '',
+    Nacionalidad: ''
+  },
+];
+
 TripulanteSeleccionada: any = { datos_tecnicos: '' };
 mostrarDatos:boolean =true;
 @Input() mostrar:string='';
@@ -38,6 +68,33 @@ inputs :number=0;
 getInputsArray(): number[] {
   return Array(this.inputs).fill(0).map((x, i) => i);
 }
+guardarTripulante() {
+  this.tripulantes.forEach((tripulante, index) => {
+    console.log(`Datos del tripulante ${index + 1}:`);
+    console.log('Nombre:', tripulante.Nombre);
+    console.log('Sexo:', tripulante.Sexo);
+    console.log('Documento:', tripulante.NumeroDeDocumento);
+    console.log('Nacionalidad:', tripulante.Nacionalidad);
+    this.apiService.add("tripulante",tripulante);
+  this.apiService.add("tripulante",tripulante)
+.pipe(
+  catchError(error => {
+    console.error('Error en la solicitud:', error);
+    console.log('Mensaje de error:', error.error);
+    throw error;
+  })
+)
+.subscribe(
+  response => {
+  
+    console.log('Respuesta del servicio en el componente:', response);
+  }
+);
+  });
+  
+  
+}
+
 
 //activa edicion tabla tripulante y agrega inputs para añadir tripulante
 anyadirTripulante()
@@ -54,7 +111,7 @@ ngOnInit(): void {
   //   console.log("Datos obtenidos del servicio:", data);
     
   // });
-  this.apiService.getAll().subscribe((data: any) => {
+  this.apiService.getAllTripulante().subscribe((data: any) => {
     this.datos = data;
   
     console.log('Después de la llamada a la API adsdsada:',this.datos);

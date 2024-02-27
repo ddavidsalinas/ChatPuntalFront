@@ -1,14 +1,31 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, tap } from 'rxjs';
+import { SharedDataService } from '../shared-data/shared-data.service';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
   private apiUrl = 'http://127.0.0.1:8000/api/v1/';
-  constructor(private http: HttpClient) { }
+  transitoId :any;
 
+  constructor(private http: HttpClient,private sharedDataService: SharedDataService) { }
+
+
+
+
+
+
+
+
+//de la api cambiamos estado amarre de transito
+cambiarOcupado(id: any): Observable<any> {
+  const urls = `${this.apiUrl}${'transito/cambiar'}/${id}`;
+  console.log(urls);
+  return this.http.get(urls);
+}
 //de la api cogemos la cantidad de plazas base hay
   getCantidadPB(): Observable<any> {
     const urls = `${this.apiUrl}${'plazaBase/cantidad'}`;
@@ -199,11 +216,28 @@ getAmarresTransito(pantalanId: number): Observable<any> {
   }
   add(entity: string, data: any): Observable<any> {
     const url = `${this.apiUrl}${entity}`;
+    console.log(url ,data );
     return this.http.post(url, data)
       .pipe(
         tap(response => console.log('Respuesta del servicio:', response))
       );
   }
+  //coge los tripulantes en base a la id
+  getAllTripulante(): Observable<any> {
+    this.sharedDataService.getData("transitoSeleccionada").subscribe(data => {
+      this.transitoId=data.Amarre_id;
+      
+    });
+    
+    const url = `http://127.0.0.1:8000/api/v1/tripulante/transito/${this.transitoId}>`;
+    console.log(url);
+    return this.http.get(url);
+    
+  }
+
+
+
+
   // update(id: any, entity: string, data: any): Observable<any> {
   //   // if (!data.Imagen) {
   //   //   data.Imagen = []; // Establecer como un array vacío si no hay imagen seleccionada
