@@ -7,6 +7,7 @@ import { DialogoFormpb } from '../dialogo-formpb';
 import { ApiService } from 'src/app/services/api/api.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-formulario-pb',
@@ -48,16 +49,6 @@ export class FormularioPbComponent implements OnInit {
     private router: Router
     
   ) {
-    this.formulario = this.formBuilder.group({
-      FechaInicio: ['', Validators.required],
-      FechaFinalizacion: [''],
-      Instalacion: [''],
-      Pantalan: [''],
-      Amarre: [''],
-      Embarcacion: [''],
-      Titular: [''],
-  
-    });
      this.FechaInicio = new Date();
      this.idLocalStorage = localStorage.getItem('id');
      this.FechaFinalizacion = new Date();
@@ -138,37 +129,35 @@ const idAmarre = formData.get('Amarre');
 
 console.log(idAmarre);
 
-this.apiService.postAlquiler(idAmarre, formData).subscribe(
-  (response) => {
+this.apiService.postAlquiler(idAmarre, formData).pipe(
+  switchMap((response) => {
     console.log('Alquiler?:', response);
+    // Realizar las siguientes operaciones aquí, como realizar otra petición HTTP o realizar acciones adicionales
     
-    // Después de que se complete la primera solicitud, 
-    // se realiza la segunda solicitud
-    this.apiService.postAdministrativoAmarre(idAmarre, formData).subscribe(
-      (response) => {
-        console.log('Administrativo asociado correctamente al amarre:', response);
-        
-        // Después de que se complete la segunda solicitud,
-        // se realiza la tercera solicitud
-        this.apiService.putDisponibleOcupado(idAmarre).subscribe(
-          (response) => {
-            console.log('Cambiado:', response);
-            this.router.navigate(['/tabla-pb']);
-          },
-          (error) => {
-            console.error('Error al cambiado:', error);
-          }
-        );
-      },
-      (error) => {
-        console.error('Error al asociar el administrativo al amarre:', error);
-      }
-    );
-  },
+    // Por ejemplo, podrías hacer otra petición HTTP:
+    return this.apiService.postAdministrativoAmarre(idAmarre, formData);
+  }),
+  switchMap((response) => {
+    console.log('Administrativo asociado correctamente al amarre:', response);
+    // Realizar las siguientes operaciones aquí, como realizar otra petición HTTP o realizar acciones adicionales
+    
+    // Por ejemplo, podrías hacer otra petición HTTP:
+    return this.apiService.putDisponibleOcupado(idAmarre);
+  })
+).subscribe(
+  (response) => {
+    console.log('Cambiado:', response);
+    this.router.navigate(['/plazabase/tabla']);  },
   (error) => {
-    console.error('Error al Alquiler?:', error);
+    console.error('Error:', error);
   }
 );
+
+
+
+
+
+
 
 
 
@@ -197,8 +186,7 @@ bajaPB(){}
     this.activatedRoute.queryParams.subscribe((params) => {
       const tipo = params['tipo'];
       this.mostrarVacio = tipo === 'vacio';
-      //this.modoEdicion = !this.mostrarVacio;
-     // console.log(tipo);
+
     });
 
     console.log('Intentando obtener datos del servicio...');
