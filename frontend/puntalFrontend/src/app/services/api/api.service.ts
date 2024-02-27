@@ -13,13 +13,6 @@ export class ApiService {
 
   constructor(private http: HttpClient,private sharedDataService: SharedDataService) { }
 
-
-
-
-
-
-
-
   //de la api cogemos la cantidad de plazas base hay
   getCantidadPB(): Observable<any> {
     const urls = `${this.apiUrl}${'plazaBase/cantidad'}`;
@@ -243,8 +236,7 @@ getAmarresTransito(pantalanId: number): Observable<any> {
   // }
 
   crearTransito(id:any,data:any): Observable<any> {
-    
-    const url = `http://127.0.0.1:8000/api/v1/transito/crear/${id}`;
+       const url = `${this.apiUrl}transito/crear/${id}`;
 
     console.log(url);
     return this.http.post(url,data);

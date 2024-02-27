@@ -27,6 +27,7 @@ export class FormularioTransitoComponent implements OnInit {
   imagenSeleccionada: string | ArrayBuffer | null = null;
   datos:any ; amarre:any; pantalan:any;instalacion:any;
   // transitoVacia: any = { datos_tecnicos: '' };
+  idLocalStorage: any;
 
    instalaciones: any[] = [];
   pantalanes: any[] = [];
@@ -54,6 +55,8 @@ export class FormularioTransitoComponent implements OnInit {
     private apiService: ApiService,
     private formBuilder: FormBuilder
   ) {
+    this.idLocalStorage = localStorage.getItem('id');
+
 
 
     // Additional initialization can be done here if needed
@@ -111,7 +114,6 @@ export class FormularioTransitoComponent implements OnInit {
 
 //hace todas las llamadas a las apis y lo carga en unas variables
   ngOnInit(): void {
-
 
     this.apiService.getEmbarcaciones().subscribe((data: any) => {
       this.datos = data;
@@ -243,7 +245,8 @@ verificarFechas(): boolean {
 
 //crea un nuevo transito cogiendo de el formulario los values de cada campo y insertandolos en un transito para luego añadirlo con la api
 guardarTransito() {
-  let idAdmin = localStorage.getItem('id');
+  const Administrativo_id = (document.getElementById('campoOculto') as HTMLInputElement).value;
+
 
   if(this.verificarFechas())
   {
@@ -281,11 +284,11 @@ guardarTransito() {
     
 
   };
-  console.log(this.transitoSeleccionada);
-  console.log(idAdmin);
+ 
+  
 
-let a ="Asa";
-  this.apiService.crearTransito( a,this.transitoSeleccionada)
+
+  this.apiService.crearTransito( this.idLocalStorage,this.transitoSeleccionada)
   
     .pipe(
       catchError(error => {

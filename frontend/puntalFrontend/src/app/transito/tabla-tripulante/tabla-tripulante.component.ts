@@ -29,9 +29,9 @@ export class TablaTripulanteComponent implements OnInit{
     ) 
     { 
       
-  console.log(this.datos);
 
 }
+//crea 4 arrays donde se van a guardar los ngModel del formulario
 tripulantes: any[] = [
   {
     NumeroDeDocumento: '',
@@ -68,6 +68,7 @@ inputs :number=0;
 getInputsArray(): number[] {
   return Array(this.inputs).fill(0).map((x, i) => i);
 }
+//por cada tripulante recorre y inserta 4 uno por uno los tripulantes con la api
 guardarTripulante() {
   this.tripulantes.forEach((tripulante, index) => {
     console.log(`Datos del tripulante ${index + 1}:`);
@@ -75,7 +76,6 @@ guardarTripulante() {
     console.log('Sexo:', tripulante.Sexo);
     console.log('Documento:', tripulante.NumeroDeDocumento);
     console.log('Nacionalidad:', tripulante.Nacionalidad);
-    this.apiService.add("tripulante",tripulante);
   this.apiService.add("tripulante",tripulante)
 .pipe(
   catchError(error => {

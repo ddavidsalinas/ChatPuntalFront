@@ -56,6 +56,14 @@
 
             </select> 
           </div>
+
+          <input
+          type="hidden"
+          id="campoOculto"
+          name="campoOculto"
+          [value]="idLocalStorage"
+        />
+        
           <div class="tripulante mb-3 d-flex" >              
             <app-tabla-tripulante [mostrar]='mostrar' [click]="click"></app-tabla-tripulante>
           </div>
