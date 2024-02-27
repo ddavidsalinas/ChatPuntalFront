@@ -7,6 +7,7 @@ import { DialogoFormpb } from '../dialogo-formpb';
 import { ApiService } from 'src/app/services/api/api.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { catchError } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 
 @Component({
@@ -19,7 +20,6 @@ export class FormularioPbComponent implements OnInit {
   modoVista: boolean = true;
   modoEdicion: boolean = false;
   editarFechaFinalizacion: boolean = false;
-
 
 
   plazaBSeleccionada: any = { datos_estancia: '' };
@@ -164,9 +164,32 @@ this.apiService.postAlquiler(idAmarre, formData).pipe(
 
     }
 
-actualizaPB(){}
+actualizaPB(){
 
-bajaPB(){}
+
+  this.apiService.putActuaFin(this.plazaBSeleccionada.id, this.plazaBSeleccionada).pipe(
+    catchError(error => {
+      console.error('Error en la solicitud:', error);
+      // Puedes manejar el error según tus necesidades
+      throw error; // Propagar el error después de manejarlo
+    })
+  )
+  .subscribe(
+    response => {
+   
+     
+      this.plazaBSeleccionada = {};
+      this.router.navigate(['/plazabase']);
+    },
+    error => {
+      console.error('Error en la solicitud:', error);
+    }
+  );
+    
+  
+}
+
+
 
 
 
@@ -216,19 +239,39 @@ bajaPB(){}
   eliminar(): void {
     const dialogRef = this.dialog.open(FormdialogoPbComponent, {
       data: {
-        embarcacion: this.plazaBSeleccionada.embarcacion,
-        instalacion: this.plazaBSeleccionada.instalacion,
-        titular: this.plazaBSeleccionada.titular,
-        pantalan: this.plazaBSeleccionada.pantalan,
+        embarcacion: this.plazaBSeleccionada.Matricula,
+        instalacion: this.plazaBSeleccionada.Instalacion,
+        titular: this.plazaBSeleccionada.Titular,
+        pantalan: this.plazaBSeleccionada.Pantalan,
       } as DialogoFormpb,
     });
 
     dialogRef.afterClosed().subscribe((result) => {
-      if (result) {
-        console.log('Eliminación confirmada. Causa de baja:', result.causa);
-      } else {
-        console.log('Eliminación cancelada.');
-      }
-    });
+      if (result.causa) {
+        this.apiService.putOcupadoDisponible(this.plazaBSeleccionada.Plaza)
+        .pipe(
+          catchError(error => {
+            console.error('Error en la solicitud:', error);
+            throw error;
+          })
+        )
+        .subscribe(
+          response => {
+          
+            this.plazaBSeleccionada = {};
+            this.router.navigate(['/plazabase']);
+
+          },
+          error => {
+            console.error('Error en la solicitud:', error);
+          }
+        );
+      console.log('Eliminación confirmada. Causa de baja:', result.causa);
+    } else {
+
+      console.log('Eliminación cancelada.');
+    }
+  });
+
   }
 }
