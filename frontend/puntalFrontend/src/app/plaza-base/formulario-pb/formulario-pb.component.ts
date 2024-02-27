@@ -17,6 +17,10 @@ export class FormularioPbComponent implements OnInit {
   mostrarVacio: boolean = false;
   modoVista: boolean = true;
   modoEdicion: boolean = false;
+  editarFechaFinalizacion: boolean = false;
+
+
+
   plazaBSeleccionada: any = { datos_estancia: '' };
   idLocalStorage: any;
   data: any;
@@ -134,38 +138,50 @@ const idAmarre = formData.get('Amarre');
 
 console.log(idAmarre);
 
-  this.apiService.postAdministrativoAmarre(idAmarre,formData).subscribe(
-    (response) => {
-      console.log('Administrativo asociado correctamente al amarre:', response);
-      // Aquí puedes realizar otras acciones después de asociar el administrativo al amarre
-    },
-    (error) => {
-      console.error('Error al asociar el administrativo al amarre:', error);
-    }
-  );
-  this.apiService.putDisponibleOcupado(idAmarre).subscribe(
-    (response) => {
-      console.log('Cambiado:', response);
+this.apiService.postAlquiler(idAmarre, formData).subscribe(
+  (response) => {
+    console.log('Alquiler?:', response);
     
-    },
-    (error) => {
-      console.error('Error al cambiado:', error);
-    }
-  );
-  this.apiService.postAlquiler(idAmarre,formData).subscribe(
-    (response) => {
-      console.log('Alquiler?:', response);
-    
-    },
-    (error) => {
-      console.error('Error al Alquiler?:', error);
-    }
-  );
-
-
-
-
+    // Después de que se complete la primera solicitud, 
+    // se realiza la segunda solicitud
+    this.apiService.postAdministrativoAmarre(idAmarre, formData).subscribe(
+      (response) => {
+        console.log('Administrativo asociado correctamente al amarre:', response);
+        
+        // Después de que se complete la segunda solicitud,
+        // se realiza la tercera solicitud
+        this.apiService.putDisponibleOcupado(idAmarre).subscribe(
+          (response) => {
+            console.log('Cambiado:', response);
+            this.router.navigate(['/tabla-pb']);
+          },
+          (error) => {
+            console.error('Error al cambiado:', error);
+          }
+        );
+      },
+      (error) => {
+        console.error('Error al asociar el administrativo al amarre:', error);
+      }
+    );
+  },
+  (error) => {
+    console.error('Error al Alquiler?:', error);
   }
+);
+
+
+
+
+    }
+
+actualizaPB(){}
+
+bajaPB(){}
+
+
+
+
   ngOnInit(): void {
     
     this.apiService.getInstalaciones().subscribe(instalaciones => {
@@ -178,13 +194,11 @@ console.log(idAmarre);
     });
     this.validarFechaFinalizacion();
 
-
-
     this.activatedRoute.queryParams.subscribe((params) => {
       const tipo = params['tipo'];
       this.mostrarVacio = tipo === 'vacio';
-      this.modoEdicion = !this.mostrarVacio;
-      console.log(tipo);
+      //this.modoEdicion = !this.mostrarVacio;
+     // console.log(tipo);
     });
 
     console.log('Intentando obtener datos del servicio...');
@@ -208,6 +222,8 @@ console.log(idAmarre);
  
   activarModoEdicion() {
     this.modoVista = false;
+    this.editarFechaFinalizacion = true;
+    this.modoEdicion = true;
   }
   eliminar(): void {
     const dialogRef = this.dialog.open(FormdialogoPbComponent, {
