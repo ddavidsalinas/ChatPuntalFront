@@ -19,13 +19,6 @@ export class ApiService {
 
 
 
-
-//de la api cambiamos estado amarre de transito
-cambiarOcupado(id: any): Observable<any> {
-  const urls = `${this.apiUrl}${'transito/cambiar'}/${id}`;
-  console.log(urls);
-  return this.http.get(urls);
-}
 //de la api cogemos la cantidad de plazas base hay
   getCantidadPB(): Observable<any> {
     const urls = `${this.apiUrl}${'plazaBase/cantidad'}`;
@@ -232,6 +225,17 @@ getAmarresTransito(pantalanId: number): Observable<any> {
     const url = `http://127.0.0.1:8000/api/v1/tripulante/transito/${this.transitoId}>`;
     console.log(url);
     return this.http.get(url);
+    
+  }
+
+
+
+  crearTransito(data:any): Observable<any> {
+    
+    const url = `http://127.0.0.1:8000/api/v1/transito/crear>`;
+
+    console.log(url,data);
+    return this.http.get(url,data);
     
   }
 

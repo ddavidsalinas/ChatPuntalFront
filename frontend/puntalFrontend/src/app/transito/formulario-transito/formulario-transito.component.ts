@@ -324,7 +324,7 @@ actualizarTransito() {
 //hace un cambio del estado de plaza a ocupado
 eliminarTransito() {
   // this.eliminar();
-  this.apiService.cambiarOcupado(this.transitoSeleccionada.id)
+  this.apiService.putDisponibleOcupado(this.transitoSeleccionada.Amarre_id,this.transitoSeleccionada)
     .pipe(
       catchError(error => {
         console.error('Error en la solicitud:', error);

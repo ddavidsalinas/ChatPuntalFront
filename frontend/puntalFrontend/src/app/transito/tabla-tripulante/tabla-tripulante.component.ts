@@ -99,12 +99,9 @@ guardarTripulante() {
 //activa edicion tabla tripulante y agrega inputs para añadir tripulante
 anyadirTripulante()
 {
-  if(this.inputs<=5)
-  {
-this.inputs++;
-  }
   
   this.crearTripulante=true;
+  this.click=false;
 }
 ngOnInit(): void {
   // this.sharedDataService.getData("transitoSeleccionada").subscribe(data => {
