@@ -229,13 +229,18 @@ getAmarresTransito(pantalanId: number): Observable<any> {
   }
 
 
+  // postAlquiler(id: any, data: any): Observable<any> {
+  //   const url = `${this.apiUrl}/plazaBase/alquiler/${id}`;
+  //   console.log(url);
+  //   return this.http.post(url, data);
+  // }
 
-  crearTransito(data:any): Observable<any> {
+  crearTransito(id:any,data:any): Observable<any> {
     
-    const url = `http://127.0.0.1:8000/api/v1/transito/crear>`;
+    const url = `http://127.0.0.1:8000/api/v1/transito/crear/${id}`;
 
-    console.log(url,data);
-    return this.http.get(url,data);
+    console.log(url);
+    return this.http.post(url,data);
     
   }
 

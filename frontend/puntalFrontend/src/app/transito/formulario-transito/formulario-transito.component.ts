@@ -243,9 +243,11 @@ verificarFechas(): boolean {
 
 //crea un nuevo transito cogiendo de el formulario los values de cada campo y insertandolos en un transito para luego añadirlo con la api
 guardarTransito() {
+  let idAdmin = localStorage.getItem('id');
+
   if(this.verificarFechas())
   {
-  this.tripulante.guardarTripulante();
+  //  this.tripulante.guardarTripulante();
   const formulario = document.forms.namedItem("formTransito") as HTMLFormElement;
   // Accede a los valores del formulario usando document.forms['nombreFormulario']['nombreCampo']
   const FechaEntradaValue = formulario['fecha_entrada'].value as HTMLInputElement;
@@ -275,12 +277,16 @@ guardarTransito() {
     Instalacion: InstalacionValue,
     Pantalan: PantalanValue,
     Amarre: AmarreValue,
+    Titular:TitularValue,
     
 
-
   };
+  console.log(this.transitoSeleccionada);
+  console.log(idAdmin);
 
-  this.apiService.add('transito', this.transitoSeleccionada)
+let a ="Asa";
+  this.apiService.crearTransito( a,this.transitoSeleccionada)
+  
     .pipe(
       catchError(error => {
         console.error('Error en la solicitud:', error);
