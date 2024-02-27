@@ -1,13 +1,16 @@
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, tap } from 'rxjs';
-
+import { Injectable } from '@angular/core'; // Decorador que permite inyectar dependencias al servicio
+import { HttpClient, HttpHeaders } from '@angular/common/http'; // Importación de módulos necesarios para petición HTTP
+import { Observable, tap } from 'rxjs'; // Importación de módulos necesarios para manejo de observables
+// En este servicio se definen los métodos que se utilizarán para realizar peticiones a la API. 
+//Se importa el módulo HttpClient para realizar peticiones HTTP y el módulo Observable para manejar las respuestas de las peticiones. 
+//También se importa el módulo tap para realizar operaciones con la respuesta de la petición.
+//En todas estas peticionas son manejadas en el backend. en este caso emdiante el framework de Laravel.
 @Injectable({
   providedIn: 'root'
-})
+}) // Decorador que permite inyectar dependencias al servicio
 export class ApiService {
-  private apiUrl = 'http://127.0.0.1:8000/api/v1/';
-  constructor(private http: HttpClient) { }
+  private apiUrl = 'http://127.0.0.1:8000/api/v1/'; // URL de la API a la que se realizarán las peticiones
+  constructor(private http: HttpClient) { } // Inyección de dependencia HttpClient. En este caso, se inyecta el servicio HttpClient
 
 
   //de la api cogemos la cantidad de plazas base hay
@@ -102,33 +105,45 @@ export class ApiService {
     const url = `${this.apiUrl}${entity}`;
     return this.http.get(url);
   }
+
+  // Método que realiza una petición GET a la API para obtener un recurso específico.
+  // Recibe como parámetro el nombre de la entidad ("entity") y los datos a enviar en la petición.
   add(entity: string, data: any): Observable<any> {
+    // URL a la API a la que se realizará la petición cone el nombre de la entidad.
     const url = `${this.apiUrl}${entity}`;
+    // Se realiza la petición POST a la API con la URL y los datos a enviar.
     return this.http.post(url, data)
       .pipe(
         tap(response => console.log('Respuesta del servicio:', response))
-      );
+      ); // Se utiliza el operador pipe para encadenar operadores. En este caso, se utiliza el operador tap para imprimir en consola la respuesta del servicio.
   }
 
+  // Método que realiza una petición PUT a la API para actualizar un recurso específico.
+  // Recibe como parámetro el ID del recurso a actualizar, el nombre de la entidad ("entity") y los datos a enviar en la petición.
+  // Por coherencía, debería estar ordenado así: entity, id, data. A tener en cuenta al refactorizar.
   update(id: any, entity: string, data: any): Observable<any> {
 
+    // Se define el boundary que se utilizará en el encabezado de la petición. Lo fuerzo
+    // ya que la actualización de imagenes da problemas con el boundary por defecto.
     const boundary = '----WebKitFormBoundaryCPvD7XF6kal2o4y9'; // Usar el mismo boundary que en el segundo encabezado
-
+    // Se definen los encabezados de la petición
     const headers = new HttpHeaders({
       'Content-Type': `multipart/form-data; boundary=${boundary}`,
       'enctype': 'multipart/form-data'
     });
-
+    // URL a la API a la que se realizará la petición con el nombre de la entidad y el ID del recurso.
     const url = `${this.apiUrl}${entity}/${id}`;
 
-
+    // Se realiza la petición PUT a la API con la URL y los datos a enviar.
     return this.http.put(url, data);
 
   }
 
 
   delete(id: any, entity: string): Observable<any> {
+    // URL a la API a la que se realizará la petición con el nombre de la entidad y el ID del recurso.
     const url = `${this.apiUrl}${entity}/${id}`;
+    // Se realiza la petición DELETE a la API con la URL.
     return this.http.delete(url);
   }
 
