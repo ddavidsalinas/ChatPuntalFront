@@ -7,6 +7,7 @@ import { DialogoFormpb } from '../dialogo-formpb';
 import { ApiService } from 'src/app/services/api/api.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-formulario-pb',
@@ -17,8 +18,12 @@ export class FormularioPbComponent implements OnInit {
   mostrarVacio: boolean = false;
   modoVista: boolean = true;
   modoEdicion: boolean = false;
+  editarFechaFinalizacion: boolean = false;
+
+
+
   plazaBSeleccionada: any = { datos_estancia: '' };
- 
+  idLocalStorage: any;
   data: any;
   formulario!: FormGroup;
 
@@ -44,17 +49,8 @@ export class FormularioPbComponent implements OnInit {
     private router: Router
     
   ) {
-    this.formulario = this.formBuilder.group({
-      FechaInicio: ['', Validators.required],
-      FechaFinalizacion: [''],
-      Instalacion: [''],
-      Pantalan: [''],
-      Amarre: [''],
-      Embarcacion: [''],
-      Titular: ['']
-    });
      this.FechaInicio = new Date();
-  
+     this.idLocalStorage = localStorage.getItem('id');
      this.FechaFinalizacion = new Date();
      this.FechaFinalizacion.setMonth(this.FechaInicio.getMonth() + 6);
   }
@@ -114,61 +110,67 @@ validarFechaFinalizacion() {
   this.FechaFinalizacion = fechaMinima;
 }
   guardarPlazaBase() {
-    let administrativoId = localStorage.getItem('id');
-     // Obtener todos los valores del formulario
-     console.log(this.instalaciones);
-     console.log(this.titular);
-     console.log(this.embarcaciones);
-     console.log(this.amarres);
-  const formData = this.formulario.value;
+    const Administrativo_id = (document.getElementById('campoOculto') as HTMLInputElement).value;
 
-  // Acceder a cada campo individualmente
-  let fechaInicio = formData.FechaInicio.value;
-  let fechaFinalizacion = formData.FechaFinalizacion;
-  let instalacion = formData.Instalacion;
-  let pantalan = formData.Pantalan;
-  let amarre = formData.Amarre;
-  let embarcacion = formData.Embarcacion;
-  let titular = formData.Titular;
+  const formulario = document.forms.namedItem("formPlazabase") as HTMLFormElement;
+  const formData = new FormData();
 
-  // También puedes acceder a todos los valores de una vez si lo necesitas
-  console.log('Datos del formulario:', formData);
+  formData.append('FechaInicio', formulario['FechaInicio'].value);
+  formData.append('FechaFinalizacion', formulario['FechaFinalizacion'].value);
+  formData.append('Instalacion', formulario['Instalacion'].value);
+  formData.append('Pantalan', formulario['Pantalan'].value);
+  formData.append('Amarre', formulario['Amarre'].value);
+  formData.append('Embarcacion', formulario['Embarcacion'].value);
+  formData.append('Titular', formulario['Titular'].value);
+  formData.append('Administrativo_id', Administrativo_id);
+console.log(formData);
 
-    /*
-// Llamar al método en el servicio API para guardar el administrativo amarre
-this.apiService.postAdministrativoAmarre(formData.id, formData).subscribe(
-  (response) => {
-    console.log('Administrativo amarre guardado:', response);
+const idAmarre = formData.get('Amarre');
+
+console.log(idAmarre);
+
+this.apiService.postAlquiler(idAmarre, formData).pipe(
+  switchMap((response) => {
+    console.log('Alquiler?:', response);
+    // Realizar las siguientes operaciones aquí, como realizar otra petición HTTP o realizar acciones adicionales
     
-    // Llamar al método en el servicio API para guardar el alquiler
-    this.apiService.postAlquiler(formData.id, formData).subscribe(
-      (response) => {
-        console.log('Alquiler guardado:', response);
-
-        // Llamar al método en el servicio API para actualizar el estado a ocupado
-        this.apiService.putDisponibleOcupado(formData.id, formData).subscribe(
-          (response) => {
-            console.log('Estado actualizado a ocupado:', response);
-            // Redirigir a la página deseada después de guardar los datos
-            this.router.navigate(['/tabla']);
-          },
-          (error) => {
-            console.error('Error al actualizar el estado a ocupado:', error);
-          }
-        );
-      },
-      (error) => {
-        console.error('Error al guardar el alquiler:', error);
-      }
-    );
-  },
+    // Por ejemplo, podrías hacer otra petición HTTP:
+    return this.apiService.postAdministrativoAmarre(idAmarre, formData);
+  }),
+  switchMap((response) => {
+    console.log('Administrativo asociado correctamente al amarre:', response);
+    // Realizar las siguientes operaciones aquí, como realizar otra petición HTTP o realizar acciones adicionales
+    
+    // Por ejemplo, podrías hacer otra petición HTTP:
+    return this.apiService.putDisponibleOcupado(idAmarre);
+  })
+).subscribe(
+  (response) => {
+    console.log('Cambiado:', response);
+    this.router.navigate(['/plazabase/tabla']);  },
   (error) => {
-    console.error('Error al guardar el administrativo amarre:', error);
+    console.error('Error:', error);
   }
 );
-*/
 
-  }
+
+
+
+
+
+
+
+
+
+    }
+
+actualizaPB(){}
+
+bajaPB(){}
+
+
+
+
   ngOnInit(): void {
     
     this.apiService.getInstalaciones().subscribe(instalaciones => {
@@ -181,13 +183,10 @@ this.apiService.postAdministrativoAmarre(formData.id, formData).subscribe(
     });
     this.validarFechaFinalizacion();
 
-
-
     this.activatedRoute.queryParams.subscribe((params) => {
       const tipo = params['tipo'];
       this.mostrarVacio = tipo === 'vacio';
-      this.modoEdicion = !this.mostrarVacio;
-      console.log(tipo);
+
     });
 
     console.log('Intentando obtener datos del servicio...');
@@ -211,6 +210,8 @@ this.apiService.postAdministrativoAmarre(formData.id, formData).subscribe(
  
   activarModoEdicion() {
     this.modoVista = false;
+    this.editarFechaFinalizacion = true;
+    this.modoEdicion = true;
   }
   eliminar(): void {
     const dialogRef = this.dialog.open(FormdialogoPbComponent, {

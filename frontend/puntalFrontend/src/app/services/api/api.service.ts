@@ -6,7 +6,7 @@ import { SharedDataService } from '../shared-data/shared-data.service';
 
 @Injectable({
   providedIn: 'root'
-})
+}) // Decorador que permite inyectar dependencias al servicio
 export class ApiService {
   private apiUrl = 'http://127.0.0.1:8000/api/v1/';
   transitoId :any;
@@ -19,13 +19,13 @@ export class ApiService {
 
 
 
-//de la api cogemos la cantidad de plazas base hay
+
+  //de la api cogemos la cantidad de plazas base hay
   getCantidadPB(): Observable<any> {
     const urls = `${this.apiUrl}${'plazaBase/cantidad'}`;
     return this.http.get(urls);
   }
-
-//de la api cogemos la cantidad de transito hay
+  //de la api cogemos la cantidad de transito hay
   getCantidadTR(): Observable<any> {
     const urls = `${this.apiUrl}${'transito/cantidad'}`;
     return this.http.get(urls);
@@ -48,7 +48,8 @@ export class ApiService {
     const urls = `${this.apiUrl}${'plaza/pbmantenimiento'}`;
     return this.http.get(urls);
   }
- 
+
+
   //de la api cogemos la cantidad de transito hay disponibles
   getTRdisponibles(): Observable<any> {
     const urls = `${this.apiUrl}${'plaza/trdisponibles'}`;
@@ -73,7 +74,7 @@ export class ApiService {
     return this.http.get(urls);
   }
 
-//de la api cogemos el tipo comun de embarcaciones 
+  //de la api cogemos el tipo comun de embarcaciones 
   getEmbcomun(): Observable<any> {
     const urls = `${this.apiUrl}${'embarcacion/tipocomun'}`;
     return this.http.get(urls);
@@ -129,32 +130,33 @@ getTitularEmbarcacion(embarcacionId: number): Observable<any[]> {
 
 
 postAdministrativoAmarre(id: any, data: any): Observable<any> {
-  const url = `${this.apiUrl}/plazaBase/${id}/administrativoyAmarre`;
+  const url = `${this.apiUrl}plazaBase/${id}/administrativoyAmarre`;
   console.log(url);
+  console.log(data);
   return this.http.post(url, data);
 }
 
 postAlquiler(id: any, data: any): Observable<any> {
-  const url = `${this.apiUrl}/plazaBase/alquiler/${id}`;
+  const url = `${this.apiUrl}plazaBase/alquiler/${id}`;
   console.log(url);
   return this.http.post(url, data);
 }
 
 
-putDisponibleOcupado(id: any, data: any): Observable<any> {
-  const url = `${this.apiUrl}/plaza/${id}/actualizaEstadoOcupado`;
+putDisponibleOcupado(id: any, data?: any): Observable<any> {
+  const url = `${this.apiUrl}plaza/${id}/actualizaEstadoOcupado`;
   console.log(url);
   return this.http.put(url, data);
 }
 
 putOcupadoDisponible(id: any, data: any): Observable<any> {
-  const url = `${this.apiUrl}/plaza/${id}/actualizaEstadoDisponible`;
+  const url = `${this.apiUrl}plaza/${id}/actualizaEstadoDisponible`;
   console.log(url);
   return this.http.put(url, data);
 }
 
 putActuaFin(id: any, data: any): Observable<any> {
-  const url = `${this.apiUrl}/plazaBase/${id}/actuFin`;
+  const url = `${this.apiUrl}plazaBase/${id}/actuFin`;
   console.log(url);
   return this.http.put(url, data);
 }
@@ -186,8 +188,8 @@ getAmarresTransito(pantalanId: number): Observable<any> {
 }
 
 
-  getPlazas():Observable<any>
-  {
+
+  getPlazas(): Observable<any> {
     const url = `${this.apiUrl}${"plaza/disponibles"}`;
     return this.http.get(url)
   }
@@ -207,13 +209,18 @@ getAmarresTransito(pantalanId: number): Observable<any> {
     const url = `${this.apiUrl}${entity}`;
     return this.http.get(url);
   }
+
+  // Método que realiza una petición GET a la API para obtener un recurso específico.
+  // Recibe como parámetro el nombre de la entidad ("entity") y los datos a enviar en la petición.
   add(entity: string, data: any): Observable<any> {
+    // URL a la API a la que se realizará la petición cone el nombre de la entidad.
     const url = `${this.apiUrl}${entity}`;
     console.log(url ,data );
+    // Se realiza la petición POST a la API con la URL y los datos a enviar.
     return this.http.post(url, data)
       .pipe(
         tap(response => console.log('Respuesta del servicio:', response))
-      );
+      ); // Se utiliza el operador pipe para encadenar operadores. En este caso, se utiliza el operador tap para imprimir en consola la respuesta del servicio.
   }
   //coge los tripulantes en base a la id
   getAllTripulante(): Observable<any> {
@@ -260,64 +267,33 @@ getAmarresTransito(pantalanId: number): Observable<any> {
    
   //   console.log('Img type:', typeof data.Imagen);
 
-  //   return this.http.put(url, data, { headers: new HttpHeaders({ 'Content-Type': 'multipart/form-data' }) });
-  // }
+  // Método que realiza una petición PUT a la API para actualizar un recurso específico.
+  // Recibe como parámetro el ID del recurso a actualizar, el nombre de la entidad ("entity") y los datos a enviar en la petición.
+  // Por coherencía, debería estar ordenado así: entity, id, data. A tener en cuenta al refactorizar.
   update(id: any, entity: string, data: any): Observable<any> {
-    // if (!data.Imagen) {
-    //   data.Imagen = []; // Establecer como un array vacío si no hay imagen seleccionada
-    // }
-    // const formData = new FormData();
-    // // Agregar los datos al FormData
-    // Object.keys(data).forEach(key => {
-    //   formData.append(key, data[key]);
-    // });
-    const boundary = '----WebKitFormBoundaryCPvD7XF6kal2o4y9'; // Usar el mismo boundary que en el segundo encabezado
 
+    // Se define el boundary que se utilizará en el encabezado de la petición. Lo fuerzo
+    // ya que la actualización de imagenes da problemas con el boundary por defecto.
+    const boundary = '----WebKitFormBoundaryCPvD7XF6kal2o4y9'; // Usar el mismo boundary que en el segundo encabezado
+    // Se definen los encabezados de la petición
     const headers = new HttpHeaders({
       'Content-Type': `multipart/form-data; boundary=${boundary}`,
       'enctype': 'multipart/form-data'
     });
-
+    // URL a la API a la que se realizará la petición con el nombre de la entidad y el ID del recurso.
     const url = `${this.apiUrl}${entity}/${id}`;
-    console.log('URL:', url);
-    console.log('Datos de la embarcación a enviar desde service:', data);
-    console.log('Img:', data.Imagen);
 
-    console.log('Img type:', typeof data.Imagen);
+    // Se realiza la petición PUT a la API con la URL y los datos a enviar.
     return this.http.put(url, data);
-    // return this.http.put(url, formData, { headers: headers});
-  }
-  
-  // update(id: number, entity: string, data: any, imagen?: File) {
-  //   const url = `${this.apiUrl}${entity}/${id}`;
-  //   const formData = new FormData();
-  
-  //   // Agregar los datos al FormData
-  //   Object.keys(data).forEach(key => {
-  //     formData.append(key, data[key]);
-  //   });
-  
-  //   // Agregar la imagen al FormData si está presente
-  //   if (imagen) {
-  //     formData.append('Imagen', imagen);
-  //   }
-  
-  //   // Realizar la solicitud PUT con el FormData
-  //   return this.http.put(url, formData);
-  // }
-  
-  // update(id: any, entity: string, formData: FormData): Observable<any> {
-  //   const url = `${this.apiUrl}${entity}/${id}`;
-  //   console.log('URL:', url);
-  //   console.log('Datos de la embarcación a enviar:', formData);
 
-  //   // No necesitas establecer el Content-Type a 'application/json' ya que estás enviando FormData
-  //   return this.http.put(url, formData);
-  // }
+  }
+
 
   delete(id: any, entity: string): Observable<any> {
+    // URL a la API a la que se realizará la petición con el nombre de la entidad y el ID del recurso.
     const url = `${this.apiUrl}${entity}/${id}`;
+    // Se realiza la petición DELETE a la API con la URL.
     return this.http.delete(url);
   }
-  
+
 }
