@@ -1,33 +1,35 @@
-import { Component, OnInit } from '@angular/core';
-import { SharedDataService } from 'src/app/services/shared-data/shared-data.service';
-import { ActivatedRoute } from '@angular/router';
-import { MatDialog } from '@angular/material/dialog';
-import { DialogoFormem } from '../dialogo-formem';
-import { FormBuilder } from '@angular/forms';
-import { FormdialogoemComponent } from '../formdialogoem/formdialogoem.component';
-import { ApiService } from 'src/app/services/api/api.service';
-import { catchError } from 'rxjs';
-import { Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core'; // Importación de módulo necesario para la definición de componentes
+import { SharedDataService } from 'src/app/services/shared-data/shared-data.service'; // Importación de servicio SharedDataService
+import { ActivatedRoute } from '@angular/router'; // Importación de módulo necesario para el manejo de rutas
+import { MatDialog } from '@angular/material/dialog'; // Importación de módulo necesario para la creación de diálogos
+import { DialogoFormem } from '../dialogo-formem'; // Importación de interfaz DialogoFormem
+import { FormBuilder } from '@angular/forms'; // Importación de módulo necesario para el manejo de formularios reactivos
+import { FormdialogoemComponent } from '../formdialogoem/formdialogoem.component'; // Importación de componente FormdialogoemComponent
+import { ApiService } from 'src/app/services/api/api.service'; // Importación de servicio ApiService
+import { catchError } from 'rxjs'; // Importación de módulo necesario para el manejo de errores
+import { Router } from '@angular/router'; // Importación de módulo necesario para el manejo de rutas
 
 @Component({
   selector: 'app-formulario-embarcacion',
   templateUrl: './formulario-embarcacion.component.html',
   styleUrls: ['./formulario-embarcacion.component.css']
 })
+
+// Clase del componente FormularioEmbarcacionComponent
 export class FormularioEmbarcacionComponent implements OnInit {
-  mostrarVacio: boolean = false;
-  modoVista: boolean = true;
-  modoEdicion: boolean = false;
-  embarcacionSeleccionada: any = { datos_tecnicos: '' };
-  data: any;
+  mostrarVacio: boolean = false; // Variable para mostrar formulario vacío
+  modoVista: boolean = true; // Variable para modo de vista de formulario
+  modoEdicion: boolean = false; // Variable para modo de edición de formulario
+  embarcacionSeleccionada: any = { datos_tecnicos: '' }; // Variable para almacenar la embarcación seleccionada. Se inicializa con un objeto vacío
+  data: any; // Variable para almacenar datos
 
-  imagenSeleccionada: string | File | ArrayBuffer | null = null;
+  imagenSeleccionada: string | File | ArrayBuffer | null = null; // Variable para almacenar la imagen seleccionada
 
-
+  // Método constructor para crear un objeto del componente
   constructor(private sharedDataService: SharedDataService, private activatedRoute: ActivatedRoute, private apiService: ApiService, private formBuilder: FormBuilder, public dialog: MatDialog, private router: Router) {}
-
+  // Método para mostrar formulario
   onMostrarFormulario(tipo: string) {
-   
+    // Si el tipo es vacío, muestra el formulario vacío
     if (tipo == 'vacio') {
       this.mostrarVacio = true;
     } else {
@@ -35,11 +37,14 @@ export class FormularioEmbarcacionComponent implements OnInit {
     }
 
   }
+  // Método para mostrar modal
   mostrar: string = 'no';
   noMostrar: string = 'si';
   click: boolean = true;
   noClick: boolean = false;
+  // Método para inicializar el componente en la vista
   ngOnInit(): void {
+    // Suscripción a los parámetros de la ruta. Recibe el tipo de formulario a través de queryParams en la URL
     this.activatedRoute.queryParams.subscribe(params => {
       const tipo = params['tipo'];
       this.mostrarVacio = tipo === 'vacio';
@@ -47,7 +52,7 @@ export class FormularioEmbarcacionComponent implements OnInit {
     });
 
 
-
+    // Suscripción a los datos compartidos. Recibe la embarcación seleccionada
     this.sharedDataService.getData("embarcacionSeleccionada").subscribe(data => {
      
       if (data) {
@@ -64,6 +69,7 @@ export class FormularioEmbarcacionComponent implements OnInit {
 
   }
 
+  // Método para seleccionar archivo de imagen y mostrarla en el formulario
   onFileSelected(event: any): void {
     const file = event.target.files[0];
     if (file) {
@@ -75,11 +81,13 @@ export class FormularioEmbarcacionComponent implements OnInit {
       reader.readAsDataURL(file);
     }
   }
+  // Método para actualizar archivo de imagen
   onFileUpdated(event: any) {
     this.imagenSeleccionada = event.target.files[0];
   
   }
 
+  // Método para activar modo de edición de formulario
   activarModoEdicion() {
 
     this.modoVista = false;
@@ -87,9 +95,11 @@ export class FormularioEmbarcacionComponent implements OnInit {
   }
 
 
+  // Método guardar embarcación
   guardarEmbarcacion() {
- 
-    const formulario = document.forms.namedItem("formEmbarcacion") as HTMLFormElement;
+    
+    // Referencia al formulario
+    const formulario = document.forms.namedItem("formEmbarcacion") as HTMLFormElement; 
     const formData = new FormData(); // Crea un objeto FormData para enviar los datos al servidor
 
     // Accede a los valores del formulario y agrégalos al objeto FormData
@@ -128,14 +138,14 @@ export class FormularioEmbarcacionComponent implements OnInit {
       );
   }
 
-
+  // Método para actualizar embarcación
   actualizarEmbarcacion() {
-
+    // Maneja la actualización de la imagen
     if (this.imagenSeleccionada) {
 
       this.embarcacionSeleccionada.Imagen = this.imagenSeleccionada;
     }
-  
+    // Envía los datos al servidor utilizando el servicio API
     this.apiService.update(this.embarcacionSeleccionada.id, 'embarcacion', this.embarcacionSeleccionada)
       .pipe(
         catchError(error => {
@@ -159,7 +169,7 @@ export class FormularioEmbarcacionComponent implements OnInit {
 
 
 
-
+  // Método para eliminar embarcación desde el modal
   eliminar(): void {
     const dialogRef = this.dialog.open(FormdialogoemComponent, {
       data: {

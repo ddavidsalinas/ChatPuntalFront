@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
-import { SharedDataService } from 'src/app/services/shared-data/shared-data.service';
-import { HttpClient } from '@angular/common/http';
-import { ApiService } from 'src/app/services/api/api.service';
-import { Subject } from 'rxjs';
+import { Component, OnInit } from '@angular/core'; // Importación de módulo necesario para la definición de componentes
+import { Router, ActivatedRoute } from '@angular/router'; // Importación de módulos necesarios para el manejo de rutas
+import { SharedDataService } from 'src/app/services/shared-data/shared-data.service'; // Importación de servicio SharedDataService
+import { HttpClient } from '@angular/common/http'; // Importación de módulo necesario para el manejo de solicitudes HTTP
+import { ApiService } from 'src/app/services/api/api.service'; // Importación de servicio ApiService
+import { Subject } from 'rxjs'; // Importación de módulo necesario para el manejo de observables
 
 
 @Component({
@@ -11,12 +11,15 @@ import { Subject } from 'rxjs';
   templateUrl: './tabla.component.html',
   styleUrls: ['./tabla.component.css'],
 })
+// Clase del componente TablaComponent
 export class TablaComponent implements OnInit {
 
-
+  // Métodos dataTables para la configuración de la tabla
   dtOptions: DataTables.Settings = {};
-  datos: any = [];
   dtTrigger: Subject<any> = new Subject<any>();
+  // Variable para almacenar datos
+  datos: any = [];
+  // Método constructor para crear un objeto del componente
   constructor(
     private router: Router,
     private activatedRoute: ActivatedRoute,
@@ -26,6 +29,7 @@ export class TablaComponent implements OnInit {
   ) {
 
   }
+  // Método para navegar a formulario
   navegarAFormulario() {
 
 
@@ -33,11 +37,11 @@ export class TablaComponent implements OnInit {
   }
 
 
-
+  // Método para manejar clics en las filas de la tabla
   someClickHandler(index: number): void {
-
+    // Obtiene los datos de la fila seleccionada
     const rowData = this.datos[index];
-    console.log(rowData);
+    // Navega a formulario vista con los datos de la fila seleccionada
     this.sharedDataService.setData("embarcacionSeleccionada", rowData);
     this.router.navigate(['/embarcaciones/formulario'], {
       queryParams: { tipo: 'vista' }  // O 'vacio' según tus necesidades
@@ -45,6 +49,7 @@ export class TablaComponent implements OnInit {
 
   }
 
+  // Método para inicializar el componente en la vista (obtiene todos los datos de la entidad embarcación)
   ngOnInit(): void {
     this.apiService.getAll('embarcacion').subscribe((data: any) => {
       this.datos = data;
@@ -68,6 +73,7 @@ export class TablaComponent implements OnInit {
 
 
   }
+  // Método para destruir en el componente
   ngOnDestroy(): void {
     // Limpia el dtTrigger para evitar problemas de memoria
     this.dtTrigger.unsubscribe();
