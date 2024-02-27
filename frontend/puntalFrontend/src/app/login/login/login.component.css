@@ -14,6 +14,13 @@ h3 {
         display: none; 
     }
    
+    .desktop-image {
+        display: none;
+    }
+
+    .mobile-image {
+        display: block;
+    }
  
   }
 
@@ -55,7 +62,16 @@ h3 {
     
         /* -webkit-text-stroke: 1px black, 1px white; */
     
+       
     
+    }
+
+    .mobile-image {
+        display: none;
+    }
+
+    .desktop-image {
+        display: block;
     }
 
     .contenedor-login{

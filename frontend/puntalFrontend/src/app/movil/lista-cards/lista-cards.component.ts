@@ -25,7 +25,7 @@ export class ListaCardsComponent {
   }
 
   ngOnInit(): void {
-    this.apiService.getAll('transito').subscribe((data: any) => {
+    this.apiService.getAll('transito/indexguardamuelles').subscribe((data: any) => {
       this.datos = data;
 
       console.log('Después de la llamada a la API:', this.datos);
