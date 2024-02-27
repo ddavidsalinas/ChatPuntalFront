@@ -8,7 +8,7 @@
       <div class="mb-3 d-flex">
 
         <label>Feche Entrada:</label>
-        <input type="date" name="FechaInicio" [(ngModel)]="FechaInicio" (change)="onChangeFechaInicio()">
+        <input type="date" name="FechaInicio" [(ngModel)]="FechaInicio" >
       </div>
       <div class="mb-3 d-flex">
         <label>Fecha de finalización de contrato:</label>
@@ -18,22 +18,22 @@
 
 
       <div class="mb-3 d-flex">
-        <label for="instalacion" class="form-label">Instalación:</label>
-        <select [(ngModel)]="selectedInstalacion" name="instalacion" (change)="onChangeInstalacion()">
+        <label for="Instalacion" class="form-label">Instalación:</label>
+        <select [(ngModel)]="selectedInstalacion" name="Instalacion" (change)="onChangeInstalacion()">
           <option *ngFor="let instalacion of instalaciones" [value]="instalacion.id">{{ instalacion.Ubicacion }}
           </option>
         </select>
       </div>
       <div class="mb-3 d-flex">
-        <label for="pantalan" class="form-label">Pantalanes:</label>
-        <select *ngIf="selectedInstalacion" [(ngModel)]="selectedPantalan" name="pantalan"
+        <label for="Pantalan" class="form-label">Pantalanes:</label>
+        <select *ngIf="selectedInstalacion" [(ngModel)]="selectedPantalan" name="Pantalan"
           (change)="onChangePantalan()">
           <option *ngFor="let pantalan of pantalanes" [value]="pantalan.id">{{ pantalan.Nombre }}</option>
         </select>
       </div>
       <div class="mb-3 d-flex">
-        <label for="amarre" class="form-label">Amarres disponibles:</label>
-        <select *ngIf="selectedPantalan" [(ngModel)]="selectedAmarre" name="amarre">
+        <label for="Amarre" class="form-label">Amarres disponibles:</label>
+        <select *ngIf="selectedPantalan" [(ngModel)]="selectedAmarre" name="Amarre">
           <option *ngFor="let amarre of amarres" [value]="amarre.id">{{ amarre.Numero }}</option>
         </select>
       </div>
@@ -45,15 +45,16 @@
     <div class="formRight">
   
       <div class="mb-3 d-flex">
-        <label for="embarcacion" class="form-label">Embarcacion:</label>
-        <select [(ngModel)]="selectedEmbarcacion" name="embarcacion" (change)="onChangeEmbarcacion()">
+        <label for="Embarcacion" class="form-label">Embarcacion:</label>
+        <select [(ngModel)]="selectedEmbarcacion" name="Embarcacion" (change)="onChangeEmbarcacion()">
           <option *ngFor="let embarcacion of embarcaciones" [value]="embarcacion.id"> Matricula: {{ embarcacion.Matricula }}</option>
         </select>
       </div>
       <div class="mb-3 d-flex">
-        <label for="titular" class="form-label">Titular:</label>
-        <input type="text" name="titular" readonly [(ngModel)]="titular">
+        <label for="Titular" class="form-label">Titular:</label>
+        <input type="text" name="Titular" readonly [(ngModel)]="titular">
       </div>
+      <input type="hidden" id="campoOculto" name="campoOculto" [value]="idLocalStorage">
 
       <div class="d-flex justify-content-end mt-5">
         <button class="btn btnCancelar" routerLink="../tabla">

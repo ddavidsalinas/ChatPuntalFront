@@ -18,7 +18,7 @@ export class FormularioPbComponent implements OnInit {
   modoVista: boolean = true;
   modoEdicion: boolean = false;
   plazaBSeleccionada: any = { datos_estancia: '' };
- 
+  idLocalStorage: any;
   data: any;
   formulario!: FormGroup;
 
@@ -51,10 +51,11 @@ export class FormularioPbComponent implements OnInit {
       Pantalan: [''],
       Amarre: [''],
       Embarcacion: [''],
-      Titular: ['']
+      Titular: [''],
+  
     });
      this.FechaInicio = new Date();
-  
+     this.idLocalStorage = localStorage.getItem('id');
      this.FechaFinalizacion = new Date();
      this.FechaFinalizacion.setMonth(this.FechaInicio.getMonth() + 6);
   }
@@ -114,59 +115,55 @@ validarFechaFinalizacion() {
   this.FechaFinalizacion = fechaMinima;
 }
   guardarPlazaBase() {
-    let administrativoId = localStorage.getItem('id');
-     // Obtener todos los valores del formulario
-     console.log(this.instalaciones);
-     console.log(this.titular);
-     console.log(this.embarcaciones);
-     console.log(this.amarres);
-  const formData = this.formulario.value;
+    const Administrativo_id = (document.getElementById('campoOculto') as HTMLInputElement).value;
 
-  // Acceder a cada campo individualmente
-  let fechaInicio = formData.FechaInicio.value;
-  let fechaFinalizacion = formData.FechaFinalizacion;
-  let instalacion = formData.Instalacion;
-  let pantalan = formData.Pantalan;
-  let amarre = formData.Amarre;
-  let embarcacion = formData.Embarcacion;
-  let titular = formData.Titular;
+  const formulario = document.forms.namedItem("formPlazabase") as HTMLFormElement;
+  const formData = new FormData();
 
-  // También puedes acceder a todos los valores de una vez si lo necesitas
-  console.log('Datos del formulario:', formData);
+  formData.append('FechaInicio', formulario['FechaInicio'].value);
+  formData.append('FechaFinalizacion', formulario['FechaFinalizacion'].value);
+  formData.append('Instalacion', formulario['Instalacion'].value);
+  formData.append('Pantalan', formulario['Pantalan'].value);
+  formData.append('Amarre', formulario['Amarre'].value);
+  formData.append('Embarcacion', formulario['Embarcacion'].value);
+  formData.append('Titular', formulario['Titular'].value);
+  formData.append('Administrativo_id', Administrativo_id);
+console.log(formData);
 
-    /*
-// Llamar al método en el servicio API para guardar el administrativo amarre
-this.apiService.postAdministrativoAmarre(formData.id, formData).subscribe(
-  (response) => {
-    console.log('Administrativo amarre guardado:', response);
+const idAmarre = formData.get('Amarre');
+
+console.log(idAmarre);
+
+  this.apiService.postAdministrativoAmarre(idAmarre,formData).subscribe(
+    (response) => {
+      console.log('Administrativo asociado correctamente al amarre:', response);
+      // Aquí puedes realizar otras acciones después de asociar el administrativo al amarre
+    },
+    (error) => {
+      console.error('Error al asociar el administrativo al amarre:', error);
+    }
+  );
+  this.apiService.putDisponibleOcupado(idAmarre).subscribe(
+    (response) => {
+      console.log('Cambiado:', response);
     
-    // Llamar al método en el servicio API para guardar el alquiler
-    this.apiService.postAlquiler(formData.id, formData).subscribe(
-      (response) => {
-        console.log('Alquiler guardado:', response);
+    },
+    (error) => {
+      console.error('Error al cambiado:', error);
+    }
+  );
+  this.apiService.postAlquiler(idAmarre,formData).subscribe(
+    (response) => {
+      console.log('Alquiler?:', response);
+    
+    },
+    (error) => {
+      console.error('Error al Alquiler?:', error);
+    }
+  );
 
-        // Llamar al método en el servicio API para actualizar el estado a ocupado
-        this.apiService.putDisponibleOcupado(formData.id, formData).subscribe(
-          (response) => {
-            console.log('Estado actualizado a ocupado:', response);
-            // Redirigir a la página deseada después de guardar los datos
-            this.router.navigate(['/tabla']);
-          },
-          (error) => {
-            console.error('Error al actualizar el estado a ocupado:', error);
-          }
-        );
-      },
-      (error) => {
-        console.error('Error al guardar el alquiler:', error);
-      }
-    );
-  },
-  (error) => {
-    console.error('Error al guardar el administrativo amarre:', error);
-  }
-);
-*/
+
+
 
   }
   ngOnInit(): void {
