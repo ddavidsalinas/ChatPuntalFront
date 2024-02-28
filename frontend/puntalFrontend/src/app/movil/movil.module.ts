@@ -6,6 +6,7 @@ import { CardConfirmacionTransitoComponent } from './card-confirmacion-transito/
 import { CardIncidenciaComponent } from './card-incidencia/card-incidencia.component';
 import { RouterModule, Routes } from '@angular/router';
 import { ListaCardsComponent } from './lista-cards/lista-cards.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -29,7 +30,7 @@ const routes: Routes = [
     ListaCardsComponent
   ],
   imports: [
-    CommonModule, RouterModule],
+    CommonModule, RouterModule, RouterModule.forChild(routes), FormsModule, ReactiveFormsModule],
   exports:[PlantillaGuardamuellesComponent
 
   ]

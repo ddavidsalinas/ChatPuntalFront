@@ -49,7 +49,7 @@ export class CardIncidenciaComponent {
   }
   
   guardarIncidencia() {
-    console.log('Guardando incidencia:', this.formulario.value);
+    alert(this.formulario.value.Imagen)
   
     // Asigna los valores del formulario a this.incidencia
     this.incidencia.Titulo = this.formulario.value.Titulo;
