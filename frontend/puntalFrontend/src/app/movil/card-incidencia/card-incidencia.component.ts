@@ -70,7 +70,7 @@ export class CardIncidenciaComponent {
     }
   
     // Envía los datos al servidor utilizando el servicio API
-    this.apiService.add('incidencia', formData)
+    this.apiService.add('incidencia', this.formulario.value)
       .pipe(
         catchError(error => {
           console.error('Error en la solicitud:', error);
