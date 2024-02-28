@@ -56,7 +56,10 @@
             placeholder="Titular"
           />
         </div>
-        <div class="mb-3 d-flex">
+  
+      </div>
+      <div class="formRight">
+              <div class="mb-3 d-flex">
           <label for="eslora" class="form-label">Eslora:</label>
           <input
             name="Eslora"
@@ -83,8 +86,6 @@
             placeholder="Nº Registro"
           />
         </div>
-      </div>
-      <div class="formRight">
         <div class="mb-3 d-flex">
           <label for="tipo" class="form-label">Tipo:</label>
           <select name="Tipo" class="form-control mt-4">
@@ -102,7 +103,7 @@
             name="Datos_Tecnicos"
           ></textarea>
         </div>
-        <div class="mb-3 d-flex">
+        <!-- <div class="mb-3 d-flex">
           <label for="imagen" class="form-label">Imagen:</label>
           <input
             name="Imagen"
@@ -120,7 +121,7 @@
             "
             alt=""
           />
-        </div>
+        </div> -->
         <div class="d-flex justify-content-end mt-5">
           <button class="btn btnCancelar" routerLink="../tabla">
             CANCELAR
@@ -255,7 +256,7 @@
             [readOnly]="!modoEdicion"
           ></textarea>
         </div>
-        <div class="mb-3 d-flex">
+        <!-- <div class="mb-3 d-flex">
           <label for="imagen" class="form-label">Imagen:</label>
           <input
             name="Imagen"
@@ -263,7 +264,7 @@
             class="form-control mt-4"
             (change)="onFileUpdated($event)"
           />
-        </div>
+        </div> -->
         <div class="d-flex justify-content-center">
           <img
             [src]="'http://127.0.0.1:8000' + embarcacionSeleccionada.Imagen"
