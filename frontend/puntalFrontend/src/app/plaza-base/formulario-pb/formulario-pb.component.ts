@@ -38,8 +38,8 @@ export class FormularioPbComponent implements OnInit {
   selectedAmarre: any;
   FechaInicio: Date;
   FechaFinalizacion: Date;
-  titular: string= '';
-  
+  titular: string = '';
+
   constructor(
     private sharedDataService: SharedDataService,
     private activatedRoute: ActivatedRoute,
@@ -47,23 +47,15 @@ export class FormularioPbComponent implements OnInit {
     private formBuilder: FormBuilder,
     public dialog: MatDialog,
     private router: Router
-    
+
   ) {
-     this.FechaInicio = new Date();
-     this.idLocalStorage = localStorage.getItem('id');
-     this.FechaFinalizacion = new Date();
-     this.FechaFinalizacion.setMonth(this.FechaInicio.getMonth() + 6);
+    this.FechaInicio = new Date();
+    this.idLocalStorage = localStorage.getItem('id');
+    this.FechaFinalizacion = new Date();
+    this.FechaFinalizacion.setMonth(this.FechaInicio.getMonth() + 6);
   }
   onChangeFechaInicio(): void {
-    // Obtener la fecha de inicio
-    const FechaInicio = new Date(this.FechaInicio);
-  
-    // Calcular la fecha de finalización sumando 6 meses a la fecha de inicio
-    const FechaFinalizacion = new Date(FechaInicio);
-    FechaFinalizacion.setMonth(FechaFinalizacion.getMonth() + 6);
-  
-    // Asignar la nueva fecha de finalización
-    this.FechaFinalizacion = FechaFinalizacion;
+
   }
 
   onChangeInstalacion() {
@@ -71,131 +63,108 @@ export class FormularioPbComponent implements OnInit {
       this.pantalanes = pantalanes;
     });
   }
-  
+
   onChangePantalan() {
     this.apiService.getAmarres(this.selectedPantalan).subscribe(amarres => {
       this.amarres = amarres;
     });
-  
-}  
-onChangeEmbarcacion() {
- 
-this.embarcaciones.find(embarcacion => embarcacion.id === this.selectedEmbarcacion);
 
-  if (this.selectedEmbarcacion) {
-  console.log(this.selectedEmbarcacion)
-    this.apiService.getTitularEmbarcacion(this.selectedEmbarcacion).subscribe(
-     
-      (response: any) => {
-        console.log(response)
-        console.log( this.selectedEmbarcacion)
-        this.titular = response.titular;
-        console.log( this.titular)
+  }
+  onChangeEmbarcacion() {
+
+    this.embarcaciones.find(embarcacion => embarcacion.id === this.selectedEmbarcacion);
+
+    if (this.selectedEmbarcacion) {
+      console.log(this.selectedEmbarcacion)
+      this.apiService.getTitularEmbarcacion(this.selectedEmbarcacion).subscribe(
+
+        (response: any) => {
+          console.log(response)
+          console.log(this.selectedEmbarcacion)
+          this.titular = response.titular;
+          console.log(this.titular)
+        },
+        (error) => {
+          console.error('Error al obtener el titular de la embarcación:', error);
+          this.titular = ''; 
+        }
+      );
+    } else {
+      this.titular = ''; 
+    }
+  }
+  validarFechaFinalizacion() {
+    
+  }
+  guardarPlazaBase() {
+    var Administrativo_id = (document.getElementById('campoOculto') as HTMLInputElement).value;
+
+    var formulario = document.forms.namedItem("formPlazabase") as HTMLFormElement;
+    var formData = new FormData();
+
+    formData.append('FechaInicio', formulario['FechaInicio'].value);
+    formData.append('FechaFinalizacion', formulario['FechaFinalizacion'].value);
+    formData.append('Instalacion', formulario['Instalacion'].value);
+    formData.append('Pantalan', formulario['Pantalan'].value);
+    formData.append('Amarre', formulario['Amarre'].value);
+    formData.append('Embarcacion', formulario['Embarcacion'].value);
+    formData.append('Titular', formulario['Titular'].value);
+    formData.append('Administrativo_id', Administrativo_id);
+    console.log(formData);
+
+    var idAmarre = formData.get('Amarre');
+
+    console.log(idAmarre);
+
+    this.apiService.postAlquiler(idAmarre, formData).pipe(
+      switchMap((response) => {
+        console.log('Alquiler?:', response);
+
+        return this.apiService.postAdministrativoAmarre(idAmarre, formData);
+      }),
+      switchMap((response) => {
+        console.log('Administrativo asociado correctamente al amarre:', response);
+
+        return this.apiService.putDisponibleOcupado(idAmarre);
+      })
+    ).subscribe(
+      (response) => {
+        console.log('Cambiado:', response);
+        this.router.navigate(['/plazabase/tabla']);
       },
       (error) => {
-        console.error('Error al obtener el titular de la embarcación:', error);
-        this.titular = ''; // Establecer el titular como vacío en caso de error
+        console.error('Error:', error);
       }
     );
-  } else {
-    this.titular = ''; // Establecer el titular como vacío si no se encuentra la embarcación seleccionada
+
   }
-}
-validarFechaFinalizacion() {
-  // Calcular la fecha mínima permitida como 6 meses después de la fecha de inicio
-  const fechaMinima = new Date(this.FechaInicio);
-  fechaMinima.setMonth(fechaMinima.getMonth() + 6);
 
-  // Establecer la fecha de finalización como la fecha mínima calculada
-  this.FechaFinalizacion = fechaMinima;
-}
-  guardarPlazaBase() {
-    const Administrativo_id = (document.getElementById('campoOculto') as HTMLInputElement).value;
+  actualizaPB() {
 
-  const formulario = document.forms.namedItem("formPlazabase") as HTMLFormElement;
-  const formData = new FormData();
 
-  formData.append('FechaInicio', formulario['FechaInicio'].value);
-  formData.append('FechaFinalizacion', formulario['FechaFinalizacion'].value);
-  formData.append('Instalacion', formulario['Instalacion'].value);
-  formData.append('Pantalan', formulario['Pantalan'].value);
-  formData.append('Amarre', formulario['Amarre'].value);
-  formData.append('Embarcacion', formulario['Embarcacion'].value);
-  formData.append('Titular', formulario['Titular'].value);
-  formData.append('Administrativo_id', Administrativo_id);
-console.log(formData);
+    this.apiService.putActuaFin(this.plazaBSeleccionada.Plaza, this.plazaBSeleccionada).pipe(
+      catchError(error => {
+        console.error('Error en la solicitud:', error);
+        throw error;
+      })
+    )
+      .subscribe(
+        response => {
 
-const idAmarre = formData.get('Amarre');
+          this.plazaBSeleccionada = {};
+          this.router.navigate(['/plazabase']);
+        },
+        error => {
+          console.error('Error en la solicitud:', error);
+        }
+      );
 
-console.log(idAmarre);
 
-this.apiService.postAlquiler(idAmarre, formData).pipe(
-  switchMap((response) => {
-    console.log('Alquiler?:', response);
-    // Realizar las siguientes operaciones aquí, como realizar otra petición HTTP o realizar acciones adicionales
-    
-    // Por ejemplo, podrías hacer otra petición HTTP:
-    return this.apiService.postAdministrativoAmarre(idAmarre, formData);
-  }),
-  switchMap((response) => {
-    console.log('Administrativo asociado correctamente al amarre:', response);
-    // Realizar las siguientes operaciones aquí, como realizar otra petición HTTP o realizar acciones adicionales
-    
-    // Por ejemplo, podrías hacer otra petición HTTP:
-    return this.apiService.putDisponibleOcupado(idAmarre);
-  })
-).subscribe(
-  (response) => {
-    console.log('Cambiado:', response);
-    this.router.navigate(['/plazabase/tabla']);  },
-  (error) => {
-    console.error('Error:', error);
   }
-);
-
-
-
-
-
-
-
-
-
-
-    }
-
-actualizaPB(){
-
-
-  this.apiService.putActuaFin(this.plazaBSeleccionada.id, this.plazaBSeleccionada).pipe(
-    catchError(error => {
-      console.error('Error en la solicitud:', error);
-      // Puedes manejar el error según tus necesidades
-      throw error; // Propagar el error después de manejarlo
-    })
-  )
-  .subscribe(
-    response => {
-   
-     
-      this.plazaBSeleccionada = {};
-      this.router.navigate(['/plazabase']);
-    },
-    error => {
-      console.error('Error en la solicitud:', error);
-    }
-  );
-    
-  
-}
-
-
-
-
 
 
   ngOnInit(): void {
-    
+
     this.apiService.getInstalaciones().subscribe(instalaciones => {
       this.instalaciones = instalaciones;
     });
@@ -230,7 +199,7 @@ actualizaPB(){
     });
   }
 
- 
+
   activarModoEdicion() {
     this.modoVista = false;
     this.editarFechaFinalizacion = true;
@@ -249,29 +218,29 @@ actualizaPB(){
     dialogRef.afterClosed().subscribe((result) => {
       if (result.causa) {
         this.apiService.putOcupadoDisponible(this.plazaBSeleccionada.Plaza)
-        .pipe(
-          catchError(error => {
-            console.error('Error en la solicitud:', error);
-            throw error;
-          })
-        )
-        .subscribe(
-          response => {
-          
-            this.plazaBSeleccionada = {};
-            this.router.navigate(['/plazabase']);
+          .pipe(
+            catchError(error => {
+              console.error('Error en la solicitud:', error);
+              throw error;
+            })
+          )
+          .subscribe(
+            response => {
 
-          },
-          error => {
-            console.error('Error en la solicitud:', error);
-          }
-        );
-      console.log('Eliminación confirmada. Causa de baja:', result.causa);
-    } else {
+              this.plazaBSeleccionada = {};
+              this.router.navigate(['/plazabase']);
 
-      console.log('Eliminación cancelada.');
-    }
-  });
+            },
+            error => {
+              console.error('Error en la solicitud:', error);
+            }
+          );
+        console.log('Eliminación confirmada. Causa de baja:', result.causa);
+      } else {
+
+        console.log('Eliminación cancelada.');
+      }
+    });
 
   }
 }
