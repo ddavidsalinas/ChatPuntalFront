@@ -46,7 +46,7 @@ const routes: Routes = [
       {
         path: '',
         canActivate: [roleGuard], // Se utiliza el guard para verificar el rol del usuario
-        // canMatch: [() => isRole('2')],
+
         component: DashboardComponent,
         data: { role: '2' }
       }
@@ -56,7 +56,6 @@ const routes: Routes = [
     path: 'embarcaciones',
     canActivate: [roleGuard],
     data: { role: '2' },
-    // canMatch: [() => isRole('2')],
     component: ContenidoComponent,
     children: [
       {
@@ -78,7 +77,6 @@ const routes: Routes = [
     path: 'plazabase',
     canActivate: [roleGuard],
     data: { role: '2' },
-    // canMatch: [() => isRole('2')],
     component: ContenidoComponent,
     children: [
       {
@@ -100,7 +98,6 @@ const routes: Routes = [
     path: 'transito',
     canActivate: [roleGuard],
     data: { role: '2' },
-    // canMatch: [() => isRole('2')],
     component: ContenidoComponent,
     children: [
       {
@@ -121,15 +118,14 @@ const routes: Routes = [
   {
     path: 'guardiacivil',
     canActivate: [roleGuard],
-    data: { role: '2' },
-    // canMatch: [() => isRole('4')],
+    data: { role: '4' },
     component: ContenidoComponent, // O el componente que corresponda
-   
+
     children: [
       {
-      
+
         path: '',
-        
+
         component: TablaGuardiaComponent
       }
     ]
@@ -138,7 +134,6 @@ const routes: Routes = [
     path: 'notificaciones',
     canActivate: [roleGuard],
     data: { role: '2' },
-    // canMatch: [() => isRole('2')],
     component: ContenidoComponent, // O el componente que corresponda
     children: [
       {
@@ -151,12 +146,11 @@ const routes: Routes = [
     path: 'movil',
     canActivate: [roleGuard],
     data: { role: '3' },
-    // canMatch: [() => isRole('3')],
     component: PlantillaGuardamuellesComponent, // O el componente que corresponda
     children: [
       {
         path: '',
-       
+
         component: CardIncidenciaComponent
       }
     ]
@@ -171,4 +165,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }
