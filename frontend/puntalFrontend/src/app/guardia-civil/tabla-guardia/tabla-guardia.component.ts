@@ -38,7 +38,7 @@ constructor(private apiService:ApiService ) {
 }
 
 ngOnInit(): void {
-  this.apiService.getGuardiaCivil().subscribe((data: any) => {
+  this.apiService.getAll("transito").subscribe((data: any) => {
     this.datos = data;
     console.log('Después de la llamada a la API:', this.datos);
     this.dtTrigger.next(data); 

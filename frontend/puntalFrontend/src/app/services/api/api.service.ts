@@ -235,10 +235,11 @@ getAmarresTransito(pantalanId: number): Observable<any> {
   //   return this.http.post(url, data);
   // }
 
-  crearTransito(id:any,data:any): Observable<any> {
-       const url = `${this.apiUrl}transito/crear/${id}`;
+  //con los datos que se envia se crea un nuevo transito
+  crearTransito(data:any): Observable<any> {
+       const url = `${this.apiUrl}transito/crear`;
 
-    console.log(url);
+    console.log(url,data);
     return this.http.post(url,data);
     
   }

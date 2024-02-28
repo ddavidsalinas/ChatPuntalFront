@@ -10,6 +10,7 @@ import { ApiService } from 'src/app/services/api/api.service';
 import { catchError } from 'rxjs';
 import { error } from 'jquery';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-formulario-transito',
@@ -53,7 +54,8 @@ export class FormularioTransitoComponent implements OnInit {
     private ngZone: NgZone,
     public dialog: MatDialog,
     private apiService: ApiService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private router :Router,
   ) {
     this.idLocalStorage = localStorage.getItem('id');
 
@@ -250,7 +252,7 @@ guardarTransito() {
 
   if(this.verificarFechas())
   {
-  //  this.tripulante.guardarTripulante();
+   this.tripulante.guardarTripulante();
   const formulario = document.forms.namedItem("formTransito") as HTMLFormElement;
   // Accede a los valores del formulario usando document.forms['nombreFormulario']['nombreCampo']
   const FechaEntradaValue = formulario['fecha_entrada'].value as HTMLInputElement;
@@ -284,11 +286,8 @@ guardarTransito() {
     
 
   };
- 
-  
 
-
-  this.apiService.crearTransito( this.idLocalStorage,this.transitoSeleccionada)
+  this.apiService.crearTransito( this.transitoSeleccionada)
   
     .pipe(
       catchError(error => {
@@ -299,6 +298,7 @@ guardarTransito() {
     )
     .subscribe(
       response => {
+        this.router.navigate(['/transito/tabla']);  
         console.log('Respuesta del servicio en el componente:', response);
 
       }
@@ -342,6 +342,7 @@ eliminarTransito() {
     )
     .subscribe(
       response => {
+        this.router.navigate(['/transito/tabla']);  
         console.log('Respuesta del servicio en el componente:', response);
         this.transitoSeleccionada = {};
       },
