@@ -5,7 +5,7 @@
        NOTIFICAR INCIDENCIA
     </div>
     <div class="card-body">
-        <form id="formIncidencia" action="" (submit)="guardarIncidencia()" enctype="multipart/form-data">
+        <form [formGroup]="formulario" id="formIncidencia" action="" (ngSubmit)="onSubmit()" enctype="multipart/form-data">
             <div class="col-12 text-center">
                 <input name="Imagen" type="file" class="form-control mt-4" (change)="onFileSelected($event)" />
             </div>
@@ -17,11 +17,11 @@
                 <div class="col-12 mt-5">
                     <div class="form-group mt-1">
                         <label for="titulo">Título:</label>
-                        <input type="text" class="form-control" id="titulo" placeholder="Ingrese el título">
+                        <input type="text" class="form-control" id="titulo" placeholder="Ingrese el título"  forname="Titulo">
                     </div>
                     <div class="form-group mt-4">
                         <label for="descripcion">Descripción:</label>
-                        <textarea class="form-control" id="descripcion" style="resize: none;" rows="5" placeholder="Ingrese la descripción"></textarea>
+                        <textarea class="form-control" id="descripcion" style="resize: none;" rows="5" placeholder="Ingrese la descripción" name ='Descripcion'></textarea>
                     </div>
 
                     <div class="row justify-content-center mt-5">

@@ -48,12 +48,16 @@ export class CardIncidenciaComponent {
     }
   }
   
-  guardarIncidencia() {
+  onSubmit() {
     console.log('Guardando incidencia:', this.formulario.value);
   
     // Asigna los valores del formulario a this.incidencia
     this.incidencia.Titulo = this.formulario.value.Titulo;
     this.incidencia.Descripcion = this.formulario.value.Descripcion;
+    this.incidencia.Guardamuelle_id = localStorage.getItem("id");
+
+    
+    //console.log("this.incidencia");
   
     // Crear un nuevo objeto FormData para enviar los datos al servidor
     const formData = new FormData();
@@ -63,11 +67,17 @@ export class CardIncidenciaComponent {
     formData.append('Descripcion', this.formulario.value.Descripcion);
   
     // Agregar la imagen seleccionada al objeto FormData
-    const imagenInput = document.getElementById('imagenIncidencia') as HTMLInputElement;
+    const imagenInput = this.formulario.value.Imagen as HTMLInputElement;
     if (imagenInput && imagenInput.files && imagenInput.files.length > 0) {
       const file = imagenInput.files[0];
       formData.append('Imagen', file);
     }
+
+
+    alert('Titulo: ' + this.formulario.value.Titulo + ', Descripcion: ' + this.formulario.value.Descripcion);
+    alert(this.incidencia.Titulo);
+    alert(this.incidencia.Imagen);
+    
   
     // Envía los datos al servidor utilizando el servicio API
     this.apiService.add('incidencia', formData)
