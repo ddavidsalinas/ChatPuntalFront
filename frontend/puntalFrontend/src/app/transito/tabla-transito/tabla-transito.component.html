@@ -8,12 +8,12 @@
             TRANSITOS
         </th>
         <tr class="cabeceraDatos">
-          <th class="text-center">Fecha entrada</th>
-          <th class="text-center">Fecha salida</th>
-          <th class="text-center">Embarcacion</th>
-          <th class="text-center">Instalación</th>
-          <th class="text-center">Pantalán</th>
+          <th class="text-center">Proposito</th>
+          <!-- <th class="text-center">Fecha salida</th> -->
+          <th class="text-center">Guardamuelles_id</th>
+          <th class="text-center">Autorización</th>
           <th class="text-center">Amarre</th>
+          
      
         </tr>
       </thead>
@@ -21,12 +21,12 @@
         
         
         <tr (click)="someClickHandler(i)"*ngFor="let transit of datos; let i = index">
-          <td>{{ transit.FechaEntrada }}</td>
-          <td>{{ transit.FechaSalida }}</td>
-          <td>{{ transit.Matricula }}</td>
-          <td>{{ transit.ubicacion }}</td>
-          <td>{{ transit.Numero }}</td>
-          <td>{{ transit.nombre }}</td>
+          <td>{{ transit.Proposito }}</td>
+          <!-- <td>{{ transit.FechaSalida }}</td> -->
+          <td>{{ transit.Guardamuelles_id }}</td>
+          <td>{{ transit.Autorizacion }}</td>
+          <td>{{ transit.Amarre_id }}</td>
+          <!-- <td>{{ transit.nombre }}</td> -->
           
          
           
