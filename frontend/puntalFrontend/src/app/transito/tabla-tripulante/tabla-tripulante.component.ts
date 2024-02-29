@@ -103,6 +103,7 @@ anyadirTripulante()
   this.crearTripulante=true;
   this.click=false;
 }
+
 ngOnInit(): void {
   // this.sharedDataService.getData("transitoSeleccionada").subscribe(data => {
   //   console.log("Datos obtenidos del servicio:", data);

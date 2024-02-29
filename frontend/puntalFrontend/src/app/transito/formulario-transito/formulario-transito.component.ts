@@ -29,7 +29,7 @@ export class FormularioTransitoComponent implements OnInit {
   datos:any ; amarre:any; pantalan:any;instalacion:any;
   // transitoVacia: any = { datos_tecnicos: '' };
   idLocalStorage: any;
-
+  titular: string= '';
    instalaciones: any[] = [];
   pantalanes: any[] = [];
   amarres: any[] = [];
@@ -123,12 +123,6 @@ export class FormularioTransitoComponent implements OnInit {
 
 
        });
-       this.apiService.getPlazas().subscribe((data: any) => {
-        this.amarre = data;
-        console.log('Después de la llamada a la API:', this.amarre);
-
-
-         });
          this.apiService.getAll('pantalan').subscribe((data: any) => {
           this.pantalan = data;
           console.log('Después de la llamada a la API:', this.pantalan);
@@ -174,7 +168,31 @@ export class FormularioTransitoComponent implements OnInit {
   {
 
   }
-
+  //hace que al cambiar de estado el select llame a la api y coja titular
+  onChangeEmbarcacion() {
+ 
+    this.embarcaciones.find(embarcacion => embarcacion.id === this.selectedEmbarcacion);
+    
+      if (this.selectedEmbarcacion) {
+      console.log(this.selectedEmbarcacion + "adsd")
+        this.apiService.getTitularEmbarcacion(this.selectedEmbarcacion).subscribe(
+         
+          (response: any) => {
+            console.log(response)
+            console.log( this.selectedEmbarcacion)
+            this.titular = response.titular;
+            console.log( this.titular)
+          },
+          (error) => {
+            console.error('Error al obtener el titular de la embarcación:', error);
+            this.titular = ''; // Establecer el titular como vacío en caso de error
+          }
+        );
+      } else {
+        this.titular = ''; // Establecer el titular como vacío si no se encuentra la embarcación seleccionada
+      }
+    }
+  
 //hace que al cambiar de estado el select llame a la api y coja pantalanes
   onChangeInstalacion() {
     this.apiService.getPantalanes(this.selectedInstalacion).subscribe(pantalanes => {
@@ -252,7 +270,7 @@ guardarTransito() {
 
   if(this.verificarFechas())
   {
-   this.tripulante.guardarTripulante();
+  //  this.tripulante.guardarTripulante();
   const formulario = document.forms.namedItem("formTransito") as HTMLFormElement;
   // Accede a los valores del formulario usando document.forms['nombreFormulario']['nombreCampo']
   const FechaEntradaValue = formulario['fecha_entrada'].value as HTMLInputElement;
@@ -283,6 +301,7 @@ guardarTransito() {
     Pantalan: PantalanValue,
     Amarre: AmarreValue,
     Titular:TitularValue,
+   
     
 
   };

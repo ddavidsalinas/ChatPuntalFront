@@ -117,7 +117,7 @@ getEmbarcaciones(): Observable<any[]> {
 
 getTitularEmbarcacion(embarcacionId: number): Observable<any[]> {
   const url = `${this.apiUrl}embarcacion/${embarcacionId}/titular`;
-  console.log(url);
+  console.log(url + "titu");
   return this.http.get<any>(url);
 }
 
@@ -218,7 +218,7 @@ getAmarresTransito(pantalanId: number): Observable<any> {
   //coge los tripulantes en base a la id
   getAllTripulante(): Observable<any> {
     this.sharedDataService.getData("transitoSeleccionada").subscribe(data => {
-      this.transitoId=data.Amarre_id;
+      this.transitoId=data.id;
       
     });
     
