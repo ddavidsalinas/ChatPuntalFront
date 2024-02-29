@@ -144,8 +144,9 @@
             [value]="plazaBSeleccionada.FechaFinalizacion | date:'yyyy-MM-dd'"
             disabled
           />
+       
         </div>
-        
+       <b> <span *ngIf="editarFechaFinalizacion" class="text-muted">Fecha finalización: {{ plazaBSeleccionada.FechaFinalizacion | date:'yyyy-MM-dd' }}</span></b>
         <div class="mb-3 d-flex">
           <label for="Instalacion" class="form-label">Instalación:</label>
           <input
@@ -156,7 +157,7 @@
             [(ngModel)]="plazaBSeleccionada.Instalacion"
             [readOnly]="true"
           />
-          <span *ngIf="editarFechaFinalizacion" class="text-muted">{{ FechaFinalizacion | date:'yyyy-MM-dd' }}</span>
+       
         </div>
         <div class="mb-3 d-flex">
           <label for="Pantalan" class="form-label">Pantalanes:</label>
