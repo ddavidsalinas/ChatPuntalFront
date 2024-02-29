@@ -11,7 +11,7 @@ import { SharedDataService } from 'src/app/services/shared-data/shared-data.serv
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatDialogModule } from '@angular/material/dialog';
-
+import { ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     FormularioPbComponent,
@@ -28,7 +28,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatFormFieldModule,
     MatInputModule,
     MatDialogModule,
-    
+    ReactiveFormsModule,
    
   ],
   exports: [ContenidoPbComponent, FormularioPbComponent],

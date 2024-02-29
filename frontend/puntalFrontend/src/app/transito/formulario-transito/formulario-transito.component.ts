@@ -26,6 +26,14 @@ export class FormularioTransitoComponent implements OnInit {
   datos:any ; amarre:any; pantalan:any;instalacion:any;
   // transitoVacia: any = { datos_tecnicos: '' };
 
+   instalaciones: any[] = [];
+  pantalanes: any[] = [];
+  amarres: any[] = [];
+  embarcaciones: any[] = [];
+  selectedEmbarcacion: any;
+  selectedInstalacion: any;
+  selectedPantalan: any;
+  selectedAmarre: any;
   mostrar :string ='no';
   noMostrar :string='si';
   click:boolean=true;
@@ -92,7 +100,7 @@ export class FormularioTransitoComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.apiService.getAll('embarcacion').subscribe((data: any) => {
+    this.apiService.getEmbarcaciones().subscribe((data: any) => {
       this.datos = data;
       console.log('Después de la llamada a la API:', this.datos);
   
@@ -133,8 +141,8 @@ export class FormularioTransitoComponent implements OnInit {
         if (!this.mostrarVacio) {
           this.transitoSeleccionada = data;
           console.log(
-            'Información de la embarcación seleccionada:',
-            this.transitoSeleccionada.matricula
+            'Información del  transito seleccionado:',
+            this.transitoSeleccionada
           );
         }
       } else {
@@ -145,6 +153,17 @@ export class FormularioTransitoComponent implements OnInit {
     // this.transitoVacia = { datos_tecnicos: '' };
   }
 
+  onChangeInstalacion() {
+    this.apiService.getPantalanes(this.selectedInstalacion).subscribe(pantalanes => {
+      this.pantalan = pantalanes;
+    });
+  }
+  
+  onChangePantalan() {
+    this.apiService.getAmarresTransito(this.selectedPantalan).subscribe(amarres => {
+      this.amarre = amarres;
+    });
+  }
   onFileSelected(event: any): void {
     const file = event.target.files[0];
     if (file) {
@@ -186,19 +205,27 @@ export class FormularioTransitoComponent implements OnInit {
 
 
 guardarTransito() {
-  console.log('Guardando transito:', this.transitoSeleccionada);
+  
+  
   const formulario = document.forms.namedItem("formTransito") as HTMLFormElement;
   // Accede a los valores del formulario usando document.forms['nombreFormulario']['nombreCampo']
   const FechaEntradaValue = formulario['fecha_entrada'].value as HTMLInputElement;
+  console.log('Fecha de entrada:', FechaEntradaValue);
+
   const FechaSalidaValue = formulario['fecha_salida'].value as HTMLInputElement;
+  console.log('Fecha de salida:', FechaSalidaValue);
+
   const EmbarcacionValue = formulario['embarcacion'].value as HTMLInputElement;
+  console.log('Embarcación:', EmbarcacionValue);
+
   const InstalacionValue = formulario['instalacion'].value as HTMLInputElement;
+  console.log('Instalación:', InstalacionValue);
+
   const PantalanValue = formulario['pantalan'].value as HTMLInputElement;
+  console.log('Pantalán:', PantalanValue);
+
   const AmarreValue = formulario['amarre'].value as HTMLInputElement;
-  const PropositoValue = formulario['proposito'].value as HTMLInputElement;
-  const AutorizacionesValue = formulario['autorizaciones'].value as HTMLInputElement;
-  const PatronValue = formulario['patron'].value as HTMLInputElement;
-  const DatosEstanciaValue = formulario['datosEstancia'].value as HTMLInputElement;
+  console.log('Amarre:', AmarreValue);
   this.transitoSeleccionada = {
     FechaEntrada: FechaEntradaValue,
     FechaSalida: FechaSalidaValue,
@@ -206,10 +233,7 @@ guardarTransito() {
     Instalacion: InstalacionValue,
     Pantalan: PantalanValue,
     Amarre: AmarreValue,
-    Proposito: PropositoValue,
-    Autorizacion: AutorizacionesValue,
-    Patron: PatronValue,
-    DatosEstancia: DatosEstanciaValue,
+   
     
   };
   // ... y así sucesivamente para otros campos.

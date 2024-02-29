@@ -83,7 +83,7 @@ export class DashboardComponent implements OnInit{
     this.apiService.getPBmantenimiento().subscribe(data3 => {
     
       this.datos32 = data3;
-      console.log(this.datos3);
+      console.log(this.datos32);
     });
 
 
@@ -94,11 +94,13 @@ export class DashboardComponent implements OnInit{
     this.apiService.getCantidadEmb().subscribe(data => {
     
       this.datos13 = data;
+      console.log(this.datos13);
     });
   //cogemos la el pais que mas embaraciones tiene de la api
     this.apiService.getPaisConMas().subscribe(data => {
       
       this.datos23 = data;
+      console.log(this.datos23);
     });
 
 
@@ -106,6 +108,7 @@ export class DashboardComponent implements OnInit{
     this.apiService.getEmbcomun().subscribe(data => {
       
       this.datos33 = data;
+      console.log(this.datos33);
     });
 
 
@@ -121,14 +124,14 @@ export class DashboardComponent implements OnInit{
     //cogemos la cantidad que hay de transito de la api de la api que estan disponibles
     this.apiService.getTRdisponibles().subscribe(data2 => {
     
-      this.datos14= data2;
-      console.log(this.datos14);
+      this.datos24= data2;
+      console.log(this.datos24);
     });
   //cogemos la cantidad que hay de  transito de la api que estan en mantenimiento
     this.apiService.getTRmantenimiento().subscribe(data2 => {
    
-      this.datos14= data2;
-      console.log(this.datos14);
+      this.datos34= data2;
+      console.log(this.datos34);
     });
 
 
