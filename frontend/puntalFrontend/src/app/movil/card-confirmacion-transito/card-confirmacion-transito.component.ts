@@ -42,17 +42,17 @@ export class CardConfirmacionTransitoComponent implements OnInit {
   }
 
   guardarImagen() {
-    console.log('Guardando imagen de embarcación:', this.transito);
-    const formData = new FormData();
-
+    // console.log('Guardando imagen de embarcación:', this.transito);
+    // const formData = new FormData();
+    alert (this.formulario.value.Imagen);
     // Agrega la imagen seleccionada al objeto FormData
-    const imagenInput = this.formulario.get('Imagen');
-    if (imagenInput && imagenInput.value) {
-      formData.append('Imagen', imagenInput.value);
-    }
+    // const imagenInput = this.formulario.get('Imagen');
+    // if (imagenInput && imagenInput.value) {
+    //   formData.append('Imagen', imagenInput.value);
+    // }
 
     // Envía los datos al servidor utilizando el servicio API
-    this.apiService.update(this.transito.embarcacion_id, 'embarcacion', this.imagenSeleccionada) 
+    this.apiService.update(this.transito.embarcacion_id, 'embarcacion', this.formulario.value) 
     .pipe(
         catchError(error => {
           console.error('Error en la solicitud:', error);
@@ -65,9 +65,7 @@ export class CardConfirmacionTransitoComponent implements OnInit {
           // Guarda los datos de tránsito en el local storage
           localStorage.setItem('transito', JSON.stringify(this.transito));
           // Navega a la página de embarcaciones después de 1 segundo
-          setTimeout(() => {
-            this.router.navigate(['/embarcaciones']);
-          }, 1000);
+          window.location.reload();
         },
         error => {
           console.error('Error en la solicitud:', error);

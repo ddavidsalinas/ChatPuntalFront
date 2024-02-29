@@ -89,7 +89,7 @@ export class CardIncidenciaComponent {
       )
       .subscribe(
         response => {
-          this.router.navigate(['/incidencias']);
+          window.location.reload();
           console.log('Respuesta del servicio en el componente:', response);
         }
       );
