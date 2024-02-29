@@ -7,7 +7,7 @@
     <div class="card-body">
         <form [formGroup]="formulario" id="formIncidencia" action="" (ngSubmit)="guardarIncidencia()" enctype="multipart/form-data">
             <div class="col-12 text-center">
-                <input  formControlName="Imagen" type="file" class="form-control mt-4" (change)="onFileSelected($event)" />
+                <input id="imgInci" formControlName="Imagen" type="file" class="form-control mt-4" (change)="onFileSelected($event)" />
             </div>
             <div class="d-flex justify-content-center">
                 <img class="imgEmb" [src]="imagenSeleccionada  || '/assets/img/embarcaciones/image-outline.svg'" alt="" />

@@ -70,19 +70,16 @@ export class CardIncidenciaComponent {
     formData.append('Descripcion', this.formulario.value.Descripcion);
     formData.append('Guardamuelle_id', this.formulario.value.Guardamuelle_id);
     // Agregar la imagen seleccionada al objeto FormData
-    const imagenInput = this.formulario.value.Imagen as HTMLInputElement;
-    if (imagenInput && imagenInput.files && imagenInput.files.length > 0) {
-      const file = imagenInput.files[0];
-      formData.append('Imagen', file);
-    }
-
-
-    // alert('Titulo: ' + formData.get("Titulo") + ', Descripcion: ' + formData.get("Descripcion"));
-    // alert(formData.get("Guardamuelle_id"));
-    
+    // const imagenInput = document.getElementById('imagenIncidencia') as HTMLInputElement;
+    // const imagenInput = document.getElementById('imgInci') as HTMLInputElement;
+    // if (imagenInput && imagenInput.files && imagenInput.files.length > 0) {
+    //   const file = imagenInput.files[0];
+    //   this.formulario.value.Imagen = file;
+    //   formData.append('Imagen', file);
+    // }
   
     // Envía los datos al servidor utilizando el servicio API
-    this.apiService.add('incidencia', formData)
+    this.apiService.add('incidencia', this.formulario.value)
       .pipe(
         catchError(error => {
           console.error('Error en la solicitud:', error);
