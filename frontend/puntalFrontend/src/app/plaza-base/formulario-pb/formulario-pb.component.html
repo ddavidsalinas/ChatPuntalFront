@@ -124,18 +124,28 @@
             [readOnly]="true"
           />
         </div>
+        <!-- Aquí funsiona -->
         <div class="mb-3 d-flex">
           <label for="FechaFinalizacion" class="form-label">Fecha de finalización de contrato:</label>
+          <!-- Input visible cuando se permite la edición -->
           <input
+            *ngIf="editarFechaFinalizacion"
             name="FechaFinalizacion"
             type="date"
             class="form-control mt-4"
             placeholder="FechaFinalizacion"
-     
             [(ngModel)]="plazaBSeleccionada.FechaFinalizacion"
-            [readOnly]="!editarFechaFinalizacion"
+          />
+          <!-- Input oculto que muestra el valor siempre -->
+          <input
+            *ngIf="!editarFechaFinalizacion"
+            type="date"
+            class="form-control mt-4"
+            [value]="plazaBSeleccionada.FechaFinalizacion | date:'yyyy-MM-dd'"
+            disabled
           />
         </div>
+        
         <div class="mb-3 d-flex">
           <label for="Instalacion" class="form-label">Instalación:</label>
           <input
@@ -146,6 +156,7 @@
             [(ngModel)]="plazaBSeleccionada.Instalacion"
             [readOnly]="true"
           />
+          <span *ngIf="editarFechaFinalizacion" class="text-muted">{{ FechaFinalizacion | date:'yyyy-MM-dd' }}</span>
         </div>
         <div class="mb-3 d-flex">
           <label for="Pantalan" class="form-label">Pantalanes:</label>
