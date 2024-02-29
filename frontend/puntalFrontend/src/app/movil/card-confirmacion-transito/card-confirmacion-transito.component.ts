@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ApiService } from 'src/app/services/api/api.service';
-import { HttpClient } from '@angular/common/http'; // Importa HttpClient
+import { HttpClient } from '@angular/common/http'; 
 import { catchError } from 'rxjs';
 
 @Component({
@@ -22,7 +22,7 @@ export class CardConfirmacionTransitoComponent implements OnInit {
     private apiService: ApiService,
     private formBuilder: FormBuilder,
     private router: Router,
-    private http: HttpClient // Agrega HttpClient aquí
+    private http: HttpClient 
   ) {
     this.formulario = this.formBuilder.group({
       Imagen: ['']
@@ -71,7 +71,7 @@ export class CardConfirmacionTransitoComponent implements OnInit {
         },
         error => {
           console.error('Error en la solicitud:', error);
-          // En caso de error, podrías manejarlo aquí, mostrar un mensaje al usuario, etc.
+          
         }
       );
   }
@@ -97,12 +97,12 @@ export class CardConfirmacionTransitoComponent implements OnInit {
           if (boton) {
             boton.textContent = 'CONFIRMAR SALIDA';
             boton.classList.remove('botonLlegada');
-            boton.classList.add('botonSalida'); // Reemplaza 'otroColor' por la clase que quieras para el nuevo color del botón
+            boton.classList.add('botonSalida');
           }
         },
         error => {
           console.error('Error al confirmar la llegada del tránsito:', error);
-          // En caso de error, podrías manejarlo aquí, mostrar un mensaje al usuario, etc.
+          
         }
       );
   }

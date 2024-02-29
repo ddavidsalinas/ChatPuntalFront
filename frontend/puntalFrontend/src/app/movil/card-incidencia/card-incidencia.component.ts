@@ -17,7 +17,8 @@ import { Router } from '@angular/router';
 export class CardIncidenciaComponent {
 
   incidencia: any = { datos_tecnicos: '' };
-  formulario: FormGroup;  
+  formulario: FormGroup; 
+  
 
   imagenSeleccionada: string | File | ArrayBuffer | null = null;
 
@@ -32,7 +33,9 @@ export class CardIncidenciaComponent {
     this.formulario = this.formBuilder.group({
       Titulo: [''],
       Descripcion: [''],
-      Imagen: ['']
+      Imagen: [''],
+      Guardamuelle_id: [localStorage.getItem("id")]
+
     });
   }
 
@@ -41,20 +44,20 @@ export class CardIncidenciaComponent {
     if (file) {
       const reader = new FileReader();
       reader.onload = () => {
-        this.imagenSeleccionada = reader.result;
+        this.imagenSeleccionada = reader.result as string;
         console.log("Imagen seleccionada:", this.imagenSeleccionada);
       };
       reader.readAsDataURL(file);
     }
   }
   
-  onSubmit() {
-    console.log('Guardando incidencia:', this.formulario.value);
+  guardarIncidencia() {
+    // alert(this.formulario.value.Imagen)
   
     // Asigna los valores del formulario a this.incidencia
-    this.incidencia.Titulo = this.formulario.value.Titulo;
-    this.incidencia.Descripcion = this.formulario.value.Descripcion;
-    this.incidencia.Guardamuelle_id = localStorage.getItem("id");
+    // this.incidencia.Titulo = this.formulario.value.Titulo;
+    // this.incidencia.Descripcion = this.formulario.value.Descripcion;
+    //this.incidencia.Guardamuelle_id = localStorage.getItem("id");
 
     
     //console.log("this.incidencia");
@@ -65,7 +68,7 @@ export class CardIncidenciaComponent {
     // Agregar título y descripción al objeto FormData
     formData.append('Titulo', this.formulario.value.Titulo);
     formData.append('Descripcion', this.formulario.value.Descripcion);
-  
+    formData.append('Guardamuelle_id', this.formulario.value.Guardamuelle_id);
     // Agregar la imagen seleccionada al objeto FormData
     const imagenInput = this.formulario.value.Imagen as HTMLInputElement;
     if (imagenInput && imagenInput.files && imagenInput.files.length > 0) {
@@ -74,9 +77,8 @@ export class CardIncidenciaComponent {
     }
 
 
-    alert('Titulo: ' + this.formulario.value.Titulo + ', Descripcion: ' + this.formulario.value.Descripcion);
-    alert(this.incidencia.Titulo);
-    alert(this.incidencia.Imagen);
+    // alert('Titulo: ' + formData.get("Titulo") + ', Descripcion: ' + formData.get("Descripcion"));
+    // alert(formData.get("Guardamuelle_id"));
     
   
     // Envía los datos al servidor utilizando el servicio API
