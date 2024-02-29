@@ -19,6 +19,7 @@ import { FormularioEmbarcacionComponent } from './embarcacion/formulario-embarca
 import { FormularioTransitoComponent } from './transito/formulario-transito/formulario-transito.component';
 import { PlantillaGuardamuellesComponent } from './movil/plantilla-guardamuelles/plantilla-guardamuelles.component';
 import { roleGuard } from './role.guard';
+import { ListaCardsComponent } from './movil/lista-cards/lista-cards.component';
 import { ErrorHandlerComponent } from './error-handler/error-handler.component';
 
 
@@ -146,13 +147,12 @@ const routes: Routes = [
     path: 'movil',
     canActivate: [roleGuard],
     data: { role: '3' },
-    component: PlantillaGuardamuellesComponent, // O el componente que corresponda
+    // canMatch: [() => isRole('3')],
+    component: PlantillaGuardamuellesComponent, 
     children: [
-      {
-        path: '',
-
-        component: CardIncidenciaComponent
-      }
+      { path: '', component: ListaCardsComponent },
+      { path: 'card-incidencia', component: CardIncidenciaComponent },
+      { path: 'card-confirmacion-transito', component: CardConfirmacionTransitoComponent },
     ]
   },
   {
