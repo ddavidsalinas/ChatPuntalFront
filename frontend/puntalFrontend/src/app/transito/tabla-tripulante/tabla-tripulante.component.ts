@@ -21,7 +21,7 @@ export class TablaTripulanteComponent implements OnInit{
   arrayDatos:any;
   id:any;
   dtTrigger: Subject<any> = new Subject<any>();
- 
+ idTripulante:any=[];
 
 
   constructor(   public fb: FormBuilder,private apiService: ApiService,
@@ -90,10 +90,56 @@ guardarTripulante() {
     console.log('Respuesta del servicio en el componente:', response);
   }
 );
+//vacia tripulante
+tripulante = {
+  NumeroDeDocumento: '',
+  Nombre: '',
+  Sexo: '',
+  Nacionalidad: ''
+};
   });
   
   
 }
+
+editarTripulante() {
+  this.tripulantes.forEach((tripulante, index) => {
+    console.log(`Datos del tripulante ${index + 1}:`);
+    console.log('Nombre:', tripulante.Nombre);
+    console.log('Sexo:', tripulante.Sexo);
+    console.log('Documento:', tripulante.NumeroDeDocumento);
+    console.log('Nacionalidad:', tripulante.Nacionalidad);
+    console.log('id:', this.idTripulante[index]);
+    let id=this.idTripulante[index]
+  this.apiService.update(id,"tripulante",tripulante)
+  
+.pipe(
+  catchError(error => {
+    console.error('Error en la solicitud:', error);
+    console.log('Mensaje de error:', error.error);
+    throw error;
+  })
+)
+.subscribe(
+  response => {
+  
+    console.log('Respuesta del servicio en el componente:', response);
+  }
+);
+//vacia tripulante
+tripulante = {
+  NumeroDeDocumento: '',
+  Nombre: '',
+  Sexo: '',
+  Nacionalidad: ''
+};
+  });
+  
+  
+}
+
+
+
 
 
 //activa edicion tabla tripulante y agrega inputs para añadir tripulante
@@ -112,9 +158,20 @@ ngOnInit(): void {
   this.apiService.getAllTripulante().subscribe((data: any) => {
     this.datos = data;
   
-    console.log('Después de la llamada a la API adsdsada:',this.datos);
-    // Notificar a DataTables después de obtener los datos
-    // this.dtTrigger.next(data);
+    console.log('Después de la llamada a la API :',this.datos);
+    if (this.datos.length <= this.tripulantes.length) 
+    {
+      for (let i = 0; i < this.tripulantes.length; i++) 
+      {
+        this.tripulantes[i].NumeroDeDocumento = this.datos[i].NumeroDeDocumento;
+        this.tripulantes[i].Nombre = this.datos[i].Nombre;
+        this.tripulantes[i].Sexo = this.datos[i].Sexo;
+        this.tripulantes[i].Nacionalidad = this.datos[i].Nacionalidad;
+        this.idTripulante[i] = this.datos[i].id;
+
+      }
+    }
+    
   });
   if(this.mostrar=='si')
   {

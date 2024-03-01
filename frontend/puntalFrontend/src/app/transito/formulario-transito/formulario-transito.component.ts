@@ -11,6 +11,8 @@ import { catchError } from 'rxjs';
 import { error } from 'jquery';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { switchMap } from 'rxjs/operators';
+
 
 @Component({
   selector: 'app-formulario-transito',
@@ -280,7 +282,7 @@ guardarTransito() {
 
   if(this.verificarFechas())
   {
-  //  this.tripulante.guardarTripulante();
+
   const formulario = document.forms.namedItem("formTransito") as HTMLFormElement;
   // Accede a los valores del formulario usando document.forms['nombreFormulario']['nombreCampo']
   const FechaEntradaValue = formulario['fecha_entrada'].value as HTMLInputElement;
@@ -315,25 +317,28 @@ guardarTransito() {
     
 
   };
-console.log(this.transitoSeleccionada);
-  this.apiService.crearTransito( this.transitoSeleccionada)
-  this.apiService.putDisponibleOcupado(this.transitoSeleccionada.Amarre)
+  // this.sharedDataService.setData(this.transitoSeleccionada,"transitoId");
   
-    .pipe(
-      catchError(error => {
-        console.error('Error en la solicitud:', error);
-        console.log('Mensaje de error:', error.error);
-        throw error;
-      })
-    )
-    .subscribe(
-      response => {
-        this.router.navigate(['/transito/tabla']);  
-        console.log('Respuesta del servicio en el componente:', response);
+  this.apiService.crearTransito(this.transitoSeleccionada).pipe(
+    switchMap((response) => {
+      console.log('Administrativo asociado correctamente al amarre:', response);
+      // Realizar las siguientes operaciones aquí, como realizar otra petición HTTP o realizar acciones adicionales
+      
+      // Por ejemplo, podrías hacer otra petición HTTP:
+      return  this.apiService.putDisponibleOcupado(this.transitoSeleccionada.Amarre);
+    })
+  ).subscribe(
+    (response) => {
+      console.log('Cambiado:', response);
+      this.router.navigate(['/transito/tabla']);  },
+    (error) => {
+      console.error('Error:', error);
+    }
+  );
 
-      }
-    );
+  
   }
+  this.tripulante.guardarTripulante();
 }
 //hace un update de los datos de el formulario transitos
 actualizarTransito() {
@@ -358,8 +363,10 @@ actualizarTransito() {
         console.error('Error en la solicitud:', error);
       }
     );
+    
     this.router.navigate(['transito/tabla'])
   }
+  this.tripulante.editarTripulante();
 }
 //hace un cambio del estado de plaza a ocupado
 eliminarTransito() {

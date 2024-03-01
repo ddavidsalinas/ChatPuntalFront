@@ -64,13 +64,23 @@
     <!-- muestra datos y permite modificacion  -->
     <ng-container *ngIf="crearTripulante && mostrarDatos">
       
-      <tr *ngFor="let item of datos; let i = index" class="text-center">
+      <ng-container *ngFor="let dato of datos; let i = index">
+        <tr style="width: 200px; height: 50px">
+          <td>
+            <input type="text" [(ngModel)]="tripulantes[i].NumeroDeDocumento" />
+          </td>
+          <td>
+            <input type="text" [(ngModel)]="tripulantes[i].Nombre" />
+          </td>
+          <td>
+            <input type="text" [(ngModel)]="tripulantes[i].Sexo"  />
+          </td>
+          <td>
+            <input type="text" [(ngModel)]="tripulantes[i].Nacionalidad"  />
+          </td>
+        </tr>
+      </ng-container>
       
-        <td><input type="text" value="{{ item.Nombre }}"></td> 
-        <td> <input type="text" value="{{ item.Sexo }}" ></td> 
-        <td> <input type="text" value="{{ item.NumeroDeDocumento }}" ></td> 
-        <td><input type="text" value="{{ item.Nacionalidad }}" ></td>
-      </tr>
     </ng-container>
   </tbody>
 </table>

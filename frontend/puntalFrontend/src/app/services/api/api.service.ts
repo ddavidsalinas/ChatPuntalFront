@@ -226,6 +226,7 @@ getAmarresTransito(pantalanId: number): Observable<any> {
   //coge los tripulantes en base a la id
   getAllTripulante(): Observable<any> {
     this.sharedDataService.getData("transitoSeleccionada").subscribe(data => {
+  
       this.transitoId=data.id;
       
     });
@@ -283,6 +284,7 @@ getAmarresTransito(pantalanId: number): Observable<any> {
     });
     // URL a la API a la que se realizará la petición con el nombre de la entidad y el ID del recurso.
     const url = `${this.apiUrl}${entity}/${id}`;
+    console.log(url + data);
 
     // Se realiza la petición PUT a la API con la URL y los datos a enviar.
     return this.http.put(url, data);
