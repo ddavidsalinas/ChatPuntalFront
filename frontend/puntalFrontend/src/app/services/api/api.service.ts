@@ -110,6 +110,14 @@ getTablaPB(): Observable<any> {
   const urls = `${this.apiUrl}${'plazaBase/paratabla'}`;
   return this.http.get(urls);
 }
+getTablaTransito(): Observable<any> {
+  const urls = `${this.apiUrl}${'transito/paratabla'}`;
+  return this.http.get(urls);
+}
+getTablaTransitoGuardia(): Observable<any> {
+  const urls = `${this.apiUrl}${'transito/paratablaGuardia'}`;
+  return this.http.get(urls);
+}
 
 getEmbarcaciones(): Observable<any[]> {
   return this.http.get<any[]>(`${this.apiUrl}embarcacion`);
@@ -276,6 +284,15 @@ getAmarresTransito(pantalanId: number): Observable<any> {
     // URL a la API a la que se realizará la petición con el nombre de la entidad y el ID del recurso.
     const url = `${this.apiUrl}${entity}/${id}`;
 
+    // Se realiza la petición PUT a la API con la URL y los datos a enviar.
+    return this.http.put(url, data);
+
+  }
+
+  updateTransito(id: any,  data: any): Observable<any> {
+    // URL a la API a la que se realizará la petición con el nombre de la entidad y el ID del recurso.
+    const url = `${this.apiUrl}transito/update/${id}`;
+    console.log(url);
     // Se realiza la petición PUT a la API con la URL y los datos a enviar.
     return this.http.put(url, data);
 

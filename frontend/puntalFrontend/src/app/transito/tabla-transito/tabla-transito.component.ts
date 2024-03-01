@@ -35,7 +35,7 @@ export class TablaTransitoComponent implements OnInit {
 
   }
   ngOnInit(): void {
-    this.apiService.getAll('transito').subscribe((data: any) => {
+    this.apiService.getTablaTransito().subscribe((data: any) => {
       this.datos = data;
 
       console.log('Después de la llamada a la API:', this.datos);

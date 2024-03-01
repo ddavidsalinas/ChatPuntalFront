@@ -20,7 +20,7 @@ import { Router } from '@angular/router';
 export class FormularioTransitoComponent implements OnInit {
   @ViewChild(TablaTripulanteComponent) tripulante!:TablaTripulanteComponent;
 
-
+  mostrarError:boolean=false;
   mostrarVacio: boolean = false;
   modoVista: boolean = true;
   modoEdicion: boolean = false;
@@ -254,7 +254,17 @@ verificarFechas(): boolean {
   const fechaSalida = formulario['fecha_salida'].value as HTMLInputElement;
   // Verificamos si la fecha de entrada es posterior a la fecha de salida
   if (fechaEntrada > fechaSalida) {
-    console.log('La fecha de entrada no puede ser posterior a la fecha de salida.');
+    this.mostrarError = true;
+    return false;
+  }
+  // Si todas las validaciones pasan, devuelve true
+  return true;
+}
+verificarFechasEdit(): boolean {
+
+  if (this.transitoSeleccionada.FechaEntrada > this.transitoSeleccionada.FechaSalida) {
+    this.mostrarError = true;
+    console.log("aaaaaaaaaaaaaaaaaaaaa");
     return false;
   }
   // Si todas las validaciones pasan, devuelve true
@@ -305,8 +315,9 @@ guardarTransito() {
     
 
   };
-
+console.log(this.transitoSeleccionada);
   this.apiService.crearTransito( this.transitoSeleccionada)
+  this.apiService.putDisponibleOcupado(this.transitoSeleccionada.Amarre)
   
     .pipe(
       catchError(error => {
@@ -326,10 +337,10 @@ guardarTransito() {
 }
 //hace un update de los datos de el formulario transitos
 actualizarTransito() {
-  if(this.verificarFechas())
+  if(this.verificarFechasEdit())
   {
-
-  this.apiService.update(this.transitoSeleccionada.id, 'transito', this.transitoSeleccionada)
+   
+  this.apiService.updateTransito(this.transitoSeleccionada.IdAlquiler, this.transitoSeleccionada)
     .pipe(
       catchError(error => {
         console.error('Error en la solicitud:', error);
@@ -347,12 +358,13 @@ actualizarTransito() {
         console.error('Error en la solicitud:', error);
       }
     );
+    this.router.navigate(['transito/tabla'])
   }
 }
 //hace un cambio del estado de plaza a ocupado
 eliminarTransito() {
   // this.eliminar();
-  this.apiService.putDisponibleOcupado(this.transitoSeleccionada.Amarre_id,this.transitoSeleccionada)
+  this.apiService.putOcupadoDisponible(this.transitoSeleccionada.Transito,this.transitoSeleccionada)
     .pipe(
       catchError(error => {
         console.error('Error en la solicitud:', error);

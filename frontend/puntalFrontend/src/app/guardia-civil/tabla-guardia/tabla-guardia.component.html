@@ -23,7 +23,7 @@
     <tbody>
         <!-- aqui se rellena la tabla y se crean las clases para aplicarle el translucido y poner los checkbox -->
         <tr  *ngFor="let transit of datos;let i=index" class=" text-center" [ngClass]="{'color-translucido': seleccionados[i]}" class="estados" >
-            <td>{{ transit.ubicacion }}</td>
+            <td>{{ transit.Ubicacion }}</td>
             <td>{{ transit.FechaEntrada }}</td>
             <td>{{ transit.FechaSalida }}</td>
             <td>{{ transit.Matricula }}</td>

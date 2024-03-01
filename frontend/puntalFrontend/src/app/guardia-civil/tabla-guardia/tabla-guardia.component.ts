@@ -38,7 +38,7 @@ constructor(private apiService:ApiService ) {
 }
 
 ngOnInit(): void {
-  this.apiService.getAll("transito").subscribe((data: any) => {
+  this.apiService.getTablaTransitoGuardia().subscribe((data: any) => {
     this.datos = data;
     console.log('Después de la llamada a la API:', this.datos);
     this.dtTrigger.next(data); 
