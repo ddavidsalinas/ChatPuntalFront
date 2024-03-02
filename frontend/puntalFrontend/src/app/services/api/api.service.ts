@@ -150,7 +150,15 @@ putDisponibleOcupado(id: any, data?: any): Observable<any> {
   return this.http.put(url, data);
 }
 
-putOcupadoDisponible(id: any, data: any): Observable<any> {
+
+putEli(id: any, data?: any): Observable<any> {
+  const url = `${this.apiUrl}plazaBase/${id}/eli`;
+  console.log(url);
+  return this.http.put(url, data);
+}
+
+
+putOcupadoDisponible(id: any, data?: any): Observable<any> {
   const url = `${this.apiUrl}plaza/${id}/actualizaEstadoDisponible`;
   console.log(url);
   return this.http.put(url, data);
