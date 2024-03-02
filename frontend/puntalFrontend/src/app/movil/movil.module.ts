@@ -6,18 +6,10 @@ import { CardConfirmacionTransitoComponent } from './card-confirmacion-transito/
 import { CardIncidenciaComponent } from './card-incidencia/card-incidencia.component';
 import { RouterModule, Routes } from '@angular/router';
 import { ListaCardsComponent } from './lista-cards/lista-cards.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-const routes: Routes = [
-  {
-    path: '',
-    component: ListaCardsComponent,
-    children: [
-      { path: 'card-incidencia', component: CardIncidenciaComponent },
-      { path: 'card-confirmacion-transito', component: CardConfirmacionTransitoComponent },
-      { path: '', redirectTo: 'card-incidencia', pathMatch: 'full' },
-    ],
-  },
-];
+
+
 @NgModule({
   declarations: [
     PlantillaGuardamuellesComponent,
@@ -27,8 +19,7 @@ const routes: Routes = [
     ListaCardsComponent
   ],
   imports: [
-    CommonModule,/* RouterModule.forChild(routes)*/
-  ],
+    CommonModule, FormsModule, ReactiveFormsModule],
   exports:[PlantillaGuardamuellesComponent
 
   ]

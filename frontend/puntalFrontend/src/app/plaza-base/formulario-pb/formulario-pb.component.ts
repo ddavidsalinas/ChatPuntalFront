@@ -236,7 +236,7 @@ export class FormularioPbComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe((result) => {
-      if (result.causa) {
+      if (result) {
         this.apiService.putOcupadoDisponible(this.plazaBSeleccionada.Plaza)
           .pipe(
             catchError(error => {
@@ -255,7 +255,7 @@ export class FormularioPbComponent implements OnInit {
               console.error('Error en la solicitud:', error);
             }
           );
-        console.log('Eliminación confirmada. Causa de baja:', result.causa);
+       
       } else {
 
         console.log('Eliminación cancelada.');
