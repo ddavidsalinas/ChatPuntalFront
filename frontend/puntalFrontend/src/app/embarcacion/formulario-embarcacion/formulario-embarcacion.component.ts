@@ -183,7 +183,7 @@ export class FormularioEmbarcacionComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
     
       if (result.causa) {
-        this.apiService.delete(this.embarcacionSeleccionada.id, 'embarcacion')
+        this.apiService.deleteEntityWithCause(this.embarcacionSeleccionada.id, 'embarcacion', result.causa)
           .pipe(
             catchError(error => {
               console.error('Error en la solicitud:', error);
