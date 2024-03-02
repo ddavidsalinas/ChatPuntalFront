@@ -11,5 +11,13 @@
   left: 50%;
   transform: translate(-50%, -50%);
   margin-top: 50px;
-  /* Ajusta este valor según tu preferencia */
+  width: 70%;
+
+}
+
+@media (max-width: 768px) {
+  .container-centered {
+    width: 90%;
+    /* Cambia el ancho del contenedor para pantallas pequeñas */
+  }
 }
