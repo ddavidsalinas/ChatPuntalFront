@@ -17,7 +17,7 @@ export class TablaGuardiaComponent implements OnInit {
   selectAll: boolean = false;
   seleccionarTodas(): void {
     this.selectAll = !this.selectAll;
-    this.seleccionados.fill(this.selectAll);
+    this.seleccionados = this.datos.map(() => this.selectAll);
   }
   
   marcar(index: number,transit:any): void {

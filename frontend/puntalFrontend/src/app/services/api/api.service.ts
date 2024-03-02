@@ -198,7 +198,6 @@ getAmarresTransito(pantalanId: number): Observable<any> {
   leidoCreate(data:any):Observable<any>
   {
     const url = `${this.apiUrl}${"guardiaCivil/leido"}`;
-    console.log(data);
     return this.http.get(url,data)
     .pipe(
       tap(response => console.log('Respuesta del servicio:', response))
