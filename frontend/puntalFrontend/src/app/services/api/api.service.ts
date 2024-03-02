@@ -1,17 +1,17 @@
-import { Injectable } from '@angular/core'; // Decorador que permite inyectar dependencias al servicio
-import { HttpClient, HttpHeaders } from '@angular/common/http'; // Importación de módulos necesarios para petición HTTP
-import { Observable, tap } from 'rxjs'; // Importación de módulos necesarios para manejo de observables
-// En este servicio se definen los métodos que se utilizarán para realizar peticiones a la API. 
-//Se importa el módulo HttpClient para realizar peticiones HTTP y el módulo Observable para manejar las respuestas de las peticiones. 
-//También se importa el módulo tap para realizar operaciones con la respuesta de la petición.
-//En todas estas peticionas son manejadas en el backend. en este caso emdiante el framework de Laravel.
+import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable, tap } from 'rxjs';
+import { SharedDataService } from '../shared-data/shared-data.service';
+
+
 @Injectable({
   providedIn: 'root'
 }) // Decorador que permite inyectar dependencias al servicio
 export class ApiService {
-  private apiUrl = 'http://127.0.0.1:8000/api/v1/'; // URL de la API a la que se realizarán las peticiones
-  constructor(private http: HttpClient) { } // Inyección de dependencia HttpClient. En este caso, se inyecta el servicio HttpClient
+  private apiUrl = 'http://127.0.0.1:8000/api/v1/';
+  transitoId :any;
 
+  constructor(private http: HttpClient,private sharedDataService: SharedDataService) { }
 
   //de la api cogemos la cantidad de plazas base hay
   getCantidadPB(): Observable<any> {
@@ -97,6 +97,7 @@ export class ApiService {
     return this.http.get(urls);
   }
 
+  //obtiene los transitos para mostrar en guardia civil
   getGuardiaCivil():Observable<any>
   {
     const urls = `${this.apiUrl}${'transito/guardia'}`;
@@ -109,6 +110,14 @@ getTablaPB(): Observable<any> {
   const urls = `${this.apiUrl}${'plazaBase/paratabla'}`;
   return this.http.get(urls);
 }
+getTablaTransito(): Observable<any> {
+  const urls = `${this.apiUrl}${'transito/paratabla'}`;
+  return this.http.get(urls);
+}
+getTablaTransitoGuardia(): Observable<any> {
+  const urls = `${this.apiUrl}${'transito/paratablaGuardia'}`;
+  return this.http.get(urls);
+}
 
 getEmbarcaciones(): Observable<any[]> {
   return this.http.get<any[]>(`${this.apiUrl}embarcacion`);
@@ -116,7 +125,7 @@ getEmbarcaciones(): Observable<any[]> {
 
 getTitularEmbarcacion(embarcacionId: number): Observable<any[]> {
   const url = `${this.apiUrl}embarcacion/${embarcacionId}/titular`;
-  console.log(url);
+  console.log(url + "titu");
   return this.http.get<any>(url);
 }
 
@@ -197,7 +206,6 @@ getAmarresTransito(pantalanId: number): Observable<any> {
   leidoCreate(data:any):Observable<any>
   {
     const url = `${this.apiUrl}${"guardiaCivil/leido"}`;
-    console.log(data);
     return this.http.get(url,data)
     .pipe(
       tap(response => console.log('Respuesta del servicio:', response))
@@ -215,12 +223,82 @@ getAmarresTransito(pantalanId: number): Observable<any> {
   add(entity: string, data: any): Observable<any> {
     // URL a la API a la que se realizará la petición cone el nombre de la entidad.
     const url = `${this.apiUrl}${entity}`;
+    console.log(url ,data );
     // Se realiza la petición POST a la API con la URL y los datos a enviar.
     return this.http.post(url, data)
       .pipe(
         tap(response => console.log('Respuesta del servicio:', response))
       ); // Se utiliza el operador pipe para encadenar operadores. En este caso, se utiliza el operador tap para imprimir en consola la respuesta del servicio.
   }
+  //coge los tripulantes en base a la id
+  getAllTripulante(): Observable<any> {
+    this.sharedDataService.getData("transitoSeleccionada").subscribe(data => {
+  
+      this.transitoId=data.id;
+      
+    });
+    
+    const url = `http://127.0.0.1:8000/api/v1/tripulante/transito/${this.transitoId}>`;
+    console.log(url);
+    return this.http.get(url);
+    
+  }
+
+
+  addTripulante( data: any,idTransito:any): Observable<any> {
+    // URL a la API a la que se realizará la petición cone el nombre de la entidad.
+    const url = `${this.apiUrl}tripulante/añadir`;
+    const requestData = { ...data, idTransito };
+    console.log(url ,data );
+    // Se realiza la petición POST a la API con la URL y los datos a enviar.
+    return this.http.post(url, requestData )
+      .pipe(
+        tap(response => console.log('Respuesta del servicio:', response))
+      ); // Se utiliza el operador pipe para encadenar operadores. En este caso, se utiliza el operador tap para imprimir en consola la respuesta del servicio.
+  }
+
+
+
+
+  // postAlquiler(id: any, data: any): Observable<any> {
+  //   const url = `${this.apiUrl}/plazaBase/alquiler/${id}`;
+  //   console.log(url);
+  //   return this.http.post(url, data);
+  // }
+
+  //con los datos que se envia se crea un nuevo transito
+  crearTransito(data:any): Observable<any> {
+       const url = `${this.apiUrl}transito/crear`;
+
+    console.log(url,data);
+    return this.http.post(url,data);
+    
+  }
+
+
+  //me consigue la id en funcion del amarre
+  idTransito(id:any): Observable<any>
+  {
+    const url = `${this.apiUrl}transito/traer/${id}`;
+    
+    return this.http.get(url);
+  }
+
+
+
+
+  // update(id: any, entity: string, data: any): Observable<any> {
+  //   // if (!data.Imagen) {
+  //   //   data.Imagen = []; // Establecer como un array vacío si no hay imagen seleccionada
+  //   // }
+    
+    
+  //   const url = `${this.apiUrl}${entity}/${id}`;
+  //   console.log('URL:', url);
+  //   console.log('Datos de la embarcación a enviar desde service:', data);
+  //   console.log('Img:', data.Imagen);
+   
+  //   console.log('Img type:', typeof data.Imagen);
 
   // Método que realiza una petición PUT a la API para actualizar un recurso específico.
   // Recibe como parámetro el ID del recurso a actualizar, el nombre de la entidad ("entity") y los datos a enviar en la petición.
@@ -237,7 +315,17 @@ getAmarresTransito(pantalanId: number): Observable<any> {
     });
     // URL a la API a la que se realizará la petición con el nombre de la entidad y el ID del recurso.
     const url = `${this.apiUrl}${entity}/${id}`;
+    console.log(url + data);
 
+    // Se realiza la petición PUT a la API con la URL y los datos a enviar.
+    return this.http.put(url, data);
+
+  }
+
+  updateTransito(id: any,  data: any): Observable<any> {
+    // URL a la API a la que se realizará la petición con el nombre de la entidad y el ID del recurso.
+    const url = `${this.apiUrl}transito/update/${id}`;
+    console.log(url);
     // Se realiza la petición PUT a la API con la URL y los datos a enviar.
     return this.http.put(url, data);
 
