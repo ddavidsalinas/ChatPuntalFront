@@ -238,6 +238,21 @@ getAmarresTransito(pantalanId: number): Observable<any> {
   }
 
 
+  addTripulante( data: any,idTransito:any): Observable<any> {
+    // URL a la API a la que se realizará la petición cone el nombre de la entidad.
+    const url = `${this.apiUrl}tripulante/añadir`;
+    const requestData = { ...data, idTransito };
+    console.log(url ,data );
+    // Se realiza la petición POST a la API con la URL y los datos a enviar.
+    return this.http.post(url, requestData )
+      .pipe(
+        tap(response => console.log('Respuesta del servicio:', response))
+      ); // Se utiliza el operador pipe para encadenar operadores. En este caso, se utiliza el operador tap para imprimir en consola la respuesta del servicio.
+  }
+
+
+
+
   // postAlquiler(id: any, data: any): Observable<any> {
   //   const url = `${this.apiUrl}/plazaBase/alquiler/${id}`;
   //   console.log(url);
@@ -251,6 +266,15 @@ getAmarresTransito(pantalanId: number): Observable<any> {
     console.log(url,data);
     return this.http.post(url,data);
     
+  }
+
+
+  //me consigue la id en funcion del amarre
+  idTransito(id:any): Observable<any>
+  {
+    const url = `${this.apiUrl}transito/traer/${id}`;
+    
+    return this.http.get(url);
   }
 
 

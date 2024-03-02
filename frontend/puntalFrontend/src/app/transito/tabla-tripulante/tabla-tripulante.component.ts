@@ -69,14 +69,14 @@ getInputsArray(): number[] {
   return Array(this.inputs).fill(0).map((x, i) => i);
 }
 //por cada tripulante recorre y inserta 4 uno por uno los tripulantes con la api
-guardarTripulante() {
+guardarTripulante(id:any) {
   this.tripulantes.forEach((tripulante, index) => {
     console.log(`Datos del tripulante ${index + 1}:`);
     console.log('Nombre:', tripulante.Nombre);
     console.log('Sexo:', tripulante.Sexo);
     console.log('Documento:', tripulante.NumeroDeDocumento);
     console.log('Nacionalidad:', tripulante.Nacionalidad);
-  this.apiService.add("tripulante",tripulante)
+  this.apiService.addTripulante(tripulante,id)
 .pipe(
   catchError(error => {
     console.error('Error en la solicitud:', error);

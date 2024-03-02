@@ -12,6 +12,8 @@ import { error } from 'jquery';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
+import { EMPTY } from 'rxjs';
+
 
 
 @Component({
@@ -28,7 +30,7 @@ export class FormularioTransitoComponent implements OnInit {
   modoEdicion: boolean = false;
   transitoSeleccionada: any = { datos_tecnicos: '' };
   imagenSeleccionada: string | ArrayBuffer | null = null;
-  datos:any ; amarre:any; pantalan:any;instalacion:any;
+  datos:any ; amarre:any; pantalan:any;instalacion:any; idTransito:any;
   // transitoVacia: any = { datos_tecnicos: '' };
   idLocalStorage: any;
   titular: string= '';
@@ -176,7 +178,7 @@ export class FormularioTransitoComponent implements OnInit {
     this.embarcaciones.find(embarcacion => embarcacion.id === this.selectedEmbarcacion);
     
       if (this.selectedEmbarcacion) {
-      console.log(this.selectedEmbarcacion + "adsd")
+      
         this.apiService.getTitularEmbarcacion(this.selectedEmbarcacion).subscribe(
          
           (response: any) => {
@@ -266,7 +268,7 @@ verificarFechasEdit(): boolean {
 
   if (this.transitoSeleccionada.FechaEntrada > this.transitoSeleccionada.FechaSalida) {
     this.mostrarError = true;
-    console.log("aaaaaaaaaaaaaaaaaaaaa");
+
     return false;
   }
   // Si todas las validaciones pasan, devuelve true
@@ -317,28 +319,42 @@ guardarTransito() {
     
 
   };
-  // this.sharedDataService.setData(this.transitoSeleccionada,"transitoId");
-  
-  this.apiService.crearTransito(this.transitoSeleccionada).pipe(
-    switchMap((response) => {
-      console.log('Administrativo asociado correctamente al amarre:', response);
-      // Realizar las siguientes operaciones aquí, como realizar otra petición HTTP o realizar acciones adicionales
-      
-      // Por ejemplo, podrías hacer otra petición HTTP:
-      return  this.apiService.putDisponibleOcupado(this.transitoSeleccionada.Amarre);
-    })
-  ).subscribe(
-    (response) => {
-      console.log('Cambiado:', response);
-      this.router.navigate(['/transito/tabla']);  },
-    (error) => {
-      console.error('Error:', error);
-    }
-  );
+  this.apiService.idTransito(this.transitoSeleccionada.Amarre).pipe(
+    switchMap((transitoId) => {
+        console.log('ID de transito obtenido:', transitoId);
+        this.idTransito= transitoId;
+        // Realizar la siguiente operación aquí, utilizando el transitoId obtenido
 
+        // Por ejemplo, puedes usarlo para llamar a la función que crea el transito
+        return this.apiService.crearTransito(this.transitoSeleccionada);
+    }),
+    switchMap((response) => {
+        // Realizar la siguiente operación aquí, utilizando el resultado de la creación del transito
+        console.log('Respuesta de la creación del transito:', response);
+
+        // Por ejemplo, puedes usarlo para llamar a la función que actualiza el estado de disponibilidad
+        return this.apiService.putDisponibleOcupado(this.transitoSeleccionada.Amarre);
+    }),
+    switchMap((response) => {
+        // Realizar aquí la llamada para guardar los tripulantes
+        this.tripulante.guardarTripulante(this.idTransito);
+        
+        // Devolver un observable vacío ya que no necesitamos continuar después de guardar los tripulantes
+        return this.router.navigate(['transito/tabla']);
+    })
+).subscribe(
+    (response) => {
+        console.log('Operaciones completadas:', response);
+        // Aquí puedes manejar la respuesta de la operación final
+    },
+    (error) => {
+        console.error('Error:', error);
+        // Aquí puedes manejar cualquier error que ocurra en el proceso
+    }
+);
   
   }
-  this.tripulante.guardarTripulante();
+
 }
 //hace un update de los datos de el formulario transitos
 actualizarTransito() {

@@ -22,28 +22,28 @@
           </div>
           <div class="mb-3 d-flex">
             <label for="Embarcacion" class="form-label">Embarcación:</label>
-            <select [(ngModel)]="selectedEmbarcacion" name="embarcacion" (change)="onChangeEmbarcacion()">
+            <select [(ngModel)]="selectedEmbarcacion" name="embarcacion"  class="form-control mt-4"(change)="onChangeEmbarcacion()">
             <option *ngFor="let item of datos" [value]="item.id">{{ item.Matricula }}</option>
 
             </select>                  
           </div>
-          <div>
+          <div class="mb-3 d-flex">
           <label for="instalacion" class="form-label">Instalaciones:</label>
-            <select [(ngModel)]="selectedInstalacion" name="instalacion" (change)="onChangeInstalacion()">
+            <select [(ngModel)]="selectedInstalacion" name="instalacion" class="form-control mt-4" (change)="onChangeInstalacion()">
               <option ></option>
               <option *ngFor="let instalaciones of instalacion" [value]="instalaciones.id">{{ instalaciones.Ubicacion }}</option>
             </select>
           </div>
           <div class="mb-3 d-flex">
             <label for="pantalan" class="form-label">Pantalanes:</label>
-            <select  *ngIf="selectedInstalacion" [(ngModel)]="selectedPantalan" name="pantalan" (change)="onChangePantalan()">
+            <select  *ngIf="selectedInstalacion" [(ngModel)]="selectedPantalan" class="form-control mt-4"  name="pantalan" (change)="onChangePantalan()">
               <option ></option>
               <option *ngFor="let pantalanes of pantalan" [value]="pantalanes.id">{{ pantalanes.Nombre }}</option>
             </select>
           </div>
           <div class="mb-3 d-flex">
             <label for="amarre" class="form-label">Amarres disponibles:</label>
-            <select *ngIf="selectedPantalan" [(ngModel)]="selectedAmarre" name="amarre" >
+            <select *ngIf="selectedPantalan" [(ngModel)]="selectedAmarre" name="amarre" class="form-control mt-4" >
               <option ></option>
               <option *ngFor="let amarres of amarre" [value]="amarres.id">{{ amarres.Numero }}</option>
             </select>
