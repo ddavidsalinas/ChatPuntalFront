@@ -1,6 +1,15 @@
 :root {
-    display: flex;
-    flex-wrap: wrap;
-    height: 100%;
-    
-  }
+  display: flex;
+  flex-wrap: wrap;
+  height: 100%;
+
+}
+
+.container-centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin-top: 50px;
+  /* Ajusta este valor según tu preferencia */
+}
