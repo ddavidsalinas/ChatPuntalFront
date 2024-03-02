@@ -12,7 +12,10 @@ import { error } from 'jquery';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
-import { EMPTY } from 'rxjs';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+
+
 
 
 
@@ -228,27 +231,20 @@ export class FormularioTransitoComponent implements OnInit {
   }
 
   //salta el dialogo para confirmar la eliminación
-  eliminar(): void {
-    const dialogRef = this.dialog.open(FormdialogoComponent, {
-      data: {
-        embarcacion: this.transitoSeleccionada.embarcacion,
-        patron: this.transitoSeleccionada.patron,
-        instalacion: this.transitoSeleccionada.instalacion,
-        pantalan: this.transitoSeleccionada.pantalan
 
-      } as DilogoForm
-    });
+eliminar(): Observable<boolean> {
+  const dialogRef = this.dialog.open(FormdialogoComponent, {
+    data: {
+      embarcacion: this.transitoSeleccionada.Matricula,
+      amarre: this.transitoSeleccionada.Numero,
+    } as DilogoForm
+  });
 
-    dialogRef.afterClosed().subscribe(result => {
-      if (result) {
-
-        console.log('Eliminación confirmada. Causa de baja:', result.causa);
-      } else {
-
-        console.log('Eliminación cancelada.');
-      }
-    });
+  return dialogRef.afterClosed().pipe(
+    map(result => !!result) // Convertir el resultado en un booleano
+  );
 }
+
 
 
 verificarFechas(): boolean {
@@ -386,8 +382,10 @@ actualizarTransito() {
 }
 //hace un cambio del estado de plaza a ocupado
 eliminarTransito() {
-  // this.eliminar();
-  this.apiService.putOcupadoDisponible(this.transitoSeleccionada.Transito,this.transitoSeleccionada)
+  this.eliminar().subscribe(confirmado => { 
+    console.log(confirmado + "esto");
+    if (confirmado) {
+      this.apiService.putOcupadoDisponible(this.transitoSeleccionada.Transito,this.transitoSeleccionada)
     .pipe(
       catchError(error => {
         console.error('Error en la solicitud:', error);
@@ -404,6 +402,15 @@ eliminarTransito() {
         console.error('Error en la solicitud:', error);
       }
     );
+      
+    } else {
+      
+      console.log('Eliminación cancelada.');
+    }
+  });
+
+  
+  
 }
 
 
