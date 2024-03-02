@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, tap } from 'rxjs';
 import { SharedDataService } from '../shared-data/shared-data.service';
+import { catchError } from 'rxjs/operators';
 
 
 @Injectable({
@@ -230,6 +231,29 @@ getAmarresTransito(pantalanId: number): Observable<any> {
         tap(response => console.log('Respuesta del servicio:', response))
       ); // Se utiliza el operador pipe para encadenar operadores. En este caso, se utiliza el operador tap para imprimir en consola la respuesta del servicio.
   }
+
+  addPhoto(entity: string, data: FormData): Observable<any> {
+    const url = `${this.apiUrl}${entity}`;
+    console.log(url ,data );
+    return this.http.post(url, data)
+      .pipe(
+        tap(response => console.log('Respuesta del servicio:', response))
+      );
+}
+
+
+updatePhoto(embarcacionId: number, formData: FormData): Observable<any> {
+  const url = `${this.apiUrl}embarcacion/${embarcacionId}/update-photo`;
+  return this.http.put(url, formData)
+    .pipe(
+      catchError(error => {
+        console.error('Error en la solicitud:', error);
+        throw error;
+      })
+    );
+}
+
+
   //coge los tripulantes en base a la id
   getAllTripulante(): Observable<any> {
     this.sharedDataService.getData("transitoSeleccionada").subscribe(data => {
@@ -285,7 +309,13 @@ getAmarresTransito(pantalanId: number): Observable<any> {
   }
 
 
-
+  cambiarEstado(id: any, data: any): Observable<any> {
+    // URL a la API a la que se realizará la petición
+    const url = `${this.apiUrl}transito/${id}/cambiar-estado`;
+  
+    // Realiza la petición PUT a la API con la URL y los datos a enviar
+    return this.http.put(url, data);
+  }
 
   // update(id: any, entity: string, data: any): Observable<any> {
   //   // if (!data.Imagen) {
