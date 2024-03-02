@@ -13,6 +13,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatDialogModule } from '@angular/material/dialog';
 import { SharedDataService } from 'src/app/services/shared-data/shared-data.service';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -34,6 +35,7 @@ import { SharedDataService } from 'src/app/services/shared-data/shared-data.serv
     MatDialogModule,
     MatFormFieldModule,
     MatInputModule,
+    ReactiveFormsModule
   ],
   exports: [ContenidoTransitoComponent],
   providers: [SharedDataService],

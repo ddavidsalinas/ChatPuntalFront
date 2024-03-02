@@ -6,7 +6,7 @@ import { SharedDataService } from '../shared-data/shared-data.service';
 @Injectable({
   providedIn: 'root'
 })
-//llamada a la api con el id de transito seleccionado
+//llamada a la api con el id de transito seleccionado para obtener los tripulantes con esa id
 export class ApiTripulantesService {
   transitoId :any;
   private apiUrl = '<http://127.0.0.1:8000/api/v1/tripulante/>';
