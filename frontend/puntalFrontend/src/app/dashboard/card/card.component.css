@@ -3,17 +3,17 @@
 
 
 .card {
-  width: 310px;
-  height: 130px;
+  width: 400px;
+  height: 150px;
   flex-shrink: 0;
   border-radius: 20px;
   background: #fff;
   box-shadow: 4px 4px 4px 0px rgba(0, 0, 0, 0.25);
   color: #000;
   font-family: Inter;
-  font-size: 12px;
+  font-size: 16px;
   font-style: normal;
-  font-weight: 400;
+  font-weight: 500;
   line-height: normal;
  justify-content: space-around;
  margin: 10px;
