@@ -22,7 +22,7 @@ export class FormularioPbComponent implements OnInit {
   editarFechaFinalizacion: boolean = false;
 
 
-  plazaBSeleccionada: any = {  FechaInicio: new Date()  };
+  plazaBSeleccionada: any = {    };
   idLocalStorage: any;
   data: any;
   formulario!: FormGroup;
@@ -103,7 +103,7 @@ export class FormularioPbComponent implements OnInit {
     } else {
       this.minDate = null;
     }
-    console.log('FECHA:', this.plazaBSeleccionada);
+    
     if (this.plazaBSeleccionada.FechaInicio) {
       const fechaInicio = new Date(this.plazaBSeleccionada.FechaInicio);
       fechaInicio.setMonth(fechaInicio.getMonth() + 6); // Añadir 6 meses a la fecha de inicio
@@ -202,13 +202,15 @@ export class FormularioPbComponent implements OnInit {
     console.log('Intentando obtener datos del servicio...');
 
     this.sharedDataService.getData('plazaBSeleccionada').subscribe((data) => {
-      console.log('Datos obtenidos del servicio:', data);
+ 
       if (data) {
         if (!this.mostrarVacio) {
           this.plazaBSeleccionada = data;
+          this.validarFechaFinalizacion();
           console.log(
             'Información de la embarcación seleccionada:',
-            this.plazaBSeleccionada.titular
+            this.plazaBSeleccionada.Titular,
+            this.plazaBSeleccionada.FechaInicio,
           );
         }
       } else {
