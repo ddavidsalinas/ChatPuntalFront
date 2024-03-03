@@ -53,7 +53,8 @@ export class CardConfirmacionTransitoComponent implements OnInit {
       console.error('No se seleccionó ninguna imagen.');
       return; // No hay imagen para actualizar, salir de la función
     }
-  
+
+
     this.apiService.updatePhoto(this.transito.embarcacion_id, formData)
       .subscribe(
         response => {
@@ -68,49 +69,18 @@ export class CardConfirmacionTransitoComponent implements OnInit {
   }
   
 
-  // confirmarLlegada() {
-  //   console.log('Confirmando llegada del tránsito:', this.transito);
-
-  //   // Envía los datos al servidor utilizando HttpClient
-  //   this.http.put<any>('http://127.0.0.1:8000/api/v1/transito/' + this.transito.id + '/cambiar-estado', { estatus: 'salida' })
-  //     .pipe(
-  //       catchError(error => {
-  //         console.error('Error en la solicitud:', error);
-  //         throw error;
-  //       })
-  //     )
-  //     .subscribe(
-  //       response => {
-  //         console.log('Respuesta del servicio en el componente:', response);
-  //         // Actualiza el estado del tránsito en tu componente
-  //         this.transito.Estatus = 'salida';
-  //         // Cambia la apariencia del botón
-  //         const boton = document.querySelector('.botonLlegada');
-  //         if (boton) {
-  //           boton.textContent = 'CONFIRMAR SALIDA';
-  //           boton.classList.remove('botonLlegada');
-  //           boton.classList.add('botonSalida');
-  //         }
-  //       },
-  //       error => {
-  //         console.error('Error al confirmar la llegada del tránsito:', error);
-          
-  //       }
-  //     );
-  // }
-
   confirmarLlegada() {
     console.log('Confirmando llegada del tránsito:', this.transito);
   
     // Actualiza el estado del tránsito en tu componente
     this.transito.Estatus = 'salida';
     // Cambia la apariencia del botón
-    const boton = document.querySelector('.botonLlegada');
-    if (boton) {
-      boton.textContent = 'CONFIRMAR SALIDA';
-      boton.classList.remove('botonLlegada');
-      boton.classList.add('botonSalida');
-    }
+    // const boton = document.querySelector('.botonLlegada');
+    // if (boton) {
+    //   boton.textContent = 'CONFIRMAR SALIDA';
+    //   boton.classList.remove('botonLlegada');
+    //   boton.classList.add('botonSalida');
+    // }
   
     // Crea el objeto con los datos a enviar
     const data = { estatus: 'salida' };
@@ -122,14 +92,30 @@ export class CardConfirmacionTransitoComponent implements OnInit {
           console.log('Respuesta del servicio en el componente:', response);
           // Actualiza los datos de tránsito en el local storage
           localStorage.setItem('transito', JSON.stringify(this.transito));
-          // Recarga la página después de 1 segundo
-          setTimeout(() => window.location.reload(), 1000);
+          setTimeout(() => window.location.reload(), 100);
         },
         error => {
           console.error('Error en la solicitud:', error);
         }
       );
   }
+
+  confirmarSalida() {
+    console.log('Confirmando salida del tránsito:', this.transito);
+
+    // Llama al método delete del apiService para eliminar el tránsito
+    this.apiService.delete(this.transito.id, 'transito')
+        .subscribe(
+            response => {
+                console.log('Respuesta del servicio en el componente:', response);
+                // Redirecciona a la página anterior
+                this.router.navigate(['movil']);
+            },
+            error => {
+                console.error('Error en la solicitud:', error);
+            }
+        );
+}
 
   ngOnInit(): void {
     // Obtén los datos de tránsito del local storage al inicializar el componente
