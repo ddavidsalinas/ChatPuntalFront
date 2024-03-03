@@ -20,10 +20,10 @@ import { ApiService } from 'src/app/services/api/api.service';
             label: 'Estado de Ocupación',
             data: [
               data.plazas_base.ocupadas,
-              data.plazas_base.disponibles,
+              data.plazas_base.disponible,
               data.plazas_base.mantenimiento,
               data.transitos.ocupados,
-              data.transitos.disponibles,
+              data.transitos.disponible,
               data.transitos.mantenimiento
             ],
             backgroundColor: [
