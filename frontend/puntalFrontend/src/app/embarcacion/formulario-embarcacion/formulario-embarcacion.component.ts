@@ -44,6 +44,9 @@ export class FormularioEmbarcacionComponent implements OnInit {
   noClick: boolean = false;
   // Método para inicializar el componente en la vista
   ngOnInit(): void {
+    if (!this.embarcacionSeleccionada.Imagen) {
+      this.embarcacionSeleccionada.Imagen = '/assets/img/embarcaciones/image-outline.svg';
+    }
     // Suscripción a los parámetros de la ruta. Recibe el tipo de formulario a través de queryParams en la URL
     this.activatedRoute.queryParams.subscribe(params => {
       const tipo = params['tipo'];
@@ -59,6 +62,9 @@ export class FormularioEmbarcacionComponent implements OnInit {
         // Solo asigna a embarcacionSeleccionada si no es un formulario vacío
         if (!this.mostrarVacio) {
           this.embarcacionSeleccionada = data;
+          if (!this.embarcacionSeleccionada.Imagen) {
+            this.embarcacionSeleccionada.Imagen = '/assets/img/embarcaciones/image-outline.svg';
+          }
 
         }
       } else {
