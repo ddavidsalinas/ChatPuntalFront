@@ -339,4 +339,11 @@ getAmarresTransito(pantalanId: number): Observable<any> {
     return this.http.delete(url);
   }
 
+  deleteCrew(id:any)
+  {
+    const url = `${this.apiUrl}borrar/tripulante/${id}`;
+    return this.http.delete(url);
+  }
+  
+
 }
