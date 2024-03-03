@@ -1,4 +1,4 @@
-<div class="formularioEmbarcaciones">
+<div class="formularioEmbarcaciones ontainer-fluid d-flex justify-content-center align-items-center">
   <div *ngIf="mostrarVacio">
     <div class="formHeader">
       <h5>ALTA EMBARCACIÓN</h5>
@@ -133,7 +133,7 @@
   </div>
   <div *ngIf="mostrarVacio === false">
     <div class="formHeader">
-      <h5>VISTA EMBARCACIÓN</h5>
+      <h5>{{embarcacionSeleccionada.Nombre}}</h5>
     </div>
     <form
       id="formEmbarcacionModificar"
@@ -267,7 +267,8 @@
         </div> -->
         <div class="d-flex justify-content-center">
           <img
-            [src]="'http://127.0.0.1:8000' + embarcacionSeleccionada.Imagen"
+            [src]="'http://127.0.0.1:8000' + embarcacionSeleccionada.Imagen ||
+              '/assets/img/embarcaciones/image-outline.svg'"
             alt=""
              class="imgEmb"
           />
